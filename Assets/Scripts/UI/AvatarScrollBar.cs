@@ -14,14 +14,14 @@ public class AvatarScrollBar : MonoBehaviour
     [SerializeField]
     private List<Sprite> femaleAvatars;
 
-    private CharacterCreator character;
+    private PersonMaker character;
     private Vector2 pos;
     private List<Sprite> avatars = new List<Sprite>();
 
     // Start is called before the first frame update
     void Start()
     {
-        character = FindObjectOfType<CharacterCreator>();
+        character = FindObjectOfType<PersonMaker>();
         pos = new Vector2(50f, -60f);
         UpdateAvatars();
     }
@@ -52,7 +52,7 @@ public class AvatarScrollBar : MonoBehaviour
 
     private void SetAvatarGender()
     {
-        if (character.GetGender() == CharacterCreator.Gender.MALE)
+        if (character.GetGender() == PersonMaker.Gender.MALE)
         {
             avatars = maleAvatars;
         }
