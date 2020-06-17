@@ -8,56 +8,25 @@ public class StatsBanner : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI gold, iron, wood, weapons, population, adventurers, artisans, peasants;
 
-    // Start is called before the first frame update
+    private Guildhall guildhall;
+    private PopulationManager populationManager;
+
     void Start()
     {
-        UpdateGold(1500);
-        UpdateIron(245);
-        UpdateWood(750);
-        UpdateWeapons(45);
-        UpdatePopulation(22);
-        UpdateAdventurers(3);
-        UpdateArtisans(7);
-        UpdatePeasants(12);
+        guildhall = FindObjectOfType<Guildhall>();
+        populationManager = FindObjectOfType<PopulationManager>();
     }
 
-    public void UpdateGold(int num)
+    public void FixedUpdate()
     {
-        gold.text = num.ToString();
-    }
+        gold.text = guildhall.GetGold().ToString();
+        iron.text = guildhall.GetIron().ToString();
+        wood.text = guildhall.GetWood().ToString();
+        weapons.text = guildhall.GetWeapons().ToString();
 
-    public void UpdateIron(int num)
-    {
-        iron.text = num.ToString();
-    }
-
-    public void UpdateWood(int num)
-    {
-        wood.text = num.ToString();
-    }
-
-    public void UpdateWeapons(int num)
-    {
-        weapons.text = num.ToString();
-    }
-
-    public void UpdatePopulation(int num)
-    {
-        population.text = num.ToString();
-    }
-
-    public void UpdateAdventurers(int num)
-    {
-        adventurers.text = num.ToString();
-    }
-
-    public void UpdateArtisans(int num)
-    {
-        artisans.text = num.ToString();
-    }
-
-    public void UpdatePeasants(int num)
-    {
-        peasants.text = num.ToString();
+        population.text = populationManager.Population().Count.ToString();
+        adventurers.text = populationManager.Adventurers().Count.ToString();
+        artisans.text = populationManager.Artisans().Count.ToString();
+        peasants.text = populationManager.Peasants().Count.ToString();
     }
 }

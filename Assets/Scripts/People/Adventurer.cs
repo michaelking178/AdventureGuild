@@ -1,20 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-[RequireComponent(typeof(Person))]
-public class Adventurer : MonoBehaviour
+﻿public class Adventurer : Vocation
 {
-    private bool isHero;
-    private Person person;
-
-    private void Start()
+    public Adventurer()
     {
-        person = GetComponent<Person>();
-    }
-
-    public Adventurer(bool _isHero)
-    {
-        isHero = _isHero;
+        title = "Adventurer";
     }
 }

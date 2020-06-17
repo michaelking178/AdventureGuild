@@ -14,30 +14,24 @@ public class AvatarScrollBar : MonoBehaviour
     [SerializeField]
     private List<Sprite> femaleAvatars;
 
-    private PersonMaker character;
-    private Vector2 pos;
+    private Person hero;
     private List<Sprite> avatars = new List<Sprite>();
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        character = FindObjectOfType<PersonMaker>();
-        pos = new Vector2(50f, -60f);
-        UpdateAvatars();
-    }
 
     public void UpdateAvatars()
     {
+        if (hero == null)
+        {
+            hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<Person>();
+        }
         ResetScrollbar();
-        SetAvatarGender();
+        SetScrollbarContent();
 
         foreach (Sprite avatar in avatars)
         {
             GameObject newCharacter = Instantiate(avatarPrefab, transform);
-            newCharacter.GetComponentInChildren<Image>().sprite = avatar;
-            newCharacter.transform.GetChild(0).GetComponent<Image>().sprite = avatar;
-            newCharacter.transform.localPosition = pos;
-            pos.x += 90f;
+            Image[] images = newCharacter.GetComponentsInChildren<Image>();
+            images[1].sprite = avatar;
+            newCharacter.transform.GetChild(1).GetComponent<Image>().sprite = avatar;
         }
     }
 
@@ -47,12 +41,16 @@ public class AvatarScrollBar : MonoBehaviour
         {
             Destroy(child);
         }
-        pos = new Vector2(50f, -60f);
     }
 
-    private void SetAvatarGender()
+    private void SetScrollbarContent()
     {
-        if (character.GetGender() == PersonMaker.Gender.MALE)
+        if (hero == null)
+        {
+            avatars = maleAvatars;
+            Debug.Log("No hero found!");
+        }
+        else if (hero.GetGender() == Person.Gender.MALE)
         {
             avatars = maleAvatars;
         }
