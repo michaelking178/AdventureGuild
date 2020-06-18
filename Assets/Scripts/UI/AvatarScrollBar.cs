@@ -14,6 +14,12 @@ public class AvatarScrollBar : MonoBehaviour
     [SerializeField]
     private List<Sprite> femaleAvatars;
 
+    [SerializeField]
+    private Sprite defaultMaleAvatar;
+
+    [SerializeField]
+    private Sprite defaultFemaleAvatar;
+
     private Person hero;
     private List<Sprite> avatars = new List<Sprite>();
 
@@ -25,6 +31,11 @@ public class AvatarScrollBar : MonoBehaviour
         }
         ResetScrollbar();
         SetScrollbarContent();
+        
+        if (!HeroAvatarMatchesGender())
+        {
+            SetAvatarToGenderDefault();
+        }
 
         foreach (Sprite avatar in avatars)
         {
@@ -57,6 +68,43 @@ public class AvatarScrollBar : MonoBehaviour
         else
         {
             avatars = femaleAvatars;
+        }
+    }
+
+    private bool HeroAvatarMatchesGender()
+    {
+        if (hero.GetGender() == Person.Gender.MALE)
+        {
+            foreach(Sprite av in maleAvatars)
+            {
+                if (hero.GetAvatar() == av)
+                {
+                    return true;
+                }
+            }
+        }
+        else
+        {
+            foreach (Sprite av in femaleAvatars)
+            {
+                if (hero.GetAvatar() == av)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private void SetAvatarToGenderDefault()
+    {
+        if (hero.GetGender() == Person.Gender.MALE)
+        {
+            hero.SetAvatar(defaultMaleAvatar);
+        }
+        else
+        {
+            hero.SetAvatar(defaultFemaleAvatar);
         }
     }
 }
