@@ -26,6 +26,9 @@ public class Person : MonoBehaviour
     [SerializeField]
     private int level;
 
+    [SerializeField]
+    private bool isAvailable;
+
     private void Awake()
     {
         populationManager = FindObjectOfType<PopulationManager>();
@@ -34,6 +37,7 @@ public class Person : MonoBehaviour
         experience = 0;
         level = 1;
         vocation = new Peasant();
+        isAvailable = true;
         populationManager.AddPerson(this);
     }
 
@@ -115,5 +119,15 @@ public class Person : MonoBehaviour
     public void IncreaseLevel()
     {
         level++;
+    }
+
+    public bool IsAvailabile()
+    {
+        return isAvailable;
+    }
+
+    public void SetIsAvailable(bool _isAvailable)
+    {
+        isAvailable = _isAvailable;
     }
 }
