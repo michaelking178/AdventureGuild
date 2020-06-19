@@ -11,9 +11,17 @@ public class MenuManager : MonoBehaviour
     private GameObject startingMenu;
 
     private GameObject currentMenu;
+    private GameObject hero;
 
     private void Start()
     {
+        hero = GameObject.FindGameObjectWithTag("Hero");
+
+        if (hero.GetComponent<Person>())
+        {
+            OpenMenu("Menu_Hub");
+            return;
+        }
         if (startingMenu == null)
         {
             Debug.Log("No starting menu selected!");
