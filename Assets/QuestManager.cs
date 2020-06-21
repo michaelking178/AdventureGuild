@@ -10,7 +10,6 @@ public class QuestManager : MonoBehaviour
     private void Start()
     {
         CreateQuest(0);
-
     }
 
     public void CreateQuest(int difficulty)
@@ -28,5 +27,10 @@ public class QuestManager : MonoBehaviour
     + newQuest.Reward.Exp + " Experience");
 
         questList.Add(newQuest);
+    }
+
+    public List<Quest> GetQuests()
+    {
+        return questList;
     }
 }

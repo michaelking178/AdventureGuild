@@ -17,7 +17,7 @@ public class MenuManager : MonoBehaviour
     {
         hero = GameObject.FindGameObjectWithTag("Hero");
 
-        if (hero.GetComponent<Person>())
+        if (hero && hero.GetComponent<Person>())
         {
             OpenMenu("Menu_Hub");
             return;
@@ -46,8 +46,9 @@ public class MenuManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
 
         }
-        GetMenu(menuName).GetComponent<Animator>().SetTrigger("Open");
-        currentMenu = GetMenu(menuName);
+        GameObject menu = GetMenu(menuName);
+        menu.GetComponent<Animator>().SetTrigger("Open");
+        currentMenu = menu;
         yield return new WaitForSeconds(0.5f);
     }
 

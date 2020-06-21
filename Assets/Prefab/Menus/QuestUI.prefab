@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 561856774022957479}
   - component: {fileID: 1112787375612860160}
   m_Layer: 5
-  m_Name: txt_PersonVocationAndLevel
+  m_Name: txt_Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,13 +29,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2299590139593331951}
-  m_RootOrder: 1
+  m_Father: {fileID: 7261851885433690638}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -70.40999, y: -6.5999985}
-  m_SizeDelta: {x: 243.6846, y: 20.966652}
+  m_AnchoredPosition: {x: -0.21, y: -0.33000183}
+  m_SizeDelta: {x: 368.05734, y: 77.6355}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &561856774022957479
 CanvasRenderer:
@@ -64,7 +64,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Person Vocation
+  m_text: Quest Description
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 66ca03310849d5643b81fa09ed2cd405, type: 2}
   m_sharedMaterial: {fileID: 8847002362934079468, guid: 66ca03310849d5643b81fa09ed2cd405,
@@ -93,8 +93,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 18
-  m_fontSizeBase: 36
+  m_fontSize: 40.2
+  m_fontSizeBase: 35.81
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1112787375612860160}
-    characterCount: 15
+    characterCount: 17
     spriteCount: 0
     spaceCount: 1
     wordCount: 2
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 4307876305095476510}
   - component: {fileID: 2609200873049413987}
   m_Layer: 5
-  m_Name: txt_PersonAvailability
+  m_Name: txt_Time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -187,7 +187,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2299590139593331951}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Availability
+  m_text: 999 seconds
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 66ca03310849d5643b81fa09ed2cd405, type: 2}
   m_sharedMaterial: {fileID: 8847002362934079468, guid: 66ca03310849d5643b81fa09ed2cd405,
@@ -291,10 +291,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 2609200873049413987}
-    characterCount: 12
+    characterCount: 11
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
+    spaceCount: 1
+    wordCount: 2
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 86861505738027057}
   - component: {fileID: 3658146356951312941}
   m_Layer: 5
-  m_Name: PersonUIPanel
+  m_Name: QuestUIPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -345,7 +345,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9054479891117925280}
-  - {fileID: 5090185087571786316}
   - {fileID: 4030372485642671191}
   m_Father: {fileID: 9054479892892241341}
   m_RootOrder: 0
@@ -435,7 +434,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9054479892892241328}
+      - m_Target: {fileID: 3305669174934049280}
         m_MethodName: ShowPanel
         m_Mode: 1
         m_Arguments:
@@ -474,7 +473,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 5090185087571786316}
   m_Father: {fileID: 9054479892892241341}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -532,7 +532,7 @@ GameObject:
   - component: {fileID: 9054479891117925286}
   - component: {fileID: 9054479891117925281}
   m_Layer: 5
-  m_Name: txt_PersonName
+  m_Name: txt_QuestName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -584,7 +584,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Person Name
+  m_text: Quest Name
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 66ca03310849d5643b81fa09ed2cd405, type: 2}
   m_sharedMaterial: {fileID: 8847002362934079468, guid: 66ca03310849d5643b81fa09ed2cd405,
@@ -654,7 +654,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 9054479891117925281}
-    characterCount: 11
+    characterCount: 10
     spriteCount: 0
     spaceCount: 1
     wordCount: 2
@@ -687,12 +687,12 @@ GameObject:
   m_Component:
   - component: {fileID: 9054479892892241341}
   - component: {fileID: 9054479892892241331}
-  - component: {fileID: 9054479892892241328}
   - component: {fileID: 5782384508849684204}
   - component: {fileID: 6082643562501568848}
   - component: {fileID: 1948983747574238044}
+  - component: {fileID: 3305669174934049280}
   m_Layer: 5
-  m_Name: PersonUI
+  m_Name: QuestUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -727,22 +727,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9054479892892241340}
   m_CullTransparentMesh: 0
---- !u!114 &9054479892892241328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9054479892892241340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bed4676553cf0e4caefb4e969c1a562, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  extensionPanel: {fileID: 8606640716035622340}
-  personName: {fileID: 9054479891117925281}
-  personVocation: {fileID: 1112787375612860160}
-  availability: {fileID: 2609200873049413987}
 --- !u!114 &5782384508849684204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -785,18 +769,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9054479892892241328}
-        m_MethodName: ShowPanel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &6082643562501568848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -836,3 +809,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!114 &3305669174934049280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9054479892892241340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b90d428987e90849819589f809875ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extensionPanel: {fileID: 8606640716035622340}
+  questName: {fileID: 9054479891117925281}
+  questDescription: {fileID: 1112787375612860160}
+  time: {fileID: 2609200873049413987}
