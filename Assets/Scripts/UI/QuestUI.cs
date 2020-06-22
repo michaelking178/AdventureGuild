@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 public class QuestUI : MonoBehaviour
@@ -27,10 +25,10 @@ public class QuestUI : MonoBehaviour
 
     private void SetQuestUIAttributes()
     {
-        questName.text = quest.QuestName;
-        questDescription.text = quest.Description;
+        questName.text = quest.questName;
+        questDescription.text = quest.description;
 
-        time.text = quest.TimeToComplete.ToString() + " seconds";
+        time.text = (quest.time * 0.001).ToString() + " seconds";
     }
 
     public void ShowPanel()

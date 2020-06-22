@@ -1,36 +1,36 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
     [SerializeField]
-    private List<Quest> questList = new List<Quest>();
+    private TextAsset questsJson;
+
+    [SerializeField]
+    private Quests questList;
 
     private void Start()
     {
-        CreateQuest(0);
+        questList = JsonUtility.FromJson<Quests>(questsJson.text);
+        PrintQuests();
     }
 
-    public void CreateQuest(int difficulty)
+    public Quest[] GetQuests()
     {
-        string questName = "Heir today, gone tomorrow";
-        string description = "Explore the wildlands and discover the fate of the Prince's caravan.";
-
-        Quest newQuest = new Quest(questName, description, difficulty);
-
-        Debug.Log("\n" + newQuest.QuestName + ":\n" + newQuest.Description + "\n"
-    + "Rewards:\n"
-    + newQuest.Reward.Gold + " Gold\n"
-    + newQuest.Reward.Iron + " Iron\n"
-    + newQuest.Reward.Wood + " Wood\n"
-    + newQuest.Reward.Exp + " Experience");
-
-        questList.Add(newQuest);
+        return questList.quests;
     }
 
-    public List<Quest> GetQuests()
+    private void PrintQuests()
     {
-        return questList;
+        foreach(Quest newQuest in questList.quests)
+        {
+            newQuest.reward = new QuestReward(0);
+            Debug.Log("\n" + newQuest.questName + ":\n" + newQuest.description + "\n"
+                + "Rewards:\n"
+                + newQuest.reward.Gold + " Gold\n"
+                + newQuest.reward.Iron + " Iron\n"
+                + newQuest.reward.Wood + " Wood\n"
+                + newQuest.reward.Exp + " Experience");
+        }
     }
 }
