@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PersonUI : MonoBehaviour
 {
-    private Person person;
+    private GuildMember guildMember;
 
     [SerializeField]
     private GameObject extensionPanel;
@@ -17,18 +17,18 @@ public class PersonUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI availability;
 
-    public void SetPerson(Person _person)
+    public void SetPerson(GuildMember _person)
     {
-        person = _person;
+        guildMember = _person;
         SetPersonUIAttributes();
     }
 
     private void SetPersonUIAttributes()
     {
-        personName.text = person.GetName();
-        personVocation.text = string.Format("{0} - Level {1}", person.GetVocation().Title(), person.GetLevel().ToString());
+        personName.text = guildMember.person.name;
+        personVocation.text = string.Format("{0} - Level {1}", guildMember.GetVocation().Title(), guildMember.GetLevel().ToString());
         
-        if (person.IsAvailabile())
+        if (guildMember.IsAvailabile())
         {
             availability.text = "Available";
         }

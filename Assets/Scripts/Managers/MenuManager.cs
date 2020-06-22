@@ -17,7 +17,7 @@ public class MenuManager : MonoBehaviour
     {
         hero = GameObject.FindGameObjectWithTag("Hero");
 
-        if (hero && hero.GetComponent<Person>())
+        if (hero && hero.GetComponent<GuildMember>())
         {
             OpenMenu("Menu_Hub");
             return;

@@ -4,52 +4,64 @@ using UnityEngine;
 public class PopulationManager : MonoBehaviour
 {
     [SerializeField]
-    private List<Person> people = new List<Person>();
+    private TextAsset peopleJson;
 
-    public void AddPerson(Person person)
+    [SerializeField]
+    private People peopleList;
+
+    public List<GuildMember> GuildMembers = new List<GuildMember>();
+
+    private void Start()
     {
-        people.Add(person);
+        peopleList = JsonUtility.FromJson<People>(peopleJson.text);
     }
 
-    public List<Person> Population()
+    public Person[] Population()
     {
-        return people;
+        return peopleList.people;
     }
 
-    public List<Person> Adventurers()
+    public void CreateGuildMember()
     {
-        List<Person> adventurers = new List<Person>();
-        foreach(Person person in people)
+        Person randomPerson = peopleList.people[Random.Range(0, peopleList.people.Length)];
+        GuildMember newMember = new GuildMember(randomPerson);
+        GuildMembers.Add(newMember);
+    }
+
+    public List<GuildMember> Adventurers()
+    {
+        List<GuildMember> adventurers = new List<GuildMember>();
+        foreach(GuildMember guildMember in GuildMembers)
         {
-            if (person.GetVocation() is Adventurer)
+            if (guildMember.GetVocation() is Adventurer)
             {
-                adventurers.Add(person);
+                adventurers.Add(guildMember);
             }
         }
         return adventurers;
     }
 
-    public List<Person> Artisans()
+    public List<GuildMember> Artisans()
     {
-        List<Person> artisans = new List<Person>();
-        foreach (Person person in people)
+        List<GuildMember> artisans = new List<GuildMember>();
+        foreach (GuildMember guildMember in GuildMembers)
         {
-            if (person.GetVocation() is Artisan)
+            if (guildMember.GetVocation() is Artisan)
             {
-                artisans.Add(person);
+                artisans.Add(guildMember);
             }
         }
         return artisans;
     }
 
-    public List<Person> Peasants()
+    public List<GuildMember> Peasants()
     {
-        List<Person> peasants = new List<Person>();
-        foreach (Person person in people)
+        List<GuildMember> peasants = new List<GuildMember>();
+        foreach (GuildMember guildMember in GuildMembers)
         {
-            if (person.GetVocation() is Peasant)
+            if (guildMember.GetVocation() is Peasant)
             {
-                peasants.Add(person);
+                peasants.Add(guildMember);
             }
         }
         return peasants;

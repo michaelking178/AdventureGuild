@@ -22,10 +22,10 @@ public class PersonUIScrollView : MonoBehaviour
         {
             Destroy(child);
         }
-        foreach (Person person in populationManager.Population())
+        foreach (GuildMember guildMember in populationManager.GuildMembers)
         {
             GameObject newPersonUI = Instantiate(personUI, transform);
-            newPersonUI.GetComponent<PersonUI>().SetPerson(person);
+            newPersonUI.GetComponent<PersonUI>().SetPerson(guildMember);
         }
     }
 }

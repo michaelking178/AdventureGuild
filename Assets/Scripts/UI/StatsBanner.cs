@@ -24,7 +24,7 @@ public class StatsBanner : MonoBehaviour
         wood.text = guildhall.GetWood().ToString();
         weapons.text = guildhall.GetWeapons().ToString();
 
-        population.text = populationManager.Population().Count.ToString();
+        population.text = populationManager.GuildMembers.Count.ToString();
         adventurers.text = populationManager.Adventurers().Count.ToString();
         artisans.text = populationManager.Artisans().Count.ToString();
         peasants.text = populationManager.Peasants().Count.ToString();

@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class HeroAvatarFrame : MonoBehaviour
 {
-    private Person hero;
+    private GuildMember hero;
     private Image avatarImage;
 
     private void Start()
@@ -13,11 +13,11 @@ public class HeroAvatarFrame : MonoBehaviour
 
     public void FixedUpdate()
     {
-        if (!GameObject.FindGameObjectWithTag("Hero").GetComponent<Person>())
+        if (!GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>())
         {
             return;
         }
-        hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<Person>();
+        hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>();
         avatarImage.sprite = hero.GetAvatar();
     }
 }

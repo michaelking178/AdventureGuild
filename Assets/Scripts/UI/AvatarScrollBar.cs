@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,14 +19,14 @@ public class AvatarScrollBar : MonoBehaviour
     [SerializeField]
     private Sprite defaultFemaleAvatar;
 
-    private Person hero;
+    private GuildMember hero;
     private List<Sprite> avatars = new List<Sprite>();
 
     public void UpdateAvatars()
     {
         if (hero == null)
         {
-            hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<Person>();
+            hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>();
         }
         ResetScrollbar();
         SetScrollbarContent();
@@ -61,7 +60,7 @@ public class AvatarScrollBar : MonoBehaviour
             avatars = maleAvatars;
             Debug.Log("No hero found!");
         }
-        else if (hero.GetGender() == Person.Gender.MALE)
+        else if (hero.person.gender == "male")
         {
             avatars = maleAvatars;
         }
@@ -73,7 +72,7 @@ public class AvatarScrollBar : MonoBehaviour
 
     private bool HeroAvatarMatchesGender()
     {
-        if (hero.GetGender() == Person.Gender.MALE)
+        if (hero.person.gender == "male")
         {
             foreach(Sprite av in maleAvatars)
             {
@@ -98,7 +97,7 @@ public class AvatarScrollBar : MonoBehaviour
 
     private void SetAvatarToGenderDefault()
     {
-        if (hero.GetGender() == Person.Gender.MALE)
+        if (hero.person.gender == "male")
         {
             hero.SetAvatar(defaultMaleAvatar);
         }

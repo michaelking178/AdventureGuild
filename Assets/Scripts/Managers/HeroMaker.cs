@@ -6,7 +6,7 @@ public class HeroMaker : MonoBehaviour
     [SerializeField]
     private Sprite defaultHeroSprite;
 
-    private Person hero;
+    private GuildMember hero;
     private PopulationManager populationManager;
 
     private void Start()
@@ -17,25 +17,30 @@ public class HeroMaker : MonoBehaviour
     public void CreateHero()
     {
         GameObject heroObj = GameObject.FindGameObjectWithTag("Hero");
-        if (heroObj.GetComponent<Person>() == null)
+        if (heroObj.GetComponent<GuildMember>() == null)
         {
-            heroObj.AddComponent<Person>();
+            heroObj.AddComponent<GuildMember>();
         }
-        hero = heroObj.GetComponent<Person>();
-        hero.SetGender(Person.Gender.MALE);
+        hero = heroObj.GetComponent<GuildMember>();
+        hero.person = new Person {
+            gender = "male"
+        };
+        hero.UpdateHealth(100);
+        hero.IncreaseLevel();
         hero.SetAvatar(defaultHeroSprite);
         hero.SetVocation(new Adventurer());
+        hero.IsAvailable(true);
+        populationManager.GuildMembers.Add(hero);
     }
 
     public void SetHeroGender(string _gender)
     {
-        Person.Gender newGender = (Person.Gender)System.Enum.Parse(typeof(Person.Gender), _gender);
-        hero.SetGender(newGender);
+        hero.person.gender = _gender;
     }
 
     public void SetHeroName()
     {
         TextMeshProUGUI[] textBoxes = GameObject.Find("in_HeroName").GetComponentsInChildren<TextMeshProUGUI>();
-        hero.SetName(textBoxes[1].text);
+        hero.person.name = textBoxes[1].text;
     }
 }
