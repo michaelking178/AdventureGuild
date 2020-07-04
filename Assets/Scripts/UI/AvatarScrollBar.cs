@@ -60,7 +60,7 @@ public class AvatarScrollBar : MonoBehaviour
             avatars = maleAvatars;
             Debug.Log("No hero found!");
         }
-        else if (hero.person.gender == "male")
+        else if (hero.person.gender == "MALE")
         {
             avatars = maleAvatars;
         }
@@ -72,7 +72,7 @@ public class AvatarScrollBar : MonoBehaviour
 
     private bool HeroAvatarMatchesGender()
     {
-        if (hero.person.gender == "male")
+        if (hero.person.gender == "MALE")
         {
             foreach(Sprite av in maleAvatars)
             {
@@ -97,7 +97,7 @@ public class AvatarScrollBar : MonoBehaviour
 
     private void SetAvatarToGenderDefault()
     {
-        if (hero.person.gender == "male")
+        if (hero.person.gender == "MALE")
         {
             hero.SetAvatar(defaultMaleAvatar);
         }

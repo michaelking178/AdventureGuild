@@ -26,7 +26,7 @@ public class HeroMaker : MonoBehaviour
         }
         hero = heroObj.GetComponent<GuildMember>();
         hero.person = new Person {
-            gender = "male"
+            gender = "MALE"
         };
         hero.UpdateHealth(100);
         hero.IncreaseLevel();

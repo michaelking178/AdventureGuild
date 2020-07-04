@@ -22,7 +22,7 @@ public class HeroCreatedPanel : MonoBehaviour
 
     private void SetPrefix()
     {
-        if (hero.person.gender == "male")
+        if (hero.person.gender == "MALE")
         {
             prefix = "Sir ";
         }

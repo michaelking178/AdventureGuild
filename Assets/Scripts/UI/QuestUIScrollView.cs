@@ -10,7 +10,6 @@ public class QuestUIScrollView : MonoBehaviour
     void Start()
     {
         questManager = FindObjectOfType<QuestManager>();
-        UpdateQuestList();
     }
 
     public void UpdateQuestList()
@@ -19,7 +18,7 @@ public class QuestUIScrollView : MonoBehaviour
         {
             Destroy(child);
         }
-        foreach (Quest quest in questManager.GetQuests())
+        foreach (Quest quest in questManager.AvailableQuests())
         {
             GameObject newQuestUI = Instantiate(questUI, transform);
             newQuestUI.GetComponent<QuestUI>().SetQuest(quest);

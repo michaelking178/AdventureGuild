@@ -5,11 +5,18 @@ using UnityEngine;
 
 public class QuestPanel : MonoBehaviour
 {
+    private QuestManager questManager;
+
     [SerializeField]
     private TextMeshProUGUI activeQuests;
 
+    private void Start()
+    {
+        questManager = FindObjectOfType<QuestManager>();
+    }
+
     public void UpdateQuestPanel()
     {
-
+        activeQuests.text = questManager.AvailableQuests().Length.ToString();
     }
 }
