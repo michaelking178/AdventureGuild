@@ -28,4 +28,20 @@ public class PersonUIScrollView : MonoBehaviour
             newPersonUI.GetComponent<PersonUI>().SetPerson(guildMember);
         }
     }
+
+    public void GetAvailableAdventurers()
+    {
+        foreach (GameObject child in gameObject.GetChildren())
+        {
+            Destroy(child);
+        }
+        foreach (GuildMember guildMember in populationManager.GuildMembers)
+        {
+            if (guildMember.IsAvailabile())
+            {
+                GameObject newPersonUI = Instantiate(personUI, transform);
+                newPersonUI.GetComponent<PersonUI>().SetPerson(guildMember);
+            }
+        }
+    }
 }
