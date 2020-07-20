@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -37,7 +38,7 @@ public class PersonUIScrollView : MonoBehaviour
         }
         foreach (GuildMember guildMember in populationManager.GuildMembers)
         {
-            if (guildMember.IsAvailabile())
+            if (guildMember.GetVocation() is Adventurer && guildMember.IsAvailabile())
             {
                 GameObject newPersonUI = Instantiate(personUI, transform);
                 newPersonUI.GetComponent<PersonUI>().SetPerson(guildMember);

@@ -9,6 +9,9 @@ public class PersonUI : MonoBehaviour
     private GameObject extensionPanel;
 
     [SerializeField]
+    private GameObject selectAdventurerBtn;
+
+    [SerializeField]
     private TextMeshProUGUI personName;
 
     [SerializeField]
@@ -40,7 +43,6 @@ public class PersonUI : MonoBehaviour
 
     public void ShowPanel()
     {
-        Debug.Log(name + " Clicked");
         if (extensionPanel.activeSelf)
         {
             extensionPanel.SetActive(false);
@@ -49,5 +51,22 @@ public class PersonUI : MonoBehaviour
         {
             extensionPanel.SetActive(true);
         }
+    }
+
+    public void ShowSelectButton()
+    {
+        if (selectAdventurerBtn.activeSelf)
+        {
+            selectAdventurerBtn.SetActive(false);
+        }
+        else
+        {
+            selectAdventurerBtn.SetActive(true);
+        }
+    }
+
+    public void SetAdventurerToQuest()
+    {
+        FindObjectOfType<QuestManager>().SetAdventurer(guildMember);
     }
 }

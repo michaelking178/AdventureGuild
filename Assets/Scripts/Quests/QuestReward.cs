@@ -1,5 +1,4 @@
-﻿
-public class QuestReward
+﻿public class QuestReward
 {
     public int Gold { get; set; }
     public int Iron { get; set; }

@@ -8,13 +8,19 @@ public class QuestManager : MonoBehaviour
 
     private Quests quests;
     private Quest[] availableQuests;
+    private List<Quest> completedQuests; // These are quests that are finished but awaiting the user to cash in. 100% completed and cashed in quests are moved to the questArchive
+    private List<Quest> questArchive;
     private Quest activeQuest;
 
     private void Start()
     {
         quests = JsonUtility.FromJson<Quests>(questsJson.text);
         availableQuests = GetQuests(5);
-        PrintQuests();
+        foreach (Quest quest in availableQuests)
+        {
+            quest.Init();
+            Debug.Log(quest.Reward.Gold);
+        }
     }
 
     private Quest[] GetQuests(int numOfQuests)
@@ -23,7 +29,6 @@ public class QuestManager : MonoBehaviour
         for (int i = 0; i < numOfQuests; i++)
         {
             questsToGet[i] = quests.GetRandomQuest();
-
         }
         return questsToGet;
     }
@@ -31,20 +36,6 @@ public class QuestManager : MonoBehaviour
     public Quest[] AvailableQuests()
     {
         return availableQuests;
-    }
-
-    private void PrintQuests()
-    {
-        foreach(Quest newQuest in availableQuests)
-        {
-            newQuest.reward = new QuestReward(0);
-            Debug.Log("\n" + newQuest.questName + ":\n" + newQuest.description + "\n"
-                + "Rewards:\n"
-                + newQuest.reward.Gold + " Gold\n"
-                + newQuest.reward.Iron + " Iron\n"
-                + newQuest.reward.Wood + " Wood\n"
-                + newQuest.reward.Exp + " Experience");
-        }
     }
 
     public void SetActiveQuest(Quest quest)
@@ -55,5 +46,10 @@ public class QuestManager : MonoBehaviour
     public Quest GetActiveQuest()
     {
         return activeQuest;
+    }
+
+    public void SetAdventurer(GuildMember guildMember)
+    {
+        activeQuest.GuildMember = guildMember;
     }
 }

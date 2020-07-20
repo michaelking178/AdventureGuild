@@ -39,7 +39,7 @@ public class QuestUI : MonoBehaviour
     private void SetQuestUIAttributes()
     {
         questName.text = quest.questName;
-        questExperience.text = quest.reward.Exp.ToString();
+        questExperience.text = quest.Reward.Exp.ToString();
 
         if (quest.difficulty == 0)
         {
@@ -55,17 +55,17 @@ public class QuestUI : MonoBehaviour
         }
 
         string reward = "";
-        if (quest.reward.Gold != 0)
+        if (quest.Reward.Gold != 0)
         {
-            reward += quest.reward.Gold.ToString() + " Gold";
+            reward += quest.Reward.Gold.ToString() + " Gold";
         }
-        if (quest.reward.Wood != 0)
+        if (quest.Reward.Wood != 0)
         {
-            reward += ", " + quest.reward.Wood.ToString() + " Wood";
+            reward += ", " + quest.Reward.Wood.ToString() + " Wood";
         }
-        if (quest.reward.Iron != 0)
+        if (quest.Reward.Iron != 0)
         {
-            reward += ", " + quest.reward.Iron.ToString() + " Iron";
+            reward += ", " + quest.Reward.Iron.ToString() + " Iron";
         }
         questReward.text = reward;
 
@@ -74,7 +74,6 @@ public class QuestUI : MonoBehaviour
 
     public void ShowPanel()
     {
-        Debug.Log(name + " Clicked");
         if (extensionPanel.activeSelf)
         {
             extensionPanel.SetActive(false);
