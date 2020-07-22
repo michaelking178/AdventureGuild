@@ -12,10 +12,12 @@ public class MenuManager : MonoBehaviour
 
     private GameObject currentMenu;
     private GameObject hero;
+    private SoundManager soundManager;
 
     private void Start()
     {
         hero = GameObject.FindGameObjectWithTag("Hero");
+        soundManager = FindObjectOfType<SoundManager>();
 
         if (hero && hero.GetComponent<GuildMember>())
         {
@@ -43,12 +45,13 @@ public class MenuManager : MonoBehaviour
         if (currentMenu != null)
         {
             currentMenu.GetComponent<Animator>().SetTrigger("Close");
+            soundManager.PlaySound("CloseMenu");
             yield return new WaitForSeconds(0.5f);
-
         }
         GameObject menu = GetMenu(menuName);
         menu.GetComponent<Animator>().SetTrigger("Open");
         currentMenu = menu;
+        soundManager.PlaySound("OpenMenu");
         yield return new WaitForSeconds(0.5f);
     }
 
