@@ -18,7 +18,7 @@ public class QuestUIScrollView : MonoBehaviour
         {
             Destroy(child);
         }
-        foreach (Quest quest in questManager.AvailableQuests())
+        foreach (Quest quest in questManager.GetAvailableQuests())
         {
             GameObject newQuestUI = Instantiate(questUI, transform);
             newQuestUI.GetComponent<QuestUI>().SetQuest(quest);

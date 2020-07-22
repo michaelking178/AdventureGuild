@@ -6,50 +6,86 @@ public class QuestManager : MonoBehaviour
     [SerializeField]
     private TextAsset questsJson;
 
-    private Quests quests;
-    private Quest[] availableQuests;
-    private List<Quest> completedQuests; // These are quests that are finished but awaiting the user to cash in. 100% completed and cashed in quests are moved to the questArchive
-    private List<Quest> questArchive;
-    private Quest activeQuest;
+    private Quests quests;                  // quests is just a reference to the entire Quest JSON list. It shouldn't be used directly.
+    private List<Quest> questPool;          // questPool is the actual list of quests that are in use.
+    private List<Quest> availableQuests;    // quests available to start
+    private List<Quest> activeQuests;       // quests currently being undertaken
+    private List<Quest> completedQuests;    // quests that are finished but awaiting cash in.
+    private List<Quest> archivedQuests;     // quests that are cashed in and over, saved for some fun archive feature
+    private Quest currentQuest;
 
     private void Start()
     {
         quests = JsonUtility.FromJson<Quests>(questsJson.text);
-        availableQuests = GetQuests(5);
-        foreach (Quest quest in availableQuests)
+        questPool = new List<Quest>();
+        availableQuests = new List<Quest>();
+        activeQuests = new List<Quest>();
+        completedQuests = new List<Quest>();
+        archivedQuests = new List<Quest>();
+        UpdateQuestLists();
+    }
+
+    private void UpdateQuestLists()
+    {
+        questPool = GetRandomAvailableQuests(10);
+        foreach (Quest quest in questPool)
         {
-            quest.Init();
-            Debug.Log(quest.Reward.Gold);
+            if (quest.State == Quest.Status.New)
+            {
+                availableQuests.Add(quest);
+            }
+            else if (quest.State == Quest.Status.Active)
+            {
+                activeQuests.Add(quest);
+            }
+            else if (quest.State == Quest.Status.Completed)
+            {
+                completedQuests.Add(quest);
+            }
+            else if (quest.State == Quest.Status.Archived)
+            {
+                archivedQuests.Add(quest);
+            }
         }
     }
 
-    private Quest[] GetQuests(int numOfQuests)
+    private List<Quest> GetRandomAvailableQuests(int numOfQuests)
     {
-        Quest[] questsToGet = new Quest[numOfQuests];
+        List<Quest> questsToGet = new List<Quest>();
         for (int i = 0; i < numOfQuests; i++)
         {
-            questsToGet[i] = quests.GetRandomQuest();
+            questsToGet.Add(quests.GetRandomQuest());
         }
         return questsToGet;
     }
 
-    public Quest[] AvailableQuests()
+    public List<Quest> GetAvailableQuests()
     {
         return availableQuests;
     }
 
-    public void SetActiveQuest(Quest quest)
+    public void SetCurrentQuest(Quest quest)
     {
-        activeQuest = quest;
+        currentQuest = quest;
     }
 
-    public Quest GetActiveQuest()
+    public Quest GetCurrentQuest()
     {
-        return activeQuest;
+        return currentQuest;
     }
 
     public void SetAdventurer(GuildMember guildMember)
     {
-        activeQuest.GuildMember = guildMember;
+        currentQuest.GuildMember = guildMember;
+    }
+
+    public void CompleteQuest(Quest quest)
+    {
+        quest.State = Quest.Status.Completed;
+    }
+
+    public void ArchiveQuest(Quest quest)
+    {
+        quest.State = Quest.Status.Archived;
     }
 }

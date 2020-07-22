@@ -8,6 +8,7 @@ public class Quests
     public Quest GetRandomQuest()
     {
         Quest quest = quests[Random.Range(0, quests.Length)];
+        quest.Init();
         return quest;
     }
 }

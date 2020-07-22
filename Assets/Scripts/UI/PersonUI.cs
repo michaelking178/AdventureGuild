@@ -1,9 +1,13 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
+using TMPro;
 
 public class PersonUI : MonoBehaviour
 {
     private GuildMember guildMember;
+    public GuildMember GuildMember
+    {
+        get { return guildMember; }
+    }
 
     [SerializeField]
     private GameObject extensionPanel;
@@ -63,10 +67,5 @@ public class PersonUI : MonoBehaviour
         {
             selectAdventurerBtn.SetActive(true);
         }
-    }
-
-    public void SetAdventurerToQuest()
-    {
-        FindObjectOfType<QuestManager>().SetAdventurer(guildMember);
     }
 }

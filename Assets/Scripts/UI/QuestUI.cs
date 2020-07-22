@@ -1,5 +1,5 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
+using TMPro;
 
 public class QuestUI : MonoBehaviour
 {
@@ -54,21 +54,7 @@ public class QuestUI : MonoBehaviour
             questDifficulty.text = "Hard";
         }
 
-        string reward = "";
-        if (quest.Reward.Gold != 0)
-        {
-            reward += quest.Reward.Gold.ToString() + " Gold";
-        }
-        if (quest.Reward.Wood != 0)
-        {
-            reward += ", " + quest.Reward.Wood.ToString() + " Wood";
-        }
-        if (quest.Reward.Iron != 0)
-        {
-            reward += ", " + quest.Reward.Iron.ToString() + " Iron";
-        }
-        questReward.text = reward;
-
+        questReward.text = Helpers.QuestRewardStr(quest);
         questTime.text = (quest.time * 0.001).ToString() + " seconds";
     }
 
@@ -86,12 +72,12 @@ public class QuestUI : MonoBehaviour
 
     public void SetActiveQuest()
     {
-        questManager.SetActiveQuest(quest);
+        questManager.SetCurrentQuest(quest);
     }
 
     public void UpdateQuestMenu()
     {
-        FindObjectOfType<Menu_Quest>().UpdateQuestMenu();
+        GameObject.Find("Menu_Quest").GetComponent<Menu_Quest>().UpdateQuestMenu();
     }
 
     public void GoToQuestMenu()

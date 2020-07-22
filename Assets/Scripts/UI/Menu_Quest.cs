@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine;
 using TMPro;
-using UnityEngine;
 
 public class Menu_Quest : MonoBehaviour
 {
@@ -20,7 +18,7 @@ public class Menu_Quest : MonoBehaviour
 
     public void UpdateQuestMenu()
     {
-        Quest quest = questManager.GetActiveQuest();
+        Quest quest = questManager.GetCurrentQuest();
         questName.text = quest.questName;
         questDescription.text = quest.description;
     }
