@@ -4,6 +4,9 @@ using UnityEngine;
 public class QuestManager : MonoBehaviour
 {
     [SerializeField]
+    private QuestTimer questTimerPrefab;
+
+    [SerializeField]
     private TextAsset questsJson;
 
     private Quests quests;                  // quests is just a reference to the entire Quest JSON list. It shouldn't be used directly.
@@ -94,13 +97,27 @@ public class QuestManager : MonoBehaviour
         currentQuest.GuildMember = guildMember;
     }
 
+    public void StartQuest()
+    {
+        QuestTimer questTimer = Instantiate(questTimerPrefab, transform);
+        questTimer.SetQuest(currentQuest);
+        questTimer.StartTimer();
+        currentQuest.GuildMember.IsAvailable(false);
+    }
+
     public void CompleteQuest(Quest quest)
     {
+        // Notify the player that a quest has completed
         quest.State = Quest.Status.Completed;
+        quest.GuildMember.IsAvailable(true);
+        Debug.Log(string.Format("{0} has finished!", quest.questName));
     }
 
     public void ArchiveQuest(Quest quest)
     {
+        // Apply experience to Adventurer
+        // Apply experience to all other Guild Members
+        // Add quest rewards to Guildhall
         quest.State = Quest.Status.Archived;
     }
 }

@@ -7,7 +7,6 @@ public class Quest
 
     public string questName, contractor, description;
     public int id, difficulty, time;
-    public System.Timers.Timer Timer;
     public QuestReward Reward;
     public GuildMember GuildMember;
     public Status State;
@@ -15,7 +14,6 @@ public class Quest
 
     public void Init()
     {
-        Timer = new System.Timers.Timer(time);
         Reward = new QuestReward(difficulty);
         Incidents = new List<Incident>();
         State = Status.New;

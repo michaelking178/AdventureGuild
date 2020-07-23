@@ -34,7 +34,7 @@ public class Menu_ConfirmQuest : MonoBehaviour
 
     private string QuestAdventurerStr(Quest quest)
     {
-        return string.Format("{0} shall embark on this quest. Should {1} succeed, {1} will reap the following:", quest.GuildMember.person.name, Pronoun());
+        return string.Format("{0} shall embark on this quest. Should {1} succeed, {1} will reap the following for the Guild:", quest.GuildMember.person.name, Pronoun());
     }
 
     private string Pronoun()

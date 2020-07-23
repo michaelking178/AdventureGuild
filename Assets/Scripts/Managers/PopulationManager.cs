@@ -3,11 +3,15 @@ using UnityEngine;
 
 public class PopulationManager : MonoBehaviour
 {
+
     [SerializeField]
     private TextAsset peopleJson;
 
     [SerializeField]
     private People peopleList;
+
+    [SerializeField]
+    private GuildMember guildMemberPrefab;
 
     public List<GuildMember> GuildMembers = new List<GuildMember>();
 
@@ -24,7 +28,8 @@ public class PopulationManager : MonoBehaviour
     public void CreateGuildMember()
     {
         Person randomPerson = peopleList.people[Random.Range(0, peopleList.people.Length)];
-        GuildMember newMember = new GuildMember(randomPerson);
+        GuildMember newMember = Instantiate(guildMemberPrefab, transform);
+        newMember.Init(randomPerson);
         GuildMembers.Add(newMember);
     }
 

@@ -22,7 +22,7 @@ public class GuildMember : MonoBehaviour
     [SerializeField]
     private bool isAvailable;
 
-    public GuildMember(Person _person)
+    public void Init(Person _person)
     {
         person = _person;
         health = 100;
