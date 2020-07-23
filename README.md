@@ -20,10 +20,7 @@ Adventure Guild places the player in the role of managing a guild of adventurers
 Anticipated Steam Early Access Launch date: **Holiday 2020**
 
 **Screenshots:**
-
- - ![Main Menu](https://imgur.com/a/nsOthNV.png)
- - ![Quest Description](https://imgur.com/a/gnA85FI.png)
- - ![Hero](https://imgur.com/a/EUAWgs6.png)
+<image src="https://imgur.com/3UfjCI5.png" width="250"> <image src="https://imgur.com/Fr8P60a.png" width="250"> <image src="https://imgur.com/PidVn65.png" width="250">
 
 Feature Development Priorities (To-Do):
 
