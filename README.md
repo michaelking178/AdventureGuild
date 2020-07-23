@@ -21,9 +21,9 @@ Anticipated Steam Early Access Launch date: **Holiday 2020**
 
 **Screenshots:**
 
- - ![Main Menu](https://imgur.com/a/nsOthNV)
- - ![Quest Description](https://imgur.com/a/gnA85FI)
- - ![Hero](https://imgur.com/a/EUAWgs6)
+ - ![Main Menu](https://imgur.com/a/nsOthNV.png)
+ - ![Quest Description](https://imgur.com/a/gnA85FI.png)
+ - ![Hero](https://imgur.com/a/EUAWgs6.png)
 
 Feature Development Priorities (To-Do):
 
