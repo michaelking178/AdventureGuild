@@ -1,4 +1,4 @@
-﻿using System.Timers;
+﻿using System.Collections.Generic;
 
 [System.Serializable]
 public class Quest
@@ -11,11 +11,13 @@ public class Quest
     public QuestReward Reward;
     public GuildMember GuildMember;
     public Status State;
+    public List<Incident> Incidents;
 
     public void Init()
     {
         Timer = new System.Timers.Timer(time);
         Reward = new QuestReward(difficulty);
+        Incidents = new List<Incident>();
         State = Status.New;
     }
 }

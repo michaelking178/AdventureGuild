@@ -1,0 +1,14 @@
+{
+    "incidents": [
+        {
+          "id":"001",
+          "description": "While travelling along the road I encountered a small band of thieves. They fled at the sight of me, leaving some small treasures.",
+          "result": 0
+        },
+        {
+          "id":"002",
+          "description" : "Bandits sprung upon me while I rested.",
+          "result": 1
+        }
+    ]
+}

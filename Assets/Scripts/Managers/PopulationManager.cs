@@ -41,6 +41,19 @@ public class PopulationManager : MonoBehaviour
         return adventurers;
     }
 
+    public List<GuildMember> GetAvailableAdventurers()
+    {
+        List<GuildMember> adventurers = new List<GuildMember>();
+        foreach (GuildMember guildMember in GuildMembers)
+        {
+            if (guildMember.GetVocation() is Adventurer && guildMember.IsAvailable())
+            {
+                adventurers.Add(guildMember);
+            }
+        }
+        return adventurers;
+    }
+
     public List<GuildMember> Artisans()
     {
         List<GuildMember> artisans = new List<GuildMember>();

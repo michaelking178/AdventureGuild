@@ -27,7 +27,7 @@ public class QuestManager : MonoBehaviour
 
     private void UpdateQuestLists()
     {
-        questPool = GetRandomAvailableQuests(10);
+        questPool = GetRandomAvailableQuests(6);
         foreach (Quest quest in questPool)
         {
             if (quest.State == Quest.Status.New)
@@ -62,6 +62,21 @@ public class QuestManager : MonoBehaviour
     public List<Quest> GetAvailableQuests()
     {
         return availableQuests;
+    }
+
+    public List<Quest> GetActiveQuests()
+    {
+        return activeQuests;
+    }
+
+    public List<Quest> GetCompletedQuests()
+    {
+        return completedQuests;
+    }
+
+    public List<Quest> GetArchivedQuests()
+    {
+        return archivedQuests;
     }
 
     public void SetCurrentQuest(Quest quest)

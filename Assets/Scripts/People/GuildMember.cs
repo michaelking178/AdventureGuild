@@ -89,7 +89,7 @@ public class GuildMember : MonoBehaviour
         level++;
     }
 
-    public bool IsAvailabile()
+    public bool IsAvailable()
     {
         return isAvailable;
     }
