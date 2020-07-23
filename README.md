@@ -1,7 +1,8 @@
 # Adventure Guild 
 
 ***Run a guild of adventurers while growing your own heroic renown!***
-		
+
+## Summary
 Adventure Guild places the player in the role of managing a guild of adventurers. Create your Hero and send them on adventures for fame and riches. Slowly more adventurers will join you and more quests can be undertaken. Each quest is timed, the more challenging ones requiring higher level adventurers, more time, and even special skills. Collect resources on the quests to upgrade the Guildhall and unlock even more amazing quests.
 
 **Genre**: Menu based / Management / Single player
@@ -19,8 +20,11 @@ Adventure Guild places the player in the role of managing a guild of adventurers
 
 Anticipated Steam Early Access Launch date: **Holiday 2020**
 
-**Screenshots:**
+## Screenshots
+
 <image src="https://imgur.com/3UfjCI5.png" width="250"> <image src="https://imgur.com/Fr8P60a.png" width="250"> <image src="https://imgur.com/PidVn65.png" width="250">
+
+## Ongoing Development
 
 Feature Development Priorities (To-Do):
 
