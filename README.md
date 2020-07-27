@@ -18,7 +18,7 @@ Adventure Guild places the player in the role of managing a guild of adventurers
 **Design Pillar**: Play at work, little time commitment.
 **Remarkability**: Engaging quests and addictive loop.
 
-Anticipated Steam Early Access Launch date: **Holiday 2020**
+Anticipated Launch date: **Holiday 2020**
 
 ## Screenshots
 
