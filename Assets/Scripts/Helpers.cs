@@ -18,6 +18,12 @@ public static class Helpers
         return children;
     }
 
+
+    /// <summary>
+    /// Produces an easy-to-use string representing the provided quest's rewards (experience not included)
+    /// </summary>
+    /// <param name="quest"></param>
+    /// <returns></returns>
     public static string QuestRewardStr(Quest quest)
     {
         string reward = "";
@@ -34,5 +40,24 @@ public static class Helpers
             reward += ", " + quest.Reward.Iron.ToString() + " Iron";
         }
         return reward;
+    }
+
+    /// <summary>
+    /// Compares an object against a list of objects of the same type. Returns a bool based on whether the object is unique in that list
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="toCompare"></param>
+    /// <param name="list"></param>
+    /// <returns></returns>
+    public static bool IsUniqueMember<T>(T toCompare, List<T> list)
+    {
+        foreach (T item in list)
+        {
+            if (toCompare.Equals(item))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

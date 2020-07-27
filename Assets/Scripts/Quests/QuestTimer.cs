@@ -15,12 +15,17 @@ public class QuestTimer : MonoBehaviour
     private bool isTiming;
 
     private QuestManager questManager;
+    private IncidentManager incidentManager;
     private bool questFinished = false;
+    private float incidentTimer;
+    private float defaultIncidentTimer = 10.0f;
 
     private void Start()
     {
-        currentTime = timeLimit;
         questManager = FindObjectOfType<QuestManager>();
+        incidentManager = FindObjectOfType<IncidentManager>();
+        currentTime = timeLimit;
+        incidentTimer = defaultIncidentTimer;
     }
 
     public void SetTime(float _time)
@@ -33,6 +38,12 @@ public class QuestTimer : MonoBehaviour
         if (isTiming && currentTime >= 0.0f)
         {
             currentTime -= Time.fixedDeltaTime;
+            incidentTimer -= Time.fixedDeltaTime;
+            if (incidentTimer <= 0 && (currentTime + 1) > defaultIncidentTimer)
+            {
+                GenerateIncident();
+                incidentTimer = defaultIncidentTimer;
+            }
         }
         else
         {
@@ -84,6 +95,12 @@ public class QuestTimer : MonoBehaviour
         {
             questManager.CompleteQuest(quest);
             questFinished = true;
+            Destroy(gameObject);
         }
+    }
+
+    public void GenerateIncident()
+    {
+        quest.Incidents.Add(incidentManager.GetIncident());
     }
 }

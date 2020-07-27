@@ -32,6 +32,13 @@ public class Menu_ConfirmQuest : MonoBehaviour
         questReward.text = Helpers.QuestRewardStr(quest);
     }
 
+    public void GoToQuestJournal()
+    {
+        FindObjectOfType<Menu_QuestJournal>().SetQuest(quest);
+        FindObjectOfType<Menu_QuestJournal>().UpdateQuestJournal();
+        FindObjectOfType<MenuManager>().OpenMenu("Menu_QuestJournal");
+    }
+
     private string QuestAdventurerStr(Quest quest)
     {
         return string.Format("{0} shall embark on this quest. Should {1} succeed, {1} will reap the following for the Guild:", quest.GuildMember.person.name, Pronoun());

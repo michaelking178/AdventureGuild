@@ -43,3 +43,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5509befd407f7444fa196b3fba380e64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  quest:
+    questName: 
+    contractor: 
+    description: 
+    commencement: 
+    completion: 
+    id: 0
+    difficulty: 0
+    time: 0
+    GuildMember: {fileID: 0}
+    State: 0
+    Incidents: []
+  timeLimit: 0
+  currentTime: 0
+  isTiming: 0

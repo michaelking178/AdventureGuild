@@ -84,4 +84,16 @@ public class QuestUI : MonoBehaviour
     {
         FindObjectOfType<MenuManager>().OpenMenu("Menu_Quest");
     }
+
+    public void UpdateQuestJournal()
+    {
+        GameObject.Find("Menu_QuestJouranl").GetComponent<Menu_QuestJournal>().UpdateQuestJournal();
+    }
+
+    public void GoToQuestJournal()
+    {
+        FindObjectOfType<Menu_QuestJournal>().SetQuest(quest);
+        FindObjectOfType<Menu_QuestJournal>().UpdateQuestJournal();
+        FindObjectOfType<MenuManager>().OpenMenu("Menu_QuestJournal");
+    }
 }

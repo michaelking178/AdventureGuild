@@ -1,16 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class Quest
 {
     public enum Status { New, Active, Completed, Archived }
 
-    public string questName, contractor, description;
+    public string questName, contractor, description, commencement, completion;
     public int id, difficulty, time;
     public QuestReward Reward;
     public GuildMember GuildMember;
     public Status State;
     public List<Incident> Incidents;
+    public DateTime startTime;
 
     public void Init()
     {

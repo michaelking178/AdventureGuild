@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class QuestManager : MonoBehaviour
@@ -17,20 +18,24 @@ public class QuestManager : MonoBehaviour
     private List<Quest> archivedQuests;     // quests that are cashed in and over, saved for some fun archive feature
     private Quest currentQuest;
 
+    private IncidentManager incidentManager;
+
     private void Start()
     {
+        incidentManager = FindObjectOfType<IncidentManager>();
         quests = JsonUtility.FromJson<Quests>(questsJson.text);
         questPool = new List<Quest>();
         availableQuests = new List<Quest>();
         activeQuests = new List<Quest>();
         completedQuests = new List<Quest>();
         archivedQuests = new List<Quest>();
+
+        questPool = PopulateQuestPool(6);
         UpdateQuestLists();
     }
 
     private void UpdateQuestLists()
     {
-        questPool = GetRandomAvailableQuests(6);
         foreach (Quest quest in questPool)
         {
             if (quest.State == Quest.Status.New)
@@ -52,12 +57,14 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    private List<Quest> GetRandomAvailableQuests(int numOfQuests)
+    private List<Quest> PopulateQuestPool(int numOfQuests)
     {
         List<Quest> questsToGet = new List<Quest>();
         for (int i = 0; i < numOfQuests; i++)
         {
-            questsToGet.Add(quests.GetRandomQuest());
+            Quest quest = quests.GetRandomQuest();
+            if (Helpers.IsUniqueMember(quest, questsToGet))
+            questsToGet.Add(quest);
         }
         return questsToGet;
     }
@@ -103,14 +110,18 @@ public class QuestManager : MonoBehaviour
         questTimer.SetQuest(currentQuest);
         questTimer.StartTimer();
         currentQuest.GuildMember.IsAvailable(false);
+        currentQuest.startTime = DateTime.Now;
+        currentQuest.State = Quest.Status.Active;
+        UpdateQuestLists();
     }
 
     public void CompleteQuest(Quest quest)
     {
         // Notify the player that a quest has completed
         quest.State = Quest.Status.Completed;
+        quest.Incidents.Add(incidentManager.CreateCustomIncident(quest.completion, Incident.Result.Null, DateTime.Now));
         quest.GuildMember.IsAvailable(true);
-        Debug.Log(string.Format("{0} has finished!", quest.questName));
+        UpdateQuestLists();
     }
 
     public void ArchiveQuest(Quest quest)
@@ -119,5 +130,6 @@ public class QuestManager : MonoBehaviour
         // Apply experience to all other Guild Members
         // Add quest rewards to Guildhall
         quest.State = Quest.Status.Archived;
+        UpdateQuestLists();
     }
 }

@@ -1,20 +1,24 @@
 {
     "quests": [
         {
-            "id":"001",
-            "questName":"Heir Today, Gone Tomorrow",
-            "contractor":"The Royal Palace",
-            "description":"By order of the Royal Palace: The valiant Sir Eglamour has ventured into the wilderness in search of opportunities heroic and valourous. Most distressingly, he has not been seen in three days. A brave adventurer is hereby invited to partake in the honour of exploring the wildlands and participating in the undoubtedly mythical adventure in which the Good Sir surely now finds himself. Recompense guaranteed upon return with evidence of discovery of the Good Sir's... condition.",
-            "difficulty":"0",
-            "time":"60"
+          "id":"001",
+          "questName":"Heir Today, Gone Tomorrow",
+          "contractor":"The Royal Palace",
+          "description": "By order of the Royal Palace: The valiant Sir Eglamour has ventured into the wilderness in search of opportunities heroic and valourous. Most distressingly, he has not been seen in three days. A brave adventurer is hereby invited to partake in the honour of exploring the wildlands and participating in the undoubtedly mythical adventure in which the Good Sir surely now finds himself. Recompense guaranteed upon return with evidence of discovery of the Good Sir's... condition.",
+          "commencement": "find Sir Eglamour in the wildlands. I only hope to find the man-at-arms with arms intact..",
+          "completion": "After tracking him for many days, I have found Sir Eglamour... at the pub. Apparently, during his adventure he caught sight of a great dragon and immediately discovered a passion for drinking and farming. I shall report my findings and return to the Adventure Guild.",
+          "difficulty":"0",
+          "time":"60"
         },
         {
-            "id":"002",
-            "questName":"On The Boulders of Giants",
-            "contractor":"Merchant Master Arylon",
-            "description":"Seeking the aid of a brave sir or madam who will not shy away from a brush with the Giants of Rockglen! They have waylaid a merchant caravan, squashing man and mule without remorse. Sad to be sure, but herein lies the tragedy: our trade wagons have been strewn upon the unreachable cliffsides! The Merchant Guild tasks our valiant sibling Guild of Adventurers with retrieving the goods in short order and marketable condition. Compensation will be provided upon return of the products.",
-            "difficulty":"1",
-            "time":"120"
+          "id":"002",
+          "questName":"On The Boulders of Giants",
+          "contractor":"Merchant Master Arylon",
+          "description": "Seeking the aid of a brave sir or madam who will not shy away from a brush with the Giants of Rockglen! They have waylaid a merchant caravan, squashing man and mule without remorse. Sad to be sure, but herein lies the tragedy: our trade wagons have been strewn upon the unreachable cliffsides! The Merchant Guild tasks our valiant sibling Guild of Adventurers with retrieving the goods in short order and marketable condition. Compensation will be provided upon return of the products.",
+          "commencement": "start the quest now",
+          "completion": "I did it",
+          "difficulty":"1",
+          "time":"120"
         }
     ]
 }
