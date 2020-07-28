@@ -28,17 +28,21 @@ public class PopulationManager : MonoBehaviour
         GuildMembers.Add(newMember);
     }
 
-    public List<GuildMember> Adventurers()
+    public void LoadGuildMember(GuildMemberData guildMemberData)
     {
-        List<GuildMember> adventurers = new List<GuildMember>();
-        foreach(GuildMember guildMember in GuildMembers)
+        GuildMember newMember = Instantiate(guildMemberPrefab, transform);
+        newMember.person = guildMemberData.person;
+        if (guildMemberData.avatarSpriteName != null && guildMemberData.avatarSpriteName != "")
         {
-            if (guildMember.GetVocation() is Adventurer)
-            {
-                adventurers.Add(guildMember);
-            }
+            Sprite avatar = Resources.Load<Sprite>("Sprites/Avatars/" + guildMemberData.person.gender + "/" + guildMemberData.avatarSpriteName);
+            newMember.SetAvatar(avatar);
         }
-        return adventurers;
+        newMember.SetExp(guildMemberData.experience);
+        newMember.SetHealth(guildMemberData.health);
+        newMember.SetLevel(guildMemberData.level);
+        newMember.SetVocation(guildMemberData.vocation);
+        newMember.IsAvailable(guildMemberData.isAvailable);
+        GuildMembers.Add(newMember);
     }
 
     public List<GuildMember> GetAvailableAdventurers()
@@ -47,6 +51,19 @@ public class PopulationManager : MonoBehaviour
         foreach (GuildMember guildMember in GuildMembers)
         {
             if (guildMember.GetVocation() is Adventurer && guildMember.IsAvailable())
+            {
+                adventurers.Add(guildMember);
+            }
+        }
+        return adventurers;
+    }
+
+    public List<GuildMember> Adventurers()
+    {
+        List<GuildMember> adventurers = new List<GuildMember>();
+        foreach (GuildMember guildMember in GuildMembers)
+        {
+            if (guildMember.GetVocation() is Adventurer)
             {
                 adventurers.Add(guildMember);
             }
@@ -78,5 +95,15 @@ public class PopulationManager : MonoBehaviour
             }
         }
         return peasants;
+    }
+
+    public GuildMember FindGuildMemberById(int _id)
+    {
+        foreach (GuildMember guildMember in GuildMembers)
+        {
+            if (guildMember.GetInstanceID() == _id)
+                return guildMember;
+        }
+        return null;
     }
 }

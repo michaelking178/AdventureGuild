@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 [Serializable]
 public class GuildhallData
@@ -11,11 +8,11 @@ public class GuildhallData
     public int wood;
     public int weapons;
 
-    public GuildhallData(int _gold, int _iron, int _wood, int _weapons)
+    public GuildhallData(Guildhall guildhall)
     {
-        gold = _gold;
-        iron = _iron;
-        wood = _wood;
-        weapons = _weapons;
+        gold = guildhall.GetGold();
+        iron = guildhall.GetIron();
+        wood = guildhall.GetWood();
+        weapons = guildhall.GetWeapons();
     }
 }

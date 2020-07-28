@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class QuestManager : MonoBehaviour
 {
@@ -10,8 +11,10 @@ public class QuestManager : MonoBehaviour
     [SerializeField]
     private TextAsset questsJson;
 
-    private Quests quests;                  // quests is just a reference to the entire Quest JSON list. It shouldn't be used directly.
+    [SerializeField]
     private List<Quest> questPool;          // questPool is the actual list of quests that are in use.
+
+    private Quests quests;                  // quests is just a reference to the entire Quest JSON list. It shouldn't be used directly.
     private List<Quest> availableQuests;    // quests available to start
     private List<Quest> activeQuests;       // quests currently being undertaken
     private List<Quest> completedQuests;    // quests that are finished but awaiting cash in.
@@ -152,5 +155,12 @@ public class QuestManager : MonoBehaviour
     public List<Quest> GetQuestPool()
     {
         return questPool;
+    }
+
+    public void SetQuestPool(List<Quest> questList)
+    {
+        questPool.Clear();
+        questPool = questList;
+        UpdateQuestLists();
     }
 }

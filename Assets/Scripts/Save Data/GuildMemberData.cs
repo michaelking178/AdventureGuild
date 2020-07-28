@@ -1,26 +1,26 @@
 ﻿using System;
-using UnityEditor;
-using UnityEngine;
 
 [Serializable]
 public class GuildMemberData
 {
+    public int id;
     public Person person;
     public Vocation vocation;
-    public string avatarPath;
+    public string avatarSpriteName = "";
     public int health;
     public int experience;
     public int level;
     public bool isAvailable;
 
-    public GuildMemberData(Person _person, Vocation _vocation, Sprite _avatar, int _health, int _experience, int _level, bool _isAvailable)
+    public GuildMemberData(GuildMember guildMember)
     {
-        person = _person;
-        vocation = _vocation;
-        avatarPath = AssetDatabase.GetAssetPath(_avatar);
-        health = _health;
-        experience = _experience;
-        level = _level;
-        isAvailable = _isAvailable;
+        id = guildMember.GetInstanceID();
+        person = guildMember.person;
+        vocation = guildMember.GetVocation();
+        avatarSpriteName =  guildMember.GetAvatar().name;
+        health = guildMember.GetHealth();
+        experience = guildMember.GetExp();
+        level = guildMember.GetLevel();
+        isAvailable = guildMember.IsAvailable();
     }
 }

@@ -11,23 +11,30 @@ public static class SaveSystem
         string path = Application.persistentDataPath + "/saveData.bin";
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        GuildMember hero = GameObject.Find("Hero").GetComponent<GuildMember>();
-        GuildMemberData heroData = new GuildMemberData(hero.person, hero.GetVocation(), hero.GetAvatar(), hero.GetHealth(), hero.GetExp(), hero.GetLevel(), hero.IsAvailable());
-
-        List<Quest> questPool = Object.FindObjectOfType<QuestManager>().GetQuestPool();
+        GuildMember hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>();
+        GuildMemberData heroData = new GuildMemberData(hero);
 
         Guildhall guildhall = Object.FindObjectOfType<Guildhall>();
-        GuildhallData guildhallData = new GuildhallData(guildhall.GetGold(), guildhall.GetIron(), guildhall.GetWood(), guildhall.GetWeapons());
+        GuildhallData guildhallData = new GuildhallData(guildhall);
 
-        List<GuildMember> guildMembers = Object.FindObjectOfType<PopulationManager>().GuildMembers;
         List<GuildMemberData> guildMemberDatas = new List<GuildMemberData>();
-        foreach (GuildMember guildMember in guildMembers)
+        foreach (GuildMember guildMember in Object.FindObjectOfType<PopulationManager>().GuildMembers)
         {
-            GuildMemberData guildMemberData = new GuildMemberData(guildMember.person, guildMember.GetVocation(), guildMember.GetAvatar(), guildMember.GetHealth(), guildMember.GetExp(), guildMember.GetLevel(), guildMember.IsAvailable());
-            guildMemberDatas.Add(guildMemberData);
+            if (guildMember.GetInstanceID() != hero.GetInstanceID())
+            {
+                GuildMemberData guildMemberData = new GuildMemberData(guildMember);
+                guildMemberDatas.Add(guildMemberData);
+            }
         }
 
-        SaveData saveData = new SaveData(heroData, guildhallData, guildMemberDatas);
+        List<QuestData> questDataPool = new List<QuestData>();
+        foreach(Quest quest in Object.FindObjectOfType<QuestManager>().GetQuestPool())
+        {
+            QuestData questData = new QuestData(quest);
+            questDataPool.Add(questData);
+        }
+
+        SaveData saveData = new SaveData(heroData, guildhallData, guildMemberDatas, questDataPool);
         formatter.Serialize(stream, saveData);
         stream.Close();
     }
