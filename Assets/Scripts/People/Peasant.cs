@@ -1,4 +1,7 @@
-﻿public class Peasant : Vocation
+﻿using System;
+
+[Serializable]
+public class Peasant : Vocation
 {
     public Peasant()
     {

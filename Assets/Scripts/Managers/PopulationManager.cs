@@ -20,11 +20,6 @@ public class PopulationManager : MonoBehaviour
         peopleList = JsonUtility.FromJson<People>(peopleJson.text);
     }
 
-    public Person[] Population()
-    {
-        return peopleList.people;
-    }
-
     public void CreateGuildMember()
     {
         Person randomPerson = peopleList.people[Random.Range(0, peopleList.people.Length)];

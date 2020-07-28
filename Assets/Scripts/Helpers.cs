@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public static class Helpers
@@ -59,5 +60,29 @@ public static class Helpers
             }
         }
         return true;
+    }
+
+    public static Sprite ConvertImageToSprite(string FilePath, float PixelsPerUnit = 100.0f, SpriteMeshType spriteType = SpriteMeshType.Tight)
+    {
+        Texture2D SpriteTexture = LoadTexture(FilePath);
+        Sprite NewSprite = Sprite.Create(SpriteTexture, new Rect(0, 0, SpriteTexture.width, SpriteTexture.height), new Vector2(0, 0), PixelsPerUnit, 0, spriteType);
+        return NewSprite;
+    }
+
+    private static Texture2D LoadTexture(string FilePath)
+    {
+        Texture2D Tex2D;
+        byte[] FileData;
+
+        if (File.Exists(FilePath))
+        {
+            FileData = File.ReadAllBytes(FilePath);
+            Tex2D = new Texture2D(2, 2);
+            if (Tex2D.LoadImage(FileData))
+            {
+                return Tex2D;
+            }
+        }
+        return null;
     }
 }

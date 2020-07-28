@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-[System.Serializable]
+[Serializable]
 public class Quest
 {
     public enum Status { New, Active, Completed, Archived }

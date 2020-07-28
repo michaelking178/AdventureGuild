@@ -1,24 +1,55 @@
 {
-    "quests": [
-        {
-          "id":"001",
-          "questName":"Heir Today, Gone Tomorrow",
-          "contractor":"The Royal Palace",
-          "description": "By order of the Royal Palace: The valiant Sir Eglamour has ventured into the wilderness in search of opportunities heroic and valourous. Most distressingly, he has not been seen in three days. A brave adventurer is hereby invited to partake in the honour of exploring the wildlands and participating in the undoubtedly mythical adventure in which the Good Sir surely now finds himself. Recompense guaranteed upon return with evidence of discovery of the Good Sir's... condition.",
-          "commencement": "find Sir Eglamour in the wildlands. I only hope to find the man-at-arms with arms intact..",
-          "completion": "After tracking him for many days, I have found Sir Eglamour... at the pub. Apparently, during his adventure he caught sight of a great dragon and immediately discovered a passion for drinking and farming. I shall report my findings and return to the Adventure Guild.",
-          "difficulty":"0",
-          "time":"60"
-        },
-        {
-          "id":"002",
-          "questName":"On The Boulders of Giants",
-          "contractor":"Merchant Master Arylon",
-          "description": "Seeking the aid of a brave sir or madam who will not shy away from a brush with the Giants of Rockglen! They have waylaid a merchant caravan, squashing man and mule without remorse. Sad to be sure, but herein lies the tragedy: our trade wagons have been strewn upon the unreachable cliffsides! The Merchant Guild tasks our valiant sibling Guild of Adventurers with retrieving the goods in short order and marketable condition. Compensation will be provided upon return of the products.",
-          "commencement": "start the quest now",
-          "completion": "I did it",
-          "difficulty":"1",
-          "time":"120"
-        }
-    ]
+  "quests": 
+  [
+    {
+      "id": "001",
+      "questName": "Heir Today, Gone Tomorrow",
+      "contractor": "The Royal Palace",
+      "description": "By order of the Royal Palace: The valiant Sir Eglamour has ventured into the wilderness in search of opportunities heroic and valourous. Most distressingly, he has not been seen in three days. A brave adventurer is hereby invited to partake in the honour of exploring the wildlands and participating in the undoubtedly mythical adventure in which the Good Sir surely now finds himself. Recompense guaranteed upon return with evidence of discovery of the Good Sir's... condition.",
+      "commencement": "find Sir Eglamour in the wildlands. I only hope to find the man-at-arms with arms intact..",
+      "completion": "After tracking him for many days, I have found Sir Eglamour... at the pub. Apparently, during his adventure he caught sight of a great dragon and immediately discovered a passion for drinking and farming. I shall report my findings and return to the Adventure Guild.",
+      "difficulty": 0,
+      "time": 60
+    },
+    {
+      "id": "002",
+      "questName": "On The Boulders of Giants",
+      "contractor": "Merchant Master Arylon",
+      "description": "Seeking the aid of a brave sir or madam who will not shy away from a brush with the Giants of Rockglen! They have waylaid a merchant caravan, squashing man and mule without remorse. Sad to be sure, but herein lies the tragedy: our trade wagons have been strewn upon the unreachable cliffsides! The Merchant Guild tasks our valiant sibling Guild of Adventurers with retrieving the goods in short order and marketable condition. Compensation will be provided upon return of the products.",
+      "commencement": "retrieve the merchants' goods. The Giants of Rockglen will surely put up a fight",
+      "completion": "I arrived at the cliff and was immediately attacked by the Giants of Rockglen. After a hair-raising battle with the oversized ruffians I was able to retrieve the merchants' goods. They have been returned to the Merchant Guild and now I return to the Adventure Guild.",
+      "difficulty": 1,
+      "time": 120
+    },
+    {
+      "id": "003",
+      "questName": "Apparition Arbitration",
+      "contractor": "MacMaerny Estate Management",
+      "description": "The Richton Estate has been home to a great deal of turmoil as the family that recently moved in has been contesting the right to be there with the already resident poltergeist. Please send someone capable of resolving the situation.",
+      "commencement": "travel to the Richton Estate and settle this matter of the problematic poltergeist",
+      "completion": "Upon entering the Richton Estate I quickly learned that the poltergeist was none other than Sir Archibald G. Richton, the original owner and architect of the estate. After extracting the last will and testament of the final Richton family member from a neatly stacked pile of furniture, I learned that the sale was against the desire of the Richtons. The new family has been successfully chased away from the house. While MacMaerny Estate Management is most displeased, the ghost has rewarded me for my valor. I return now to the Adventure Guild.",
+      "difficulty": 1,
+      "time": 60
+    },
+    {
+      "id": "004",
+      "questName": "Goblin in the Dell",
+      "contractor": "Douglas Wendell",
+      "description": "Some sneaky goblin has been harrassing my farm. I doubt I'll see the chickens again but I would like my tools and other stock back. Please send a good tracker to find the little devil.",
+      "commencement": "aid this farmer Wendell in dispersing the goblin and retrieving his farm supplies. I should be careful; goblins are small and weak, but devilishly tricky..",
+      "completion": "I found the goblin's lair and approached under cover of daylight (for, as everyone knows, goblins abhor the light of the sun). I found the farmer's tools and those livestock that yet lived. The goblin awoke quite suddenly and beset me with poison darts. With a swing of my blade I split the conniving creature's skull before its darts had a chance to find their mark. I have returned the farmer's goods, and now make my way back to the Adventure Guild.",
+      "difficulty": 0,
+      "time": 60
+    },
+    {
+      "id": "005",
+      "questName": "A Sudden Departure",
+      "contractor": "hElp me",
+      "description": "(This note seems to have been written in a hurry by a trembling hand)\nhelp\nI'm sorry\nI dont want to die\nFalrich's Cove",
+      "commencement": "find this person who appears to be in grave danger. I only hope I am not too late",
+      "completion": "I have followed the mysterious stranger to Falrich's Cove. The site upon which I stumbled was... gruesome. I return to the Adventure Guild with some small spoils, but no answers.",
+      "difficulty": 2,
+      "time": 60
+    }
+  ]
 }

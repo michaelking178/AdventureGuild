@@ -64,6 +64,11 @@ public class GuildMember : MonoBehaviour
         return health;
     }
 
+    public void SetHealth(int _health)
+    {
+        health = _health;
+    }
+
     public void UpdateHealth(int change)
     {
         health += change;
@@ -74,6 +79,11 @@ public class GuildMember : MonoBehaviour
         return experience;
     }
 
+    public void SetExp(int _exp)
+    {
+        experience = _exp;
+    }
+
     public void AddExp(int _exp)
     {
         experience += _exp;
@@ -82,6 +92,11 @@ public class GuildMember : MonoBehaviour
     public int GetLevel()
     {
         return level;
+    }
+
+    public void SetLevel(int _level)
+    {
+        level = _level;
     }
 
     public void IncreaseLevel()

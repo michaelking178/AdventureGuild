@@ -44,7 +44,7 @@ public class Menu_QuestJournal : MonoBehaviour
             return;
         }
         questName.text = quest.questName;
-        summary.text = string.Format("{0}\nI, {1}, hereby set to {2}. Success shall bring these rewards to the Guild:", quest.startTime.ToString(), quest.GuildMember.person.name, quest.commencement);
+        summary.text = string.Format("{0}\nI, {1}, hereby set out to {2}. Success shall bring these rewards to the Guild:", quest.startTime.ToString(), quest.GuildMember.person.name, quest.commencement);
         questExperience.text = string.Format("{0} Experience", quest.Reward.Exp.ToString());
         questReward.text = Helpers.QuestRewardStr(quest);
         incidentCount = quest.Incidents.Count;

@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
+[Serializable]
 public class Guildhall : MonoBehaviour
 {
     [SerializeField]
@@ -19,6 +21,11 @@ public class Guildhall : MonoBehaviour
         return gold;
     }
 
+    public void SetGold(int _gold)
+    {
+        gold = _gold;
+    }
+
     public void ChangeGoldBy(int change)
     {
         gold += change;
@@ -27,6 +34,11 @@ public class Guildhall : MonoBehaviour
     public int GetIron()
     {
         return iron;
+    }
+
+    public void SetIron(int _iron)
+    {
+        iron = _iron;
     }
 
     public void ChangeIronBy(int change)
@@ -39,6 +51,11 @@ public class Guildhall : MonoBehaviour
         return wood;
     }
 
+    public void SetWood(int _wood)
+    {
+        wood = _wood;
+    }
+
     public void ChangeWoodBy(int change)
     {
         wood += change;
@@ -47,6 +64,11 @@ public class Guildhall : MonoBehaviour
     public int GetWeapons()
     {
         return weapons;
+    }
+
+    public void SetWeapons(int _weapons)
+    {
+        weapons = _weapons;
     }
 
     public void ChangeWeaponsBy(int change)

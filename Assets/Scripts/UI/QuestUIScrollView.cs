@@ -12,7 +12,7 @@ public class QuestUIScrollView : MonoBehaviour
         questManager = FindObjectOfType<QuestManager>();
     }
 
-    public void UpdateAvailableQuestList()
+    public void UpdateQuestList()
     {
         foreach (GameObject child in gameObject.GetChildren())
         {
@@ -25,13 +25,23 @@ public class QuestUIScrollView : MonoBehaviour
         }
     }
 
-    public void UpdateActiveQuestList()
+    public void UpdateQuestJournalList()
     {
         foreach (GameObject child in gameObject.GetChildren())
         {
             Destroy(child);
         }
         foreach (Quest quest in questManager.GetActiveQuests())
+        {
+            GameObject newQuestUI = Instantiate(questUI, transform);
+            newQuestUI.GetComponent<QuestUI>().SetQuest(quest);
+        }
+        foreach (Quest quest in questManager.GetCompletedQuests())
+        {
+            GameObject newQuestUI = Instantiate(questUI, transform);
+            newQuestUI.GetComponent<QuestUI>().SetQuest(quest);
+        }
+        foreach (Quest quest in questManager.GetArchivedQuests())
         {
             GameObject newQuestUI = Instantiate(questUI, transform);
             newQuestUI.GetComponent<QuestUI>().SetQuest(quest);

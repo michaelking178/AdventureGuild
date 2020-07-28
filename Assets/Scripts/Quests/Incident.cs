@@ -1,6 +1,6 @@
 ﻿using System;
 
-[System.Serializable]
+[Serializable]
 public class Incident
 {
     public enum Result { Good, Bad, Null }

@@ -14,4 +14,14 @@ public class ButtonFunctions : MonoBehaviour
     {
         menuManager.OpenMenu(menu);
     }
+
+    public void SaveGame()
+    {
+        SaveSystem.SaveGame();
+    }
+
+    public void LoadGame()
+    {
+        SaveSystem.LoadGame();
+    }
 }

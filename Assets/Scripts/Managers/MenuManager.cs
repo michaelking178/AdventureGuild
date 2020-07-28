@@ -19,11 +19,11 @@ public class MenuManager : MonoBehaviour
         hero = GameObject.FindGameObjectWithTag("Hero");
         soundManager = FindObjectOfType<SoundManager>();
 
-        if (hero && hero.GetComponent<GuildMember>())
-        {
-            OpenMenu("Menu_Hub");
-            return;
-        }
+        //if (hero && hero.GetComponent<GuildMember>())
+        //{
+        //    OpenMenu("Menu_Hub");
+        //    return;
+        //}
         if (startingMenu == null)
         {
             Debug.Log("No starting menu selected!");

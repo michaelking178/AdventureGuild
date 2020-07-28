@@ -1,0 +1,24 @@
+QUEST:
+    {
+      "id": "",
+      "questName": "",
+      "contractor": "",
+      "description": "",
+      "commencement": "",
+      "completion": "",
+      "difficulty": 0,
+      "time": 60
+    }
+
+INCIDENT:
+    {
+      "id":"",
+      "description" : "",
+      "result": 0
+    }
+
+PERSON:
+    {
+        "name":"Jon Stonks",
+        "gender":"female"
+    }

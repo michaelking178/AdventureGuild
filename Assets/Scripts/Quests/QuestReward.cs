@@ -1,4 +1,7 @@
-﻿public class QuestReward
+﻿using System;
+
+[Serializable]
+public class QuestReward
 {
     public int Gold { get; set; }
     public int Iron { get; set; }

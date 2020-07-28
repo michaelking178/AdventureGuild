@@ -19,10 +19,12 @@ public class QuestManager : MonoBehaviour
     private Quest currentQuest;
 
     private IncidentManager incidentManager;
+    private Guildhall guildhall;
 
     private void Start()
     {
         incidentManager = FindObjectOfType<IncidentManager>();
+        guildhall = FindObjectOfType<Guildhall>();
         quests = JsonUtility.FromJson<Quests>(questsJson.text);
         questPool = new List<Quest>();
         availableQuests = new List<Quest>();
@@ -36,6 +38,10 @@ public class QuestManager : MonoBehaviour
 
     private void UpdateQuestLists()
     {
+        availableQuests.Clear();
+        activeQuests.Clear();
+        completedQuests.Clear();
+        archivedQuests.Clear();
         foreach (Quest quest in questPool)
         {
             if (quest.State == Quest.Status.New)
@@ -71,21 +77,25 @@ public class QuestManager : MonoBehaviour
 
     public List<Quest> GetAvailableQuests()
     {
+        UpdateQuestLists();
         return availableQuests;
     }
 
     public List<Quest> GetActiveQuests()
     {
+        UpdateQuestLists();
         return activeQuests;
     }
 
     public List<Quest> GetCompletedQuests()
     {
+        UpdateQuestLists();
         return completedQuests;
     }
 
     public List<Quest> GetArchivedQuests()
     {
+        UpdateQuestLists();
         return archivedQuests;
     }
 
@@ -117,19 +127,30 @@ public class QuestManager : MonoBehaviour
 
     public void CompleteQuest(Quest quest)
     {
-        // Notify the player that a quest has completed
+        // Todo: Notify the player that a quest has completed
         quest.State = Quest.Status.Completed;
         quest.Incidents.Add(incidentManager.CreateCustomIncident(quest.completion, Incident.Result.Null, DateTime.Now));
+        ApplyQuestReward(quest);
         quest.GuildMember.IsAvailable(true);
         UpdateQuestLists();
     }
 
     public void ArchiveQuest(Quest quest)
     {
-        // Apply experience to Adventurer
-        // Apply experience to all other Guild Members
-        // Add quest rewards to Guildhall
         quest.State = Quest.Status.Archived;
         UpdateQuestLists();
+    }
+
+    public void ApplyQuestReward(Quest quest)
+    {
+        guildhall.ChangeGoldBy(quest.Reward.Gold);
+        guildhall.ChangeIronBy(quest.Reward.Iron);
+        guildhall.ChangeWoodBy(quest.Reward.Wood);
+        quest.GuildMember.AddExp(quest.Reward.Exp);
+    }
+
+    public List<Quest> GetQuestPool()
+    {
+        return questPool;
     }
 }
