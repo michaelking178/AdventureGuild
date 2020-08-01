@@ -9,6 +9,9 @@ public class Menu_Quest : MonoBehaviour
     private TextMeshProUGUI questName;
 
     [SerializeField]
+    private TextMeshProUGUI questContractor;
+
+    [SerializeField]
     private TextMeshProUGUI questDescription;
 
     void Start()
@@ -20,6 +23,7 @@ public class Menu_Quest : MonoBehaviour
     {
         Quest quest = questManager.GetCurrentQuest();
         questName.text = quest.questName;
-        questDescription.text = quest.description;
+        questContractor.text = "Contractor:\n" + quest.contractor;
+        questDescription.text = "Briefing:\n" + quest.description;
     }
 }
