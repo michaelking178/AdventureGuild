@@ -21,7 +21,7 @@ public class Menu_Quest : MonoBehaviour
 
     public void UpdateQuestMenu()
     {
-        Quest quest = questManager.GetCurrentQuest();
+        Quest quest = questManager.CurrentQuest;
         questName.text = quest.questName;
         questContractor.text = "Contractor:\n" + quest.contractor;
         questDescription.text = "Briefing:\n" + quest.description;

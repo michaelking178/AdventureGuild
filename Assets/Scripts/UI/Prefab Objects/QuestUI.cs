@@ -72,7 +72,7 @@ public class QuestUI : MonoBehaviour
 
     public void SetActiveQuest()
     {
-        questManager.SetCurrentQuest(quest);
+        questManager.CurrentQuest = quest;
     }
 
     public void UpdateQuestMenu()

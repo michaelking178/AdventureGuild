@@ -8,7 +8,7 @@ public class Quest
 
     public string questName, contractor, description, commencement, completion;
     public int id, difficulty, time;
-    public QuestReward Reward;
+    public Reward Reward;
     public GuildMember GuildMember;
     public Status State;
     public List<Incident> Incidents;
@@ -16,7 +16,7 @@ public class Quest
 
     public void Init()
     {
-        Reward = new QuestReward(difficulty);
+        Reward = new Reward(difficulty);
         Incidents = new List<Incident>();
         State = Status.New;
     }

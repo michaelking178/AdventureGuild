@@ -4,75 +4,34 @@ using UnityEngine;
 [Serializable]
 public class Guildhall : MonoBehaviour
 {
-    [SerializeField]
-    private int gold;
+    public int Gold { get; set; }
+    public int Iron { get; set; }
+    public int Wood { get; set; }
+    public int Weapons { get; set; }
+    public int Renown { get; set; }
 
-    [SerializeField]
-    private int iron;
-
-    [SerializeField]
-    private int wood;
-
-    [SerializeField]
-    private int weapons;
-
-    public int GetGold()
+    public void AdjustGold(int change)
     {
-        return gold;
+        Gold += change;
     }
 
-    public void SetGold(int _gold)
+    public void AdjustIron(int change)
     {
-        gold = _gold;
+        Iron += change;
     }
 
-    public void ChangeGoldBy(int change)
+    public void AdjustWood(int change)
     {
-        gold += change;
+        Wood += change;
     }
 
-    public int GetIron()
+    public void AdjustWeapons(int change)
     {
-        return iron;
+        Weapons += change;
     }
 
-    public void SetIron(int _iron)
+    public void AdjustRenown(int change)
     {
-        iron = _iron;
-    }
-
-    public void ChangeIronBy(int change)
-    {
-        iron += change;
-    }
-
-    public int GetWood()
-    {
-        return wood;
-    }
-
-    public void SetWood(int _wood)
-    {
-        wood = _wood;
-    }
-
-    public void ChangeWoodBy(int change)
-    {
-        wood += change;
-    }
-
-    public int GetWeapons()
-    {
-        return weapons;
-    }
-
-    public void SetWeapons(int _weapons)
-    {
-        weapons = _weapons;
-    }
-
-    public void ChangeWeaponsBy(int change)
-    {
-        weapons += change;
+        Renown += change;
     }
 }

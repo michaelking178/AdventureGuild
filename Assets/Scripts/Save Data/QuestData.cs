@@ -6,7 +6,7 @@ public class QuestData
 {
     public string questName, contractor, description, commencement, completion;
     public int id, difficulty, time;
-    public QuestReward Reward;
+    public Reward Reward;
     public GuildMemberData guildMemberData;
     public Quest.Status State;
     public List<Incident> Incidents;

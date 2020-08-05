@@ -25,7 +25,7 @@ public class Menu_ConfirmQuest : MonoBehaviour
 
     public void UpdateQuestMenu()
     {
-        quest = questManager.GetCurrentQuest();
+        quest = questManager.CurrentQuest;
         questName.text = quest.questName;
         questAdventurer.text = QuestAdventurerStr(quest);
         questExperience.text = quest.Reward.Exp.ToString() + " Experience";

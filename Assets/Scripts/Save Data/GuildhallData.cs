@@ -7,12 +7,14 @@ public class GuildhallData
     public int iron;
     public int wood;
     public int weapons;
+    public int renown;
 
     public GuildhallData(Guildhall guildhall)
     {
-        gold = guildhall.GetGold();
-        iron = guildhall.GetIron();
-        wood = guildhall.GetWood();
-        weapons = guildhall.GetWeapons();
+        gold = guildhall.Gold;
+        iron = guildhall.Iron;
+        wood = guildhall.Wood;
+        weapons = guildhall.Weapons;
+        renown = guildhall.Renown;
     }
 }

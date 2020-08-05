@@ -34,7 +34,18 @@ public static class SaveSystem
             questDataPool.Add(questData);
         }
 
-        SaveData saveData = new SaveData(heroData, guildhallData, guildMemberDatas, questDataPool);
+        List<QuestTimerData> questTimerDatas = new List<QuestTimerData>();
+        foreach (GameObject questTimerObj in Helpers.GetChildren(Object.FindObjectOfType<QuestManager>().gameObject))
+        {
+            QuestTimer questTimer = questTimerObj.GetComponent<QuestTimer>();
+            if (questTimer != null)
+            {
+                QuestTimerData questTimerData = new QuestTimerData(questTimer);
+                questTimerDatas.Add(questTimerData);
+            }
+        }
+
+        SaveData saveData = new SaveData(heroData, guildhallData, guildMemberDatas, questDataPool, questTimerDatas);
         formatter.Serialize(stream, saveData);
         stream.Close();
     }

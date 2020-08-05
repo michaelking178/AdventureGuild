@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public class QuestManager : MonoBehaviour
 {
@@ -19,7 +18,8 @@ public class QuestManager : MonoBehaviour
     private List<Quest> activeQuests;       // quests currently being undertaken
     private List<Quest> completedQuests;    // quests that are finished but awaiting cash in.
     private List<Quest> archivedQuests;     // quests that are cashed in and over, saved for some fun archive feature
-    private Quest currentQuest;
+
+    public Quest CurrentQuest { get; set; }
 
     private IncidentManager incidentManager;
     private Guildhall guildhall;
@@ -102,29 +102,19 @@ public class QuestManager : MonoBehaviour
         return archivedQuests;
     }
 
-    public void SetCurrentQuest(Quest quest)
-    {
-        currentQuest = quest;
-    }
-
-    public Quest GetCurrentQuest()
-    {
-        return currentQuest;
-    }
-
     public void SetAdventurer(GuildMember guildMember)
     {
-        currentQuest.GuildMember = guildMember;
+        CurrentQuest.GuildMember = guildMember;
     }
 
     public void StartQuest()
     {
         QuestTimer questTimer = Instantiate(questTimerPrefab, transform);
-        questTimer.SetQuest(currentQuest);
+        questTimer.SetQuest(CurrentQuest);
         questTimer.StartTimer();
-        currentQuest.GuildMember.IsAvailable(false);
-        currentQuest.startTime = DateTime.Now;
-        currentQuest.State = Quest.Status.Active;
+        CurrentQuest.GuildMember.IsAvailable(false);
+        CurrentQuest.startTime = DateTime.Now;
+        CurrentQuest.State = Quest.Status.Active;
         UpdateQuestLists();
     }
 
@@ -146,9 +136,10 @@ public class QuestManager : MonoBehaviour
 
     public void ApplyQuestReward(Quest quest)
     {
-        guildhall.ChangeGoldBy(quest.Reward.Gold);
-        guildhall.ChangeIronBy(quest.Reward.Iron);
-        guildhall.ChangeWoodBy(quest.Reward.Wood);
+        guildhall.AdjustGold(quest.Reward.Gold);
+        guildhall.AdjustIron(quest.Reward.Iron);
+        guildhall.AdjustWood(quest.Reward.Wood);
+        guildhall.AdjustRenown(quest.Reward.Renown);
         quest.GuildMember.AddExp(quest.Reward.Exp);
     }
 
@@ -162,5 +153,29 @@ public class QuestManager : MonoBehaviour
         questPool.Clear();
         questPool = questList;
         UpdateQuestLists();
+    }
+
+    public void LoadQuestTimer(QuestTimerData questTimerData)
+    {
+        QuestTimer questTimer = Instantiate(questTimerPrefab, transform);
+        questTimer.SetQuest(FindQuestById(questTimerData.questId));
+        questTimer.TimeLimit = questTimerData.timeLimit;
+        questTimer.StartTime = questTimerData.startTime;
+        questTimer.IsTiming = questTimerData.isTiming;
+        questTimer.QuestFinished = questTimerData.questFinished;
+        questTimer.IncidentTimer = questTimerData.incidentTimer;
+    }
+
+    private Quest FindQuestById(int _id)
+    {
+        foreach(Quest quest in questPool)
+        {
+            if (quest.id == _id)
+            {
+                return quest;
+            }
+        }
+        Debug.Log("FindQuestById() did not return a Quest!");
+        return null;
     }
 }

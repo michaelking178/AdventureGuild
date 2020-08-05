@@ -9,13 +9,15 @@ public class SaveData
     private GuildhallData guildhallData;
     private List<GuildMemberData> guildMemberDatas;
     private List<QuestData> questDataPool;
+    private List<QuestTimerData> questTimerDatas;
 
-    public SaveData(GuildMemberData _heroData, GuildhallData _guildhallData, List<GuildMemberData> _guildMemberDatas, List<QuestData> _questDataPool)
+    public SaveData(GuildMemberData _heroData, GuildhallData _guildhallData, List<GuildMemberData> _guildMemberDatas, List<QuestData> _questDataPool, List<QuestTimerData> _questTimerDatas)
     {
         heroData = _heroData;
         guildhallData = _guildhallData;
         guildMemberDatas = _guildMemberDatas;
         questDataPool = _questDataPool;
+        questTimerDatas = _questTimerDatas;
     }
 
     public void Load()
@@ -32,14 +34,15 @@ public class SaveData
         UnityEngine.Object.FindObjectOfType<PopulationManager>().GuildMembers.Add(hero);
 
         Guildhall guildhall = UnityEngine.Object.FindObjectOfType<Guildhall>();
-        guildhall.SetGold(guildhallData.gold);
-        guildhall.SetIron(guildhallData.iron);
-        guildhall.SetWood(guildhallData.wood);
-        guildhall.SetWeapons(guildhallData.weapons);
+        guildhall.Gold = guildhallData.gold;
+        guildhall.Iron = guildhallData.iron;
+        guildhall.Wood = guildhallData.wood;
+        guildhall.Weapons = guildhallData.weapons;
+        guildhall.Renown = guildhallData.renown;
 
         foreach (GuildMemberData guildMemberData in guildMemberDatas)
         {
-            // Population Manager needs to handle this because GuildMember inherits Monobehaviour so must be instantiated.
+            // PopulationManager needs to handle this because GuildMember inherits Monobehaviour so must be instantiated.
             UnityEngine.Object.FindObjectOfType<PopulationManager>().LoadGuildMember(guildMemberData);
         }
 
@@ -66,5 +69,11 @@ public class SaveData
             questList.Add(newQuest);
         }
         UnityEngine.Object.FindObjectOfType<QuestManager>().SetQuestPool(questList);
+
+        foreach (QuestTimerData questTimerData in questTimerDatas)
+        {
+            // QuestManager needs to handle this because QuestTimer inherits Monobehaviour so must be instantiated.
+            UnityEngine.Object.FindObjectOfType<QuestManager>().LoadQuestTimer(questTimerData);
+        }
     }
 }

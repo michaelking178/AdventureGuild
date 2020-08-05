@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class QuestTimer : MonoBehaviour
 {
@@ -6,101 +7,78 @@ public class QuestTimer : MonoBehaviour
     private Quest quest;
 
     [SerializeField]
-    private float timeLimit;
+    private float questTimePassed; // This is just for viewing in the Inspector.
 
-    [SerializeField]
-    private float currentTime;
-
-    [SerializeField]
-    private bool isTiming;
+    public DateTime StartTime { get; set; }
+    public float TimeLimit { get; set; }
+    public float CurrentTime { get; set; }
+    public bool IsTiming { get; set; }
+    public bool QuestFinished { get; set; } = false;
+    public int IncidentTimer { get; set; } = 10;
+    public int IncidentQueue { get; set; }
 
     private QuestManager questManager;
     private IncidentManager incidentManager;
-    private bool questFinished = false;
-    private float incidentTimer;
-    private float defaultIncidentTimer = 10.0f;
 
     private void Start()
     {
         questManager = FindObjectOfType<QuestManager>();
         incidentManager = FindObjectOfType<IncidentManager>();
-        currentTime = timeLimit;
-        incidentTimer = defaultIncidentTimer;
-    }
-
-    public void SetTime(float _time)
-    {
-        timeLimit = _time;
     }
 
     private void FixedUpdate()
     {
-        if (isTiming && currentTime >= 0.0f)
+        questTimePassed = CurrentTime;
+
+        if (IsTiming && CurrentTime < TimeLimit)
         {
-            currentTime -= Time.fixedDeltaTime;
-            incidentTimer -= Time.fixedDeltaTime;
-            if (incidentTimer <= 0 && (currentTime + 1) > defaultIncidentTimer)
+            TimeSpan difference = DateTime.Now - StartTime;
+            CurrentTime = (float)difference.TotalSeconds;
+            IncidentQueue = Mathf.FloorToInt((float)difference.TotalSeconds / IncidentTimer);
+            if (CurrentTime < (TimeLimit - 5.0f) && quest.Incidents.Count < IncidentQueue)
             {
-                GenerateIncident();
-                incidentTimer = defaultIncidentTimer;
+                for (int i = (IncidentQueue - quest.Incidents.Count); i > 0; i--)
+                {
+                    GenerateIncident(DateTime.Now.AddSeconds(-((i-1) * IncidentTimer)));
+                }
             }
         }
         else
         {
-            StopTimer();
             EndQuest();
         }
     }
 
     public void StartTimer()
     {
-        if (timeLimit != 0)
-        {
-            isTiming = true;
-        }
-        else
-        {
-            Debug.Log("Quest Timer has no time limit!");
-        }
-    }
-
-    public void StopTimer()
-    {
-        if (isTiming)
-        {
-            isTiming = false;
-            ResetTimer();
-        }
-    }
-
-    public void PauseTimer()
-    {
-        isTiming = false;
-    }
-
-    public void ResetTimer()
-    {
-        currentTime = timeLimit;
+        StartTime = DateTime.Now;
+        IsTiming = true;
     }
 
     public void SetQuest(Quest _quest)
     {
         quest = _quest;
-        timeLimit = quest.time;
+        TimeLimit = quest.time;
+    }
+
+    public Quest GetQuest()
+    {
+        return quest;
     }
 
     private void EndQuest()
     {
-        if (!questFinished)
+        IsTiming = false;
+        if (!QuestFinished)
         {
             questManager.CompleteQuest(quest);
-            questFinished = true;
+            QuestFinished = true;
             Destroy(gameObject);
         }
     }
 
-    public void GenerateIncident()
+    public void GenerateIncident(DateTime _time)
     {
-        quest.Incidents.Add(incidentManager.GetIncident());
+        quest.Incidents.Add(incidentManager.GetIncident(_time));
     }
 }

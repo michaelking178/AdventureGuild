@@ -10,6 +10,6 @@ public class Incident
 
     public void Init()
     {
-        time = DateTime.Now.ToShortTimeString();
+        time = DateTime.Now.ToString();
     }
 }
