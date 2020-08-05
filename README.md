@@ -28,14 +28,15 @@ Anticipated Launch date: **Holiday 2020**
 
 Feature Development Priorities (To-Do):
 
- - Quest time
- - Rewards
- - Persistent data
+ - Reinstantiate Quest timers on game load.
+ - Rewards for Incidents.
+ - Implement guild Renown as a means to recruit new Peasants.
+ - Implement leveling structure for all characters.
+ - Implement Peasant passive income and leveling.
 
 Additional Tasks:
 
- - Create more quests
- - Create more adventurer names
- - Create and implement incidents
- - Skill system for adventurers
-
+ - Create more quests.
+ - Create more adventurer names.
+ - Separate first and last names to allow more variety in randomly generated characters.
+ - Skill system for adventurers.
