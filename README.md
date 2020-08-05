@@ -28,12 +28,10 @@ Anticipated Launch date: **Holiday 2020**
 
 Feature Development Priorities (To-Do):
 
- - Reinstantiate Quest timers on game load.
  - Rewards for Incidents.
  - Implement guild Renown as a means to recruit new Peasants.
  - Implement leveling structure for all characters.
  - Implement Peasant passive income and leveling.
- - Change the quest timer to a difference in DateTime instead of delta time so that it can be updated after closing and reopening the app.
 
 Additional Tasks:
 
