@@ -17,7 +17,7 @@ public class GuildMemberData
         id = guildMember.GetInstanceID();
         person = guildMember.person;
         vocation = guildMember.GetVocation();
-        if (avatarSpriteName != "")
+        if (guildMember.GetAvatar() != null)
         {
             avatarSpriteName = guildMember.GetAvatar().name;
         }

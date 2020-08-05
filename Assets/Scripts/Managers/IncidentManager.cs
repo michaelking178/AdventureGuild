@@ -42,6 +42,6 @@ public class IncidentManager : MonoBehaviour
 
     public Incident CreateCustomIncident(string _description, Incident.Result _result, DateTime _time)
     {
-        return new Incident() { description = _description, result = _result, time = _time.ToShortTimeString() };
+        return new Incident() { description = _description, result = _result, time = _time.ToString() };
     }
 }

@@ -162,7 +162,6 @@ public class QuestManager : MonoBehaviour
         questTimer.TimeLimit = questTimerData.timeLimit;
         questTimer.StartTime = questTimerData.startTime;
         questTimer.IsTiming = questTimerData.isTiming;
-        questTimer.QuestFinished = questTimerData.questFinished;
         questTimer.IncidentTimer = questTimerData.incidentTimer;
     }
 
