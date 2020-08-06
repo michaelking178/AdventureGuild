@@ -25,9 +25,7 @@ public class HeroMaker : MonoBehaviour
             heroObj.AddComponent<GuildMember>();
         }
         hero = heroObj.GetComponent<GuildMember>();
-        hero.person = new Person {
-            gender = "MALE"
-        };
+        hero.person = new Person(0, "", "");
         hero.UpdateHealth(100);
         hero.IncreaseLevel();
         hero.SetAvatar(defaultHeroSprite);

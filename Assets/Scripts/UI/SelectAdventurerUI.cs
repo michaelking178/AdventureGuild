@@ -7,8 +7,8 @@ public class SelectAdventurerUI : MonoBehaviour
 
     void Start()
     {
-        menu_ConfirmQuest = GameObject.Find("Menu_ConfirmQuest").GetComponent<Menu_ConfirmQuest>();
         menuManager = FindObjectOfType<MenuManager>();
+        menu_ConfirmQuest = menuManager.GetMenu("Menu_ConfirmQuest").GetComponent<Menu_ConfirmQuest>();
     }
 
     public void SetAdventurerToQuest()

@@ -27,7 +27,6 @@ public class MenuManager : MonoBehaviour
         if (startingMenu == null)
         {
             Debug.Log("No starting menu selected!");
-            
         }
         else
         {
@@ -46,16 +45,26 @@ public class MenuManager : MonoBehaviour
         {
             currentMenu.GetComponent<Animator>().SetTrigger("Close");
             soundManager.PlaySound("CloseMenu");
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.6f);
         }
-        GameObject menu = GetMenu(menuName);
-        menu.GetComponent<Animator>().SetTrigger("Open");
-        currentMenu = menu;
-        soundManager.PlaySound("OpenMenu");
+        currentMenu = GetMenu(menuName);
+        foreach (GameObject thisMenu in menus)
+        {
+            if (thisMenu != currentMenu)
+            {
+                thisMenu.SetActive(false);
+            }
+            else
+            {
+                thisMenu.SetActive(true);
+            }
+        }
+        currentMenu.GetComponent<Animator>().SetTrigger("Open");
         yield return new WaitForSeconds(0.5f);
+        soundManager.PlaySound("OpenMenu");
     }
 
-    private GameObject GetMenu(string menuName)
+    public GameObject GetMenu(string menuName)
     {
         foreach (GameObject _menu in menus)
         {

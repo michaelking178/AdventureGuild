@@ -35,7 +35,7 @@ public class QuestTimer : MonoBehaviour
             TimeSpan difference = DateTime.Now - StartTime;
             CurrentTime = (float)difference.TotalSeconds;
             IncidentQueue = Mathf.FloorToInt((float)difference.TotalSeconds / IncidentTimer);
-            if (CurrentTime < (TimeLimit - 5.0f) && quest.Incidents.Count < IncidentQueue)
+            if (quest.Incidents.Count < IncidentQueue)
             {
                 for (int i = (IncidentQueue - quest.Incidents.Count); i > 0; i--)
                 {
@@ -79,6 +79,9 @@ public class QuestTimer : MonoBehaviour
 
     public void GenerateIncident(DateTime _time)
     {
-        quest.Incidents.Add(incidentManager.GetIncident(_time));
+        if (_time < (StartTime.AddSeconds(TimeLimit - 3.0f)))
+        {
+            quest.Incidents.Add(incidentManager.GetIncident(_time));
+        }
     }
 }

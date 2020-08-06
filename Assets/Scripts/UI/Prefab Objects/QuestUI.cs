@@ -5,6 +5,8 @@ public class QuestUI : MonoBehaviour
 {
     private Quest quest;
 
+    private Menu_Quest menu_Quest;
+
     [SerializeField]
     private GameObject extensionPanel;
 
@@ -28,6 +30,7 @@ public class QuestUI : MonoBehaviour
     private void Start()
     {
         questManager = FindObjectOfType<QuestManager>();
+        menu_Quest = FindObjectOfType<Menu_Quest>();
     }
 
     public void SetQuest(Quest _quest)
@@ -53,6 +56,10 @@ public class QuestUI : MonoBehaviour
         {
             questDifficulty.text = "Hard";
         }
+        else if (quest.difficulty == 3)
+        {
+            questDifficulty.text = "Very Hard";
+        }
 
         questReward.text = Helpers.QuestRewardStr(quest);
         questTime.text = (quest.time * 0.001).ToString() + " seconds";
@@ -77,7 +84,7 @@ public class QuestUI : MonoBehaviour
 
     public void UpdateQuestMenu()
     {
-        GameObject.Find("Menu_Quest").GetComponent<Menu_Quest>().UpdateQuestMenu();
+        FindObjectOfType<MenuManager>().GetMenu("Menu_Quest").GetComponent<Menu_Quest>().UpdateQuestMenu();
     }
 
     public void GoToQuestMenu()

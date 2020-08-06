@@ -40,6 +40,10 @@ public static class Helpers
         {
             reward += ", " + quest.Reward.Iron.ToString() + " Iron";
         }
+        if (quest.Reward.Renown != 0)
+        {
+            reward += ", " + quest.Reward.Renown.ToString() + " Renown";
+        }
         return reward;
     }
 

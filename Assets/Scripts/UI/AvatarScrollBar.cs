@@ -7,20 +7,14 @@ public class AvatarScrollBar : MonoBehaviour
     [SerializeField]
     private GameObject avatarPrefab;
 
-    [SerializeField]
-    private List<Sprite> maleAvatars;
-
-    [SerializeField]
-    private List<Sprite> femaleAvatars;
-
-    [SerializeField]
-    private Sprite defaultMaleAvatar;
-
-    [SerializeField]
-    private Sprite defaultFemaleAvatar;
-
     private GuildMember hero;
     private List<Sprite> avatars = new List<Sprite>();
+    private PopulationManager populationManager;
+
+    private void Start()
+    {
+        populationManager = FindObjectOfType<PopulationManager>();
+    }
 
     public void UpdateAvatars()
     {
@@ -57,16 +51,16 @@ public class AvatarScrollBar : MonoBehaviour
     {
         if (hero == null)
         {
-            avatars = maleAvatars;
+            avatars = populationManager.maleAvatars;
             Debug.Log("No hero found!");
         }
         else if (hero.person.gender == "MALE")
         {
-            avatars = maleAvatars;
+            avatars = populationManager.maleAvatars;
         }
         else
         {
-            avatars = femaleAvatars;
+            avatars = populationManager.femaleAvatars;
         }
     }
 
@@ -74,7 +68,7 @@ public class AvatarScrollBar : MonoBehaviour
     {
         if (hero.person.gender == "MALE")
         {
-            foreach(Sprite av in maleAvatars)
+            foreach(Sprite av in populationManager.maleAvatars)
             {
                 if (hero.GetAvatar() == av)
                 {
@@ -84,7 +78,7 @@ public class AvatarScrollBar : MonoBehaviour
         }
         else
         {
-            foreach (Sprite av in femaleAvatars)
+            foreach (Sprite av in populationManager.femaleAvatars)
             {
                 if (hero.GetAvatar() == av)
                 {
@@ -99,11 +93,11 @@ public class AvatarScrollBar : MonoBehaviour
     {
         if (hero.person.gender == "MALE")
         {
-            hero.SetAvatar(defaultMaleAvatar);
+            hero.SetAvatar(populationManager.defaultMaleAvatar);
         }
         else
         {
-            hero.SetAvatar(defaultFemaleAvatar);
+            hero.SetAvatar(populationManager.defaultFemaleAvatar);
         }
     }
 }

@@ -28,7 +28,7 @@
       "description": "The Richton Estate has been home to a great deal of turmoil as the family that recently moved in has been contesting the right to be there with the already resident poltergeist. Please send someone capable of resolving the situation.",
       "commencement": "travel to the Richton Estate and settle this matter of the problematic poltergeist",
       "completion": "Upon entering the Richton Estate I quickly learned that the poltergeist was none other than Sir Archibald G. Richton, the original owner and architect of the estate. After extracting the last will and testament of the final Richton family member from a neatly stacked pile of furniture, I learned that the sale was against the desire of the Richtons. The new family has been successfully chased away from the house. While MacMaerny Estate Management is most displeased, the ghost has rewarded me for my valor. I return now to the Adventure Guild.",
-      "difficulty": 1,
+      "difficulty": 0,
       "time": 60
     },
     {
@@ -38,7 +38,7 @@
       "description": "Some sneaky goblin has been harrassing my farm. I doubt I'll see the chickens again but I would like my tools and other stock back. Please send a good tracker to find the little devil.",
       "commencement": "aid this farmer Wendell in dispersing the goblin and retrieving his farm supplies. I should be careful; goblins are small and weak, but devilishly tricky..",
       "completion": "I found the goblin's lair and approached under cover of daylight (for, as everyone knows, goblins abhor the light of the sun). I found the farmer's tools and those livestock that yet lived. The goblin awoke quite suddenly and beset me with poison darts. With a swing of my blade I split the conniving creature's skull before its darts had a chance to find their mark. I have returned the farmer's goods, and now make my way back to the Adventure Guild.",
-      "difficulty": 0,
+      "difficulty": 1,
       "time": 60
     },
     {
@@ -47,9 +47,19 @@
       "contractor": "hElp me",
       "description": "(This note seems to have been written in a hurry by a trembling hand)\nhelp\nI'm sorry\nI dont want to die\nFalrich's Cove",
       "commencement": "find this person who appears to be in grave danger. I only hope I am not too late",
-      "completion": "I have followed the mysterious stranger to Falrich's Cove. The site upon which I stumbled was... gruesome. I return to the Adventure Guild with some small spoils, but no answers.",
+      "completion": "I have followed the mysterious stranger to Falrich's Cove. The site upon which I stumbled was... gruesome. I return now to the Adventure Guild with some small spoils, but no answers.",
       "difficulty": 2,
-      "time": 60
+      "time": 180
+    },
+    {
+      "id": "006",
+      "questName": "Banditry Unbridled",
+      "contractor": "The Villagers of Herencaester",
+      "description": "A horde of displaced thieves and murderers have set up camp around the main road leading to our town. Our lord protector has not dealt with the situation himself, nor is he allowing any lenience in taxation that we may pay to have the situation dealt with. Please, we ask the Adventure Guild to send someone to deal with these miscreants!",
+      "commencement": "deal with these ne'er-do-wells who harass the poor folk of this area. If the lord protector cannot be relied upon, then let us of the Adventure Guild take up the challenge!",
+      "completion": "I found the bandit camp at night, the raucous group hardly a challenge to track. Before I could devise a plan I was captured by the watch! Face to face with the bandit leader, I knew I had only one chance. I challenged him to a duel. He accepted, and we drew swords. We fought through the night, his dastardly men shouting and cheering all the while. As the sun peaked over the eastern hills, the bandit leader revealed a moment of weakness and I struck. He fell, his face marked eternally with an expression of shock. His band of brutes scattered immediately and in their confusion ran directly into a patrol passing on the nearby highway. I reported the defeat of the bandit gang to the villagers and received my rewrad. I now return to the Adventure Guild.",
+      "difficulty": 3,
+      "time": 240
     }
   ]
 }

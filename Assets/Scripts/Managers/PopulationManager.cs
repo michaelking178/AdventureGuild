@@ -3,28 +3,64 @@ using UnityEngine;
 
 public class PopulationManager : MonoBehaviour
 {
+    [Header("Resources")]
+    [SerializeField]
+    private TextAsset maleNamesJson;
 
     [SerializeField]
-    private TextAsset peopleJson;
+    private TextAsset femaleNamesJson;
 
     [SerializeField]
-    private People peopleList;
+    private TextAsset lastNamesJson;
 
     [SerializeField]
     private GuildMember guildMemberPrefab;
 
+    public List<Sprite> maleAvatars;
+    public List<Sprite> femaleAvatars;
+    public Sprite defaultMaleAvatar;
+    public Sprite defaultFemaleAvatar;
+
+    [Header("Name Lists")]
+    [SerializeField]
+    private Names maleNames;
+
+    [SerializeField]
+    private Names femaleNames;
+
+    [SerializeField]
+    private Names lastNames;
+
+    [Header("Guild Members")]
     public List<GuildMember> GuildMembers = new List<GuildMember>();
 
     private void Start()
     {
-        peopleList = JsonUtility.FromJson<People>(peopleJson.text);
+        maleNames = JsonUtility.FromJson<Names>(maleNamesJson.text);
+        femaleNames = JsonUtility.FromJson<Names>(femaleNamesJson.text);
+        lastNames = JsonUtility.FromJson<Names>(lastNamesJson.text);
     }
 
     public void CreateGuildMember()
     {
-        Person randomPerson = peopleList.people[Random.Range(0, peopleList.people.Length)];
+        string firstName;
+        string lastName = lastNames.prefixes[Random.Range(0, lastNames.prefixes.Length)] + lastNames.suffixes[Random.Range(0, lastNames.suffixes.Length)];
+        Sprite avatar;
+        int gender = Random.Range(0, 2);
+        if (gender == 0)
+        {
+            firstName = maleNames.prefixes[Random.Range(0, maleNames.prefixes.Length)] + maleNames.suffixes[Random.Range(0, maleNames.suffixes.Length)];
+            avatar = maleAvatars[Random.Range(0, maleAvatars.Count)];
+        }
+        else
+        {
+            firstName = femaleNames.prefixes[Random.Range(0, femaleNames.prefixes.Length)] + femaleNames.suffixes[Random.Range(0, femaleNames.suffixes.Length)];
+            avatar = femaleAvatars[Random.Range(0, femaleAvatars.Count)];
+        }
+        Person newPerson = new Person(gender, firstName, lastName);
         GuildMember newMember = Instantiate(guildMemberPrefab, transform);
-        newMember.Init(randomPerson);
+        newMember.Init(newPerson);
+        newMember.SetAvatar(avatar);
         GuildMembers.Add(newMember);
     }
 
