@@ -66,13 +66,14 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    private List<Quest> PopulateQuestPool(int numOfQuests)
+    public List<Quest> PopulateQuestPool(int numOfQuests)
     {
         List<Quest> questsToGet = new List<Quest>();
         for (int i = 0; i < numOfQuests; i++)
         {
             Quest quest = quests.GetRandomQuest();
-            if (Helpers.IsUniqueMember(quest, questsToGet))
+            // Todo: Create enough quest variety that the quest dupe check isn't necessary.
+            //if (Helpers.IsUniqueMember(quest, questsToGet))
             questsToGet.Add(quest);
         }
         return questsToGet;

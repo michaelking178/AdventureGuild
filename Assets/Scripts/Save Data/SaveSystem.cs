@@ -45,7 +45,11 @@ public static class SaveSystem
             }
         }
 
-        SaveData saveData = new SaveData(heroData, guildhallData, guildMemberDatas, questDataPool, questTimerDatas);
+        var soundMan = GameObject.Find("SoundManager").GetComponent<AudioSource>();
+        var musicMan = GameObject.Find("MusicManager").GetComponent<AudioSource>();
+        SettingsData settingsData = new SettingsData(soundMan.volume, musicMan.volume);
+
+        SaveData saveData = new SaveData(heroData, guildhallData, guildMemberDatas, questDataPool, questTimerDatas, settingsData);
         formatter.Serialize(stream, saveData);
         stream.Close();
     }
@@ -66,5 +70,22 @@ public static class SaveSystem
             Debug.LogError("Save File not found!");
             return;
         }
+    }
+
+    public static void DeleteGame()
+    {
+        string path = Application.persistentDataPath + "/saveData.bin";
+        if (!File.Exists(path))
+        {
+            return;
+        }
+        File.Delete(path);
+        Debug.Log("Save file deleted");
+    }
+
+    public static bool SaveFileExists()
+    {
+        string path = Application.persistentDataPath + "/saveData.bin";
+        return File.Exists(path);
     }
 }

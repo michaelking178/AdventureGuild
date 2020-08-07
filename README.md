@@ -33,9 +33,8 @@ Feature Development Priorities (To-Do):
  - Implement leveling structure for all characters.
  - Implement Peasant passive income and leveling.
 
-Additional Tasks:
+Additional/Ongoing Tasks:
 
  - Create more quests.
  - Create more adventurer names.
- - Separate first and last names to allow more variety in randomly generated characters.
  - Skill system for adventurers.

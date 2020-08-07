@@ -10,14 +10,16 @@ public class SaveData
     private List<GuildMemberData> guildMemberDatas;
     private List<QuestData> questDataPool;
     private List<QuestTimerData> questTimerDatas;
+    private SettingsData settingsData;
 
-    public SaveData(GuildMemberData _heroData, GuildhallData _guildhallData, List<GuildMemberData> _guildMemberDatas, List<QuestData> _questDataPool, List<QuestTimerData> _questTimerDatas)
+    public SaveData(GuildMemberData _heroData, GuildhallData _guildhallData, List<GuildMemberData> _guildMemberDatas, List<QuestData> _questDataPool, List<QuestTimerData> _questTimerDatas, SettingsData _settingsData)
     {
         heroData = _heroData;
         guildhallData = _guildhallData;
         guildMemberDatas = _guildMemberDatas;
         questDataPool = _questDataPool;
         questTimerDatas = _questTimerDatas;
+        settingsData = _settingsData;
     }
 
     public void Load()
@@ -74,6 +76,12 @@ public class SaveData
         {
             // QuestManager needs to handle this because QuestTimer inherits Monobehaviour so must be instantiated.
             UnityEngine.Object.FindObjectOfType<QuestManager>().LoadQuestTimer(questTimerData);
+        }
+
+        if (settingsData != null)
+        {
+            GameObject.Find("MusicManager").GetComponent<AudioSource>().volume = settingsData.musicVolume;
+            GameObject.Find("SoundManager").GetComponent<AudioSource>().volume = settingsData.soundVolume;
         }
     }
 }
