@@ -3,10 +3,6 @@ using TMPro;
 
 public class QuestUI : MonoBehaviour
 {
-    private Quest quest;
-
-    private Menu_Quest menu_Quest;
-
     [SerializeField]
     private GameObject extensionPanel;
 
@@ -25,12 +21,18 @@ public class QuestUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI questReward;
 
+    private Quest quest;
     private QuestManager questManager;
+    private MenuManager menuManager;
+    private Menu_Quest menu_Quest;
+    private Menu_QuestJournal questJournal;
 
     private void Start()
     {
         questManager = FindObjectOfType<QuestManager>();
-        menu_Quest = FindObjectOfType<Menu_Quest>();
+        menuManager = FindObjectOfType<MenuManager>();
+        menu_Quest = menuManager.GetMenu("Menu_Quest").GetComponent<Menu_Quest>();
+        questJournal = menuManager.GetMenu("Menu_QuestJournal").GetComponent<Menu_QuestJournal>();
     }
 
     public void SetQuest(Quest _quest)
@@ -62,7 +64,7 @@ public class QuestUI : MonoBehaviour
         }
 
         questReward.text = Helpers.QuestRewardStr(quest);
-        questTime.text = (quest.time * 0.001).ToString() + " seconds";
+        questTime.text = quest.time.ToString() + " seconds";
     }
 
     public void ShowPanel()
@@ -84,23 +86,23 @@ public class QuestUI : MonoBehaviour
 
     public void UpdateQuestMenu()
     {
-        FindObjectOfType<MenuManager>().GetMenu("Menu_Quest").GetComponent<Menu_Quest>().UpdateQuestMenu();
+        menu_Quest.UpdateQuestMenu();
     }
 
     public void GoToQuestMenu()
     {
-        FindObjectOfType<MenuManager>().OpenMenu("Menu_Quest");
+        menuManager.OpenMenu("Menu_Quest");
     }
 
     public void UpdateQuestJournal()
     {
-        GameObject.Find("Menu_QuestJouranl").GetComponent<Menu_QuestJournal>().UpdateQuestJournal();
+        questJournal.UpdateQuestJournal();
     }
 
     public void GoToQuestJournal()
     {
-        FindObjectOfType<Menu_QuestJournal>().SetQuest(quest);
-        FindObjectOfType<Menu_QuestJournal>().UpdateQuestJournal();
-        FindObjectOfType<MenuManager>().OpenMenu("Menu_QuestJournal");
+        questJournal.SetQuest(quest);
+        questJournal.UpdateQuestJournal();
+        menuManager.OpenMenu("Menu_QuestJournal");
     }
 }

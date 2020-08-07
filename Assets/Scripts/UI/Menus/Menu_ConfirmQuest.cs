@@ -16,11 +16,13 @@ public class Menu_ConfirmQuest : MonoBehaviour
     private TextMeshProUGUI questReward;
 
     private QuestManager questManager;
+    private MenuManager menuManager;
     private Quest quest;
 
     private void Start()
     {
         questManager = FindObjectOfType<QuestManager>();
+        menuManager = FindObjectOfType<MenuManager>();
     }
 
     public void UpdateQuestMenu()
@@ -34,9 +36,10 @@ public class Menu_ConfirmQuest : MonoBehaviour
 
     public void GoToQuestJournal()
     {
-        FindObjectOfType<Menu_QuestJournal>().SetQuest(quest);
-        FindObjectOfType<Menu_QuestJournal>().UpdateQuestJournal();
-        FindObjectOfType<MenuManager>().OpenMenu("Menu_QuestJournal");
+        Menu_QuestJournal questJournal = menuManager.GetMenu("Menu_QuestJournal").GetComponent<Menu_QuestJournal>();
+        questJournal.SetQuest(quest);
+        questJournal.UpdateQuestJournal();
+        menuManager.OpenMenu("Menu_QuestJournal");
     }
 
     private string QuestAdventurerStr(Quest quest)

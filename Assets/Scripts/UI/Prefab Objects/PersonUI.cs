@@ -13,6 +13,9 @@ public class PersonUI : MonoBehaviour
     private GameObject extensionPanel;
 
     [SerializeField]
+    private HeroAvatarFrame avatarFrame;
+
+    [SerializeField]
     private GameObject selectAdventurerBtn;
 
     [SerializeField]
@@ -34,7 +37,7 @@ public class PersonUI : MonoBehaviour
     {
         personName.text = guildMember.person.name;
         personVocation.text = string.Format("{0} - Level {1}", guildMember.GetVocation().Title(), guildMember.GetLevel().ToString());
-        
+
         if (guildMember.IsAvailable())
         {
             availability.text = "Available";
@@ -54,6 +57,7 @@ public class PersonUI : MonoBehaviour
         else
         {
             extensionPanel.SetActive(true);
+            avatarFrame.SetFrameAvatar(guildMember);
         }
     }
 

@@ -5,10 +5,15 @@ public class AvatarTile : MonoBehaviour
 {
     private GuildMember hero;
 
-    public void SetAvatar()
+    public void SetHeroAvatar()
     {
         hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>();
         Sprite newAvatar = GetComponentsInChildren<Image>()[1].sprite;
         hero.SetAvatar(newAvatar);
+        HeroAvatarFrame[] frames = FindObjectsOfType<HeroAvatarFrame>();
+        foreach (HeroAvatarFrame frame in frames)
+        {
+            frame.SetFrameAvatar(hero);
+        }
     }
 }
