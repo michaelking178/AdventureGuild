@@ -20,7 +20,7 @@ public static class SaveSystem
         List<GuildMemberData> guildMemberDatas = new List<GuildMemberData>();
         foreach (GuildMember guildMember in Object.FindObjectOfType<PopulationManager>().GuildMembers)
         {
-            if (guildMember.GetInstanceID() != hero.GetInstanceID())
+            if (guildMember.Id != hero.Id)
             {
                 GuildMemberData guildMemberData = new GuildMemberData(guildMember);
                 guildMemberDatas.Add(guildMemberData);

@@ -65,4 +65,13 @@ public static class Helpers
         }
         return true;
     }
+
+    // Todo: Improve the ID generator. This is not robust.
+    public static int GenerateId()
+    {
+        int a = Random.Range(3334, 33333);
+        int b = Random.Range(3334, 33333);
+        int c = Random.Range(3334, 33333);
+        return a + b + c;
+    }
 }

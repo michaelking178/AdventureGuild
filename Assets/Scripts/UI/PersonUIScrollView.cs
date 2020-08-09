@@ -35,7 +35,7 @@ public class PersonUIScrollView : MonoBehaviour
         }
         foreach (GuildMember guildMember in populationManager.GuildMembers)
         {
-            if (guildMember.GetVocation() is Adventurer && guildMember.IsAvailable())
+            if (guildMember.Vocation is Adventurer && guildMember.IsAvailable)
             {
                 GameObject newPersonUI = Instantiate(personUI, transform);
                 newPersonUI.GetComponent<PersonUI>().SetPerson(guildMember);

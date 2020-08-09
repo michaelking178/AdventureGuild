@@ -26,11 +26,12 @@ public class HeroMaker : MonoBehaviour
         }
         hero = heroObj.GetComponent<GuildMember>();
         hero.person = new Person(0, "", "");
+        hero.Id = Helpers.GenerateId();
         hero.UpdateHealth(100);
         hero.IncreaseLevel();
-        hero.SetAvatar(defaultHeroSprite);
-        hero.SetVocation(new Adventurer());
-        hero.IsAvailable(true);
+        hero.Avatar = defaultHeroSprite;
+        hero.Vocation = new Adventurer();
+        hero.IsAvailable = true;
         populationManager.GuildMembers.Add(hero);
     }
 

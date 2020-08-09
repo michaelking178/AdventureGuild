@@ -70,7 +70,7 @@ public class AvatarScrollBar : MonoBehaviour
         {
             foreach(Sprite av in populationManager.maleAvatars)
             {
-                if (hero.GetAvatar() == av)
+                if (hero.Avatar == av)
                 {
                     return true;
                 }
@@ -80,7 +80,7 @@ public class AvatarScrollBar : MonoBehaviour
         {
             foreach (Sprite av in populationManager.femaleAvatars)
             {
-                if (hero.GetAvatar() == av)
+                if (hero.Avatar == av)
                 {
                     return true;
                 }
@@ -93,11 +93,11 @@ public class AvatarScrollBar : MonoBehaviour
     {
         if (hero.person.gender == "MALE")
         {
-            hero.SetAvatar(populationManager.defaultMaleAvatar);
+            hero.Avatar = populationManager.defaultMaleAvatar;
         }
         else
         {
-            hero.SetAvatar(populationManager.defaultFemaleAvatar);
+            hero.Avatar = populationManager.defaultFemaleAvatar;
         }
     }
 }

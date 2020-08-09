@@ -36,9 +36,9 @@ public class PersonUI : MonoBehaviour
     private void SetPersonUIAttributes()
     {
         personName.text = guildMember.person.name;
-        personVocation.text = string.Format("{0} - Level {1}", guildMember.GetVocation().Title(), guildMember.GetLevel().ToString());
+        personVocation.text = string.Format("{0} - Level {1}", guildMember.Vocation.Title(), guildMember.Level.ToString());
 
-        if (guildMember.IsAvailable())
+        if (guildMember.IsAvailable)
         {
             availability.text = "Available";
         }

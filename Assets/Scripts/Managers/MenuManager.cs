@@ -10,6 +10,9 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     private GameObject startingMenu;
 
+    [SerializeField]
+    private GameObject clickBlockerPanel;
+
     private GameObject currentMenu;
     private SoundManager soundManager;
 
@@ -40,11 +43,12 @@ public class MenuManager : MonoBehaviour
 
     private IEnumerator MenuTransition(string menuName)
     {
+        clickBlockerPanel.SetActive(true);
         if (currentMenu != null)
         {
             currentMenu.GetComponent<Animator>().SetTrigger("Close");
             soundManager.PlaySound("CloseMenu");
-            yield return new WaitForSeconds(0.6f);
+            yield return new WaitForSeconds(0.5f);
         }
         currentMenu = GetMenu(menuName);
         foreach (GameObject thisMenu in menus)
@@ -61,6 +65,7 @@ public class MenuManager : MonoBehaviour
         currentMenu.GetComponent<Animator>().SetTrigger("Open");
         yield return new WaitForSeconds(0.5f);
         soundManager.PlaySound("OpenMenu");
+        clickBlockerPanel.SetActive(false);
     }
 
     public GameObject GetMenu(string menuName)

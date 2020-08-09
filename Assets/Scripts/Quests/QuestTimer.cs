@@ -6,12 +6,12 @@ public class QuestTimer : MonoBehaviour
     [SerializeField]
     private Quest quest;
 
-    [SerializeField]
-    private float questTimePassed; // This is just for viewing in the Inspector.
-
     public DateTime StartTime { get; set; }
     public float TimeLimit { get; set; }
+
+    [SerializeField]
     public float CurrentTime { get; set; }
+
     public bool IsTiming { get; set; }
     public bool QuestFinished { get; set; } = false;
     public int IncidentTimer { get; set; } = 10;
@@ -28,12 +28,13 @@ public class QuestTimer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        questTimePassed = CurrentTime;
-
         if (IsTiming && CurrentTime < TimeLimit)
         {
             TimeSpan difference = DateTime.Now - StartTime;
-            CurrentTime = (float)difference.TotalSeconds;
+            if (CurrentTime <= TimeLimit)
+            {
+                CurrentTime = (float)difference.TotalSeconds;
+            }
             IncidentQueue = Mathf.FloorToInt((float)difference.TotalSeconds / IncidentTimer);
             if (quest.Incidents.Count < IncidentQueue)
             {
@@ -43,9 +44,13 @@ public class QuestTimer : MonoBehaviour
                 }
             }
         }
-        else
+        else if (quest.GuildMember != null)
         {
             EndQuest();
+        }
+        else
+        {
+            Debug.Log(string.Format("QuestTimer unable to complete quest \"{0}\" ({1})", quest.questName, quest.questInstanceId));
         }
     }
 
@@ -71,8 +76,8 @@ public class QuestTimer : MonoBehaviour
         IsTiming = false;
         if (!QuestFinished)
         {
-            questManager.CompleteQuest(quest);
             QuestFinished = true;
+            questManager.CompleteQuest(quest);
             Destroy(gameObject);
         }
     }

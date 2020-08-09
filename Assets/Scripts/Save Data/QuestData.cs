@@ -6,8 +6,9 @@ public class QuestData
 {
     public string questName, contractor, description, commencement, completion;
     public int id, difficulty, time;
+    public int questInstanceId;
     public Reward Reward;
-    public GuildMemberData guildMemberData;
+    public int guildMemberId = 0;
     public Quest.Status State;
     public List<Incident> Incidents;
     public DateTime startTime;
@@ -22,10 +23,11 @@ public class QuestData
         id = quest.id;
         difficulty = quest.difficulty;
         time = quest.time;
+        questInstanceId = quest.questInstanceId;
         Reward = quest.Reward;
         if (quest.GuildMember != null)
         {
-            guildMemberData = new GuildMemberData(quest.GuildMember);
+            guildMemberId = quest.GuildMember.Id;
         }
         State = quest.State;
         Incidents = quest.Incidents;

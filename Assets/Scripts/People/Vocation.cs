@@ -1,6 +1,4 @@
-﻿using System;
-
-[Serializable]
+﻿[System.Serializable]
 public abstract class Vocation
 {
     protected string title;

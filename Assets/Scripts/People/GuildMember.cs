@@ -2,115 +2,59 @@
 
 public class GuildMember : MonoBehaviour
 {
+    [SerializeField]
     public Person person;
 
-    [SerializeField]
     private Vocation vocation;
-
-    [SerializeField]
-    private int health;
-
-    [SerializeField]
-    private Sprite avatar;
-
-    [SerializeField]
-    private int experience;
-
-    [SerializeField]
-    private int level;
-
-    [SerializeField]
-    private bool isAvailable;
+    public Vocation Vocation
+    { 
+        get
+        {
+            return vocation;
+            
+        }
+        set
+        {
+            if (Vocation == null || Vocation.Title() == "Peasant")
+            {
+                vocation = value;
+            }
+            else
+            {
+                Debug.Log("That person already has a vocation!");
+            }
+        }
+    }
+    public int Id { get; set; }
+    public int Health { get; set; }
+    public Sprite Avatar { get; set; }
+    public int Experience { get; set; }
+    public int Level { get; set; }
+    public bool IsAvailable { get; set; }
 
     public void Init(Person _person)
     {
         person = _person;
-        health = 100;
-        experience = 0;
-        level = 1;
-        vocation = new Peasant();
-        isAvailable = true;
-    }
-
-    public Vocation GetVocation()
-    {
-        return vocation;
-    }
-
-    public void SetVocation(Vocation _vocation)
-    {
-        if (vocation == null || vocation.Title() == "Peasant")
-        {
-            vocation = _vocation;
-        }
-        else
-        {
-            Debug.Log("That person already has a vocation!");
-        }
-    }
-
-    public Sprite GetAvatar()
-    {
-        return avatar;
-    }
-
-    public void SetAvatar(Sprite _avatar)
-    {
-        avatar = _avatar;
-    }
-
-    public int GetHealth()
-    {
-        return health;
-    }
-
-    public void SetHealth(int _health)
-    {
-        health = _health;
+        Id = Helpers.GenerateId();
+        Health = 100;
+        Experience = 0;
+        Level = 1;
+        Vocation = new Peasant();
+        IsAvailable = true;
     }
 
     public void UpdateHealth(int change)
     {
-        health += change;
-    }
-
-    public int GetExp()
-    {
-        return experience;
-    }
-
-    public void SetExp(int _exp)
-    {
-        experience = _exp;
+        Health += change;
     }
 
     public void AddExp(int _exp)
     {
-        experience += _exp;
-    }
-
-    public int GetLevel()
-    {
-        return level;
-    }
-
-    public void SetLevel(int _level)
-    {
-        level = _level;
+        Experience += _exp;
     }
 
     public void IncreaseLevel()
     {
-        level++;
-    }
-
-    public bool IsAvailable()
-    {
-        return isAvailable;
-    }
-
-    public void IsAvailable(bool _isAvailable)
-    {
-        isAvailable = _isAvailable;
+        Level++;
     }
 }

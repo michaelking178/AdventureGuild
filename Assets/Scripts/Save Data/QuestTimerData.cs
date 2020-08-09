@@ -3,7 +3,7 @@
 [Serializable]
 public class QuestTimerData
 {
-    public int questId;
+    public int questInstanceId;
     public float timeLimit;
     public DateTime startTime;
     public bool isTiming;
@@ -12,7 +12,7 @@ public class QuestTimerData
 
     public QuestTimerData(QuestTimer questTimer)
     {
-        questId = questTimer.GetQuest().id;
+        questInstanceId = questTimer.GetQuest().questInstanceId;
         timeLimit = questTimer.TimeLimit;
         startTime = questTimer.StartTime;
         isTiming = questTimer.IsTiming;

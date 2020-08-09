@@ -24,18 +24,22 @@ public class SaveData
 
     public void Load()
     {
+        QuestManager questManager = UnityEngine.Object.FindObjectOfType<QuestManager>();
         GuildMember hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>();
-        hero.person = heroData.person;
-        hero.SetVocation(heroData.vocation);
-        Sprite _heroAvatar = Resources.Load<Sprite>("Sprites/Avatars/" + heroData.person.gender + "/" + heroData.avatarSpriteName);
-        hero.SetAvatar(_heroAvatar);
-        hero.SetHealth(heroData.health);
-        hero.SetExp(heroData.experience);
-        hero.SetLevel(heroData.level);
-        hero.IsAvailable(heroData.isAvailable);
-        UnityEngine.Object.FindObjectOfType<PopulationManager>().GuildMembers.Add(hero);
-
         Guildhall guildhall = UnityEngine.Object.FindObjectOfType<Guildhall>();
+        PopulationManager populationManager = UnityEngine.Object.FindObjectOfType<PopulationManager>();
+
+        hero.person = heroData.person;
+        hero.Vocation = heroData.vocation;
+        Sprite _heroAvatar = Resources.Load<Sprite>("Sprites/Avatars/" + heroData.person.gender + "/" + heroData.avatarSpriteName);
+        hero.Avatar = _heroAvatar;
+        hero.Id = heroData.id;
+        hero.Health = heroData.health;
+        hero.Experience = heroData.experience;
+        hero.Level = heroData.level;
+        hero.IsAvailable = heroData.isAvailable;
+        populationManager.GuildMembers.Add(hero);
+
         guildhall.Gold = guildhallData.gold;
         guildhall.Iron = guildhallData.iron;
         guildhall.Wood = guildhallData.wood;
@@ -45,7 +49,7 @@ public class SaveData
         foreach (GuildMemberData guildMemberData in guildMemberDatas)
         {
             // PopulationManager needs to handle this because GuildMember inherits Monobehaviour so must be instantiated.
-            UnityEngine.Object.FindObjectOfType<PopulationManager>().LoadGuildMember(guildMemberData);
+            populationManager.LoadGuildMember(guildMemberData);
         }
 
         List<Quest> questList = new List<Quest>();
@@ -60,22 +64,23 @@ public class SaveData
             newQuest.id = questData.id;
             newQuest.difficulty = questData.difficulty;
             newQuest.time = questData.time;
+            newQuest.questInstanceId = questData.questInstanceId;
             newQuest.Reward = questData.Reward;
-            if (questData.guildMemberData != null)
+            if (questData.guildMemberId != 0)
             {
-                newQuest.GuildMember = UnityEngine.Object.FindObjectOfType<PopulationManager>().FindGuildMemberById(questData.guildMemberData.id);
+                newQuest.GuildMember = populationManager.FindGuildMemberById(questData.guildMemberId);
             }
             newQuest.State = questData.State;
             newQuest.Incidents = questData.Incidents;
             newQuest.startTime = questData.startTime;
             questList.Add(newQuest);
         }
-        UnityEngine.Object.FindObjectOfType<QuestManager>().SetQuestPool(questList);
+        questManager.SetQuestPool(questList);
 
         foreach (QuestTimerData questTimerData in questTimerDatas)
         {
             // QuestManager needs to handle this because QuestTimer inherits Monobehaviour so must be instantiated.
-            UnityEngine.Object.FindObjectOfType<QuestManager>().LoadQuestTimer(questTimerData);
+            questManager.LoadQuestTimer(questTimerData);
         }
 
         if (settingsData != null)

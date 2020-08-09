@@ -60,7 +60,7 @@ public class PopulationManager : MonoBehaviour
         Person newPerson = new Person(gender, firstName, lastName);
         GuildMember newMember = Instantiate(guildMemberPrefab, transform);
         newMember.Init(newPerson);
-        newMember.SetAvatar(avatar);
+        newMember.Avatar = avatar;
         GuildMembers.Add(newMember);
     }
 
@@ -71,13 +71,14 @@ public class PopulationManager : MonoBehaviour
         if (guildMemberData.avatarSpriteName != null && guildMemberData.avatarSpriteName != "")
         {
             Sprite avatar = Resources.Load<Sprite>("Sprites/Avatars/" + guildMemberData.person.gender + "/" + guildMemberData.avatarSpriteName);
-            newMember.SetAvatar(avatar);
+            newMember.Avatar = avatar;
         }
-        newMember.SetExp(guildMemberData.experience);
-        newMember.SetHealth(guildMemberData.health);
-        newMember.SetLevel(guildMemberData.level);
-        newMember.SetVocation(guildMemberData.vocation);
-        newMember.IsAvailable(guildMemberData.isAvailable);
+        newMember.Id = guildMemberData.id;
+        newMember.Experience = guildMemberData.experience;
+        newMember.Health = guildMemberData.health;
+        newMember.Level = guildMemberData.level;
+        newMember.Vocation = guildMemberData.vocation;
+        newMember.IsAvailable = guildMemberData.isAvailable;
         GuildMembers.Add(newMember);
     }
 
@@ -86,7 +87,7 @@ public class PopulationManager : MonoBehaviour
         List<GuildMember> adventurers = new List<GuildMember>();
         foreach (GuildMember guildMember in GuildMembers)
         {
-            if (guildMember.GetVocation() is Adventurer && guildMember.IsAvailable())
+            if (guildMember.Vocation is Adventurer && guildMember.IsAvailable)
             {
                 adventurers.Add(guildMember);
             }
@@ -99,7 +100,7 @@ public class PopulationManager : MonoBehaviour
         List<GuildMember> adventurers = new List<GuildMember>();
         foreach (GuildMember guildMember in GuildMembers)
         {
-            if (guildMember.GetVocation() is Adventurer)
+            if (guildMember.Vocation is Adventurer)
             {
                 adventurers.Add(guildMember);
             }
@@ -112,7 +113,7 @@ public class PopulationManager : MonoBehaviour
         List<GuildMember> artisans = new List<GuildMember>();
         foreach (GuildMember guildMember in GuildMembers)
         {
-            if (guildMember.GetVocation() is Artisan)
+            if (guildMember.Vocation is Artisan)
             {
                 artisans.Add(guildMember);
             }
@@ -125,7 +126,7 @@ public class PopulationManager : MonoBehaviour
         List<GuildMember> peasants = new List<GuildMember>();
         foreach (GuildMember guildMember in GuildMembers)
         {
-            if (guildMember.GetVocation() is Peasant)
+            if (guildMember.Vocation is Peasant)
             {
                 peasants.Add(guildMember);
             }
@@ -137,7 +138,7 @@ public class PopulationManager : MonoBehaviour
     {
         foreach (GuildMember guildMember in GuildMembers)
         {
-            if (guildMember.GetInstanceID() == _id)
+            if (guildMember.Id == _id)
                 return guildMember;
         }
         return null;

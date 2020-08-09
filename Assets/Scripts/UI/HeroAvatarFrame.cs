@@ -12,6 +12,6 @@ public class HeroAvatarFrame : MonoBehaviour
 
     public void SetFrameAvatar(GuildMember guildMember)
     {
-        avatarImage.sprite = guildMember.GetAvatar();
+        avatarImage.sprite = guildMember.Avatar;
     }
 }

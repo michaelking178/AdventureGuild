@@ -14,16 +14,16 @@ public class GuildMemberData
 
     public GuildMemberData(GuildMember guildMember)
     {
-        id = guildMember.GetInstanceID();
+        id = guildMember.Id;
         person = guildMember.person;
-        vocation = guildMember.GetVocation();
-        if (guildMember.GetAvatar() != null)
+        vocation = guildMember.Vocation;
+        if (guildMember.Avatar != null)
         {
-            avatarSpriteName = guildMember.GetAvatar().name;
+            avatarSpriteName = guildMember.Avatar.name;
         }
-        health = guildMember.GetHealth();
-        experience = guildMember.GetExp();
-        level = guildMember.GetLevel();
-        isAvailable = guildMember.IsAvailable();
+        health = guildMember.Health;
+        experience = guildMember.Experience;
+        level = guildMember.Level;
+        isAvailable = guildMember.IsAvailable;
     }
 }

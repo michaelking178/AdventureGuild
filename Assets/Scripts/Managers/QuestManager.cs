@@ -14,15 +14,10 @@ public class QuestManager : MonoBehaviour
     private List<Quest> questPool;          // questPool is the actual list of quests that are in use.
 
     private Quests quests;                  // quests is just a reference to the entire Quest JSON list. It shouldn't be used directly.
-    private List<Quest> availableQuests;    // quests available to start
-    private List<Quest> activeQuests;       // quests currently being undertaken
-    private List<Quest> completedQuests;    // quests that are finished but awaiting cash in.
-    private List<Quest> archivedQuests;     // quests that are cashed in and over, saved for some fun archive feature
-
-    public Quest CurrentQuest { get; set; }
-
     private IncidentManager incidentManager;
     private Guildhall guildhall;
+
+    public Quest CurrentQuest { get; set; }
 
     private void Start()
     {
@@ -30,77 +25,53 @@ public class QuestManager : MonoBehaviour
         guildhall = FindObjectOfType<Guildhall>();
         quests = JsonUtility.FromJson<Quests>(questsJson.text);
         questPool = new List<Quest>();
-        availableQuests = new List<Quest>();
-        activeQuests = new List<Quest>();
-        completedQuests = new List<Quest>();
-        archivedQuests = new List<Quest>();
 
-        questPool = PopulateQuestPool(6);
-        UpdateQuestLists();
+        PopulateQuestPool(6);
     }
 
-    private void UpdateQuestLists()
-    {
-        availableQuests.Clear();
-        activeQuests.Clear();
-        completedQuests.Clear();
-        archivedQuests.Clear();
-        foreach (Quest quest in questPool)
-        {
-            if (quest.State == Quest.Status.New)
-            {
-                availableQuests.Add(quest);
-            }
-            else if (quest.State == Quest.Status.Active)
-            {
-                activeQuests.Add(quest);
-            }
-            else if (quest.State == Quest.Status.Completed)
-            {
-                completedQuests.Add(quest);
-            }
-            else if (quest.State == Quest.Status.Archived)
-            {
-                archivedQuests.Add(quest);
-            }
-        }
-    }
-
-    public List<Quest> PopulateQuestPool(int numOfQuests)
+    public void PopulateQuestPool(int numOfQuests)
     {
         List<Quest> questsToGet = new List<Quest>();
+
+        // Check that each quest added to the questsToGet list is unique
         for (int i = 0; i < numOfQuests; i++)
         {
             Quest quest = quests.GetRandomQuest();
-            // Todo: Create enough quest variety that the quest dupe check isn't necessary.
-            //if (Helpers.IsUniqueMember(quest, questsToGet))
-            questsToGet.Add(quest);
+            if (Helpers.IsUniqueMember(quest, questsToGet))
+                questsToGet.Add(quest);
         }
-        return questsToGet;
+
+        // Add each quest in the questsToGet list to the questPool
+        foreach (Quest quest in questsToGet)
+        {
+            questPool.Add(quest);
+        }
+    }
+    
+    public Quest GetQuestById(int _id)
+    {
+        foreach (Quest quest in questPool)
+        {
+            if (quest.questInstanceId == _id)
+            {
+                return quest;
+            }
+        }
+        Debug.Log("QuestManager.cs GetQuestById() could not find the requested Quest: " + _id);
+        return null;
     }
 
-    public List<Quest> GetAvailableQuests()
+    public List<Quest> GetQuestsByStatus(Quest.Status _status)
     {
-        UpdateQuestLists();
-        return availableQuests;
-    }
-
-    public List<Quest> GetActiveQuests()
-    {
-        UpdateQuestLists();
-        return activeQuests;
-    }
-
-    public List<Quest> GetCompletedQuests()
-    {
-        UpdateQuestLists();
-        return completedQuests;
-    }
-
-    public List<Quest> GetArchivedQuests()
-    {
-        UpdateQuestLists();
-        return archivedQuests;
+        List<Quest> questList = new List<Quest>();
+        foreach (Quest quest in questPool)
+        {
+            if (quest.State == _status)
+            {
+                questList.Add(quest);
+            }
+        }
+        return questList;
     }
 
     public void SetAdventurer(GuildMember guildMember)
@@ -113,10 +84,9 @@ public class QuestManager : MonoBehaviour
         QuestTimer questTimer = Instantiate(questTimerPrefab, transform);
         questTimer.SetQuest(CurrentQuest);
         questTimer.StartTimer();
-        CurrentQuest.GuildMember.IsAvailable(false);
+        CurrentQuest.GuildMember.IsAvailable = false;
         CurrentQuest.startTime = DateTime.Now;
         CurrentQuest.State = Quest.Status.Active;
-        UpdateQuestLists();
     }
 
     public void CompleteQuest(Quest quest)
@@ -125,14 +95,12 @@ public class QuestManager : MonoBehaviour
         quest.State = Quest.Status.Completed;
         quest.Incidents.Add(incidentManager.CreateCustomIncident(quest.completion, Incident.Result.Null, DateTime.Now));
         ApplyQuestReward(quest);
-        quest.GuildMember.IsAvailable(true);
-        UpdateQuestLists();
+        quest.GuildMember.IsAvailable= true;
     }
 
     public void ArchiveQuest(Quest quest)
     {
         quest.State = Quest.Status.Archived;
-        UpdateQuestLists();
     }
 
     public void ApplyQuestReward(Quest quest)
@@ -153,13 +121,12 @@ public class QuestManager : MonoBehaviour
     {
         questPool.Clear();
         questPool = questList;
-        UpdateQuestLists();
     }
 
     public void LoadQuestTimer(QuestTimerData questTimerData)
     {
         QuestTimer questTimer = Instantiate(questTimerPrefab, transform);
-        questTimer.SetQuest(FindQuestById(questTimerData.questId));
+        questTimer.SetQuest(FindQuestById(questTimerData.questInstanceId));
         questTimer.TimeLimit = questTimerData.timeLimit;
         questTimer.StartTime = questTimerData.startTime;
         questTimer.IsTiming = questTimerData.isTiming;
@@ -170,7 +137,7 @@ public class QuestManager : MonoBehaviour
     {
         foreach(Quest quest in questPool)
         {
-            if (quest.id == _id)
+            if (quest.questInstanceId == _id)
             {
                 return quest;
             }

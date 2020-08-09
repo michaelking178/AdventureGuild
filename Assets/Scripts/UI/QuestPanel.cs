@@ -23,8 +23,8 @@ public class QuestPanel : MonoBehaviour
 
     public void UpdateQuestPanel()
     {
-        activeQuests.text = questManager.GetActiveQuests().Count.ToString();
-        availableQuests.text = questManager.GetAvailableQuests().Count.ToString();
+        activeQuests.text = questManager.GetQuestsByStatus(Quest.Status.Active).Count.ToString();
+        availableQuests.text = questManager.GetQuestsByStatus(Quest.Status.New).Count.ToString();
         availableAdventurers.text = populationManager.GetAvailableAdventurers().Count.ToString();
     }
 }

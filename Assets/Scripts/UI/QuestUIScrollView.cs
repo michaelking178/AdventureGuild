@@ -18,7 +18,7 @@ public class QuestUIScrollView : MonoBehaviour
         {
             Destroy(child);
         }
-        foreach (Quest quest in questManager.GetAvailableQuests())
+        foreach (Quest quest in questManager.GetQuestsByStatus(Quest.Status.New))
         {
             GameObject newQuestUI = Instantiate(questUI, transform);
             newQuestUI.GetComponent<QuestUI>().SetQuest(quest);
@@ -31,17 +31,17 @@ public class QuestUIScrollView : MonoBehaviour
         {
             Destroy(child);
         }
-        foreach (Quest quest in questManager.GetActiveQuests())
+        foreach (Quest quest in questManager.GetQuestsByStatus(Quest.Status.Active))
         {
             GameObject newQuestUI = Instantiate(questUI, transform);
             newQuestUI.GetComponent<QuestUI>().SetQuest(quest);
         }
-        foreach (Quest quest in questManager.GetCompletedQuests())
+        foreach (Quest quest in questManager.GetQuestsByStatus(Quest.Status.Completed))
         {
             GameObject newQuestUI = Instantiate(questUI, transform);
             newQuestUI.GetComponent<QuestUI>().SetQuest(quest);
         }
-        foreach (Quest quest in questManager.GetArchivedQuests())
+        foreach (Quest quest in questManager.GetQuestsByStatus(Quest.Status.Archived))
         {
             GameObject newQuestUI = Instantiate(questUI, transform);
             newQuestUI.GetComponent<QuestUI>().SetQuest(quest);

@@ -21,8 +21,8 @@ public class HeroPanel : MonoBehaviour
     {
         hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>();
         heroName.text = hero.person.name;
-        heroVocation.text = string.Format("Level {0} {1}", hero.GetLevel(), hero.GetVocation().Title());
-        heroExperience.text = "Experience: " + hero.GetExp().ToString();
-        heroHealth.text = "Health: " + hero.GetHealth().ToString();
+        heroVocation.text = string.Format("Level {0} {1}", hero.Level, hero.Vocation.Title());
+        heroExperience.text = "Experience: " + hero.Experience.ToString();
+        heroHealth.text = "Health: " + hero.Health.ToString();
     }
 }
