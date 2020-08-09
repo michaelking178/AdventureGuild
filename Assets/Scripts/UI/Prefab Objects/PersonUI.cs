@@ -38,9 +38,13 @@ public class PersonUI : MonoBehaviour
         personName.text = guildMember.person.name;
         personVocation.text = string.Format("{0} - Level {1}", guildMember.Vocation.Title(), guildMember.Level.ToString());
 
-        if (guildMember.IsAvailable)
+        if (guildMember.IsAvailable && !guildMember.IsIncapacitated)
         {
             availability.text = "Available";
+        }
+        else if (guildMember.IsAvailable && guildMember.IsIncapacitated)
+        {
+            availability.text = "Incapacitated";
         }
         else
         {

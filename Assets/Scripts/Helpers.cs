@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
 public static class Helpers
@@ -28,21 +27,50 @@ public static class Helpers
     public static string QuestRewardStr(Quest quest)
     {
         string reward = "";
+        reward += quest.Reward.Exp.ToString() + " Experience\n";
         if (quest.Reward.Gold != 0)
         {
-            reward += quest.Reward.Gold.ToString() + " Gold";
+            reward += quest.Reward.Gold.ToString() + " Gold\n";
         }
         if (quest.Reward.Wood != 0)
         {
-            reward += ", " + quest.Reward.Wood.ToString() + " Wood";
+            reward += quest.Reward.Wood.ToString() + " Wood\n";
         }
         if (quest.Reward.Iron != 0)
         {
-            reward += ", " + quest.Reward.Iron.ToString() + " Iron";
+            reward += quest.Reward.Iron.ToString() + " Iron\n";
         }
         if (quest.Reward.Renown != 0)
         {
-            reward += ", " + quest.Reward.Renown.ToString() + " Renown";
+            reward += quest.Reward.Renown.ToString() + " Renown\n";
+        }
+        return reward;
+    }
+
+    public static string IncidentRewardStr(Incident incident)
+    {
+        string reward = "";
+        {
+            if (incident.reward.Experience != 0)
+            {
+                reward += incident.reward.Experience.ToString() + " Experience\n";
+            }
+            if (incident.reward.Gold != 0)
+            {
+                reward += incident.reward.Gold.ToString() + " Gold\n";
+            }
+            if (incident.reward.Wood != 0)
+            {
+                reward += incident.reward.Wood.ToString() + " Wood\n";
+            }
+            if (incident.reward.Iron != 0)
+            {
+                reward += incident.reward.Iron.ToString() + " Iron\n";
+            }
+            if (incident.reward.Hitpoints != 0)
+            {
+                reward += incident.reward.Hitpoints.ToString() + " Hitpoints\n";
+            }
         }
         return reward;
     }

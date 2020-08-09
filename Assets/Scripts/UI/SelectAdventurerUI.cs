@@ -2,23 +2,27 @@
 
 public class SelectAdventurerUI : MonoBehaviour
 {
-    private Menu_ConfirmQuest menu_ConfirmQuest;
     private MenuManager menuManager;
+    private QuestManager questManager;
 
     void Start()
     {
         menuManager = FindObjectOfType<MenuManager>();
-        menu_ConfirmQuest = menuManager.GetMenu("Menu_ConfirmQuest").GetComponent<Menu_ConfirmQuest>();
+        questManager = FindObjectOfType<QuestManager>();
     }
 
-    public void SetAdventurerToQuest()
+    public void BeginQuest()
     {
-        FindObjectOfType<QuestManager>().SetAdventurer(GetComponent<PersonUI>().GuildMember);
+        questManager.SetAdventurer(GetComponent<PersonUI>().GuildMember);
+        questManager.StartQuest();
+        GoToQuestJournal();
     }
 
-    public void LoadConfirmQuestMenu()
+    private void GoToQuestJournal()
     {
-        menu_ConfirmQuest.UpdateQuestMenu();
-        menuManager.OpenMenu("Menu_ConfirmQuest");
+        Menu_QuestJournal questJournal = menuManager.GetMenu("Menu_QuestJournal").GetComponent<Menu_QuestJournal>();
+        questJournal.SetQuest(questManager.CurrentQuest);
+        questJournal.UpdateQuestJournal();
+        menuManager.OpenMenu("Menu_QuestJournal");
     }
 }

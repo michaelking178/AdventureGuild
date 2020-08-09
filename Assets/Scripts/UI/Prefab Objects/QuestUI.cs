@@ -35,6 +35,12 @@ public class QuestUI : MonoBehaviour
         questJournal = menuManager.GetMenu("Menu_QuestJournal").GetComponent<Menu_QuestJournal>();
     }
 
+    private void FixedUpdate()
+    {
+        if (quest != null)
+            SetQuestUIAttributes();
+    }
+
     public void SetQuest(Quest _quest)
     {
         quest = _quest;
@@ -64,7 +70,25 @@ public class QuestUI : MonoBehaviour
         }
 
         questReward.text = Helpers.QuestRewardStr(quest);
-        questTime.text = quest.time.ToString() + " seconds";
+        if (quest.State == Quest.Status.Completed)
+        {
+            questTime.text = quest.State.ToString();
+        }
+        else if (quest.State == Quest.Status.New)
+        {
+            questTime.text = quest.time.ToString() + " seconds";
+        }
+        else if (quest.State == Quest.Status.Active)
+        {
+            foreach (GameObject child in Helpers.GetChildren(GameObject.Find("Quest Manager")))
+            {
+                if (child.GetComponent<QuestTimer>().GetQuest() == quest)
+                {
+                    float timeRemaining = child.GetComponent<QuestTimer>().TimeLimit - child.GetComponent<QuestTimer>().CurrentTime;
+                    questTime.text = (int)timeRemaining + " Remaining";
+                }
+            }
+        }
     }
 
     public void ShowPanel()
@@ -84,19 +108,10 @@ public class QuestUI : MonoBehaviour
         questManager.CurrentQuest = quest;
     }
 
-    public void UpdateQuestMenu()
-    {
-        menu_Quest.UpdateQuestMenu();
-    }
-
     public void GoToQuestMenu()
     {
+        menu_Quest.UpdateQuestMenu();
         menuManager.OpenMenu("Menu_Quest");
-    }
-
-    public void UpdateQuestJournal()
-    {
-        questJournal.UpdateQuestJournal();
     }
 
     public void GoToQuestJournal()

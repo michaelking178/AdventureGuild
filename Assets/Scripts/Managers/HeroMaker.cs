@@ -27,8 +27,9 @@ public class HeroMaker : MonoBehaviour
         hero = heroObj.GetComponent<GuildMember>();
         hero.person = new Person(0, "", "");
         hero.Id = Helpers.GenerateId();
-        hero.UpdateHealth(100);
-        hero.IncreaseLevel();
+        hero.MaxHitpoints = 100;
+        hero.Hitpoints = hero.MaxHitpoints;
+        hero.Level = 1;
         hero.Avatar = defaultHeroSprite;
         hero.Vocation = new Adventurer();
         hero.IsAvailable = true;

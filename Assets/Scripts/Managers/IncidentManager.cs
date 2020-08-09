@@ -26,17 +26,25 @@ public class IncidentManager : MonoBehaviour
     
     public Incident GetIncident()
     {
-        Incident newIncident = new Incident();
-        newIncident.Init();
-        newIncident.description = incidents.GetRandomIncident().description;
-        return newIncident;
+        return GenerateIncident();
     }
 
     public Incident GetIncident(DateTime _time)
     {
-        Incident newIncident = new Incident();
+        Incident newIncident = GenerateIncident();
         newIncident.time = _time.ToString();
-        newIncident.description = incidents.GetRandomIncident().description;
+        return newIncident;
+    }
+
+    private Incident GenerateIncident()
+    {
+        Incident newIncident = new Incident();
+        Incident incidentToClone = incidents.GetRandomIncident();
+        newIncident.description = incidentToClone.description;
+        newIncident.goodResult = incidentToClone.goodResult;
+        newIncident.badResult = incidentToClone.badResult;
+        newIncident.neutralResult = incidentToClone.neutralResult;
+        newIncident.Init();
         return newIncident;
     }
 

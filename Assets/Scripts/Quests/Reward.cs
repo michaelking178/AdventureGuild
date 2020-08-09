@@ -1,6 +1,4 @@
-﻿using System;
-
-[Serializable]
+﻿[System.Serializable]
 public class Reward
 {
     public int Gold { get; set; }
@@ -14,7 +12,7 @@ public class Reward
         Gold = 100 * (difficulty + 1);
         Iron = 10 * (difficulty + 1);
         Wood = 25 * (difficulty + 1);
-        Exp = 1000 * (difficulty + 1);
+        Exp = 100 * (difficulty + 1);
         Renown = 15 * (difficulty + 1);
     }
 }

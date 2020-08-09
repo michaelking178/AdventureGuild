@@ -21,7 +21,7 @@ public class GuildMemberData
         {
             avatarSpriteName = guildMember.Avatar.name;
         }
-        health = guildMember.Health;
+        health = guildMember.Hitpoints;
         experience = guildMember.Experience;
         level = guildMember.Level;
         isAvailable = guildMember.IsAvailable;

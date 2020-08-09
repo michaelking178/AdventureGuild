@@ -33,25 +33,45 @@ public class Guildhall : MonoBehaviour
     public void AdjustGold(int change)
     {
         Gold += change;
+        if (Gold < 0)
+        {
+            Gold = 0;
+        }
     }
 
     public void AdjustIron(int change)
     {
         Iron += change;
+        if (Iron < 0)
+        {
+            Iron = 0;
+        }
     }
 
     public void AdjustWood(int change)
     {
         Wood += change;
+        if (Wood < 0)
+        {
+            Wood = 0;
+        }
     }
 
     public void AdjustWeapons(int change)
     {
         Weapons += change;
+        if (Weapons < 0)
+        {
+            Weapons = 0;
+        }
     }
 
     public void AdjustRenown(int change)
     {
         Renown += change;
+        if (Renown < 0)
+        {
+            Renown = 0;
+        }
     }
 }

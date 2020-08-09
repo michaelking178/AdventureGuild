@@ -34,11 +34,24 @@ public class PopulationManager : MonoBehaviour
     [Header("Guild Members")]
     public List<GuildMember> GuildMembers = new List<GuildMember>();
 
+    private float recoveryTime;
+    private float recoveryCheckpoint = 30.0f;
+    private System.DateTime recoveryStartTime;
+
     private void Start()
     {
         maleNames = JsonUtility.FromJson<Names>(maleNamesJson.text);
         femaleNames = JsonUtility.FromJson<Names>(femaleNamesJson.text);
         lastNames = JsonUtility.FromJson<Names>(lastNamesJson.text);
+        if (recoveryStartTime == null)
+        {
+            recoveryStartTime = System.DateTime.Now;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        RecoverHitpoints();
     }
 
     public void CreateGuildMember()
@@ -75,7 +88,7 @@ public class PopulationManager : MonoBehaviour
         }
         newMember.Id = guildMemberData.id;
         newMember.Experience = guildMemberData.experience;
-        newMember.Health = guildMemberData.health;
+        newMember.Hitpoints = guildMemberData.health;
         newMember.Level = guildMemberData.level;
         newMember.Vocation = guildMemberData.vocation;
         newMember.IsAvailable = guildMemberData.isAvailable;
@@ -87,7 +100,7 @@ public class PopulationManager : MonoBehaviour
         List<GuildMember> adventurers = new List<GuildMember>();
         foreach (GuildMember guildMember in GuildMembers)
         {
-            if (guildMember.Vocation is Adventurer && guildMember.IsAvailable)
+            if (guildMember.Vocation is Adventurer && guildMember.IsAvailable && !guildMember.IsIncapacitated)
             {
                 adventurers.Add(guildMember);
             }
@@ -142,5 +155,27 @@ public class PopulationManager : MonoBehaviour
                 return guildMember;
         }
         return null;
+    }
+
+    private void RecoverHitpoints()
+    {
+        System.TimeSpan difference = System.DateTime.Now - recoveryStartTime;
+
+        if (recoveryTime > recoveryCheckpoint)
+        {
+            foreach (GuildMember guildMember in GuildMembers)
+            {
+                if (guildMember.Hitpoints != guildMember.MaxHitpoints && guildMember.IsAvailable)
+                {
+                    guildMember.AdjustHitpoints(5);
+                }
+            }
+            recoveryTime = 0;
+            recoveryStartTime = System.DateTime.Now;
+        }
+        else
+        {
+            recoveryTime = (float)difference.TotalSeconds;
+        }
     }
 }

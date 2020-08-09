@@ -36,7 +36,17 @@ public class QuestManager : MonoBehaviour
         // Check that each quest added to the questsToGet list is unique
         for (int i = 0; i < numOfQuests; i++)
         {
-            Quest quest = quests.GetRandomQuest();
+            Quest quest = new Quest();
+            Quest questToClone = quests.GetRandomQuest();
+            quest.questName = questToClone.questName;
+            quest.contractor = questToClone.contractor;
+            quest.description = questToClone.description;
+            quest.commencement = questToClone.commencement;
+            quest.completion = questToClone.completion;
+            quest.id = questToClone.id;
+            quest.difficulty = questToClone.difficulty;
+            quest.time = questToClone.time;
+            quest.Init();
             if (Helpers.IsUniqueMember(quest, questsToGet))
                 questsToGet.Add(quest);
         }
@@ -93,7 +103,7 @@ public class QuestManager : MonoBehaviour
     {
         // Todo: Notify the player that a quest has completed
         quest.State = Quest.Status.Completed;
-        quest.Incidents.Add(incidentManager.CreateCustomIncident(quest.completion, Incident.Result.Null, DateTime.Now));
+        quest.Incidents.Add(incidentManager.CreateCustomIncident(quest.completion, Incident.Result.Neutral, DateTime.Now));
         ApplyQuestReward(quest);
         quest.GuildMember.IsAvailable= true;
     }

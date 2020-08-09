@@ -23,6 +23,6 @@ public class HeroPanel : MonoBehaviour
         heroName.text = hero.person.name;
         heroVocation.text = string.Format("Level {0} {1}", hero.Level, hero.Vocation.Title());
         heroExperience.text = "Experience: " + hero.Experience.ToString();
-        heroHealth.text = "Health: " + hero.Health.ToString();
+        heroHealth.text = "Health: " + hero.Hitpoints.ToString();
     }
 }

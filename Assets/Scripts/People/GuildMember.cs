@@ -26,26 +26,46 @@ public class GuildMember : MonoBehaviour
         }
     }
     public int Id { get; set; }
-    public int Health { get; set; }
+    public int Hitpoints { get; set; }
+    public int MaxHitpoints { get; set; }
     public Sprite Avatar { get; set; }
     public int Experience { get; set; }
     public int Level { get; set; }
     public bool IsAvailable { get; set; }
+    public bool IsIncapacitated { get; set; }
 
     public void Init(Person _person)
     {
         person = _person;
         Id = Helpers.GenerateId();
-        Health = 100;
+        MaxHitpoints = 100;
+        Hitpoints = MaxHitpoints;
         Experience = 0;
         Level = 1;
         Vocation = new Peasant();
         IsAvailable = true;
+        IsIncapacitated = false;
     }
 
-    public void UpdateHealth(int change)
+    public void AdjustHitpoints(int change)
     {
-        Health += change;
+        Hitpoints += change;
+        if (Hitpoints < 0)
+        {
+            Hitpoints = 0;
+        }
+        if (Hitpoints > MaxHitpoints)
+        {
+            Hitpoints = MaxHitpoints;
+        }
+        if (Hitpoints == 0)
+        {
+            IsIncapacitated = true;
+        }
+        else
+        {
+            IsIncapacitated = false;
+        }
     }
 
     public void AddExp(int _exp)

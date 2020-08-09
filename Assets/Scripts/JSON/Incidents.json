@@ -1,14 +1,39 @@
 {
     "incidents": [
-        {
-          "id":"001",
-          "description": "While travelling along the road I encountered a small band of thieves. They fled at the sight of me, leaving some small treasures.",
-          "result": 0
-        },
-        {
-          "id":"002",
-          "description" : "Bandits sprung upon me while I rested.",
-          "result": 1
-        }
+      {
+        "id": "001",
+        "description": "While travelling along the road I encountered a small band of thieves.",
+        "goodResult": "They fled at the sight of me, leaving some small treasures.",
+        "badResult": "They attacked with unexpected ferocity, and I barely escaped.",
+        "neutralResult": "I was able to skirt their camp and move on without incident."
+      },
+      {
+        "id": "002",
+        "description": "Bandits sprung upon me while I rested.",
+        "goodResult": "Their overconfidence was their weakness and I was able to best their leader. The rest fled, leaving behind some small treasures.",
+        "badResult": "Overcome by their numbers, I defeated only a few before fleeing into the woods.",
+        "neutralResult": "With some clever wordplay I managed to convince them that I was a travelling wizard. They had no interest in meddling after that, and moved along without incident."
+      },
+      {
+        "id": "003",
+        "description": "While travelling on the road I met a group of bards. The jovial troupe played beautiful music into the night.",
+        "goodResult": "When I awoke I found they had prepared a delicious meal and recited heroic poems until we parted ways.",
+        "badResult": "I awoke with a terrible headache, the camp abandoned and my goods plundered.",
+        "neutralResult": "We shared songs and poetry and laughed together, parting ways amicably and without incident."
+      },
+      {
+        "id": "004",
+        "description": "On the road I spotted a lucious bush of Calenberries and I helped myself.",
+        "goodResult": "I was delighted and invigorated by the familiar Calenberry juice that every child loves. I even managed to trade a handful to a nearby peddler.",
+        "badResult": "I quickly realized that they were not Calenberries at all. Luckily a healer had a shingle nearby and I was \"purged\" of the volatile victuals.",
+        "neutralResult": "I enjoyed the sweet berries and the short respite, then carried on."
+      },
+      {
+        "id": "005",
+        "description": "As I travelled along the road fierce storm clouds rolled in.",
+        "goodResult": "The shade of the clouds reinvigorated me and I was able to deftly barter off some herbs and pelts that I had collected on my journey.",
+        "badResult": "Tumultuous rain quickly began to fall and I made for the nearest inn. While waiting a ruffian picked a fight with me. I won, but had to pay some damages.",
+        "neutralResult": "The rainfall turned out to be light and cool, and I carried on refreshed."
+      }
     ]
 }

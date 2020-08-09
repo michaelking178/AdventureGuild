@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4462180380372609843}
   - component: {fileID: 4462180380372609842}
   m_Layer: 5
-  m_Name: txt_Incident
+  m_Name: txt_IncidentReward
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 100, y: 0, z: 20, w: 0}
+  m_margin: {x: 100, y: 0, z: 20, w: 250}
   m_textInfo:
     textComponent: {fileID: 4462180380372609842}
     characterCount: 10

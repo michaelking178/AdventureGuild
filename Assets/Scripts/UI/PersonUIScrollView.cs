@@ -33,13 +33,10 @@ public class PersonUIScrollView : MonoBehaviour
         {
             Destroy(child);
         }
-        foreach (GuildMember guildMember in populationManager.GuildMembers)
+        foreach (GuildMember guildMember in populationManager.GetAvailableAdventurers())
         {
-            if (guildMember.Vocation is Adventurer && guildMember.IsAvailable)
-            {
-                GameObject newPersonUI = Instantiate(personUI, transform);
-                newPersonUI.GetComponent<PersonUI>().SetPerson(guildMember);
-            }
+            GameObject newPersonUI = Instantiate(personUI, transform);
+            newPersonUI.GetComponent<PersonUI>().SetPerson(guildMember);
         }
     }
 }

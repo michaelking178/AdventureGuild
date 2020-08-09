@@ -86,7 +86,21 @@ public class QuestTimer : MonoBehaviour
     {
         if (_time < (StartTime.AddSeconds(TimeLimit - 3.0f)))
         {
-            quest.Incidents.Add(incidentManager.GetIncident(_time));
+            Incident incident = incidentManager.GetIncident(_time);
+            quest.Incidents.Add(incident);
+            ApplyIncidentReward(incident);
+        }
+    }
+    
+    private void ApplyIncidentReward(Incident incident)
+    {
+        if (incident.reward != null)
+        {
+            FindObjectOfType<Guildhall>().AdjustGold(incident.reward.Gold);
+            FindObjectOfType<Guildhall>().AdjustIron(incident.reward.Iron);
+            FindObjectOfType<Guildhall>().AdjustWood(incident.reward.Wood);
+            quest.GuildMember.AddExp(incident.reward.Experience);
+            quest.GuildMember.AdjustHitpoints(incident.reward.Hitpoints);
         }
     }
 }
