@@ -7,7 +7,8 @@ public class GuildMemberData
     public Person person;
     public Vocation vocation;
     public string avatarSpriteName = "";
-    public int health;
+    public int maxHitpoints;
+    public int hitpoints;
     public int experience;
     public int level;
     public bool isAvailable;
@@ -21,7 +22,8 @@ public class GuildMemberData
         {
             avatarSpriteName = guildMember.Avatar.name;
         }
-        health = guildMember.Hitpoints;
+        maxHitpoints = guildMember.MaxHitpoints;
+        hitpoints = guildMember.Hitpoints;
         experience = guildMember.Experience;
         level = guildMember.Level;
         isAvailable = guildMember.IsAvailable;

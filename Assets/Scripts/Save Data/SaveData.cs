@@ -34,7 +34,7 @@ public class SaveData
         Sprite _heroAvatar = Resources.Load<Sprite>("Sprites/Avatars/" + heroData.person.gender + "/" + heroData.avatarSpriteName);
         hero.Avatar = _heroAvatar;
         hero.Id = heroData.id;
-        hero.Hitpoints = heroData.health;
+        hero.Hitpoints = heroData.hitpoints;
         hero.Experience = heroData.experience;
         hero.Level = heroData.level;
         hero.IsAvailable = heroData.isAvailable;

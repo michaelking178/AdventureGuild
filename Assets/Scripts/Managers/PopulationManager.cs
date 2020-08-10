@@ -88,7 +88,7 @@ public class PopulationManager : MonoBehaviour
         }
         newMember.Id = guildMemberData.id;
         newMember.Experience = guildMemberData.experience;
-        newMember.Hitpoints = guildMemberData.health;
+        newMember.Hitpoints = guildMemberData.hitpoints;
         newMember.Level = guildMemberData.level;
         newMember.Vocation = guildMemberData.vocation;
         newMember.IsAvailable = guildMemberData.isAvailable;
@@ -163,10 +163,12 @@ public class PopulationManager : MonoBehaviour
 
         if (recoveryTime > recoveryCheckpoint)
         {
+            Debug.Log("Recovery time!");
             foreach (GuildMember guildMember in GuildMembers)
             {
                 if (guildMember.Hitpoints != guildMember.MaxHitpoints && guildMember.IsAvailable)
                 {
+                    Debug.Log(guildMember.person.name + " is recovering");
                     guildMember.AdjustHitpoints(5);
                 }
             }
