@@ -17,6 +17,9 @@ public class QuestManager : MonoBehaviour
     private IncidentManager incidentManager;
     private Guildhall guildhall;
 
+    private string failureMessage = "The challenges were too great, and I was defeated before completing my quest. I have returned to the Adventure Guild empty handed so that I may recover.";
+    private string rewardMessage = "";
+
     public Quest CurrentQuest { get; set; }
 
     private void Start()
@@ -26,7 +29,7 @@ public class QuestManager : MonoBehaviour
         quests = JsonUtility.FromJson<Quests>(questsJson.text);
         questPool = new List<Quest>();
 
-        PopulateQuestPool(6);
+        PopulateQuestPool(4);
     }
 
     public void PopulateQuestPool(int numOfQuests)
@@ -103,9 +106,19 @@ public class QuestManager : MonoBehaviour
     {
         // Todo: Notify the player that a quest has completed
         quest.State = Quest.Status.Completed;
-        quest.Incidents.Add(incidentManager.CreateCustomIncident(quest.completion, Incident.Result.Neutral, DateTime.Now));
+        rewardMessage = "Quest Completed!";
+        quest.Incidents.Add(incidentManager.CreateCustomIncident(quest.completion, Incident.Result.Good, rewardMessage, DateTime.Now));
         ApplyQuestReward(quest);
         quest.GuildMember.IsAvailable= true;
+    }
+
+    public void FailQuest(Quest quest)
+    {
+        // Todo: Notify the player that a quest has failed
+        quest.State = Quest.Status.Failed;
+        rewardMessage = "Quest Failed!";
+        quest.Incidents.Add(incidentManager.CreateCustomIncident(failureMessage, Incident.Result.Bad, rewardMessage, DateTime.Now));
+        quest.GuildMember.IsAvailable = true;
     }
 
     public void ArchiveQuest(Quest quest)

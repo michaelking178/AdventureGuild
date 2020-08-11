@@ -47,24 +47,23 @@ public class MenuManager : MonoBehaviour
         if (currentMenu != null)
         {
             currentMenu.GetComponent<Animator>().SetTrigger("Close");
-            soundManager.PlaySound("CloseMenu");
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.4f);
         }
         currentMenu = GetMenu(menuName);
-        foreach (GameObject thisMenu in menus)
-        {
-            if (thisMenu != currentMenu)
-            {
-                thisMenu.SetActive(false);
-            }
-            else
-            {
-                thisMenu.SetActive(true);
-            }
-        }
+        //Todo: Delete all this if it's not needed anymore...
+        //foreach (GameObject thisMenu in menus)
+        //{
+        //    if (thisMenu != currentMenu)
+        //    {
+        //        thisMenu.SetActive(false);
+        //    }
+        //    else
+        //    {
+        //        thisMenu.SetActive(true);
+        //    }
+        //}
         currentMenu.GetComponent<Animator>().SetTrigger("Open");
-        yield return new WaitForSeconds(0.5f);
-        soundManager.PlaySound("OpenMenu");
+        yield return new WaitForSeconds(0.35f);
         clickBlockerPanel.SetActive(false);
     }
 

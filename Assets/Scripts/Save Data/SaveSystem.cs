@@ -49,7 +49,9 @@ public static class SaveSystem
         var musicMan = GameObject.Find("MusicManager").GetComponent<AudioSource>();
         SettingsData settingsData = new SettingsData(soundMan.volume, musicMan.volume);
 
-        SaveData saveData = new SaveData(heroData, guildhallData, guildMemberDatas, questDataPool, questTimerDatas, settingsData);
+        PopulationManagerData populationManagerData = new PopulationManagerData(GameObject.FindObjectOfType<PopulationManager>());
+
+        SaveData saveData = new SaveData(heroData, guildhallData, guildMemberDatas, questDataPool, questTimerDatas, settingsData, populationManagerData);
         formatter.Serialize(stream, saveData);
         stream.Close();
     }
@@ -80,7 +82,6 @@ public static class SaveSystem
             return;
         }
         File.Delete(path);
-        Debug.Log("Save file deleted");
     }
 
     public static bool SaveFileExists()

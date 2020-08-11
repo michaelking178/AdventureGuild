@@ -66,8 +66,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: IncidentUI
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 77adc3a2695ff2843b03267838c400c9, type: 2}
-  m_sharedMaterial: {fileID: 721194624307928332, guid: 77adc3a2695ff2843b03267838c400c9,
+  m_fontAsset: {fileID: 11400000, guid: c4565162d904736429d507fba4c733b3, type: 2}
+  m_sharedMaterial: {fileID: -2288795860297528861, guid: c4565162d904736429d507fba4c733b3,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -93,13 +93,13 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 150
-  m_fontSizeBase: 150
+  m_fontSize: 125
+  m_fontSizeBase: 125
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 500
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_textAlignment: 257
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 100, y: 0, z: 20, w: 250}
+  m_margin: {x: 300, y: 0, z: 20, w: 250}
   m_textInfo:
     textComponent: {fileID: 4462180380372609842}
     characterCount: 10

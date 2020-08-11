@@ -38,7 +38,7 @@ public class Menu_QuestJournal : MonoBehaviour
             return;
         }
         questName.text = quest.questName;
-        summary.text = string.Format("{0}\nI, {1}, hereby set out to {2}. Success shall bring these rewards to the Guild:", quest.startTime.ToString(), quest.GuildMember.person.name, quest.commencement);
+        summary.text = string.Format("{0}\nI, {1}, hereby set out to {2} Success shall reap these rewards:", quest.startTime.ToString(), quest.GuildMember.person.name, quest.commencement);
         questReward.text = Helpers.QuestRewardStr(quest);
         incidentCount = quest.Incidents.Count;
         UpdateIncidents();
@@ -81,6 +81,10 @@ public class Menu_QuestJournal : MonoBehaviour
             if (incident.reward != null)
             {
                 incidentRewardText.text = Helpers.IncidentRewardStr(incident);
+            }
+            else if (incident.rewardMessage != "")
+            {
+                incidentRewardText.text = incident.rewardMessage;
             }
             else
             {

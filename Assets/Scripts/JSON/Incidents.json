@@ -2,7 +2,7 @@
     "incidents": [
       {
         "id": "001",
-        "description": "While travelling along the road I encountered a small band of thieves.",
+        "description": "I encountered a small band of thieves.",
         "goodResult": "They fled at the sight of me, leaving some small treasures.",
         "badResult": "They attacked with unexpected ferocity, and I barely escaped.",
         "neutralResult": "I was able to skirt their camp and move on without incident."
@@ -16,24 +16,45 @@
       },
       {
         "id": "003",
-        "description": "While travelling on the road I met a group of bards. The jovial troupe played beautiful music into the night.",
+        "description": "I met a group of bards. The jovial troupe played beautiful music into the night.",
         "goodResult": "When I awoke I found they had prepared a delicious meal and recited heroic poems until we parted ways.",
         "badResult": "I awoke with a terrible headache, the camp abandoned and my goods plundered.",
         "neutralResult": "We shared songs and poetry and laughed together, parting ways amicably and without incident."
       },
       {
         "id": "004",
-        "description": "On the road I spotted a lucious bush of Calenberries and I helped myself.",
+        "description": "I spotted a lucious bush of Calenberries and I helped myself.",
         "goodResult": "I was delighted and invigorated by the familiar Calenberry juice that every child loves. I even managed to trade a handful to a nearby peddler.",
         "badResult": "I quickly realized that they were not Calenberries at all. Luckily a healer had a shingle nearby and I was \"purged\" of the volatile victuals.",
         "neutralResult": "I enjoyed the sweet berries and the short respite, then carried on."
       },
       {
         "id": "005",
-        "description": "As I travelled along the road fierce storm clouds rolled in.",
+        "description": "Fierce storm clouds rolled in.",
         "goodResult": "The shade of the clouds reinvigorated me and I was able to deftly barter off some herbs and pelts that I had collected on my journey.",
         "badResult": "Tumultuous rain quickly began to fall and I made for the nearest inn. While waiting a ruffian picked a fight with me. I won, but had to pay some damages.",
         "neutralResult": "The rainfall turned out to be light and cool, and I carried on refreshed."
+      },
+      {
+        "id": "006",
+        "description": "I happened upon a nest of giant scorpions, although these were mere infants the size of a small dog.",
+        "goodResult": "For the safety of the nearby village I dispatched the scorpions. I collected several vials of venom which I traded at the village square.",
+        "badResult": "I attempted to dispatch them but was ambushed by the mother. Although I was narrowly able to escape, I received a painful sting on my... upper thigh. The village healer was able to treat it for a reasonable sum.",
+        "neutralResult": "They posed no immediate threat and dispatching infants seemed dastardly, monster or not. I left a warning on the road and moved on."
+      },
+      {
+        "id": "007",
+        "description": "A small group of goblins were loitering in a cave near the road.",
+        "goodResult": "As I observed, a fellow adventurer (though not of the Adventure Guild) approached and suggested we engage the goblins together. We valiantly dispatched the little monsters and shared in their cache of treasures.",
+        "badResult": "As I drew my sword to approach them, a sneaky goblin scout pelted me squarely between the eyes with a sling stone. I fell, dazed, and the goblin menaces took the opportunity to beat me further and rob me. It was not a proud moment for the Adventure Guild.",
+        "neutralResult": "Though a pack of goblins was a menace and terror to the villagefolk, I was of a singular mission. I moved on, allowing some other adventurer the opportunity for glory against the scoundrel creatures."
+      },
+      {
+        "id": "008",
+        "description": "I heard a strange sound coming from the woods just off the road, and decided to investigate.",
+        "goodResult": "Just a few paces beyond the treeline I discovered a very young gnome struggling to lift a rock. I lifted the rock for the child, revealing a small treasure below. Grateful for the aid, he decided to share the little cache with me.",
+        "badResult": "Beyond the treeline was a hidden grove, full of fairies performing some strange ritual. Interrupted by my presence, they became quite irate and chased me off, tussling with me as I made my escape. Not until later did I notice that they had pickpocketed me.",
+        "neutralResult": "I entered the woods and found a deer caught in the brambles under a large tree. I cut the creature free and it ran away. I'd like to think it was grateful for my aid."
       }
     ]
 }

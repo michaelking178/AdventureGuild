@@ -11,6 +11,9 @@ public class Menu_Settings : MonoBehaviour
     [SerializeField]
     private Slider soundVolume;
 
+    [SerializeField]
+    private List<AudioSource> buttonAudios;
+
     private AudioSource soundAudioSource;
     private AudioSource musicAudioSource;
 
@@ -18,6 +21,13 @@ public class Menu_Settings : MonoBehaviour
     {
         soundAudioSource = GameObject.Find("SoundManager").GetComponent<AudioSource>();
         musicAudioSource = GameObject.Find("MusicManager").GetComponent<AudioSource>();
+        foreach (Button btn in FindObjectsOfType<Button>())
+        {
+            if (btn.GetComponent<AudioSource>() != null)
+            {
+                buttonAudios.Add(btn.GetComponent<AudioSource>());
+            }
+        }
         LoadMenu();
     }
 
@@ -25,6 +35,10 @@ public class Menu_Settings : MonoBehaviour
     {
         musicAudioSource.volume = musicVolume.value;
         soundAudioSource.volume = soundVolume.value;
+        foreach (AudioSource audioSource in buttonAudios)
+        {
+            audioSource.volume = soundVolume.value;
+        }
     }
 
     public void LoadMenu()

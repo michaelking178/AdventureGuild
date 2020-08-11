@@ -1,12 +1,11 @@
 {
-  "quests": 
-  [
+  "quests": [
     {
       "id": "001",
       "questName": "Heir Today, Gone Tomorrow",
       "contractor": "The Royal Palace",
       "description": "By order of the Royal Palace: The valiant Sir Eglamour has ventured into the wilderness in search of opportunities heroic and valourous. Most distressingly, he has not been seen in three days. A brave adventurer is hereby invited to partake in the honour of exploring the wildlands and participating in the undoubtedly mythical adventure in which the Good Sir surely now finds himself. Recompense guaranteed upon return with evidence of discovery of the Good Sir's... condition.",
-      "commencement": "find Sir Eglamour in the wildlands. I only hope to find the man-at-arms with arms intact..",
+      "commencement": "find Sir Eglamour in the wildlands. I only hope to find the man-at-arms with arms intact...",
       "completion": "After tracking him for many days, I have found Sir Eglamour... at the pub. Apparently, during his adventure he caught sight of a great dragon and immediately discovered a passion for drinking and farming. I shall report my findings and return to the Adventure Guild.",
       "difficulty": 0,
       "time": 60
@@ -16,7 +15,7 @@
       "questName": "On The Boulders of Giants",
       "contractor": "Merchant Master Arylon",
       "description": "Seeking the aid of a brave sir or madam who will not shy away from a brush with the Giants of Rockglen! They have waylaid a merchant caravan, squashing man and mule without remorse. Sad to be sure, but herein lies the tragedy: our trade wagons have been strewn upon the unreachable cliffsides! The Merchant Guild tasks our valiant sibling Guild of Adventurers with retrieving the goods in short order and marketable condition. Compensation will be provided upon return of the products.",
-      "commencement": "retrieve the merchants' goods. The Giants of Rockglen will surely put up a fight",
+      "commencement": "retrieve the merchants' goods. The Giants of Rockglen will surely put up a fight.",
       "completion": "I arrived at the cliff and was immediately attacked by the Giants of Rockglen. After a hair-raising battle with the oversized ruffians I was able to retrieve the merchants' goods. They have been returned to the Merchant Guild and now I return to the Adventure Guild.",
       "difficulty": 1,
       "time": 120
@@ -26,7 +25,7 @@
       "questName": "Apparition Arbitration",
       "contractor": "MacMaerny Estate Management",
       "description": "The Richton Estate has been home to a great deal of turmoil as the family that recently moved in has been contesting the right to be there with the already resident poltergeist. Please send someone capable of resolving the situation.",
-      "commencement": "travel to the Richton Estate and settle this matter of the problematic poltergeist",
+      "commencement": "travel to the Richton Estate and settle this matter of the problematic poltergeist.",
       "completion": "Upon entering the Richton Estate I quickly learned that the poltergeist was none other than Sir Archibald G. Richton, the original owner and architect of the estate. After extracting the last will and testament of the final Richton family member from a neatly stacked pile of furniture, I learned that the sale was against the desire of the Richtons. The new family has been successfully chased away from the house. While MacMaerny Estate Management is most displeased, the ghost has rewarded me for my valor. I return now to the Adventure Guild.",
       "difficulty": 0,
       "time": 60
@@ -36,7 +35,7 @@
       "questName": "Goblin in the Dell",
       "contractor": "Douglas Wendell",
       "description": "Some sneaky goblin has been harrassing my farm. I doubt I'll see the chickens again but I would like my tools and other stock back. Please send a good tracker to find the little devil.",
-      "commencement": "aid this farmer Wendell in dispersing the goblin and retrieving his farm supplies. I should be careful; goblins are small and weak, but devilishly tricky..",
+      "commencement": "aid this farmer Wendell in dispersing the goblin and retrieving his farm supplies. I should be careful; goblins are small and weak, but devilishly tricky...",
       "completion": "I found the goblin's lair and approached under cover of daylight (for, as everyone knows, goblins abhor the light of the sun). I found the farmer's tools and those livestock that yet lived. The goblin awoke quite suddenly and beset me with poison darts. With a swing of my blade I split the conniving creature's skull before its darts had a chance to find their mark. I have returned the farmer's goods, and now make my way back to the Adventure Guild.",
       "difficulty": 1,
       "time": 60
@@ -46,7 +45,7 @@
       "questName": "A Sudden Departure",
       "contractor": "hElp me",
       "description": "(This note seems to have been written in a hurry by a trembling hand)\nhelp\nI'm sorry\nI dont want to die\nFalrich's Cove",
-      "commencement": "find this person who appears to be in grave danger. I only hope I am not too late",
+      "commencement": "find this person who appears to be in grave danger. I only hope I am not too late...",
       "completion": "I have followed the mysterious stranger to Falrich's Cove. The site upon which I stumbled was... gruesome. I return now to the Adventure Guild with some small spoils, but no answers.",
       "difficulty": 2,
       "time": 180
@@ -59,6 +58,56 @@
       "commencement": "deal with these ne'er-do-wells who harass the poor folk of this area. If the lord protector cannot be relied upon, then let us of the Adventure Guild take up the challenge!",
       "completion": "I found the bandit camp at night, the raucous group hardly a challenge to track. Before I could devise a plan I was captured by the watch! Face to face with the bandit leader, I knew I had only one chance. I challenged him to a duel. He accepted, and we drew swords. We fought through the night, his dastardly men shouting and cheering all the while. As the sun peaked over the eastern hills, the bandit leader revealed a moment of weakness and I struck. He fell, his face marked eternally with an expression of shock. His band of brutes scattered immediately and in their confusion ran directly into a patrol passing on the nearby highway. I reported the defeat of the bandit gang to the villagers and received my rewrad. I now return to the Adventure Guild.",
       "difficulty": 3,
+      "time": 240
+    },
+    {
+      "id": "007",
+      "questName": "Cutting Your Teeth",
+      "contractor": "Widow Hargrave",
+      "description": "I've got just a terrible infestation of rodents in my cellar! Please, won't a kind young soul come to my farmstead and help me be rid of them? They say it's the best way to start your career as an Adventurer!",
+      "commencement": "deal with the rat infestation in Widow Hargrave's cellar. This seems a trivial matter, but I am happy to help the dear old lady.",
+      "completion": "Upon arriving at the widow's cellar, I found that the house cat had already dealt with several of the rodents. I cleared out the remaining rats, to old Widow Hargrave's delight. All in a day's work as an Adventurer, I suppose. Now it's back to the Adventure Guild.",
+      "difficulty": 0,
+      "time": 60
+    },
+    {
+      "id": "008",
+      "questName": "Sparring With Mages",
+      "contractor": "Efenheorla",
+      "description": "Mamortorr seeks adventurers to participate in the training of our novices, preparing them for inevitable combat scenarios. This area is not safe from thieves and bandits so not even foraging for herbal reagents can be guaranteed not to require battle-readiness. Meet the mages at the Mamortorr training field as soon as possible.",
+      "commencement": "to meet the mages of Mamortorr and aid in training them for combat. I believe it is a worthwhile endeavour to build strong bonds with our sibling Guilds.",
+      "completion": "I arrived at the Mamortorr training field, though at first it seemed I was in the wrong place. There was no sign of the mages; was I early? Or were they nearby? After wandering the field for some time I decided to leave. As I departed I heard snickering and turned to see the green- and brown-clad mages grinning from the cover of the woods. Apparently Efenheorla values avoiding combat more than engaging in it. Though in hindsight, a spar against four mages could have been somewhat devastating... I return to the Adventure Guild and find that Efenheorla has had my payment delivered.",
+      "difficulty": "2",
+      "time": 180
+    },
+    {
+      "id": "009",
+      "questName": "Sparring With Mages",
+      "contractor": "Waeterhond",
+      "description": "Mamortorr seeks adventurers to participate in the training of our novices, preparing them for inevitable combat scenarios. This area is not safe from thieves and bandits so not even foraging for herbal reagents can be guaranteed not to require battle-readiness. Meet the mages at the Mamortorr training field as soon as possible.",
+      "commencement": "to meet the mages of Mamortorr and aid in training them for combat. I believe it is a worthwhile endeavour to build strong bonds with our sibling Guilds.",
+      "completion": "I arrived at the Mamortorr training field and immediately made eye contact with a smiling old mage surrounded by three chatting students. He explained that we would form two-person teams. It quickly became apparent that the synergy between mage and warrior imparted advantage over the two mages. The students took turns joining me in sparring against the others and we all gained experience in our teamwork. Waeterhond provided my dues and I returned to the Adventure Guild.",
+      "difficulty": "2",
+      "time": 180
+    },
+    {
+      "id": "010",
+      "questName": "Sparring With Mages",
+      "contractor": "Fyrheort",
+      "description": "Mamortorr seeks adventurers to participate in the training of our novices, preparing them for inevitable combat scenarios. This area is not safe from thieves and bandits so not even foraging for herbal reagents can be guaranteed not to require battle-readiness. Meet the mages at the Mamortorr training field as soon as possible.",
+      "commencement": "to meet the mages of Mamortorr and aid in training them for combat. I believe it is a worthwhile endeavour to build strong bonds with our sibling Guilds.",
+      "completion": "I arrived at the Mamortorr training field and received a few furtive glances from the students but no acknowledgement from the instructor. The students fanned out and one stepped forward as Fyrheort explained how to remain level-headed in a fight. I began to feel more as a prop than a participant. Fyrheort screamed at the students to continue to slam me regardless of my condition. Luckily, another headmage heard the commotion and brought an end to the chaos. As I was carried out in a daze I heard Fyrheort lecturing on urgency and hesitation in battle. The other head-mages settled my payment and I returned to the Adventure Guild.",
+      "difficulty": "2",
+      "time": 180
+    },
+    {
+      "id": "011",
+      "questName": "Heart of Darkness",
+      "contractor": "The Gnomes of Schmutzbund",
+      "description": "We, the Gnomes of Schmutzbund, require ingredients from a nearby wizard. Unfortunately, the wizard's ingredients are not for sale and he is ill receptive to the living. We do have, however, a collection of treasures to trade with any brave and enterprising adventurer who might acquire the goods from the dark wizard of the woods.",
+      "commencement": "to find this dark wizard of the woods and reason with him. Surely even a dark wizard has need of something for which I could barter the ingredients.",
+      "completion": "The very air of the forest was subdued as I neared the dark wizard's cave. I entered the silent, inky black passage and emerged in a narrow hall, ornate pedestals standing at either end. Upon each sat a skull atop a tome of undecipherable scribblings. A grey figure appeared before me, not standing but suspended as a man-sized puppet. Seeming at first to be dead, its eyes suddenly sprung open in rage and two imps of the wizard attacked! I fought off the imps, finally lunging forth to bury my blade in the heart of the dark wizard. In a panic the imps disappeared into a magic circle, presumably returning to the plane from whence they came. The lair was silent once more, but calm and peaceful. I collected the ingredients for the gnomes and completed my quest. I now return to the Adventure Guild.",
+      "difficulty": "3",
       "time": 240
     }
   ]

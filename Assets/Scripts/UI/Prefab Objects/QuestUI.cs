@@ -70,7 +70,7 @@ public class QuestUI : MonoBehaviour
         }
 
         questReward.text = Helpers.QuestRewardStr(quest);
-        if (quest.State == Quest.Status.Completed)
+        if (quest.State == Quest.Status.Completed || quest.State == Quest.Status.Failed)
         {
             questTime.text = quest.State.ToString();
         }

@@ -16,13 +16,16 @@ public class PersonUI : MonoBehaviour
     private HeroAvatarFrame avatarFrame;
 
     [SerializeField]
-    private GameObject selectAdventurerBtn;
+    private GameObject beginQuestBtn;
 
     [SerializeField]
     private TextMeshProUGUI personName;
 
     [SerializeField]
     private TextMeshProUGUI personVocation;
+
+    [SerializeField]
+    private TextMeshProUGUI health;
 
     [SerializeField]
     private TextMeshProUGUI availability;
@@ -37,6 +40,7 @@ public class PersonUI : MonoBehaviour
     {
         personName.text = guildMember.person.name;
         personVocation.text = string.Format("{0} - Level {1}", guildMember.Vocation.Title(), guildMember.Level.ToString());
+        health.text = string.Format("Health: {0}/{1}", guildMember.Hitpoints, guildMember.MaxHitpoints);
 
         if (guildMember.IsAvailable && !guildMember.IsIncapacitated)
         {
@@ -52,7 +56,7 @@ public class PersonUI : MonoBehaviour
         }
     }
 
-    public void ShowPanel()
+    public void ShowExtensionPanel()
     {
         if (extensionPanel.activeSelf)
         {
@@ -65,15 +69,15 @@ public class PersonUI : MonoBehaviour
         }
     }
 
-    public void ShowSelectButton()
+    public void ShowBeginQuestButton()
     {
-        if (selectAdventurerBtn.activeSelf)
+        if (beginQuestBtn.activeSelf)
         {
-            selectAdventurerBtn.SetActive(false);
+            beginQuestBtn.SetActive(false);
         }
         else
         {
-            selectAdventurerBtn.SetActive(true);
+            beginQuestBtn.SetActive(true);
         }
     }
 }

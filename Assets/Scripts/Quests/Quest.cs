@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [Serializable]
 public class Quest
 {
-    public enum Status { New, Active, Completed, Archived }
+    public enum Status { New, Active, Completed, Failed, Archived }
 
     public string questName, contractor, description, commencement, completion;
     public int id, difficulty, time;

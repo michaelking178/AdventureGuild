@@ -37,6 +37,7 @@ public class PersonUIScrollView : MonoBehaviour
         {
             GameObject newPersonUI = Instantiate(personUI, transform);
             newPersonUI.GetComponent<PersonUI>().SetPerson(guildMember);
+            newPersonUI.GetComponent<PersonUI>().ShowBeginQuestButton();
         }
     }
 }

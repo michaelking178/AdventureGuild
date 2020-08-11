@@ -11,8 +11,9 @@ public class SaveData
     private List<QuestData> questDataPool;
     private List<QuestTimerData> questTimerDatas;
     private SettingsData settingsData;
+    private PopulationManagerData populationManagerData;
 
-    public SaveData(GuildMemberData _heroData, GuildhallData _guildhallData, List<GuildMemberData> _guildMemberDatas, List<QuestData> _questDataPool, List<QuestTimerData> _questTimerDatas, SettingsData _settingsData)
+    public SaveData(GuildMemberData _heroData, GuildhallData _guildhallData, List<GuildMemberData> _guildMemberDatas, List<QuestData> _questDataPool, List<QuestTimerData> _questTimerDatas, SettingsData _settingsData, PopulationManagerData _populationManagerData)
     {
         heroData = _heroData;
         guildhallData = _guildhallData;
@@ -20,6 +21,7 @@ public class SaveData
         questDataPool = _questDataPool;
         questTimerDatas = _questTimerDatas;
         settingsData = _settingsData;
+        populationManagerData = _populationManagerData;
     }
 
     public void Load()
@@ -35,6 +37,7 @@ public class SaveData
         hero.Avatar = _heroAvatar;
         hero.Id = heroData.id;
         hero.Hitpoints = heroData.hitpoints;
+        hero.MaxHitpoints = heroData.maxHitpoints;
         hero.Experience = heroData.experience;
         hero.Level = heroData.level;
         hero.IsAvailable = heroData.isAvailable;
@@ -82,6 +85,8 @@ public class SaveData
             // QuestManager needs to handle this because QuestTimer inherits Monobehaviour so must be instantiated.
             questManager.LoadQuestTimer(questTimerData);
         }
+
+        populationManager.recoveryStartTime = populationManagerData.recoveryStartTime;
 
         if (settingsData != null)
         {

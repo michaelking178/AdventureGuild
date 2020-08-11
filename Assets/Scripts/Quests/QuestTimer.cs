@@ -28,25 +28,23 @@ public class QuestTimer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (IsTiming && CurrentTime < TimeLimit)
+        if (IsTiming && CurrentTime <= TimeLimit)
         {
             TimeSpan difference = DateTime.Now - StartTime;
-            if (CurrentTime <= TimeLimit)
-            {
-                CurrentTime = (float)difference.TotalSeconds;
-            }
-            IncidentQueue = Mathf.FloorToInt((float)difference.TotalSeconds / IncidentTimer);
+            CurrentTime = (float)difference.TotalSeconds;
+            IncidentQueue = Mathf.FloorToInt(CurrentTime / IncidentTimer);
             if (quest.Incidents.Count < IncidentQueue)
             {
                 for (int i = (IncidentQueue - quest.Incidents.Count); i > 0; i--)
                 {
                     GenerateIncident(DateTime.Now.AddSeconds(-((i-1) * IncidentTimer)));
+                    CheckHealth();
                 }
             }
         }
         else if (quest.GuildMember != null)
         {
-            EndQuest();
+            CompleteQuest();
         }
         else
         {
@@ -71,13 +69,24 @@ public class QuestTimer : MonoBehaviour
         return quest;
     }
 
-    private void EndQuest()
+    private void CompleteQuest()
     {
         IsTiming = false;
         if (!QuestFinished)
         {
             QuestFinished = true;
             questManager.CompleteQuest(quest);
+            Destroy(gameObject);
+        }
+    }
+
+    private void FailQuest()
+    {
+        IsTiming = false;
+        if (!QuestFinished)
+        {
+            QuestFinished = true;
+            questManager.FailQuest(quest);
             Destroy(gameObject);
         }
     }
@@ -101,6 +110,14 @@ public class QuestTimer : MonoBehaviour
             FindObjectOfType<Guildhall>().AdjustWood(incident.reward.Wood);
             quest.GuildMember.AddExp(incident.reward.Experience);
             quest.GuildMember.AdjustHitpoints(incident.reward.Hitpoints);
+        }
+    }
+
+    private void CheckHealth()
+    {
+        if (quest.GuildMember.Hitpoints <= 0)
+        {
+            FailQuest();
         }
     }
 }

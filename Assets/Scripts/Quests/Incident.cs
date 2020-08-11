@@ -10,6 +10,7 @@ public class Incident
     public string finalResult;
     public Result result;
     public IncidentReward reward;
+    public string rewardMessage = "";
 
     public void Init()
     {

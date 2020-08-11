@@ -31,12 +31,18 @@ public class QuestUIScrollView : MonoBehaviour
         {
             Destroy(child);
         }
+
         foreach (Quest quest in questManager.GetQuestsByStatus(Quest.Status.Active))
         {
             GameObject newQuestUI = Instantiate(questUI, transform);
             newQuestUI.GetComponent<QuestUI>().SetQuest(quest);
         }
         foreach (Quest quest in questManager.GetQuestsByStatus(Quest.Status.Completed))
+        {
+            GameObject newQuestUI = Instantiate(questUI, transform);
+            newQuestUI.GetComponent<QuestUI>().SetQuest(quest);
+        }
+        foreach (Quest quest in questManager.GetQuestsByStatus(Quest.Status.Failed))
         {
             GameObject newQuestUI = Instantiate(questUI, transform);
             newQuestUI.GetComponent<QuestUI>().SetQuest(quest);

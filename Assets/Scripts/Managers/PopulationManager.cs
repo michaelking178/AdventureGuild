@@ -34,16 +34,17 @@ public class PopulationManager : MonoBehaviour
     [Header("Guild Members")]
     public List<GuildMember> GuildMembers = new List<GuildMember>();
 
+    private int recoveryQueue;
     private float recoveryTime;
     private float recoveryCheckpoint = 30.0f;
-    private System.DateTime recoveryStartTime;
+    public System.DateTime recoveryStartTime;
 
     private void Start()
     {
         maleNames = JsonUtility.FromJson<Names>(maleNamesJson.text);
         femaleNames = JsonUtility.FromJson<Names>(femaleNamesJson.text);
         lastNames = JsonUtility.FromJson<Names>(lastNamesJson.text);
-        if (recoveryStartTime == null)
+        if (recoveryStartTime == System.DateTime.MinValue)
         {
             recoveryStartTime = System.DateTime.Now;
         }
@@ -160,24 +161,21 @@ public class PopulationManager : MonoBehaviour
     private void RecoverHitpoints()
     {
         System.TimeSpan difference = System.DateTime.Now - recoveryStartTime;
-
-        if (recoveryTime > recoveryCheckpoint)
+        recoveryTime = (float)difference.TotalSeconds;
+        recoveryQueue = Mathf.FloorToInt(recoveryTime / recoveryCheckpoint);
+        for (int i = 0; i < recoveryQueue; i++)
         {
-            Debug.Log("Recovery time!");
             foreach (GuildMember guildMember in GuildMembers)
             {
                 if (guildMember.Hitpoints != guildMember.MaxHitpoints && guildMember.IsAvailable)
                 {
-                    Debug.Log(guildMember.person.name + " is recovering");
                     guildMember.AdjustHitpoints(5);
                 }
             }
-            recoveryTime = 0;
-            recoveryStartTime = System.DateTime.Now;
         }
-        else
+        if (System.DateTime.Now > recoveryStartTime.AddSeconds(recoveryCheckpoint))
         {
-            recoveryTime = (float)difference.TotalSeconds;
+            recoveryStartTime = System.DateTime.Now;
         }
     }
 }
