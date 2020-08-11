@@ -39,6 +39,10 @@ public class QuestTimer : MonoBehaviour
                 {
                     GenerateIncident(DateTime.Now.AddSeconds(-((i-1) * IncidentTimer)));
                     CheckHealth();
+                    if (quest.GuildMember.Hitpoints == 0)
+                    {
+                        i = 1;
+                    }
                 }
             }
         }
