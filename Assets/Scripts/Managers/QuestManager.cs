@@ -17,8 +17,9 @@ public class QuestManager : MonoBehaviour
     private Quests quests;                  // quests is just a reference to the entire Quest JSON list. It shouldn't be used directly.
     private IncidentManager incidentManager;
     private Guildhall guildhall;
+    private NotificationManager notificationManager;
 
-    private string failureMessage = "The challenges were too great, and I was defeated before completing my quest. I have returned to the Adventure Guild empty handed so that I may recover.";
+    private string failureMessage = "The challenges were too great, and I was defeated before completing my quest. I have returned to the Adventure Guild so that I may recover.";
     private string rewardMessage = "";
 
     public Quest CurrentQuest { get; set; }
@@ -27,6 +28,7 @@ public class QuestManager : MonoBehaviour
     {
         incidentManager = FindObjectOfType<IncidentManager>();
         guildhall = FindObjectOfType<Guildhall>();
+        notificationManager = FindObjectOfType<NotificationManager>();
         quests = JsonUtility.FromJson<Quests>(questsJson.text);
         questPool = new List<Quest>();
 
@@ -106,7 +108,7 @@ public class QuestManager : MonoBehaviour
 
     public void CompleteQuest(Quest quest)
     {
-        // Todo: Notify the player that a quest has completed
+        notificationManager.CreateNotification(string.Format("The quest \"{0}\" has completed!", quest.questName), Notification.Type.Quest);
         quest.State = Quest.Status.Completed;
         rewardMessage = "Quest Completed!";
         quest.Incidents.Add(incidentManager.CreateCustomIncident(quest.completion, Incident.Result.Good, rewardMessage, DateTime.Now));
@@ -116,7 +118,7 @@ public class QuestManager : MonoBehaviour
 
     public void FailQuest(Quest quest)
     {
-        // Todo: Notify the player that a quest has failed
+        notificationManager.CreateNotification(string.Format("The quest \"{0}\" has failed!", quest.questName), Notification.Type.Quest);
         quest.State = Quest.Status.Failed;
         rewardMessage = "Quest Failed!";
         quest.Incidents.Add(incidentManager.CreateCustomIncident(failureMessage, Incident.Result.Bad, rewardMessage, DateTime.Now));
@@ -168,6 +170,6 @@ public class QuestManager : MonoBehaviour
 
     public void SortQuestList(List<Quest> questList)
     {
-        questList.OrderBy(quest => quest.startTime).ToList();
+        questPool = questList.OrderByDescending(quest => quest.startTime).ToList();
     }
 }

@@ -38,7 +38,7 @@ public class QuestUIScrollView : MonoBehaviour
             GameObject newQuestUI = Instantiate(questUI, transform);
             newQuestUI.GetComponent<QuestUI>().SetQuest(quest);
         }
-        foreach (Quest quest in questManager.GetQuestsByStatus(Quest.Status.Completed))
+        foreach (Quest quest in questManager.GetQuestPool())
         {
             if (quest.State == Quest.Status.Completed || quest.State == Quest.Status.Failed)
             {

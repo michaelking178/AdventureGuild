@@ -15,15 +15,29 @@ public class NotificationUI : MonoBehaviour
     private Button actionButton;
 
     public Notification Notification { get; set; }
+    private NotificationManager notificationManager;
+    private MenuManager menuManager;
 
     private void Start()
     {
         notificationText.text = Notification.Message;
+        notificationManager = FindObjectOfType<NotificationManager>();
+        menuManager = FindObjectOfType<MenuManager>();
     }
 
-    private void Action()
+    public void Action()
     {
-        // Perform notification action
+        if (Notification.NotificationType == Notification.Type.Quest)
+        {
+            GameObject.Find("Menu_QuestJournals").GetComponentInChildren<QuestUIScrollView>().UpdateQuestJournalList();
+            menuManager.OpenMenu("Menu_QuestJournals");
+        }
+        else if (Notification.NotificationType == Notification.Type.GuildMember)
+        {
+            GameObject.Find("Menu_ManagePeople").GetComponentInChildren<PersonUIScrollView>().UpdatePersonList();
+            menuManager.OpenMenu("Menu_ManagePeople");
+        }
+        Close();
     }
 
     public void Close()
@@ -35,7 +49,8 @@ public class NotificationUI : MonoBehaviour
     {
         GetComponent<Animator>().SetTrigger("Close");
         yield return new WaitForSeconds(0.5f);
-        FindObjectOfType<NotificationManager>().RemoveNotification(gameObject);
+        notificationManager.notificationUIs.Remove(gameObject);
+        notificationManager.notifications.Remove(GetComponent<NotificationUI>().Notification);
         Destroy(gameObject);
     }
 }

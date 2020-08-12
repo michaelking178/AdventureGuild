@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class NotificationManager : MonoBehaviour
 {
@@ -11,11 +10,8 @@ public class NotificationManager : MonoBehaviour
     [SerializeField]
     private GameObject notificationPanel;
 
-    [SerializeField]
-    private List<Notification> notifications;
-
-    [SerializeField]
-    private List<GameObject> notificationUIs;
+    public List<Notification> notifications;
+    public List<GameObject> notificationUIs;
     
     private Vector2 position;
 
@@ -24,7 +20,6 @@ public class NotificationManager : MonoBehaviour
         notifications = new List<Notification>();
         notificationUIs = new List<GameObject>();
         position = new Vector2(-3400, 0);
-        StartCoroutine(Notify());
         StartCoroutine(MoveNotifications());
     }
 
@@ -32,28 +27,12 @@ public class NotificationManager : MonoBehaviour
     {
         Notification notification = new Notification(_notification, _type);
         notifications.Add(notification);
-
         GameObject notificationUI = Instantiate(notificationPrefab, notificationPanel.transform);
         notificationUI.GetComponent<RectTransform>().anchoredPosition = position;
         notificationUI.GetComponent<NotificationUI>().Notification = notification;
         notificationUI.GetComponent<Animator>().SetTrigger("Open");
         position.y -= 490;
         notificationUIs.Add(notificationUI);
-    }
-
-    private IEnumerator Notify()
-    {
-        for(int i = 0; i < 5; i++)
-        {
-            yield return new WaitForSeconds(0.25f);
-            CreateNotification(string.Format("Here is a very notification message that may take up much more space!"), Notification.Type.Quest);
-        }
-    }
-
-    public void RemoveNotification(GameObject notification)
-    {
-        notificationUIs.Remove(notification);
-        notifications.Remove(notification.GetComponent<NotificationUI>().Notification);
     }
 
     private IEnumerator MoveNotifications()

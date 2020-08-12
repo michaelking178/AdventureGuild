@@ -14,12 +14,9 @@ public class MenuManager : MonoBehaviour
     private GameObject clickBlockerPanel;
 
     private GameObject currentMenu;
-    private SoundManager soundManager;
 
     private void Start()
     {
-        soundManager = FindObjectOfType<SoundManager>();
-
         if (SaveSystem.SaveFileExists())
         {
             SaveSystem.LoadGame();
@@ -50,18 +47,6 @@ public class MenuManager : MonoBehaviour
             yield return new WaitForSeconds(0.4f);
         }
         currentMenu = GetMenu(menuName);
-        //Todo: Delete all this if it's not needed anymore...
-        //foreach (GameObject thisMenu in menus)
-        //{
-        //    if (thisMenu != currentMenu)
-        //    {
-        //        thisMenu.SetActive(false);
-        //    }
-        //    else
-        //    {
-        //        thisMenu.SetActive(true);
-        //    }
-        //}
         currentMenu.GetComponent<Animator>().SetTrigger("Open");
         yield return new WaitForSeconds(0.35f);
         clickBlockerPanel.SetActive(false);

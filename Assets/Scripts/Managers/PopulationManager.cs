@@ -34,6 +34,7 @@ public class PopulationManager : MonoBehaviour
     [Header("Guild Members")]
     public List<GuildMember> GuildMembers = new List<GuildMember>();
 
+    private NotificationManager notificationManager;
     private int recoveryQueue;
     private float recoveryTime;
     private float recoveryCheckpoint = 30.0f;
@@ -41,6 +42,7 @@ public class PopulationManager : MonoBehaviour
 
     private void Start()
     {
+        notificationManager = FindObjectOfType<NotificationManager>();
         maleNames = JsonUtility.FromJson<Names>(maleNamesJson.text);
         femaleNames = JsonUtility.FromJson<Names>(femaleNamesJson.text);
         lastNames = JsonUtility.FromJson<Names>(lastNamesJson.text);
@@ -76,6 +78,7 @@ public class PopulationManager : MonoBehaviour
         newMember.Init(newPerson);
         newMember.Avatar = avatar;
         GuildMembers.Add(newMember);
+        notificationManager.CreateNotification(string.Format("{0} has joined the Adventure Guild!", newMember.person.name), Notification.Type.GuildMember);
     }
 
     public void LoadGuildMember(GuildMemberData guildMemberData)
@@ -94,6 +97,7 @@ public class PopulationManager : MonoBehaviour
         newMember.Level = guildMemberData.level;
         newMember.Vocation = guildMemberData.vocation;
         newMember.IsAvailable = guildMemberData.isAvailable;
+        newMember.bio = guildMemberData.bio;
         GuildMembers.Add(newMember);
     }
 

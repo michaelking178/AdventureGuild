@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0, y: 4.51}
-  m_SizeDelta: {x: -22.986694, y: -33.661926}
+  m_AnchoredPosition: {x: 8.699951, y: 25.400024}
+  m_SizeDelta: {x: -207.62402, y: -242.68552}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3658182471932008457
 CanvasRenderer:
@@ -64,7 +64,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Start a Quest
+  m_text: Quests
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 80d716a149170f34eaab15bebdb7208a, type: 2}
   m_sharedMaterial: {fileID: -1972664255114279225, guid: 80d716a149170f34eaab15bebdb7208a,
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 57
+  m_fontSize: 290.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -134,10 +134,10 @@ MonoBehaviour:
   m_margin: {x: 0.000022888184, y: -0.000061035156, z: 0, w: 0.8209839}
   m_textInfo:
     textComponent: {fileID: 3658182471932008458}
-    characterCount: 13
+    characterCount: 6
     spriteCount: 0
-    spaceCount: 2
-    wordCount: 3
+    spaceCount: 0
+    wordCount: 1
     linkCount: 0
     lineCount: 1
     pageCount: 1

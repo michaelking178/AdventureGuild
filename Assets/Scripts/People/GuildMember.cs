@@ -33,6 +33,7 @@ public class GuildMember : MonoBehaviour
     public int Level { get; set; }
     public bool IsAvailable { get; set; }
     public bool IsIncapacitated { get; set; }
+    public string bio { get; set; }
 
     public void Init(Person _person)
     {
@@ -45,6 +46,7 @@ public class GuildMember : MonoBehaviour
         Vocation = new Peasant();
         IsAvailable = true;
         IsIncapacitated = false;
+        bio = "";
     }
 
     public void AdjustHitpoints(int change)

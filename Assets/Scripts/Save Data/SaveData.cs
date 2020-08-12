@@ -41,6 +41,7 @@ public class SaveData
         hero.Experience = heroData.experience;
         hero.Level = heroData.level;
         hero.IsAvailable = heroData.isAvailable;
+        hero.bio = heroData.bio;
         populationManager.GuildMembers.Add(hero);
 
         guildhall.Gold = guildhallData.gold;

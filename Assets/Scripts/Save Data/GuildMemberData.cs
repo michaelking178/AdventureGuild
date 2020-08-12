@@ -12,6 +12,7 @@ public class GuildMemberData
     public int experience;
     public int level;
     public bool isAvailable;
+    public string bio = "";
 
     public GuildMemberData(GuildMember guildMember)
     {
@@ -27,5 +28,6 @@ public class GuildMemberData
         experience = guildMember.Experience;
         level = guildMember.Level;
         isAvailable = guildMember.IsAvailable;
+        bio = guildMember.bio;
     }
 }
