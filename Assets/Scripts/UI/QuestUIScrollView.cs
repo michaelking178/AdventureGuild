@@ -27,6 +27,7 @@ public class QuestUIScrollView : MonoBehaviour
 
     public void UpdateQuestJournalList()
     {
+        questManager.SortQuestList(questManager.GetQuestPool());
         foreach (GameObject child in gameObject.GetChildren())
         {
             Destroy(child);
@@ -39,18 +40,11 @@ public class QuestUIScrollView : MonoBehaviour
         }
         foreach (Quest quest in questManager.GetQuestsByStatus(Quest.Status.Completed))
         {
-            GameObject newQuestUI = Instantiate(questUI, transform);
-            newQuestUI.GetComponent<QuestUI>().SetQuest(quest);
-        }
-        foreach (Quest quest in questManager.GetQuestsByStatus(Quest.Status.Failed))
-        {
-            GameObject newQuestUI = Instantiate(questUI, transform);
-            newQuestUI.GetComponent<QuestUI>().SetQuest(quest);
-        }
-        foreach (Quest quest in questManager.GetQuestsByStatus(Quest.Status.Archived))
-        {
-            GameObject newQuestUI = Instantiate(questUI, transform);
-            newQuestUI.GetComponent<QuestUI>().SetQuest(quest);
+            if (quest.State == Quest.Status.Completed || quest.State == Quest.Status.Failed)
+            {
+                GameObject newQuestUI = Instantiate(questUI, transform);
+                newQuestUI.GetComponent<QuestUI>().SetQuest(quest);
+            }
         }
     }
 }

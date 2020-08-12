@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class QuestManager : MonoBehaviour
@@ -52,6 +53,7 @@ public class QuestManager : MonoBehaviour
             quest.Init();
             if (Helpers.IsUniqueMember(quest, questsToGet))
                 questsToGet.Add(quest);
+            SortQuestList(questPool);
         }
 
         // Add each quest in the questsToGet list to the questPool
@@ -121,11 +123,6 @@ public class QuestManager : MonoBehaviour
         quest.GuildMember.IsAvailable = true;
     }
 
-    public void ArchiveQuest(Quest quest)
-    {
-        quest.State = Quest.Status.Archived;
-    }
-
     public void ApplyQuestReward(Quest quest)
     {
         guildhall.AdjustGold(quest.Reward.Gold);
@@ -167,5 +164,10 @@ public class QuestManager : MonoBehaviour
         }
         Debug.Log("FindQuestById() did not return a Quest!");
         return null;
+    }
+
+    public void SortQuestList(List<Quest> questList)
+    {
+        questList.OrderBy(quest => quest.startTime).ToList();
     }
 }

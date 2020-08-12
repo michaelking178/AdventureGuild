@@ -8,6 +8,7 @@ public class GuildhallData
     public int wood;
     public int weapons;
     public int renown;
+    public float renownThreshold;
 
     public GuildhallData(Guildhall guildhall)
     {
@@ -16,5 +17,6 @@ public class GuildhallData
         wood = guildhall.Wood;
         weapons = guildhall.Weapons;
         renown = guildhall.Renown;
+        renownThreshold = guildhall.renownThreshold;
     }
 }

@@ -48,6 +48,7 @@ public class SaveData
         guildhall.Wood = guildhallData.wood;
         guildhall.Weapons = guildhallData.weapons;
         guildhall.Renown = guildhallData.renown;
+        guildhall.renownThreshold = guildhallData.renownThreshold;
 
         foreach (GuildMemberData guildMemberData in guildMemberDatas)
         {

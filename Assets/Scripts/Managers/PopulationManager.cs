@@ -90,6 +90,7 @@ public class PopulationManager : MonoBehaviour
         newMember.Id = guildMemberData.id;
         newMember.Experience = guildMemberData.experience;
         newMember.Hitpoints = guildMemberData.hitpoints;
+        newMember.MaxHitpoints = guildMemberData.maxHitpoints;
         newMember.Level = guildMemberData.level;
         newMember.Vocation = guildMemberData.vocation;
         newMember.IsAvailable = guildMemberData.isAvailable;

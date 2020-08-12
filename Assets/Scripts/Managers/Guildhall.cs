@@ -9,8 +9,8 @@ public class Guildhall : MonoBehaviour
     public int Wood { get; set; }
     public int Weapons { get; set; }
     public int Renown { get; set; }
+    public float renownThreshold = 50.0f;
 
-    private float renownThreshold = 50.0f;
     private PopulationManager populationManager;
     private QuestManager questManager;
 
