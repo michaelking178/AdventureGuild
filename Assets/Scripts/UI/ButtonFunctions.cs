@@ -24,4 +24,9 @@ public class ButtonFunctions : MonoBehaviour
     {
         SaveSystem.LoadGame();
     }
+
+    public void PlaySound()
+    {
+        FindObjectOfType<SoundManager>().PlaySound("Button");
+    }
 }

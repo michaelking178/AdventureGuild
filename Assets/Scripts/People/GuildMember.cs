@@ -73,10 +73,15 @@ public class GuildMember : MonoBehaviour
     public void AddExp(int _exp)
     {
         Experience += _exp;
+        CheckLevel();
     }
 
-    public void IncreaseLevel()
+    private void CheckLevel()
     {
-        Level++;
+        while (Experience > CharacterLevel.LevelValues[Level])
+        {
+            Level++;
+            FindObjectOfType<NotificationManager>().CreateNotification(string.Format("{0} reached Level {1}!", person.name, Level), Notification.Type.GuildMember);
+        }
     }
 }

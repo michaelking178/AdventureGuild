@@ -14,12 +14,13 @@ public class NotificationManager : MonoBehaviour
     public List<GameObject> notificationUIs;
     
     private Vector2 position;
+    private float notchOffset = -200.0f;
 
     private void Start()
     {
         notifications = new List<Notification>();
         notificationUIs = new List<GameObject>();
-        position = new Vector2(-3400, 0);
+        position = new Vector2(-3400, notchOffset);
         StartCoroutine(MoveNotifications());
     }
 
@@ -46,7 +47,7 @@ public class NotificationManager : MonoBehaviour
                 int orderPos = notificationUIs.IndexOf(notification);
                 RectTransform notUI = notification.GetComponent<RectTransform>();
                 Vector2 startingPos = notUI.anchoredPosition;
-                float yPos = Mathf.Lerp(startingPos.y, (orderPos * -490), 0.1f);
+                float yPos = Mathf.Lerp(startingPos.y, (orderPos * -490) + notchOffset, 0.1f);
                 notUI.anchoredPosition = new Vector2(startingPos.x, yPos);
             }
         }

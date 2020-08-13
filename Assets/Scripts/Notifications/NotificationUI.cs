@@ -11,18 +11,26 @@ public class NotificationUI : MonoBehaviour
     [SerializeField]
     private Button closeButton;
 
-    [SerializeField]
-    private Button actionButton;
-
     public Notification Notification { get; set; }
     private NotificationManager notificationManager;
     private MenuManager menuManager;
+    private SoundManager soundManager;
+    private AudioSource audioSource;
+    private AudioSource sMAudioSource;
 
     private void Start()
     {
         notificationText.text = Notification.Message;
         notificationManager = FindObjectOfType<NotificationManager>();
         menuManager = FindObjectOfType<MenuManager>();
+        soundManager = FindObjectOfType<SoundManager>();
+        audioSource = GetComponent<AudioSource>();
+        sMAudioSource = soundManager.GetComponent<AudioSource>();
+    }
+
+    private void FixedUpdate()
+    {
+        audioSource.volume = sMAudioSource.volume;
     }
 
     public void Action()
@@ -52,5 +60,15 @@ public class NotificationUI : MonoBehaviour
         notificationManager.notificationUIs.Remove(gameObject);
         notificationManager.notifications.Remove(GetComponent<NotificationUI>().Notification);
         Destroy(gameObject);
+    }
+
+    public void PlayClickSound()
+    {
+        soundManager.PlaySound("Button");
+    }
+    
+    public void PlayWooshSound()
+    {
+        GetComponent<AudioSource>().Play();
     }
 }

@@ -101,6 +101,27 @@ public class PopulationManager : MonoBehaviour
         GuildMembers.Add(newMember);
     }
 
+    private void RecoverHitpoints()
+    {
+        System.TimeSpan difference = System.DateTime.Now - recoveryStartTime;
+        recoveryTime = (float)difference.TotalSeconds;
+        recoveryQueue = Mathf.FloorToInt(recoveryTime / recoveryCheckpoint);
+        for (int i = 0; i < recoveryQueue; i++)
+        {
+            foreach (GuildMember guildMember in GuildMembers)
+            {
+                if (guildMember.Hitpoints != guildMember.MaxHitpoints && guildMember.IsAvailable)
+                {
+                    guildMember.AdjustHitpoints(5);
+                }
+            }
+        }
+        if (System.DateTime.Now > recoveryStartTime.AddSeconds(recoveryCheckpoint))
+        {
+            recoveryStartTime = System.DateTime.Now;
+        }
+    }
+
     public List<GuildMember> GetAvailableAdventurers()
     {
         List<GuildMember> adventurers = new List<GuildMember>();
@@ -161,26 +182,5 @@ public class PopulationManager : MonoBehaviour
                 return guildMember;
         }
         return null;
-    }
-
-    private void RecoverHitpoints()
-    {
-        System.TimeSpan difference = System.DateTime.Now - recoveryStartTime;
-        recoveryTime = (float)difference.TotalSeconds;
-        recoveryQueue = Mathf.FloorToInt(recoveryTime / recoveryCheckpoint);
-        for (int i = 0; i < recoveryQueue; i++)
-        {
-            foreach (GuildMember guildMember in GuildMembers)
-            {
-                if (guildMember.Hitpoints != guildMember.MaxHitpoints && guildMember.IsAvailable)
-                {
-                    guildMember.AdjustHitpoints(5);
-                }
-            }
-        }
-        if (System.DateTime.Now > recoveryStartTime.AddSeconds(recoveryCheckpoint))
-        {
-            recoveryStartTime = System.DateTime.Now;
-        }
     }
 }

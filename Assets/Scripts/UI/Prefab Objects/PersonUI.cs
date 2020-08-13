@@ -30,30 +30,32 @@ public class PersonUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI availability;
 
+    private void FixedUpdate()
+    {
+        if (guildMember != null)
+        {
+            personName.text = guildMember.person.name;
+            personVocation.text = string.Format("{0} - Level {1}", guildMember.Vocation.Title(), guildMember.Level.ToString());
+            health.text = string.Format("Health: {0}/{1}", guildMember.Hitpoints, guildMember.MaxHitpoints);
+
+            if (guildMember.IsAvailable && !guildMember.IsIncapacitated)
+            {
+                availability.text = "Available";
+            }
+            else if (guildMember.IsAvailable && guildMember.IsIncapacitated)
+            {
+                availability.text = "Incapacitated";
+            }
+            else
+            {
+                availability.text = "Unavailable";
+            }
+        }
+    }
+
     public void SetPerson(GuildMember _person)
     {
         guildMember = _person;
-        SetPersonUIAttributes();
-    }
-
-    private void SetPersonUIAttributes()
-    {
-        personName.text = guildMember.person.name;
-        personVocation.text = string.Format("{0} - Level {1}", guildMember.Vocation.Title(), guildMember.Level.ToString());
-        health.text = string.Format("Health: {0}/{1}", guildMember.Hitpoints, guildMember.MaxHitpoints);
-
-        if (guildMember.IsAvailable && !guildMember.IsIncapacitated)
-        {
-            availability.text = "Available";
-        }
-        else if (guildMember.IsAvailable && guildMember.IsIncapacitated)
-        {
-            availability.text = "Incapacitated";
-        }
-        else
-        {
-            availability.text = "Unavailable";
-        }
     }
 
     public void ShowExtensionPanel()

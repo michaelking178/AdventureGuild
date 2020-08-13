@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Menu_QuestJournal : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class Menu_QuestJournal : MonoBehaviour
     [SerializeField]
     private GameObject incidentContainer;
 
+    [SerializeField]
+    private Scrollbar scrollbar;
+
     private Quest quest;
     private int incidentCount;
 
@@ -42,6 +46,7 @@ public class Menu_QuestJournal : MonoBehaviour
         questReward.text = Helpers.QuestRewardStr(quest);
         incidentCount = quest.Incidents.Count;
         UpdateIncidents();
+        scrollbar.value = 1;
     }
 
     private void FixedUpdate()

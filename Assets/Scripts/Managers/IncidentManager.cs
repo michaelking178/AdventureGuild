@@ -52,4 +52,9 @@ public class IncidentManager : MonoBehaviour
     {
         return new Incident() { description = _description, result = _result, rewardMessage = _rewardMessage, time = _time.ToString() };
     }
+
+    public Incident CreateCustomIncident(string _description, Incident.Result _result, string _rewardMessage)
+    {
+        return new Incident() { description = _description, result = _result, rewardMessage = _rewardMessage, time = "" };
+    }
 }

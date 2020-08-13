@@ -141,6 +141,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7279820892607166860}
+        m_MethodName: PlayClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6845388503704290986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,11 +332,11 @@ GameObject:
   - component: {fileID: 9054479892892241341}
   - component: {fileID: 9054479892892241331}
   - component: {fileID: 1607901633954844719}
-  - component: {fileID: 7279820892607166860}
   - component: {fileID: 6748819885787817268}
+  - component: {fileID: 7279820892607166860}
   - component: {fileID: 5417735706625446603}
   - component: {fileID: 4374701023883936772}
-  - component: {fileID: 4859670127955817925}
+  - component: {fileID: 3839728961367581204}
   m_Layer: 5
   m_Name: NotificationUI
   m_TagString: Untagged
@@ -351,7 +362,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -3400, y: 0}
+  m_AnchoredPosition: {x: -3400, y: -225}
   m_SizeDelta: {x: 455, y: 82}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &9054479892892241331
@@ -391,21 +402,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7279820892607166860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9054479892892241340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cba129908c759f14bb43c86740895e1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  notificationText: {fileID: 9054479891117925281}
-  closeButton: {fileID: 1222374415540909461}
-  actionButton: {fileID: 0}
 --- !u!95 &6748819885787817268
 Animator:
   serializedVersion: 3
@@ -425,6 +421,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7279820892607166860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9054479892892241340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cba129908c759f14bb43c86740895e1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notificationText: {fileID: 9054479891117925281}
+  closeButton: {fileID: 1222374415540909461}
 --- !u!114 &5417735706625446603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -479,8 +489,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4374701023883936772}
         m_MethodName: SaveGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7279820892607166860}
+        m_MethodName: PlayClickSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -502,7 +523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34b5e36b4b12d34dbf6db649171fb6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!82 &4859670127955817925
+--- !u!82 &3839728961367581204
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -512,7 +533,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4d7499247e2feb54696848349f198023, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5b238043b627858438903834748fbad6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

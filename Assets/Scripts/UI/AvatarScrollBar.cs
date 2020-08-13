@@ -7,6 +7,12 @@ public class AvatarScrollBar : MonoBehaviour
     [SerializeField]
     private GameObject avatarPrefab;
 
+    [SerializeField]
+    private HeroAvatarFrame heroAvatarFrame;
+
+    [SerializeField]
+    private Scrollbar scrollbar;
+
     private GuildMember hero;
     private List<Sprite> avatars = new List<Sprite>();
     private PopulationManager populationManager;
@@ -45,6 +51,7 @@ public class AvatarScrollBar : MonoBehaviour
         {
             Destroy(child);
         }
+        scrollbar.value = 0;
     }
 
     private void SetScrollbarContent()
@@ -99,5 +106,6 @@ public class AvatarScrollBar : MonoBehaviour
         {
             hero.Avatar = populationManager.defaultFemaleAvatar;
         }
+        heroAvatarFrame.SetFrameAvatar(hero);
     }
 }

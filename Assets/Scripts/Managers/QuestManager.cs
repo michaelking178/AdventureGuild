@@ -121,7 +121,7 @@ public class QuestManager : MonoBehaviour
         notificationManager.CreateNotification(string.Format("The quest \"{0}\" has failed!", quest.questName), Notification.Type.Quest);
         quest.State = Quest.Status.Failed;
         rewardMessage = "Quest Failed!";
-        quest.Incidents.Add(incidentManager.CreateCustomIncident(failureMessage, Incident.Result.Bad, rewardMessage, DateTime.Now));
+        quest.Incidents.Add(incidentManager.CreateCustomIncident(failureMessage, Incident.Result.Bad, rewardMessage));
         quest.GuildMember.IsAvailable = true;
     }
 
