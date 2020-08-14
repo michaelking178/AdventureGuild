@@ -43,7 +43,12 @@ public class QuestManager : MonoBehaviour
         for (int i = 0; i < numOfQuests; i++)
         {
             Quest quest = new Quest();
-            Quest questToClone = quests.GetRandomQuest();
+            Quest questToClone;
+            do
+            {
+                 questToClone = quests.GetRandomQuest();
+            }
+            while (!Helpers.IsUniqueMember(questToClone.questName, questPool.Select(q => q.questName).ToList()));
             quest.questName = questToClone.questName;
             quest.contractor = questToClone.contractor;
             quest.description = questToClone.description;
