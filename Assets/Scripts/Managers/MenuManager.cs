@@ -17,7 +17,7 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
-        if (SaveSystem.SaveFileExists())
+        if (SaveSystem.SaveFileExists() && FindObjectOfType<LevelManager>().name == "Main")
         {
             SaveSystem.LoadGame();
             OpenMenu("Menu_Hub");

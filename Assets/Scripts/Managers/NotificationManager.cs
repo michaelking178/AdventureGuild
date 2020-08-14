@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NotificationManager : MonoBehaviour
 {
@@ -24,13 +25,27 @@ public class NotificationManager : MonoBehaviour
         StartCoroutine(MoveNotifications());
     }
 
-    public void CreateNotification(string _notification, Notification.Type _type)
+    public void CreateNotification(string _notification, Notification.Type _type, Notification.Spirit _spirit)
     {
-        Notification notification = new Notification(_notification, _type);
+        Notification notification = new Notification(_notification, _type, _spirit);
         notifications.Add(notification);
         GameObject notificationUI = Instantiate(notificationPrefab, notificationPanel.transform);
         notificationUI.GetComponent<RectTransform>().anchoredPosition = position;
         notificationUI.GetComponent<NotificationUI>().Notification = notification;
+        switch (notification.NotificationSpirit)
+        {
+            case (Notification.Spirit.Good):
+                notificationUI.GetComponent<Image>().color = new Color(0, 1, 0.08719444f);
+                break;
+            case (Notification.Spirit.Bad):
+                notificationUI.GetComponent<Image>().color = new Color(1, 0.1407514f, 0);
+                break;
+            case (Notification.Spirit.Neutral):
+                notificationUI.GetComponent<Image>().color = new Color(1, 1, 0);
+                break;
+            default:
+                break;
+        }
         notificationUI.GetComponent<Animator>().SetTrigger("Open");
         position.y -= 490;
         notificationUIs.Add(notificationUI);

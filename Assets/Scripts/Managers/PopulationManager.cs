@@ -78,7 +78,7 @@ public class PopulationManager : MonoBehaviour
         newMember.Init(newPerson);
         newMember.Avatar = avatar;
         GuildMembers.Add(newMember);
-        notificationManager.CreateNotification(string.Format("{0} has joined the Adventure Guild!", newMember.person.name), Notification.Type.GuildMember);
+        notificationManager.CreateNotification(string.Format("{0} has joined the Adventure Guild!", newMember.person.name), Notification.Type.GuildMember, Notification.Spirit.Good);
     }
 
     public void LoadGuildMember(GuildMemberData guildMemberData)

@@ -85,7 +85,7 @@ public class QuestUI : MonoBehaviour
                 if (child.GetComponent<QuestTimer>().GetQuest() == quest)
                 {
                     float timeRemaining = child.GetComponent<QuestTimer>().TimeLimit - child.GetComponent<QuestTimer>().CurrentTime;
-                    questTime.text = (int)timeRemaining + " Remaining";
+                    questTime.text = Helpers.FormatTimer((int)timeRemaining);
                 }
             }
         }

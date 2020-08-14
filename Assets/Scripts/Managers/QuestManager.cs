@@ -46,9 +46,10 @@ public class QuestManager : MonoBehaviour
             Quest questToClone;
             do
             {
-                 questToClone = quests.GetRandomQuest();
+                questToClone = quests.GetRandomQuest();
             }
-            while (!Helpers.IsUniqueMember(questToClone.questName, questPool.Select(q => q.questName).ToList()));
+            while (!Helpers.IsUniqueMember(questToClone.questName, questsToGet.Select(q => q.questName).ToList())
+                   && !Helpers.IsUniqueMember(questToClone.questName, questPool.Select(q => q.questName).ToList()));
             quest.questName = questToClone.questName;
             quest.contractor = questToClone.contractor;
             quest.description = questToClone.description;
@@ -58,16 +59,13 @@ public class QuestManager : MonoBehaviour
             quest.difficulty = questToClone.difficulty;
             quest.time = questToClone.time;
             quest.Init();
-            if (Helpers.IsUniqueMember(quest, questsToGet))
-                questsToGet.Add(quest);
-            SortQuestList(questPool);
+            questsToGet.Add(quest);
         }
-
-        // Add each quest in the questsToGet list to the questPool
         foreach (Quest quest in questsToGet)
         {
             questPool.Add(quest);
         }
+        SortQuestList(questPool);
     }
     
     public Quest GetQuestById(int _id)
@@ -113,7 +111,7 @@ public class QuestManager : MonoBehaviour
 
     public void CompleteQuest(Quest quest)
     {
-        notificationManager.CreateNotification(string.Format("The quest \"{0}\" has completed!", quest.questName), Notification.Type.Quest);
+        notificationManager.CreateNotification(string.Format("The quest \"{0}\" has completed!", quest.questName), Notification.Type.Quest, Notification.Spirit.Good);
         quest.State = Quest.Status.Completed;
         rewardMessage = "Quest Completed!";
         quest.Incidents.Add(incidentManager.CreateCustomIncident(quest.completion, Incident.Result.Good, rewardMessage, DateTime.Now));
@@ -123,7 +121,7 @@ public class QuestManager : MonoBehaviour
 
     public void FailQuest(Quest quest)
     {
-        notificationManager.CreateNotification(string.Format("The quest \"{0}\" has failed!", quest.questName), Notification.Type.Quest);
+        notificationManager.CreateNotification(string.Format("The quest \"{0}\" has failed!", quest.questName), Notification.Type.Quest, Notification.Spirit.Bad);
         quest.State = Quest.Status.Failed;
         rewardMessage = "Quest Failed!";
         quest.Incidents.Add(incidentManager.CreateCustomIncident(failureMessage, Incident.Result.Bad, rewardMessage));

@@ -81,7 +81,7 @@ public class GuildMember : MonoBehaviour
         while (Experience > CharacterLevel.LevelValues[Level])
         {
             Level++;
-            FindObjectOfType<NotificationManager>().CreateNotification(string.Format("{0} reached Level {1}!", person.name, Level), Notification.Type.GuildMember);
+            FindObjectOfType<NotificationManager>().CreateNotification(string.Format("{0} reached Level {1}!", person.name, Level), Notification.Type.GuildMember, Notification.Spirit.Good);
         }
     }
 }

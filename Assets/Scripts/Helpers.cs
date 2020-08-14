@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public static class Helpers
@@ -73,6 +74,53 @@ public static class Helpers
             }
         }
         return reward;
+    }
+
+    public static string FormatTimer(int timeRemaining)
+    {
+        int hours = 0;
+        int minutes = 0;
+
+        if (timeRemaining > 3600)
+        {
+            hours = Mathf.FloorToInt(timeRemaining / 3600);
+            timeRemaining %= 3600;
+        }
+        if (timeRemaining > 60)
+        {
+            minutes = Mathf.FloorToInt(timeRemaining / 60);
+            timeRemaining %= 60;
+        }
+
+        string hoursStr;
+        string minStr;
+        string secStr;
+        if (hours < 10)
+        {
+            hoursStr = string.Format("0{0}", hours);
+        }
+        else
+        {
+            hoursStr = hours.ToString();
+        }
+        if (minutes < 10)
+        {
+            minStr = string.Format("0{0}", minutes);
+        }
+        else
+        {
+            minStr = minutes.ToString();
+        }
+        if (timeRemaining < 10)
+        {
+            secStr = string.Format("0{0}", timeRemaining);
+        }
+        else
+        {
+            secStr = timeRemaining.ToString();
+        }
+
+        return string.Format("{0}:{1}:{2}", hoursStr, minStr, secStr);
     }
 
     /// <summary>
