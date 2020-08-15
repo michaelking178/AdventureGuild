@@ -17,9 +17,8 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
-        if (SaveSystem.SaveFileExists() && FindObjectOfType<LevelManager>().name == "Main")
+        if (SaveSystem.SaveFileExists() && FindObjectOfType<LevelManager>().CurrentLevel() == "Main")
         {
-            SaveSystem.LoadGame();
             OpenMenu("Menu_Hub");
             return;
         }
@@ -38,12 +37,17 @@ public class MenuManager : MonoBehaviour
         StartCoroutine(MenuTransition(menuName));
     }
 
+    public void CloseMenu()
+    {
+        currentMenu.GetComponent<Animator>().SetTrigger("Close");
+    }
+
     private IEnumerator MenuTransition(string menuName)
     {
         clickBlockerPanel.SetActive(true);
         if (currentMenu != null)
         {
-            currentMenu.GetComponent<Animator>().SetTrigger("Close");
+            CloseMenu();
             yield return new WaitForSeconds(0.4f);
         }
         currentMenu = GetMenu(menuName);

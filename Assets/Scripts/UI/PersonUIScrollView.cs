@@ -7,14 +7,13 @@ public class PersonUIScrollView : MonoBehaviour
 
     private PopulationManager populationManager;
 
-    // Start is called before the first frame update
     void Start()
     {
         populationManager = FindObjectOfType<PopulationManager>();
-        UpdatePersonList();
+        GetAllGuildMembers();
     }
 
-    public void UpdatePersonList()
+    public void GetAllGuildMembers()
     {
         foreach(GameObject child in gameObject.GetChildren())
         {
@@ -37,7 +36,24 @@ public class PersonUIScrollView : MonoBehaviour
         {
             GameObject newPersonUI = Instantiate(personUI, transform);
             newPersonUI.GetComponent<PersonUI>().SetPerson(guildMember);
-            newPersonUI.GetComponent<PersonUI>().ShowBeginQuestButton();
+            newPersonUI.GetComponent<PersonUI>().ShowButton();
+        }
+    }
+
+    public void GetAvailableGuildMembers()
+    {
+        foreach (GameObject child in gameObject.GetChildren())
+        {
+            Destroy(child);
+        }
+        foreach (GuildMember guildMember in FindObjectOfType<PopulationManager>().GuildMembers)
+        {
+            if (guildMember.IsAvailable)
+            {
+                GameObject newPersonUI = Instantiate(personUI, transform);
+                newPersonUI.GetComponent<PersonUI>().SetPerson(guildMember);
+                newPersonUI.GetComponent<PersonUI>().ShowButton();
+            }
         }
     }
 }

@@ -35,16 +35,7 @@ public class NotificationUI : MonoBehaviour
 
     public void Action()
     {
-        if (Notification.NotificationType == Notification.Type.Quest)
-        {
-            GameObject.Find("Menu_QuestJournals").GetComponentInChildren<QuestUIScrollView>().UpdateQuestJournalList();
-            menuManager.OpenMenu("Menu_QuestJournals");
-        }
-        else if (Notification.NotificationType == Notification.Type.GuildMember)
-        {
-            GameObject.Find("Menu_ManagePeople").GetComponentInChildren<PersonUIScrollView>().UpdatePersonList();
-            menuManager.OpenMenu("Menu_ManagePeople");
-        }
+        notificationManager.Notify(Notification);
         Close();
     }
 

@@ -8,12 +8,9 @@ public class NotificationManager : MonoBehaviour
     [SerializeField]
     private GameObject notificationPrefab;
 
-    [SerializeField]
-    private GameObject notificationPanel;
-
     public List<Notification> notifications;
     public List<GameObject> notificationUIs;
-    
+
     private Vector2 position;
     private float notchOffset = -200.0f;
 
@@ -29,7 +26,7 @@ public class NotificationManager : MonoBehaviour
     {
         Notification notification = new Notification(_notification, _type, _spirit);
         notifications.Add(notification);
-        GameObject notificationUI = Instantiate(notificationPrefab, notificationPanel.transform);
+        GameObject notificationUI = Instantiate(notificationPrefab, GameObject.Find("NotificationPanel").transform);
         notificationUI.GetComponent<RectTransform>().anchoredPosition = position;
         notificationUI.GetComponent<NotificationUI>().Notification = notification;
         switch (notification.NotificationSpirit)
@@ -65,6 +62,24 @@ public class NotificationManager : MonoBehaviour
                 float yPos = Mathf.Lerp(startingPos.y, (orderPos * -490) + notchOffset, 0.1f);
                 notUI.anchoredPosition = new Vector2(startingPos.x, yPos);
             }
+        }
+    }
+
+    public void Notify(Notification notification)
+    {
+        if (FindObjectOfType<LevelManager>().CurrentLevel() != "Main")
+        {
+            FindObjectOfType<LevelManager>().LoadLevel("Main");
+        }
+        if (notification.NotificationType == Notification.Type.Quest)
+        {
+            GameObject.Find("Menu_QuestJournals").GetComponentInChildren<QuestUIScrollView>().UpdateQuestJournalList();
+            FindObjectOfType<MenuManager>().OpenMenu("Menu_QuestJournals");
+        }
+        else if (notification.NotificationType == Notification.Type.GuildMember)
+        {
+            GameObject.Find("Menu_ManagePeople").GetComponentInChildren<PersonUIScrollView>().GetAllGuildMembers();
+            FindObjectOfType<MenuManager>().OpenMenu("Menu_ManagePeople");
         }
     }
 }

@@ -5,6 +5,9 @@ using UnityEngine.UI;
 public class HeroPanel : MonoBehaviour
 {
     [SerializeField]
+    private Image heroImage;
+
+    [SerializeField]
     private TextMeshProUGUI heroName;
 
     [SerializeField]
@@ -36,6 +39,7 @@ public class HeroPanel : MonoBehaviour
     public void UpdateHeroPanel()
     {
         hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>();
+        heroImage.sprite = hero.Avatar;
         heroName.text = hero.person.name;
     }
 

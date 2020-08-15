@@ -16,7 +16,7 @@ public class PersonUI : MonoBehaviour
     private HeroAvatarFrame avatarFrame;
 
     [SerializeField]
-    private GameObject beginQuestBtn;
+    protected GameObject contextBtn;
 
     [SerializeField]
     private TextMeshProUGUI personName;
@@ -71,15 +71,15 @@ public class PersonUI : MonoBehaviour
         }
     }
 
-    public void ShowBeginQuestButton()
+    public void ShowButton()
     {
-        if (beginQuestBtn.activeSelf)
+        if (contextBtn.activeSelf)
         {
-            beginQuestBtn.SetActive(false);
+            contextBtn.SetActive(false);
         }
         else
         {
-            beginQuestBtn.SetActive(true);
+            contextBtn.SetActive(true);
         }
     }
 }

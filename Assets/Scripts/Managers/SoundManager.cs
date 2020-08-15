@@ -17,7 +17,6 @@ public class SoundManager : MonoBehaviour
 
     private AudioSource audioSource;
 
-    // Start is called before the first frame update
     void Start()
     {
         audioDict = new Dictionary<string, AudioClip>();
@@ -26,7 +25,6 @@ public class SoundManager : MonoBehaviour
         audioDict.Add("OpenMenu", menuOpen);
         audioSource = GetComponent<AudioSource>();
     }
-
 
 /// <summary>
 /// Plays a sound called from a Dictionary: use "Button", "CloseMenu", "OpenMenu"

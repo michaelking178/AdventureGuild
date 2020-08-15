@@ -11,7 +11,6 @@ public class GuildMember : MonoBehaviour
         get
         {
             return vocation;
-            
         }
         set
         {
@@ -82,6 +81,13 @@ public class GuildMember : MonoBehaviour
         {
             Level++;
             FindObjectOfType<NotificationManager>().CreateNotification(string.Format("{0} reached Level {1}!", person.name, Level), Notification.Type.GuildMember, Notification.Spirit.Good);
+        }
+        if (Vocation is Peasant && Level >= 10)
+        {
+            Vocation = new Adventurer();
+            Level = 0;
+            Experience = 0;
+            FindObjectOfType<NotificationManager>().CreateNotification(string.Format("{0} has honed their skills and become an Adventurer!", person.name), Notification.Type.GuildMember, Notification.Spirit.Good);
         }
     }
 }

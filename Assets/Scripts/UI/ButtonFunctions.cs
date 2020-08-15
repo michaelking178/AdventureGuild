@@ -2,17 +2,14 @@
 
 public class ButtonFunctions : MonoBehaviour
 {
-    private MenuManager menuManager;
-
-    // Start is called before the first frame update
-    void Start()
+    public void LoadLevel(string level)
     {
-        menuManager = FindObjectOfType<MenuManager>();
+        FindObjectOfType<LevelManager>().LoadLevel(level);
     }
 
     public void OpenMenu(string menu)
     {
-        menuManager.OpenMenu(menu);
+        FindObjectOfType<MenuManager>().OpenMenu(menu);
     }
 
     public void SaveGame()

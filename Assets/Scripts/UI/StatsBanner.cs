@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 public class StatsBanner : MonoBehaviour
@@ -11,14 +9,10 @@ public class StatsBanner : MonoBehaviour
     private Guildhall guildhall;
     private PopulationManager populationManager;
 
-    void Start()
+    private void FixedUpdate()
     {
         guildhall = FindObjectOfType<Guildhall>();
         populationManager = FindObjectOfType<PopulationManager>();
-    }
-
-    public void FixedUpdate()
-    {
         gold.text = guildhall.Gold.ToString();
         iron.text = guildhall.Iron.ToString();
         wood.text = guildhall.Wood.ToString();
