@@ -6,7 +6,9 @@ public class Shield : MonoBehaviour
     [SerializeField]
     private Vector2[] quadrants = new Vector2[4];
 
-    private float repositionDelay = 2.0f;
+    public float defaultRepositionDelay = 2.0f;
+
+    private float repositionDelay;
     private float startTime;
     private float currentTime;
     private int currentQuadrant;
@@ -20,6 +22,7 @@ public class Shield : MonoBehaviour
         trainingSword = FindObjectOfType<TrainingSword>();
         trainingManager = FindObjectOfType<TrainingManager>();
         startTime = Time.time;
+        repositionDelay = defaultRepositionDelay;
         currentTime = repositionDelay;
     }
 
@@ -88,5 +91,11 @@ public class Shield : MonoBehaviour
             }
             striking = false;
         }
+    }
+
+    public void ResetShieldSpeed()
+    {
+        repositionDelay = defaultRepositionDelay;
+        currentTime = repositionDelay;
     }
 }

@@ -7,6 +7,11 @@ public class ButtonFunctions : MonoBehaviour
         FindObjectOfType<LevelManager>().LoadLevel(level);
     }
 
+    public void LoadLevelDirect(string level)
+    {
+        FindObjectOfType<LevelManager>().LoadLevelDirect(level);
+    }
+
     public void OpenMenu(string menu)
     {
         FindObjectOfType<MenuManager>().OpenMenu(menu);

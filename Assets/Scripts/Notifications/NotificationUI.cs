@@ -13,16 +13,15 @@ public class NotificationUI : MonoBehaviour
 
     public Notification Notification { get; set; }
     private NotificationManager notificationManager;
-    private MenuManager menuManager;
     private SoundManager soundManager;
     private AudioSource audioSource;
     private AudioSource sMAudioSource;
+    private float closeTimer = 5.0f;
 
     private void Start()
     {
         notificationText.text = Notification.Message;
         notificationManager = FindObjectOfType<NotificationManager>();
-        menuManager = FindObjectOfType<MenuManager>();
         soundManager = FindObjectOfType<SoundManager>();
         audioSource = GetComponent<AudioSource>();
         sMAudioSource = soundManager.GetComponent<AudioSource>();
@@ -31,11 +30,19 @@ public class NotificationUI : MonoBehaviour
     private void FixedUpdate()
     {
         audioSource.volume = sMAudioSource.volume;
+        if (closeTimer > 0)
+        {
+            closeTimer -= Time.fixedDeltaTime;
+        }
+        else
+        {
+            Close();
+        }
     }
 
     public void Action()
     {
-        notificationManager.Notify(Notification);
+        notificationManager.Notify(this);
         Close();
     }
 

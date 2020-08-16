@@ -17,6 +17,11 @@ public class LevelManager : MonoBehaviour
         StartCoroutine(LoadLvl(scene));
     }
 
+    public void LoadLevelDirect(string scene)
+    {
+        SceneManager.LoadScene(scene);
+    }
+
     public string CurrentLevel()
     {
         return SceneManager.GetActiveScene().name;

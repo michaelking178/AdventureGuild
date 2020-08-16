@@ -34,6 +34,13 @@ public static class SaveSystem
             questDataPool.Add(questData);
         }
 
+        List<QuestData> questDataArchive = new List<QuestData>();
+        foreach (Quest quest in Object.FindObjectOfType<QuestManager>().GetQuestArchive())
+        {
+            QuestData questData = new QuestData(quest);
+            questDataArchive.Add(questData);
+        }
+
         List<QuestTimerData> questTimerDatas = new List<QuestTimerData>();
         foreach (GameObject questTimerObj in Helpers.GetChildren(Object.FindObjectOfType<QuestManager>().gameObject))
         {
@@ -49,9 +56,9 @@ public static class SaveSystem
         var musicMan = GameObject.Find("MusicManager").GetComponent<AudioSource>();
         SettingsData settingsData = new SettingsData(soundMan.volume, musicMan.volume);
 
-        PopulationManagerData populationManagerData = new PopulationManagerData(GameObject.FindObjectOfType<PopulationManager>());
+        PopulationManagerData populationManagerData = new PopulationManagerData(Object.FindObjectOfType<PopulationManager>());
 
-        SaveData saveData = new SaveData(heroData, guildhallData, guildMemberDatas, questDataPool, questTimerDatas, settingsData, populationManagerData);
+        SaveData saveData = new SaveData(heroData, guildhallData, guildMemberDatas, questDataPool, questDataArchive, questTimerDatas, settingsData, populationManagerData);
         formatter.Serialize(stream, saveData);
         stream.Close();
     }

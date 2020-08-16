@@ -52,25 +52,28 @@ public static class Helpers
     {
         string reward = "";
         {
-            if (incident.reward.Experience != 0)
+            if (incident.reward != null)
             {
-                reward += incident.reward.Experience.ToString() + " Experience\n";
-            }
-            if (incident.reward.Gold != 0)
-            {
-                reward += incident.reward.Gold.ToString() + " Gold\n";
-            }
-            if (incident.reward.Wood != 0)
-            {
-                reward += incident.reward.Wood.ToString() + " Wood\n";
-            }
-            if (incident.reward.Iron != 0)
-            {
-                reward += incident.reward.Iron.ToString() + " Iron\n";
-            }
-            if (incident.reward.Hitpoints != 0)
-            {
-                reward += incident.reward.Hitpoints.ToString() + " Hitpoints\n";
+                if (incident.reward.Experience != 0)
+                {
+                    reward += incident.reward.Experience.ToString() + " Experience\n";
+                }
+                if (incident.reward.Gold != 0)
+                {
+                    reward += incident.reward.Gold.ToString() + " Gold\n";
+                }
+                if (incident.reward.Wood != 0)
+                {
+                    reward += incident.reward.Wood.ToString() + " Wood\n";
+                }
+                if (incident.reward.Iron != 0)
+                {
+                    reward += incident.reward.Iron.ToString() + " Iron\n";
+                }
+                if (incident.reward.Hitpoints != 0)
+                {
+                    reward += incident.reward.Hitpoints.ToString() + " Hitpoints\n";
+                }
             }
         }
         return reward;

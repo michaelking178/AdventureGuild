@@ -34,6 +34,8 @@ public class Menu_Settings : MonoBehaviour
     public void ResetGame()
     {
         SaveSystem.DeleteGame();
-        FindObjectOfType<LevelManager>().LoadLevel("Main");
+        Destroy(GameObject.Find("Persistents"));
+        LevelManager levelManager = new LevelManager();
+        levelManager.LoadLevelDirect("Main");
     }
 }

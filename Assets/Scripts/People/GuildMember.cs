@@ -80,14 +80,20 @@ public class GuildMember : MonoBehaviour
         while (Experience > CharacterLevel.LevelValues[Level])
         {
             Level++;
-            FindObjectOfType<NotificationManager>().CreateNotification(string.Format("{0} reached Level {1}!", person.name, Level), Notification.Type.GuildMember, Notification.Spirit.Good);
+            if (Vocation is Peasant && Level >= 5)
+            {
+                Vocation = new Adventurer();
+                Experience = 0;
+                Level = 0;
+                FindObjectOfType<NotificationManager>().CreateNotification(string.Format("{0} has honed their skills and become an Adventurer!", person.name), Notification.Type.GuildMember, Notification.Spirit.Good);
+            }
+            else
+            {
+                MaxHitpoints += 10;
+                Hitpoints = MaxHitpoints;
+                FindObjectOfType<NotificationManager>().CreateNotification(string.Format("{0} reached Level {1}!", person.name, Level), Notification.Type.GuildMember, Notification.Spirit.Good);
+            }
         }
-        if (Vocation is Peasant && Level >= 10)
-        {
-            Vocation = new Adventurer();
-            Level = 0;
-            Experience = 0;
-            FindObjectOfType<NotificationManager>().CreateNotification(string.Format("{0} has honed their skills and become an Adventurer!", person.name), Notification.Type.GuildMember, Notification.Spirit.Good);
-        }
+
     }
 }

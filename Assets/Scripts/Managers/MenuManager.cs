@@ -13,7 +13,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     private GameObject clickBlockerPanel;
 
-    private GameObject currentMenu;
+    public GameObject CurrentMenu;
 
     private void Start()
     {
@@ -39,19 +39,19 @@ public class MenuManager : MonoBehaviour
 
     public void CloseMenu()
     {
-        currentMenu.GetComponent<Animator>().SetTrigger("Close");
+        CurrentMenu.GetComponent<Animator>().SetTrigger("Close");
     }
 
     private IEnumerator MenuTransition(string menuName)
     {
         clickBlockerPanel.SetActive(true);
-        if (currentMenu != null)
+        if (CurrentMenu != null)
         {
             CloseMenu();
             yield return new WaitForSeconds(0.4f);
         }
-        currentMenu = GetMenu(menuName);
-        currentMenu.GetComponent<Animator>().SetTrigger("Open");
+        CurrentMenu = GetMenu(menuName);
+        CurrentMenu.GetComponent<Animator>().SetTrigger("Open");
         yield return new WaitForSeconds(0.35f);
         clickBlockerPanel.SetActive(false);
     }

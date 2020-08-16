@@ -48,7 +48,7 @@ public class HeroPanel : MonoBehaviour
         if (hero != null)
         {
             heroVocation.text = string.Format("Level {0} {1}", hero.Level, hero.Vocation.Title());
-            heroExperience.text = "Experience: " + hero.Experience.ToString();
+            heroExperience.text = string.Format("Experience: {0} / {1}", hero.Experience, CharacterLevel.LevelValues[hero.Level]);
             heroHealth.text = string.Format("Health: {0}/{1}", hero.Hitpoints.ToString(), hero.MaxHitpoints.ToString());
             heroBioText.text = hero.bio;
         }

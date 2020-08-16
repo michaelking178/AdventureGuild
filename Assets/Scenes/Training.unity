@@ -206,7 +206,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 176.7
+  m_fontSize: 126.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -651,7 +651,7 @@ MonoBehaviour:
   m_fontSizeMin: 6
   m_fontSizeMax: 500
   m_fontStyle: 32
-  m_textAlignment: 258
+  m_textAlignment: 514
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -924,7 +924,7 @@ MonoBehaviour:
   resultsScore: {fileID: 239261237}
   resultsExp: {fileID: 818857380}
   resultsCombatExp: {fileID: 1054167592}
-  TimeLimit: 15
+  TimeLimit: 30
   TimeRemaining: 0
   GameOver: 0
 --- !u!1 &239261235
@@ -1169,7 +1169,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 178.25
+  m_fontSize: 127.8
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1602,7 +1602,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 182.65
+  m_fontSize: 130
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1968,6 +1968,7 @@ MonoBehaviour:
   - {x: 1.25, y: 1.86}
   - {x: -1.25, y: -1.86}
   - {x: 1.25, y: -1.86}
+  defaultRepositionDelay: 2
 --- !u!70 &408706408
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2864,7 +2865,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 178.15
+  m_fontSize: 128.2
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3076,7 +3077,7 @@ PrefabInstance:
     - target: {fileID: 3658182472099775555, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
-      value: GetAvailableAdventurers
+      value: GetAvailableGuildMembers
       objectReference: {fileID: 0}
     - target: {fileID: 3658182472099775555, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}
@@ -4027,7 +4028,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 177.3
+  m_fontSize: 126.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4998,7 +4999,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 178.65
+  m_fontSize: 128.55
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5155,7 +5156,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 177.4
+  m_fontSize: 126.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5569,7 +5570,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 176.95
+  m_fontSize: 126.85
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5897,7 +5898,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 444453097}
   m_HandleRect: {fileID: 444453096}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -6065,6 +6066,7 @@ MonoBehaviour:
   - {fileID: 20837637}
   startingMenu: {fileID: 20837637}
   clickBlockerPanel: {fileID: 7281315430412565956}
+  CurrentMenu: {fileID: 0}
 --- !u!4 &2894171497317842141
 Transform:
   m_ObjectHideFlags: 0

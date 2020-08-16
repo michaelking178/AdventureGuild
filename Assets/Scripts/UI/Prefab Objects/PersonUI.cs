@@ -3,20 +3,22 @@ using TMPro;
 
 public class PersonUI : MonoBehaviour
 {
-    private GuildMember guildMember;
-    public GuildMember GuildMember
-    {
-        get { return guildMember; }
-    }
+    public GuildMember GuildMember { get; private set; }
 
     [SerializeField]
     private GameObject extensionPanel;
 
     [SerializeField]
+    private GameObject statsPanel;
+
+    [SerializeField]
+    private GameObject adventurerStats;
+
+    [SerializeField]
     private HeroAvatarFrame avatarFrame;
 
     [SerializeField]
-    protected GameObject contextBtn;
+    private TextMeshProUGUI exp;
 
     [SerializeField]
     private TextMeshProUGUI personName;
@@ -30,19 +32,27 @@ public class PersonUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI availability;
 
+    public GameObject contextBtn;
+
+    private void Start()
+    {
+        AdjustStatsPanel();
+    }
+
     private void FixedUpdate()
     {
-        if (guildMember != null)
+        if (GuildMember != null)
         {
-            personName.text = guildMember.person.name;
-            personVocation.text = string.Format("{0} - Level {1}", guildMember.Vocation.Title(), guildMember.Level.ToString());
-            health.text = string.Format("Health: {0}/{1}", guildMember.Hitpoints, guildMember.MaxHitpoints);
+            personName.text = GuildMember.person.name;
+            exp.text = string.Format("{0} / {1}", GuildMember.Experience, CharacterLevel.LevelValues[GuildMember.Level]);
+            personVocation.text = string.Format("{0} - Level {1}", GuildMember.Vocation.Title(), GuildMember.Level.ToString());
+            health.text = string.Format("Health: {0}/{1}", GuildMember.Hitpoints, GuildMember.MaxHitpoints);
 
-            if (guildMember.IsAvailable && !guildMember.IsIncapacitated)
+            if (GuildMember.IsAvailable && !GuildMember.IsIncapacitated)
             {
                 availability.text = "Available";
             }
-            else if (guildMember.IsAvailable && guildMember.IsIncapacitated)
+            else if (GuildMember.IsAvailable && GuildMember.IsIncapacitated)
             {
                 availability.text = "Incapacitated";
             }
@@ -55,7 +65,7 @@ public class PersonUI : MonoBehaviour
 
     public void SetPerson(GuildMember _person)
     {
-        guildMember = _person;
+        GuildMember = _person;
     }
 
     public void ShowExtensionPanel()
@@ -67,7 +77,7 @@ public class PersonUI : MonoBehaviour
         else
         {
             extensionPanel.SetActive(true);
-            avatarFrame.SetFrameAvatar(guildMember);
+            avatarFrame.SetFrameAvatar(GuildMember);
         }
     }
 
@@ -80,6 +90,22 @@ public class PersonUI : MonoBehaviour
         else
         {
             contextBtn.SetActive(true);
+        }
+    }
+
+    private void AdjustStatsPanel()
+    {
+        if (GuildMember.Vocation is Peasant)
+        {
+            adventurerStats.SetActive(false);
+            Vector2 rectSize = statsPanel.GetComponent<RectTransform>().rect.size;
+            statsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(rectSize.x, 103.0f);
+        }
+        else if (GuildMember.Vocation is Adventurer)
+        {
+            adventurerStats.SetActive(true);
+            Vector2 rectSize = statsPanel.GetComponent<RectTransform>().rect.size;
+            statsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(rectSize.x, 215.0f);
         }
     }
 }

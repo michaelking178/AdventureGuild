@@ -25,8 +25,8 @@ public class Guildhall : MonoBehaviour
         if (Renown >= renownThreshold)
         {
             populationManager.CreateGuildMember();
-            questManager.PopulateQuestPool(Mathf.FloorToInt(renownThreshold / 20));
-            renownThreshold *= 1.5f;
+            questManager.PopulateQuestPool(Mathf.FloorToInt(renownThreshold / 25) - Mathf.FloorToInt(renownThreshold / 100));
+            renownThreshold *= 2f;
         }
     }
 

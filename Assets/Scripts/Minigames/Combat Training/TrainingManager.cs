@@ -39,7 +39,7 @@ public class TrainingManager : MonoBehaviour
     private TextMeshProUGUI resultsCombatExp;
 
     [Header("Game Stats")]
-    public float TimeLimit = 60f;
+    public float TimeLimit = 30f;
     public float TimeRemaining = 0;
     public bool GameOver;
 
@@ -114,7 +114,14 @@ public class TrainingManager : MonoBehaviour
         resultsImage.GetComponent<Animator>().SetTrigger("Open");
         resultsScore.text = string.Format("Score: {0}", score.ToString());
         resultsExp.text = string.Format("Experience Gained: {0}", exp.ToString());
-        resultsCombatExp.text = string.Format("Combat Exp Gained: {0}", combatExp.ToString());
+        if (guildMember.Vocation is Adventurer)
+        {
+            resultsCombatExp.text = string.Format("Combat Exp Gained: {0}", combatExp.ToString());
+        }
+        else
+        {
+            resultsCombatExp.text = string.Format("An Adventurer would have gained {0} Combat Exp!", combatExp.ToString());
+        }
     }
 
     private IEnumerator StartTraining()
@@ -131,5 +138,18 @@ public class TrainingManager : MonoBehaviour
     {
         resultsImage.GetComponent<Animator>().SetTrigger("Close");
         guildMember.AddExp(exp);
+        ResetGame();
+    }
+
+    private void ResetGame()
+    {
+        score = 0;
+        exp = 0;
+        combatExp = 0;
+        countdown = 3.5f;
+        TimeRemaining = TimeLimit;
+        guildMember = null;
+        FindObjectOfType<Shield>().ResetShieldSpeed();
+        countdownText.text = "";
     }
 }

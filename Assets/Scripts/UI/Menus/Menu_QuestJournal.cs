@@ -83,7 +83,7 @@ public class Menu_QuestJournal : MonoBehaviour
                 default:
                     break;
             }
-            if (incident.reward != null)
+            if (Helpers.IncidentRewardStr(incident) != "")
             {
                 incidentRewardText.text = Helpers.IncidentRewardStr(incident);
             }
@@ -98,5 +98,6 @@ public class Menu_QuestJournal : MonoBehaviour
             }
         }
         incidentCount = quest.Incidents.Count;
+        scrollbar.value = 0;
     }
 }
