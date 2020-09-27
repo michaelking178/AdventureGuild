@@ -11,7 +11,7 @@ public class MenuManager : MonoBehaviour
     private GameObject startingMenu;
 
     [SerializeField]
-    private GameObject clickBlockerPanel;
+    private GameObject clickBlocker;
 
     public GameObject CurrentMenu;
 
@@ -44,7 +44,7 @@ public class MenuManager : MonoBehaviour
 
     private IEnumerator MenuTransition(string menuName)
     {
-        clickBlockerPanel.SetActive(true);
+        clickBlocker.SetActive(true);
         if (CurrentMenu != null)
         {
             CloseMenu();
@@ -53,7 +53,7 @@ public class MenuManager : MonoBehaviour
         CurrentMenu = GetMenu(menuName);
         CurrentMenu.GetComponent<Animator>().SetTrigger("Open");
         yield return new WaitForSeconds(0.35f);
-        clickBlockerPanel.SetActive(false);
+        clickBlocker.SetActive(false);
     }
 
     public GameObject GetMenu(string menuName)

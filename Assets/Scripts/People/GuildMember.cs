@@ -38,7 +38,7 @@ public class GuildMember : MonoBehaviour
     {
         person = _person;
         Id = Helpers.GenerateId();
-        MaxHitpoints = 100;
+        MaxHitpoints = 50;
         Hitpoints = MaxHitpoints;
         Experience = 0;
         Level = 1;
@@ -75,6 +75,25 @@ public class GuildMember : MonoBehaviour
         CheckLevel();
     }
 
+    public void AddExp(string expType, int _exp)
+    {
+        if (vocation.Title() != "Adventurer") return;
+
+        Adventurer adv = (Adventurer)vocation;
+        if (expType == "Combat")
+        {
+            adv.CombatExp += _exp;
+        }
+        else if (expType == "Espionage")
+        {
+            adv.EspionageExp += _exp;
+        }
+        else if (expType == "Diplomacy")
+        {
+            adv.DiplomacyExp += _exp;
+        }
+    }
+
     private void CheckLevel()
     {
         while (Experience > CharacterLevel.LevelValues[Level])
@@ -84,7 +103,8 @@ public class GuildMember : MonoBehaviour
             {
                 Vocation = new Adventurer();
                 Experience = 0;
-                Level = 0;
+                Level = 1;
+                MaxHitpoints = 100;
                 FindObjectOfType<NotificationManager>().CreateNotification(string.Format("{0} has honed their skills and become an Adventurer!", person.name), Notification.Type.GuildMember, Notification.Spirit.Good);
             }
             else

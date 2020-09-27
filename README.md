@@ -28,10 +28,11 @@ Anticipated Launch date: **Holiday 2020**
 
 Feature Development Priorities (To-Do):
 
- - Rewards for Incidents.
- - Implement guild Renown as a means to recruit new Peasants.
+ - Fix experience generation from the training minigame -- make it dependent on the distance between the center of the shield and the point of the collision.
+ - Sort quests by level
  - Implement leveling structure for all characters.
- - Implement Peasant passive income and leveling.
+ - Implement Combat, Espionage and Diplomacy experience in all Quests.
+ - Implement Peasant passive income (?).
 
 Additional/Ongoing Tasks:
 

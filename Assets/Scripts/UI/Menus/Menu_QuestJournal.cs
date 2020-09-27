@@ -98,6 +98,5 @@ public class Menu_QuestJournal : MonoBehaviour
             }
         }
         incidentCount = quest.Incidents.Count;
-        scrollbar.value = 0;
     }
 }

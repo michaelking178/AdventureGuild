@@ -14,11 +14,13 @@ public class LevelManager : MonoBehaviour
 
     public void LoadLevel(string scene)
     {
+        //FindObjectOfType<NotificationManager>().ClearNotificationUIs();
         StartCoroutine(LoadLvl(scene));
     }
 
     public void LoadLevelDirect(string scene)
     {
+        //FindObjectOfType<NotificationManager>().ClearNotificationUIs();
         SceneManager.LoadScene(scene);
     }
 

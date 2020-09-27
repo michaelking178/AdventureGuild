@@ -4,8 +4,9 @@
 public class GuildMemberData
 {
     public int id;
-    public Person person;
-    public Vocation vocation;
+    public Person person = null;
+    public Vocation vocation = null;
+    public Adventurer adventurer = null;
     public string avatarSpriteName = "";
     public int maxHitpoints;
     public int hitpoints;
@@ -18,7 +19,14 @@ public class GuildMemberData
     {
         id = guildMember.Id;
         person = guildMember.person;
-        vocation = guildMember.Vocation;
+        if (guildMember.Vocation is Adventurer)
+        {
+            adventurer = (Adventurer)guildMember.Vocation;
+        }
+        else
+        {
+            vocation = guildMember.Vocation;
+        }
         if (guildMember.Avatar != null)
         {
             avatarSpriteName = guildMember.Avatar.name;

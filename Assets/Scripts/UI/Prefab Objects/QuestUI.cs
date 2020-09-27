@@ -52,25 +52,9 @@ public class QuestUI : MonoBehaviour
     {
         questName.text = quest.questName;
         questExperience.text = quest.Reward.Exp.ToString();
-
-        if (quest.difficulty == 0)
-        {
-            questDifficulty.text = "Easy";
-        }
-        else if (quest.difficulty == 1)
-        {
-            questDifficulty.text = "Medium";
-        }
-        else if (quest.difficulty == 2)
-        {
-            questDifficulty.text = "Hard";
-        }
-        else if (quest.difficulty == 3)
-        {
-            questDifficulty.text = "Very Hard";
-        }
-
+        questDifficulty.text = "Level " + quest.difficulty;
         questReward.text = Helpers.QuestRewardStr(quest);
+
         if (quest.State == Quest.Status.Completed || quest.State == Quest.Status.Failed)
         {
             questTime.text = quest.State.ToString();

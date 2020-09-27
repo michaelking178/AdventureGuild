@@ -30,7 +30,7 @@ public class SaveData
     {
         GuildMember hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>();
         hero.person = heroData.person;
-        hero.Vocation = heroData.vocation;
+        hero.Vocation = heroData.adventurer;
         Sprite _heroAvatar = Resources.Load<Sprite>("Sprites/Avatars/" + heroData.person.gender + "/" + heroData.avatarSpriteName);
         hero.Avatar = _heroAvatar;
         hero.Id = heroData.id;

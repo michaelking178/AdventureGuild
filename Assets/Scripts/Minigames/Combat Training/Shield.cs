@@ -6,6 +6,10 @@ public class Shield : MonoBehaviour
     [SerializeField]
     private Vector2[] quadrants = new Vector2[4];
 
+    private Vector2 shieldCenter = new Vector2();
+    private float shieldCenterXOffset = 442/1024; // These are based on the sprite's size vs. what appears to be the center of the shield
+    private float shieldCenterYOffset = 488/1024;
+
     public float defaultRepositionDelay = 2.0f;
 
     private float repositionDelay;
@@ -28,6 +32,9 @@ public class Shield : MonoBehaviour
 
     private void FixedUpdate()
     {
+        shieldCenter.x = transform.position.x + shieldCenterXOffset;
+        shieldCenter.y = transform.position.y + shieldCenterYOffset;
+
         if (!trainingManager.GameOver)
         {
             if (currentTime < repositionDelay)
@@ -68,11 +75,11 @@ public class Shield : MonoBehaviour
         if (!trainingManager.GameOver && hit.collider != null)
         {
             trainingSword.Swing(hit.point);
-            StartCoroutine(StrikeShield());
+            StartCoroutine(StrikeShield(hit.point));
         }
     }
     
-    private IEnumerator StrikeShield()
+    private IEnumerator StrikeShield(Vector2 clickPos)
     {
         if (!striking)
         {
@@ -82,7 +89,7 @@ public class Shield : MonoBehaviour
             if (quadrant == currentQuadrant)
             {
                 FindObjectOfType<TrainingSword>().ClangSound();
-                trainingManager.AddPoints(Mathf.FloorToInt(trainingManager.TimeLimit / trainingManager.TimeRemaining) * 10);
+                trainingManager.AddPoints(PointsValue(clickPos));
                 currentTime = repositionDelay;
             }
             else
@@ -97,5 +104,13 @@ public class Shield : MonoBehaviour
     {
         repositionDelay = defaultRepositionDelay;
         currentTime = repositionDelay;
+    }
+
+    public int PointsValue(Vector2 clickPos)
+    {
+        float xDifference = Mathf.Abs(shieldCenter.x - clickPos.x);
+        float yDifference = Mathf.Abs(shieldCenter.y - clickPos.y);
+        int modifier = (int)((xDifference + yDifference) * 100);
+        return (100 - modifier);
     }
 }

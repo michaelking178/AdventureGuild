@@ -32,6 +32,15 @@ public class PersonUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI availability;
 
+    [SerializeField]
+    private TextMeshProUGUI combatExp;
+
+    [SerializeField]
+    private TextMeshProUGUI espionageExp;
+
+    [SerializeField]
+    private TextMeshProUGUI diplomacyExp;
+
     public GameObject contextBtn;
 
     private void Start()
@@ -103,9 +112,13 @@ public class PersonUI : MonoBehaviour
         }
         else if (GuildMember.Vocation is Adventurer)
         {
+            Adventurer adventurer = (Adventurer)GuildMember.Vocation;
             adventurerStats.SetActive(true);
             Vector2 rectSize = statsPanel.GetComponent<RectTransform>().rect.size;
             statsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(rectSize.x, 215.0f);
+            combatExp.text = "Combat: " + adventurer.CombatExp.ToString();
+            espionageExp.text = "Espionage: " + adventurer.EspionageExp.ToString();
+            diplomacyExp.text = "Diplomacy: " + adventurer.DiplomacyExp.ToString();
         }
     }
 }

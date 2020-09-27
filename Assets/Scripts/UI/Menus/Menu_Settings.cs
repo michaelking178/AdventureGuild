@@ -30,12 +30,4 @@ public class Menu_Settings : MonoBehaviour
         musicVolume.value = musicAudioSource.volume;
         soundVolume.value = soundAudioSource.volume;
     }
-
-    public void ResetGame()
-    {
-        SaveSystem.DeleteGame();
-        Destroy(GameObject.Find("Persistents"));
-        LevelManager levelManager = new LevelManager();
-        levelManager.LoadLevelDirect("Main");
-    }
 }

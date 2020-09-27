@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class NotificationManager : MonoBehaviour
@@ -70,11 +69,14 @@ public class NotificationManager : MonoBehaviour
             yield return new WaitForFixedUpdate();
             foreach (GameObject notification in notificationUIs)
             {
-                int orderPos = notificationUIs.IndexOf(notification);
-                RectTransform notUI = notification.GetComponent<RectTransform>();
-                Vector2 startingPos = notUI.anchoredPosition;
-                float yPos = Mathf.Lerp(startingPos.y, (orderPos * -490) + notchOffset, 0.1f);
-                notUI.anchoredPosition = new Vector2(startingPos.x, yPos);
+                if (notification != null)
+                {
+                    int orderPos = notificationUIs.IndexOf(notification);
+                    RectTransform notUI = notification.GetComponent<RectTransform>();
+                    Vector2 startingPos = notUI.anchoredPosition;
+                    float yPos = Mathf.Lerp(startingPos.y, (orderPos * -490) + notchOffset, 0.1f);
+                    notUI.anchoredPosition = new Vector2(startingPos.x, yPos);
+                }
             }
         }
     }

@@ -47,19 +47,38 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (questPool.Count == 0)
+        {
+            PopulateQuestPool(UnityEngine.Random.Range(3,6));
+        }
+    }
+
     public void PopulateQuestPool(int numOfQuests)
     {
+        int maxLevel = GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>().Level + 3;
+
+        // This should protect against the infinite loop caused by trying to add more quests than exist in the JSON file.
+        if (numOfQuests > 10)
+        {
+            numOfQuests = 10;
+        }
         List<Quest> questsToGet = new List<Quest>();
         for (int i = 0; i < numOfQuests; i++)
         {
+            int breakout = 0;
             Quest quest = new Quest();
             Quest questToClone;
             do
             {
+                breakout++;
                 questToClone = quests.GetRandomQuest();
             }
             while (!Helpers.IsUniqueMember(questToClone.questName, questsToGet.Select(q => q.questName).ToList())
-                    || !Helpers.IsUniqueMember(questToClone.questName, questPool.Select(q => q.questName).ToList()));
+                    || !Helpers.IsUniqueMember(questToClone.questName, questPool.Select(q => q.questName).ToList())
+                    || questToClone.difficulty > maxLevel
+                    || breakout >= 50);
             quest.questName = questToClone.questName;
             quest.contractor = questToClone.contractor;
             quest.description = questToClone.description;
@@ -77,7 +96,7 @@ public class QuestManager : MonoBehaviour
         }
         SortQuestPool();
     }
-    
+
     public Quest GetQuestById(int _id)
     {
         foreach (Quest quest in questPool)

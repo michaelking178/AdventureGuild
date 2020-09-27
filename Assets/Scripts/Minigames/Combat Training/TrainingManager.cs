@@ -138,6 +138,7 @@ public class TrainingManager : MonoBehaviour
     {
         resultsImage.GetComponent<Animator>().SetTrigger("Close");
         guildMember.AddExp(exp);
+        guildMember.AddExp("Combat", combatExp);
         ResetGame();
     }
 
