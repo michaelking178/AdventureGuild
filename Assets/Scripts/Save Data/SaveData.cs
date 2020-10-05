@@ -46,7 +46,6 @@ public class SaveData
         guildhall.Gold = guildhallData.gold;
         guildhall.Iron = guildhallData.iron;
         guildhall.Wood = guildhallData.wood;
-        guildhall.Weapons = guildhallData.weapons;
         guildhall.Renown = guildhallData.renown;
         guildhall.renownThreshold = guildhallData.renownThreshold;
 

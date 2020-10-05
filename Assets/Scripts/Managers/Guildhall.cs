@@ -7,9 +7,9 @@ public class Guildhall : MonoBehaviour
     public int Gold { get; set; }
     public int Iron { get; set; }
     public int Wood { get; set; }
-    public int Weapons { get; set; }
     public int Renown { get; set; }
     public float renownThreshold = 50.0f;
+    public int PopulationCap { get; set; } = 5;
 
     private PopulationManager populationManager;
     private QuestManager questManager;
@@ -54,15 +54,6 @@ public class Guildhall : MonoBehaviour
         if (Wood < 0)
         {
             Wood = 0;
-        }
-    }
-
-    public void AdjustWeapons(int change)
-    {
-        Weapons += change;
-        if (Weapons < 0)
-        {
-            Weapons = 0;
         }
     }
 

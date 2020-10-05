@@ -4,7 +4,7 @@ using UnityEngine;
 public class StatsBanner : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshProUGUI gold, iron, wood, weapons, population, adventurers, artisans, peasants, renown;
+    private TextMeshProUGUI gold, iron, wood, population, adventurers, artisans, peasants, renown;
 
     private Guildhall guildhall;
     private PopulationManager populationManager;
@@ -16,9 +16,8 @@ public class StatsBanner : MonoBehaviour
         gold.text = guildhall.Gold.ToString();
         iron.text = guildhall.Iron.ToString();
         wood.text = guildhall.Wood.ToString();
-        weapons.text = guildhall.Weapons.ToString();
 
-        population.text = populationManager.GuildMembers.Count.ToString();
+        population.text = populationManager.GuildMembers.Count.ToString() + "/" + guildhall.PopulationCap.ToString();
         adventurers.text = populationManager.Adventurers().Count.ToString();
         artisans.text = populationManager.Artisans().Count.ToString();
         peasants.text = populationManager.Peasants().Count.ToString();

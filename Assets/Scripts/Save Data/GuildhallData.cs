@@ -15,7 +15,7 @@ public class GuildhallData
         gold = guildhall.Gold;
         iron = guildhall.Iron;
         wood = guildhall.Wood;
-        weapons = guildhall.Weapons;
+        weapons = 0;
         renown = guildhall.Renown;
         renownThreshold = guildhall.renownThreshold;
     }
