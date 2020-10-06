@@ -25,6 +25,10 @@ public class QuestManager : MonoBehaviour
     private readonly string failureMessage = "The challenges were too great, and I was defeated before completing my quest. I have returned to the Adventure Guild so that I may recover.";
     private string rewardMessage = "";
 
+    private bool combatUnlocked;
+    private bool espionageUnlocked;
+    private bool diplomacyUnlocked;
+
     public Quest CurrentQuest { get; set; }
 
     private void Start()
@@ -243,5 +247,24 @@ public class QuestManager : MonoBehaviour
     {
         List<Quest> sorted = questArchive.OrderByDescending(quest => quest.startTime).ToList();
         questArchive = sorted;
+    }
+
+    public void UnlockSkill(string _skill)
+    {
+        switch (_skill)
+        {
+            case "Combat":
+                combatUnlocked = true;
+                break;
+            case "Espionage":
+                espionageUnlocked = true;
+                break;
+            case "Diplomacy":
+                diplomacyUnlocked = true;
+                break;
+            default:
+                Debug.Log("Cannot unlock skill: " + _skill);
+                break;
+        }
     }
 }

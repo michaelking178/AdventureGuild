@@ -104,8 +104,8 @@ public class UpgradeItemFrame : MonoBehaviour
 
     private void Confirm()
     {
-        Debug.Log("Confirmed: " + itemName);
         popup.GetComponentInChildren<Button>().onClick.RemoveListener(Confirm);
+        GetComponent<IUpgrade>().Apply();
     }
 
     private bool CanAfford()

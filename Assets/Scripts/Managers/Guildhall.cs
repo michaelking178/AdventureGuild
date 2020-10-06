@@ -65,4 +65,9 @@ public class Guildhall : MonoBehaviour
             Renown = 0;
         }
     }
+
+    public void SetPopulationCap(int _populationCap)
+    {
+        PopulationCap = _populationCap;
+    }
 }
