@@ -9,7 +9,6 @@ public class Guildhall : MonoBehaviour
     public int Wood { get; set; }
     public int Renown { get; set; }
     public float renownThreshold = 50.0f;
-    public int PopulationCap { get; set; } = 5;
 
     private PopulationManager populationManager;
     private QuestManager questManager;
@@ -24,9 +23,9 @@ public class Guildhall : MonoBehaviour
     {
         if (Renown >= renownThreshold)
         {
+            renownThreshold *= 2f;
             populationManager.CreateGuildMember();
             questManager.PopulateQuestPool(Mathf.FloorToInt(renownThreshold / 25) - Mathf.FloorToInt(renownThreshold / 100));
-            renownThreshold *= 2f;
         }
     }
 
@@ -66,8 +65,5 @@ public class Guildhall : MonoBehaviour
         }
     }
 
-    public void SetPopulationCap(int _populationCap)
-    {
-        PopulationCap = _populationCap;
-    }
+
 }

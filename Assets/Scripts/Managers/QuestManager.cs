@@ -267,4 +267,20 @@ public class QuestManager : MonoBehaviour
                 break;
         }
     }
+
+    public bool IsSkillUnlocked(string _skill)
+    {
+        switch (_skill)
+        {
+            case "Combat":
+                return combatUnlocked;
+            case "Espionage":
+                return espionageUnlocked;
+            case "Diplomacy":
+                return diplomacyUnlocked;
+            default:
+                Debug.Log("Cannot find skill: " + _skill);
+                return false;
+        }
+    }
 }

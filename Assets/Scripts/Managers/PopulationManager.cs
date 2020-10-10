@@ -34,6 +34,8 @@ public class PopulationManager : MonoBehaviour
     [Header("Guild Members")]
     public List<GuildMember> GuildMembers = new List<GuildMember>();
 
+    public int PopulationCap { get; set; } = 5;
+
     private NotificationManager notificationManager;
     private int recoveryQueue;
     private float recoveryTime;
@@ -59,26 +61,29 @@ public class PopulationManager : MonoBehaviour
 
     public void CreateGuildMember()
     {
-        string firstName;
-        string lastName = lastNames.prefixes[Random.Range(0, lastNames.prefixes.Length)] + lastNames.suffixes[Random.Range(0, lastNames.suffixes.Length)];
-        Sprite avatar;
-        int gender = Random.Range(0, 2);
-        if (gender == 0)
+        if (GuildMembers.Count < PopulationCap)
         {
-            firstName = maleNames.prefixes[Random.Range(0, maleNames.prefixes.Length)] + maleNames.suffixes[Random.Range(0, maleNames.suffixes.Length)];
-            avatar = maleAvatars[Random.Range(0, maleAvatars.Count)];
+            string firstName;
+            string lastName = lastNames.prefixes[Random.Range(0, lastNames.prefixes.Length)] + lastNames.suffixes[Random.Range(0, lastNames.suffixes.Length)];
+            Sprite avatar;
+            int gender = Random.Range(0, 2);
+            if (gender == 0)
+            {
+                firstName = maleNames.prefixes[Random.Range(0, maleNames.prefixes.Length)] + maleNames.suffixes[Random.Range(0, maleNames.suffixes.Length)];
+                avatar = maleAvatars[Random.Range(0, maleAvatars.Count)];
+            }
+            else
+            {
+                firstName = femaleNames.prefixes[Random.Range(0, femaleNames.prefixes.Length)] + femaleNames.suffixes[Random.Range(0, femaleNames.suffixes.Length)];
+                avatar = femaleAvatars[Random.Range(0, femaleAvatars.Count)];
+            }
+            Person newPerson = new Person(gender, firstName, lastName);
+            GuildMember newMember = Instantiate(guildMemberPrefab, transform);
+            newMember.Init(newPerson);
+            newMember.Avatar = avatar;
+            GuildMembers.Add(newMember);
+            notificationManager.CreateNotification(string.Format("{0} has joined the Adventure Guild!", newMember.person.name), Notification.Type.GuildMember, Notification.Spirit.Good);
         }
-        else
-        {
-            firstName = femaleNames.prefixes[Random.Range(0, femaleNames.prefixes.Length)] + femaleNames.suffixes[Random.Range(0, femaleNames.suffixes.Length)];
-            avatar = femaleAvatars[Random.Range(0, femaleAvatars.Count)];
-        }
-        Person newPerson = new Person(gender, firstName, lastName);
-        GuildMember newMember = Instantiate(guildMemberPrefab, transform);
-        newMember.Init(newPerson);
-        newMember.Avatar = avatar;
-        GuildMembers.Add(newMember);
-        notificationManager.CreateNotification(string.Format("{0} has joined the Adventure Guild!", newMember.person.name), Notification.Type.GuildMember, Notification.Spirit.Good);
     }
 
     public void LoadGuildMember(GuildMemberData guildMemberData)
@@ -189,5 +194,10 @@ public class PopulationManager : MonoBehaviour
                 return guildMember;
         }
         return null;
+    }
+
+    public void SetPopulationCap(int _populationCap)
+    {
+        PopulationCap = _populationCap;
     }
 }
