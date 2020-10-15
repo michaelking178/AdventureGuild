@@ -14,7 +14,7 @@ public class QuestUI : MonoBehaviour
     private TextMeshProUGUI questTime;
 
     [SerializeField]
-    private TextMeshProUGUI questDifficulty;
+    private TextMeshProUGUI questLevel;
 
     [SerializeField]
     private TextMeshProUGUI questExperience;
@@ -52,7 +52,7 @@ public class QuestUI : MonoBehaviour
     {
         questName.text = quest.questName;
         questExperience.text = quest.Reward.Exp.ToString();
-        questDifficulty.text = "Level " + quest.difficulty;
+        questLevel.text = "Level " + quest.level;
         questReward.text = Helpers.QuestRewardStr(quest);
 
         if (quest.State == Quest.Status.Completed || quest.State == Quest.Status.Failed)
@@ -61,7 +61,7 @@ public class QuestUI : MonoBehaviour
         }
         else if (quest.State == Quest.Status.New)
         {
-            questTime.text = quest.time.ToString() + " seconds";
+            questTime.text = Helpers.FormatTimer(quest.time);
         }
         else if (quest.State == Quest.Status.Active)
         {

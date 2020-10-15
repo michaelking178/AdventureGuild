@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class QuestData
 {
     public string questName, contractor, description, commencement, completion;
-    public int id, difficulty, time;
+    public int id, level, time;
     public int questInstanceId;
     public Reward Reward;
     public int guildMemberId = 0;
@@ -21,7 +21,7 @@ public class QuestData
         commencement = quest.commencement;
         completion = quest.completion;
         id = quest.id;
-        difficulty = quest.difficulty;
+        level = quest.level;
         time = quest.time;
         questInstanceId = quest.questInstanceId;
         Reward = quest.Reward;

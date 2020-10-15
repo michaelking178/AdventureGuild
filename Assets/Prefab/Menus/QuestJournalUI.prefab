@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5064948655163407573}
   - component: {fileID: 2153221777195218438}
   m_Layer: 5
-  m_Name: txt_Difficulty
+  m_Name: txt_Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Difficulty
+  m_text: LEVEL
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 66ca03310849d5643b81fa09ed2cd405, type: 2}
   m_sharedMaterial: {fileID: 8847002362934079468, guid: 66ca03310849d5643b81fa09ed2cd405,
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 2153221777195218438}
-    characterCount: 10
+    characterCount: 5
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -1241,7 +1241,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Quest Name
+  m_text: QUEST_NAME
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 66ca03310849d5643b81fa09ed2cd405, type: 2}
   m_sharedMaterial: {fileID: 8847002362934079468, guid: 66ca03310849d5643b81fa09ed2cd405,
@@ -1313,7 +1313,7 @@ MonoBehaviour:
     textComponent: {fileID: 9054479891117925281}
     characterCount: 10
     spriteCount: 0
-    spaceCount: 1
+    spaceCount: 0
     wordCount: 2
     linkCount: 0
     lineCount: 1
@@ -1437,7 +1437,7 @@ MonoBehaviour:
   extensionPanel: {fileID: 8606640716035622340}
   questName: {fileID: 9054479891117925281}
   questTime: {fileID: 2609200873049413987}
-  questDifficulty: {fileID: 2153221777195218438}
+  questLevel: {fileID: 2153221777195218438}
   questExperience: {fileID: 667097138845496842}
   questReward: {fileID: 2669235583217265300}
 --- !u!1001 &27263672420822138

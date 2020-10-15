@@ -76,8 +76,9 @@ public class SaveData
             // QuestManager needs to handle this because QuestTimer inherits Monobehaviour so must be instantiated.
             GameObject.FindObjectOfType<QuestManager>().LoadQuestTimer(questTimerData);
         }
-
-        GameObject.FindObjectOfType<PopulationManager>().recoveryStartTime = populationManagerData.recoveryStartTime;
+        PopulationManager populationManager = GameObject.FindObjectOfType<PopulationManager>();
+        populationManager.recoveryStartTime = populationManagerData.recoveryStartTime;
+        populationManager.PopulationCap = populationManagerData.populationCap;
 
         if (settingsData != null)
         {
@@ -95,7 +96,7 @@ public class SaveData
         questToLoad.commencement = _questData.commencement;
         questToLoad.completion = _questData.completion;
         questToLoad.id = _questData.id;
-        questToLoad.difficulty = _questData.difficulty;
+        questToLoad.level = _questData.level;
         questToLoad.time = _questData.time;
         questToLoad.questInstanceId = _questData.questInstanceId;
         questToLoad.Reward = _questData.Reward;

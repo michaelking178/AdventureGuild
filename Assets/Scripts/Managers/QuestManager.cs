@@ -61,18 +61,17 @@ public class QuestManager : MonoBehaviour
 
     public void PopulateQuestPool(int numOfQuests)
     {
-        int maxLevel = GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>().Level + 3;
+        int maxLevel = GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>().Level;  // TODO: QuestManager needs to check for the max level of all Adventurers, not just the Hero.
+        int breakout = 0;
 
         // This should protect against the infinite loop caused by trying to add more quests than exist in the JSON file.
-        if (numOfQuests > 10)
+        if (numOfQuests > 5)
         {
-            numOfQuests = 10;
+            numOfQuests = 5;
         }
         List<Quest> questsToGet = new List<Quest>();
         for (int i = 0; i < numOfQuests; i++)
         {
-            int breakout = 0;
-            Quest quest = new Quest();
             Quest questToClone;
             do
             {
@@ -81,17 +80,9 @@ public class QuestManager : MonoBehaviour
             }
             while (!Helpers.IsUniqueMember(questToClone.questName, questsToGet.Select(q => q.questName).ToList())
                     || !Helpers.IsUniqueMember(questToClone.questName, questPool.Select(q => q.questName).ToList())
-                    || questToClone.difficulty > maxLevel
-                    || breakout >= 50);
-            quest.questName = questToClone.questName;
-            quest.contractor = questToClone.contractor;
-            quest.description = questToClone.description;
-            quest.commencement = questToClone.commencement;
-            quest.completion = questToClone.completion;
-            quest.id = questToClone.id;
-            quest.difficulty = questToClone.difficulty;
-            quest.time = questToClone.time;
-            quest.Init();
+                    || questToClone.level > maxLevel + 1
+                    || breakout < 50);
+            Quest quest = CloneQuest(questToClone);
             questsToGet.Add(quest);
         }
         foreach (Quest quest in questsToGet)
@@ -99,6 +90,22 @@ public class QuestManager : MonoBehaviour
             questPool.Add(quest);
         }
         SortQuestPool();
+    }
+
+    private Quest CloneQuest(Quest questToClone)
+    {
+        Quest quest = new Quest
+        {
+            questName = questToClone.questName,
+            contractor = questToClone.contractor,
+            description = questToClone.description,
+            commencement = questToClone.commencement,
+            completion = questToClone.completion,
+            id = questToClone.id,
+            level = questToClone.level
+        };
+        quest.Init();
+        return quest;
     }
 
     public Quest GetQuestById(int _id)

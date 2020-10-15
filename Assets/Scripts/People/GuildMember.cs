@@ -105,6 +105,7 @@ public class GuildMember : MonoBehaviour
                 Experience = 0;
                 Level = 1;
                 MaxHitpoints = 100;
+                Hitpoints = MaxHitpoints;
                 FindObjectOfType<NotificationManager>().CreateNotification(string.Format("{0} has honed their skills and become an Adventurer!", person.name), Notification.Type.GuildMember, Notification.Spirit.Good);
             }
             else

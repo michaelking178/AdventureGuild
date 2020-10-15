@@ -65,4 +65,37 @@ public class MenuManager : MonoBehaviour
         }
         return null;
     }
+
+    public void DisableMenu(string menuName)
+    {
+        foreach (GameObject _menu in menus)
+        {
+            if (_menu.name == menuName)
+            {
+                _menu.SetActive(false);
+                return;
+            }
+        }
+        Debug.Log("MenuManager cannot destroy menu " + menuName);
+    }
+
+    #region Disable Character Creator after character creation is finished
+
+    public void DisableCharacterCreation()
+    {
+        StartCoroutine(DisableCharacterCreator());
+    }
+
+    // Wait 3 seconds to allow for transition to finish before destruction
+    private IEnumerator DisableCharacterCreator()
+    {
+        yield return new WaitForSeconds(3);
+        DisableMenu("Menu_Start");
+        DisableMenu("Menu_Start_2");
+        DisableMenu("Menu_CharacterCreator_1");
+        DisableMenu("Menu_CharacterCreator_2");
+        DisableMenu("Menu_CharacterCreator_3");
+    }
+
+    #endregion
 }
