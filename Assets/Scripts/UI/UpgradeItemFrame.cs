@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,22 +41,26 @@ public class UpgradeItemFrame : MonoBehaviour
         itemNameText.text = itemName;
         guildhall = FindObjectOfType<Guildhall>();
         upgrade = GetComponent<Upgrade>();
-        if (upgrade != null && upgrade.IsPurchased)
-        {
-            SetPurchased();
-        }
+        StartCoroutine(CheckForPurchase());
     }
 
-    private void FixedUpdate()
+    private IEnumerator CheckForPurchase()
     {
+        yield return new WaitForSeconds(1.5f);
         if (upgrade != null && !upgrade.IsPurchased && upgrade.CanAfford())
         {
             SetAvailable();
+        }
+        else if (upgrade != null && upgrade.IsPurchased)
+        {
+            SetUnavailable();
+            SetPurchased();
         }
         else
         {
             SetUnavailable();
         }
+        yield return null;
     }
 
     public bool IsAvailable()
@@ -65,22 +70,16 @@ public class UpgradeItemFrame : MonoBehaviour
 
     public void SetAvailable()
     {
-        if (!isAvailable)
-        {
-            isAvailable = true;
-            itemImage.color = availableColor;
-            itemNameText.color = fontAvailableColor;
-        }
+        isAvailable = true;
+        itemImage.color = availableColor;
+        itemNameText.color = fontAvailableColor;
     }
 
     public void SetUnavailable()
     {
-        if (isAvailable)
-        {
-            isAvailable = false;
-            itemImage.color = unavailableColor;
-            itemNameText.color = fontUnavailableColor;
-        }
+        isAvailable = false;
+        itemImage.color = unavailableColor;
+        itemNameText.color = fontUnavailableColor;
     }
 
     public void SetPurchased()

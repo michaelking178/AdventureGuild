@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Up_Barracks : Upgrade
 {
@@ -11,15 +12,22 @@ public class Up_Barracks : Upgrade
     {
         base.Start();
         populationManager = FindObjectOfType<PopulationManager>();
-        if (populationManager.PopulationCap == populationUpgrade)
-        {
-            IsPurchased = true;
-        }
+        StartCoroutine(CheckForUpgrade());
     }
 
     public override void Apply()
     {
         base.Apply();
         populationManager.SetPopulationCap(populationUpgrade);
+    }
+
+    private IEnumerator CheckForUpgrade()
+    {
+        yield return new WaitForSeconds(1);
+        if (populationManager.PopulationCap >= populationUpgrade)
+        {
+            IsPurchased = true;
+        }
+        yield return null;
     }
 }
