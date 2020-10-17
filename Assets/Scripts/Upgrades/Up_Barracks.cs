@@ -1,33 +1,105 @@
 ﻿using System.Collections;
+using System.IO;
 using UnityEngine;
 
 public class Up_Barracks : Upgrade
 {
+    [Header("Level One Upgrade")]
     [SerializeField]
-    private int populationUpgrade = 0;
+    private int levelOneGoldCost;
+
+    [SerializeField]
+    private int levelOneIronCost;
+
+    [SerializeField]
+    private int levelOneWoodCost;
+
+    [SerializeField]
+    private int levelOnePopulation = 10;
+
+    [Header("Level Two Upgrade")]
+    [SerializeField]
+    private int levelTwoGoldCost;
+
+    [SerializeField]
+    private int levelTwoIronCost;
+
+    [SerializeField]
+    private int levelTwoWoodCost;
+
+    [SerializeField]
+    private int levelTwoPopulation = 25;
+
+    [Header("Level Three Upgrade")]
+    [SerializeField]
+    private int levelThreeGoldCost;
+
+    [SerializeField]
+    private int levelThreeIronCost;
+
+    [SerializeField]
+    private int levelThreeWoodCost;
+
+    [SerializeField]
+    private int levelThreePopulation = 50;
 
     private PopulationManager populationManager;
+    private int populationUpgrade;
 
     private new void Start()
     {
         base.Start();
         populationManager = FindObjectOfType<PopulationManager>();
-        StartCoroutine(CheckForUpgrade());
+        //StartCoroutine(DelayedCheckForUpgrade());
+    }
+
+    private void FixedUpdate()
+    {
+        CheckForUpgrade();
     }
 
     public override void Apply()
     {
         base.Apply();
         populationManager.SetPopulationCap(populationUpgrade);
+        if (populationManager.PopulationCap != levelThreePopulation)
+        {
+            IsPurchased = false;
+        }
     }
 
-    private IEnumerator CheckForUpgrade()
+    public void CheckForUpgrade()
+    {
+        if (populationManager.PopulationCap < levelOnePopulation)
+        {
+            GoldCost = levelOneGoldCost;
+            IronCost = levelOneIronCost;
+            WoodCost = levelOneWoodCost;
+            populationUpgrade = levelOnePopulation;
+            GetComponent<UpgradeItemFrame>().SetItemAttributes("Barracks I", "Increases the maximum population of the Adventure Guild to 10");
+        }
+        else if (populationManager.PopulationCap < levelTwoPopulation)
+        {
+            GoldCost = levelTwoGoldCost;
+            IronCost = levelTwoIronCost;
+            WoodCost = levelTwoWoodCost;
+            populationUpgrade = levelTwoPopulation;
+            GetComponent<UpgradeItemFrame>().SetItemAttributes("Barracks II", "Increases the maximum population of the Adventure Guild to 25");
+        }
+        else if (populationManager.PopulationCap < levelThreePopulation)
+        {
+            GoldCost = levelThreeGoldCost;
+            IronCost = levelThreeIronCost;
+            WoodCost = levelThreeWoodCost;
+            populationUpgrade = levelThreePopulation;
+            GetComponent<UpgradeItemFrame>().SetItemAttributes("Barracks III", "Increases the maximum population of the Adventure Guild to 50");
+        }
+    }
+
+    private IEnumerator DelayedCheckForUpgrade()
     {
         yield return new WaitForSeconds(1);
-        if (populationManager.PopulationCap >= populationUpgrade)
-        {
-            IsPurchased = true;
-        }
+        CheckForUpgrade();
         yield return null;
     }
 }

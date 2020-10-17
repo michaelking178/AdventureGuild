@@ -4,6 +4,14 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    private void Awake()
+    {
+        if (SaveSystem.SaveFileExists() && SaveSystem.GetSaveVersion() != Application.version)
+        {
+            SaveSystem.DeleteGame();
+        }
+    }
+
     private void Start()
     {
         if (SaveSystem.SaveFileExists())
@@ -34,5 +42,13 @@ public class LevelManager : MonoBehaviour
         FindObjectOfType<MenuManager>().CloseMenu();
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(scene);
+    }
+
+    private void OnApplicationQuit()
+    {
+        if (GameObject.Find("Hero").GetComponent<GuildMember>().Created == true)
+        {
+            SaveSystem.SaveGame();
+        }
     }
 }

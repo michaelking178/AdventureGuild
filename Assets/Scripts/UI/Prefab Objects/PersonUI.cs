@@ -6,19 +6,7 @@ public class PersonUI : MonoBehaviour
     public GuildMember GuildMember { get; private set; }
 
     [SerializeField]
-    private GameObject extensionPanel;
-
-    [SerializeField]
-    private GameObject statsPanel;
-
-    [SerializeField]
-    private GameObject adventurerStats;
-
-    [SerializeField]
     private HeroAvatarFrame avatarFrame;
-
-    [SerializeField]
-    private TextMeshProUGUI exp;
 
     [SerializeField]
     private TextMeshProUGUI personName;
@@ -33,6 +21,21 @@ public class PersonUI : MonoBehaviour
     private TextMeshProUGUI availability;
 
     [SerializeField]
+    private GameObject extensionPanel;
+
+    [SerializeField]
+    private GameObject statsPanel;
+
+    [SerializeField]
+    private TextMeshProUGUI exp;
+
+    public GameObject contextBtn;
+
+    [Header("Adventurer Stats")]
+    [SerializeField]
+    private GameObject adventurerStats;
+
+    [SerializeField]
     private TextMeshProUGUI combatExp;
 
     [SerializeField]
@@ -41,7 +44,12 @@ public class PersonUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI diplomacyExp;
 
-    public GameObject contextBtn;
+    [Header("Peasant Stats")]
+    [SerializeField]
+    private GameObject peasantStats;
+
+    [SerializeField]
+    private TextMeshProUGUI income;
 
     private void Start()
     {
@@ -107,13 +115,16 @@ public class PersonUI : MonoBehaviour
         if (GuildMember.Vocation is Peasant)
         {
             adventurerStats.SetActive(false);
+            peasantStats.SetActive(true);
             Vector2 rectSize = statsPanel.GetComponent<RectTransform>().rect.size;
             statsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(rectSize.x, 103.0f);
+            Peasant peasant = (Peasant)GuildMember.Vocation;
+            income.text = string.Format("{0}: {1}", peasant.IncomeResource.ToString(), peasant.Income);
         }
-        else if (GuildMember.Vocation is Adventurer)
+        else if (GuildMember.Vocation is Adventurer adventurer)
         {
-            Adventurer adventurer = (Adventurer)GuildMember.Vocation;
             adventurerStats.SetActive(true);
+            peasantStats.SetActive(false);
             Vector2 rectSize = statsPanel.GetComponent<RectTransform>().rect.size;
             statsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(rectSize.x, 215.0f);
             combatExp.text = "Combat: " + adventurer.CombatExp.ToString();

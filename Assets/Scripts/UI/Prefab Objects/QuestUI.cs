@@ -39,13 +39,26 @@ public class QuestUI : MonoBehaviour
     private void FixedUpdate()
     {
         if (quest != null)
+        {
             SetQuestUIAttributes();
+        }
     }
 
     public void SetQuest(Quest _quest)
     {
         quest = _quest;
         SetQuestUIAttributes();
+        if (quest.State == Quest.Status.Completed || quest.State == Quest.Status.Failed)
+        {
+            foreach (Image image in GetComponentsInChildren<Image>())
+            {
+                image.color = new Color(0.5f, 0.5f, 0.5f, 1);
+            }
+            foreach (TextMeshProUGUI text in GetComponentsInChildren<TextMeshProUGUI>())
+            {
+                text.color = new Color(0.5f, 0.5f, 0.5f, 1);
+            }
+        }
     }
 
     private void SetQuestUIAttributes()

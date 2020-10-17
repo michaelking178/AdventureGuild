@@ -9,6 +9,10 @@ public class GuildhallData
     public int weapons;
     public int renown;
     public float renownThreshold;
+    public int goldIncome;
+    public int ironIncome;
+    public int woodIncome;
+    public DateTime startTime;
 
     public GuildhallData(Guildhall guildhall)
     {
@@ -18,5 +22,9 @@ public class GuildhallData
         weapons = 0;
         renown = guildhall.Renown;
         renownThreshold = guildhall.renownThreshold;
+        goldIncome = guildhall.GoldIncome;
+        ironIncome = guildhall.IronIncome;
+        woodIncome = guildhall.WoodIncome;
+        startTime = guildhall.StartTime;
     }
 }

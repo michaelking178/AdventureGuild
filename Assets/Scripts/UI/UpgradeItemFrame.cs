@@ -41,25 +41,29 @@ public class UpgradeItemFrame : MonoBehaviour
         itemNameText.text = itemName;
         guildhall = FindObjectOfType<Guildhall>();
         upgrade = GetComponent<Upgrade>();
-        StartCoroutine(CheckForPurchase());
+        StartCoroutine(DelayedCheckForPurchase());
     }
 
-    private IEnumerator CheckForPurchase()
+    public void CheckForPurchase()
     {
-        yield return new WaitForSeconds(1.5f);
         if (upgrade != null && !upgrade.IsPurchased && upgrade.CanAfford())
         {
             SetAvailable();
         }
         else if (upgrade != null && upgrade.IsPurchased)
         {
-            SetUnavailable();
             SetPurchased();
         }
         else
         {
             SetUnavailable();
         }
+    }
+
+    private IEnumerator DelayedCheckForPurchase()
+    {
+        yield return new WaitForSeconds(1.5f);
+        CheckForPurchase();
         yield return null;
     }
 
@@ -84,6 +88,7 @@ public class UpgradeItemFrame : MonoBehaviour
 
     public void SetPurchased()
     {
+        SetUnavailable();
         checkmarkImage.gameObject.SetActive(true);
     }
 
@@ -118,6 +123,14 @@ public class UpgradeItemFrame : MonoBehaviour
     {
         popup.GetComponentInChildren<Button>().onClick.RemoveListener(Confirm);
         GetComponent<Upgrade>().Apply();
-        SetPurchased();
+        CheckForPurchase();
+    }
+
+    public void SetItemAttributes(string _name, string _description)
+    {
+        itemName = _name;
+        itemNameText.text = itemName;
+        itemDescription = _description;
+        defaultDescription = itemDescription;
     }
 }

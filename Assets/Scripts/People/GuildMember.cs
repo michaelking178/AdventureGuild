@@ -20,7 +20,7 @@ public class GuildMember : MonoBehaviour
             }
             else
             {
-                Debug.Log("That person already has a vocation!");
+                Debug.Log(string.Format("{0} already has a vocation!", person.name));
             }
         }
     }
@@ -33,6 +33,7 @@ public class GuildMember : MonoBehaviour
     public bool IsAvailable { get; set; }
     public bool IsIncapacitated { get; set; }
     public string bio { get; set; }
+    public bool Created { get; set; } = false;
 
     public void Init(Person _person)
     {
@@ -46,6 +47,7 @@ public class GuildMember : MonoBehaviour
         IsAvailable = true;
         IsIncapacitated = false;
         bio = "";
+        Created = true;
     }
 
     public void AdjustHitpoints(int change)
@@ -101,6 +103,8 @@ public class GuildMember : MonoBehaviour
             Level++;
             if (Vocation is Peasant && Level >= 5)
             {
+                Peasant peasant = (Peasant)Vocation;
+                FindObjectOfType<Guildhall>().AdjustIncome(peasant.IncomeResource, -peasant.Income);
                 Vocation = new Adventurer();
                 Experience = 0;
                 Level = 1;
@@ -110,6 +114,10 @@ public class GuildMember : MonoBehaviour
             }
             else
             {
+                if (Vocation is Peasant peasant)
+                {
+                    peasant.Income = Mathf.CeilToInt(peasant.Income * 1.5f);
+                }
                 MaxHitpoints += 10;
                 Hitpoints = MaxHitpoints;
                 FindObjectOfType<NotificationManager>().CreateNotification(string.Format("{0} reached Level {1}!", person.name, Level), Notification.Type.GuildMember, Notification.Spirit.Good);

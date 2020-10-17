@@ -5,6 +5,7 @@ using UnityEngine;
 [Serializable]
 public class SaveData
 {
+    public string ApplicationVersion;
     private GuildMemberData heroData;
     private GuildhallData guildhallData;
     private List<GuildMemberData> guildMemberDatas;
@@ -16,6 +17,7 @@ public class SaveData
 
     public SaveData(GuildMemberData _heroData, GuildhallData _guildhallData, List<GuildMemberData> _guildMemberDatas, List<QuestData> _questDataPool, List<QuestData> _questDataArchive, List<QuestTimerData> _questTimerDatas, SettingsData _settingsData, PopulationManagerData _populationManagerData)
     {
+        ApplicationVersion = Application.version;
         heroData = _heroData;
         guildhallData = _guildhallData;
         guildMemberDatas = _guildMemberDatas;
@@ -48,6 +50,10 @@ public class SaveData
         guildhall.Wood = guildhallData.wood;
         guildhall.Renown = guildhallData.renown;
         guildhall.renownThreshold = guildhallData.renownThreshold;
+        guildhall.GoldIncome = guildhallData.goldIncome;
+        guildhall.IronIncome = guildhallData.ironIncome;
+        guildhall.WoodIncome = guildhallData.woodIncome;
+        guildhall.StartTime = guildhallData.startTime;
 
         foreach (GuildMemberData guildMemberData in guildMemberDatas)
         {

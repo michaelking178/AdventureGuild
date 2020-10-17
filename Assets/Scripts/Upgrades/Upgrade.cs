@@ -16,7 +16,6 @@ public abstract class Upgrade : MonoBehaviour
 
     public virtual void Apply()
     {
-        Debug.Log("Purchased " + name);
         IsPurchased = true;
         guildhall.AdjustGold(-GoldCost);
         guildhall.AdjustWood(-WoodCost);

@@ -21,6 +21,6 @@ public class StatsBanner : MonoBehaviour
         adventurers.text = populationManager.Adventurers().Count.ToString();
         artisans.text = populationManager.Artisans().Count.ToString();
         peasants.text = populationManager.Peasants().Count.ToString();
-        renown.text = guildhall.Renown.ToString();
+        renown.text = guildhall.Renown.ToString() + "/" + guildhall.renownThreshold;
     }
 }

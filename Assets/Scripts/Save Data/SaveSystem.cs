@@ -96,4 +96,22 @@ public static class SaveSystem
         string path = Application.persistentDataPath + "/saveData.bin";
         return File.Exists(path);
     }
+
+    public static string GetSaveVersion()
+    {
+        string path = Application.persistentDataPath + "/saveData.bin";
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+            SaveData saveData = (SaveData)formatter.Deserialize(stream);
+            stream.Close();
+            return saveData.ApplicationVersion;
+        }
+        else
+        {
+            Debug.LogError("Save File not found!");
+            return null;
+        }
+    }
 }

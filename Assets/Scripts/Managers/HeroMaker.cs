@@ -46,5 +46,6 @@ public class HeroMaker : MonoBehaviour
     public void SetHeroName()
     {
         hero.person.name = nameTextBox.text;
+        hero.Created = true;
     }
 }

@@ -10,6 +10,11 @@ public class Guildhall : MonoBehaviour
     public int Renown { get; set; }
     public float renownThreshold = 50.0f;
 
+    public int GoldIncome { get; set; } = 0;
+    public int IronIncome { get; set; } = 0;
+    public int WoodIncome { get; set; } = 0;
+    public DateTime StartTime { get; set; }
+
     private PopulationManager populationManager;
     private QuestManager questManager;
 
@@ -17,6 +22,10 @@ public class Guildhall : MonoBehaviour
     {
         populationManager = FindObjectOfType<PopulationManager>();
         questManager = FindObjectOfType<QuestManager>();
+        if (StartTime == DateTime.MinValue)
+        {
+            StartTime = DateTime.Now;
+        }
     }
 
     private void FixedUpdate()
@@ -65,5 +74,21 @@ public class Guildhall : MonoBehaviour
         }
     }
 
-
+    public void AdjustIncome(Peasant.IncomeType incomeType, int _income)
+    {
+        switch (incomeType)
+        {
+            case Peasant.IncomeType.Gold:
+                GoldIncome += _income;
+                break;
+            case Peasant.IncomeType.Wood:
+                WoodIncome += _income;
+                break;
+            case Peasant.IncomeType.Iron:
+                IronIncome += _income;
+                break;
+            default:
+                break;
+        }
+    }
 }

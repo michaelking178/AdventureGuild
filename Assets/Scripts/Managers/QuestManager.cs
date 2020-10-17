@@ -53,7 +53,7 @@ public class QuestManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (questPool.Count == 0)
+        if (GetQuestsByStatus(Quest.Status.New).Count <= 3)
         {
             PopulateQuestPool(UnityEngine.Random.Range(3,6));
         }
