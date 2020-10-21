@@ -28,14 +28,12 @@ Anticipated Launch date: **Holiday 2020**
 
 Feature Development Priorities (To-Do):
 
- - Fix experience generation from the training minigame -- make it dependent on the distance between the center of the shield and the point of the collision.
  - Sort quests by level
- - Implement leveling structure for all characters.
- - Implement Combat, Espionage and Diplomacy experience in all Quests.
- - Implement Peasant passive income (?).
+ - Add Combat, Espionage and Diplomacy quests
+ - Add icons on QuestUI to indicate skill quests and faction quests
 
 Additional/Ongoing Tasks:
 
- - Create more quests.
- - Create more adventurer names.
- - Skill system for adventurers.
+ - Create more quests and incidents
+ - Create more adventurer names
+ - Implement rewarded ads: watch an ad to receive a time, exp, reward, etc. bonus

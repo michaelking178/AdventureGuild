@@ -6,10 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     private void Awake()
     {
-        if (SaveSystem.SaveFileExists() && SaveSystem.GetSaveVersion() != Application.version)
-        {
-            SaveSystem.DeleteGame();
-        }
+        // ClearOldSave();
     }
 
     private void Start()
@@ -22,13 +19,11 @@ public class LevelManager : MonoBehaviour
 
     public void LoadLevel(string scene)
     {
-        //FindObjectOfType<NotificationManager>().ClearNotificationUIs();
         StartCoroutine(LoadLvl(scene));
     }
 
     public void LoadLevelDirect(string scene)
     {
-        //FindObjectOfType<NotificationManager>().ClearNotificationUIs();
         SceneManager.LoadScene(scene);
     }
 
@@ -49,6 +44,14 @@ public class LevelManager : MonoBehaviour
         if (GameObject.Find("Hero").GetComponent<GuildMember>().Created == true)
         {
             SaveSystem.SaveGame();
+        }
+    }
+
+    private void ClearOldSave()
+    {
+        if (SaveSystem.SaveFileExists() && SaveSystem.GetSaveVersion() != Application.version)
+        {
+            SaveSystem.DeleteGame();
         }
     }
 }

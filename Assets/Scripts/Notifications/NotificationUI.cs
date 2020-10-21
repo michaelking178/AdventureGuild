@@ -16,7 +16,7 @@ public class NotificationUI : MonoBehaviour
     private SoundManager soundManager;
     private AudioSource audioSource;
     private AudioSource sMAudioSource;
-    private float closeTimer = 5.0f;
+    private float closeTimer = 8.0f;
 
     private void Start()
     {

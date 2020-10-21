@@ -116,7 +116,9 @@ public class GuildMember : MonoBehaviour
             {
                 if (Vocation is Peasant peasant)
                 {
+                    FindObjectOfType<Guildhall>().AdjustIncome(peasant.IncomeResource, -peasant.Income);
                     peasant.Income = Mathf.CeilToInt(peasant.Income * 1.5f);
+                    FindObjectOfType<Guildhall>().AdjustIncome(peasant.IncomeResource, peasant.Income);
                 }
                 MaxHitpoints += 10;
                 Hitpoints = MaxHitpoints;

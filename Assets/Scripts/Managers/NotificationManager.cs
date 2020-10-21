@@ -8,8 +8,10 @@ public class NotificationManager : MonoBehaviour
     [SerializeField]
     private GameObject notificationPrefab;
 
-    public List<Notification> notifications;
+    [HideInInspector]
     public List<GameObject> notificationUIs;
+
+    public List<Notification> notifications;
 
     private Vector2 position;
     private float notchOffset = -200.0f;

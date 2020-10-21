@@ -1,4 +1,6 @@
-﻿[System.Serializable]
+﻿using UnityEngine;
+
+[System.Serializable]
 public class Reward
 {
     public int Gold { get; set; }
@@ -7,12 +9,12 @@ public class Reward
     public int Exp { get; set; }
     public int Renown { get; set; }
 
-    public Reward(int difficulty)
+    public Reward(int questLevel)
     {
-        Gold = 100 * (difficulty + 1);
-        Iron = 10 * (difficulty + 1);
-        Wood = 25 * (difficulty + 1);
-        Exp = 100 * (difficulty + 1);
-        Renown = 15 * (difficulty + 1);
+        Gold = 100 * (questLevel + 1 + Mathf.FloorToInt(questLevel / 5));
+        Iron = 10 * (questLevel + 1 + Mathf.FloorToInt(questLevel / 5));
+        Wood = 25 * (questLevel + 1 + Mathf.FloorToInt(questLevel / 5));
+        Exp = 100 * (questLevel + 1 + Mathf.FloorToInt(questLevel / 5));
+        Renown = 2 * (questLevel + 1 + Mathf.FloorToInt(questLevel / 5));
     }
 }

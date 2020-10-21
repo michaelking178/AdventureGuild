@@ -64,32 +64,35 @@ public class QuestManager : MonoBehaviour
         int maxLevel = GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>().Level;  // TODO: QuestManager needs to check for the max level of all Adventurers, not just the Hero.
         int breakout = 0;
 
-        // This should protect against the infinite loop caused by trying to add more quests than exist in the JSON file.
+        // These if's should protect against the infinite loop caused by trying to add more quests than exist in the JSON file.
         if (numOfQuests > 5)
         {
             numOfQuests = 5;
         }
-        List<Quest> questsToGet = new List<Quest>();
-        for (int i = 0; i < numOfQuests; i++)
+        if (questPool.Count + numOfQuests < 15)
         {
-            Quest questToClone;
-            do
+            List<Quest> questsToGet = new List<Quest>();
+            for (int i = 0; i < numOfQuests; i++)
             {
-                breakout++;
-                questToClone = quests.GetRandomQuest();
+                Quest questToClone;
+                do
+                {
+                    breakout++;
+                    questToClone = quests.GetRandomQuest();
+                }
+                while (!Helpers.IsUniqueMember(questToClone.questName, questsToGet.Select(q => q.questName).ToList())
+                        || !Helpers.IsUniqueMember(questToClone.questName, questPool.Select(q => q.questName).ToList())
+                        || questToClone.level > maxLevel + 1
+                        || breakout < 50);
+                Quest quest = CloneQuest(questToClone);
+                questsToGet.Add(quest);
             }
-            while (!Helpers.IsUniqueMember(questToClone.questName, questsToGet.Select(q => q.questName).ToList())
-                    || !Helpers.IsUniqueMember(questToClone.questName, questPool.Select(q => q.questName).ToList())
-                    || questToClone.level > maxLevel + 1
-                    || breakout < 50);
-            Quest quest = CloneQuest(questToClone);
-            questsToGet.Add(quest);
+            foreach (Quest quest in questsToGet)
+            {
+                questPool.Add(quest);
+            }
+            SortQuestPool();
         }
-        foreach (Quest quest in questsToGet)
-        {
-            questPool.Add(quest);
-        }
-        SortQuestPool();
     }
 
     private Quest CloneQuest(Quest questToClone)
