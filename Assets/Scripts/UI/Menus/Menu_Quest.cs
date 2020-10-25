@@ -15,9 +15,6 @@ public class Menu_Quest : MonoBehaviour
     private TextMeshProUGUI questReward;
 
     [SerializeField]
-    private TextMeshProUGUI questExperience;
-
-    [SerializeField]
     private TextMeshProUGUI questDescription;
 
     void Start()
@@ -29,8 +26,16 @@ public class Menu_Quest : MonoBehaviour
     {
         Quest quest = questManager.CurrentQuest;
         questName.text = quest.questName;
-        questContractor.text = quest.contractor;
         questReward.text = Helpers.QuestRewardStr(quest);
         questDescription.text = quest.description;
+
+        if (quest.QuestFaction != Quest.Faction.None)
+        {
+            questContractor.text = string.Format("{0} of the {1}", quest.contractor, quest.GetFactionString());
+        }
+        else
+        {
+            questContractor.text = quest.contractor;
+        }
     }
 }

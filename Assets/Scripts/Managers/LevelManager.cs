@@ -6,7 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     private void Awake()
     {
-        // ClearOldSave();
+        ClearOldSave();
     }
 
     private void Start()

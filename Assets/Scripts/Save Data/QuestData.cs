@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [Serializable]
 public class QuestData
 {
-    public string questName, contractor, description, commencement, completion;
+    public string questName, contractor, skill, faction, description, commencement, completion;
     public int id, level, time;
     public int questInstanceId;
     public Reward Reward;
@@ -12,11 +12,15 @@ public class QuestData
     public Quest.Status State;
     public List<Incident> Incidents;
     public DateTime startTime;
+    public Quest.Skill questSkill;
+    public Quest.Faction questFaction;
 
     public QuestData(Quest quest)
     {
         questName = quest.questName;
         contractor = quest.contractor;
+        skill = quest.skill;
+        faction = quest.faction;
         description = quest.description;
         commencement = quest.commencement;
         completion = quest.completion;
@@ -32,5 +36,7 @@ public class QuestData
         State = quest.State;
         Incidents = quest.Incidents;
         startTime = quest.startTime;
+        questSkill = quest.QuestSkill;
+        questFaction = quest.QuestFaction;
     }
 }

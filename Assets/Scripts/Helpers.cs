@@ -5,6 +5,8 @@ using UnityEngine;
 
 public static class Helpers
 {
+    private static List<int> ids = new List<int>();
+
     /// <summary>
     /// Returns a list of child game objects.
     /// </summary>
@@ -45,6 +47,10 @@ public static class Helpers
         if (quest.Reward.Renown != 0)
         {
             reward += quest.Reward.Renown.ToString() + " Renown\n";
+        }
+        if (quest.Reward.SkillExp != 0)
+        {
+            reward += quest.Reward.SkillExp.ToString() + " " + quest.QuestSkill.ToString() + " Experience\n";
         }
         return reward;
     }
@@ -146,12 +152,36 @@ public static class Helpers
         return true;
     }
 
-    // Todo: Improve the ID generator. This is not robust.
+    // Todo: Keep an eye on GenerateId(). Make sure it works.
     public static int GenerateId()
     {
+        bool isNew = true;
         int a = Random.Range(3334, 33333);
         int b = Random.Range(3334, 33333);
         int c = Random.Range(3334, 33333);
-        return a + b + c;
+        int newId = a + b + c;
+
+        if (ids.Count > 0)
+        {
+            foreach (int id in ids)
+            {
+                if (id == newId)
+                {
+                    isNew = false;
+                }
+            }
+        }
+        else isNew = true;
+
+        if (isNew)
+        {
+            ids.Add(newId);
+            return newId;
+        }
+        else
+        {
+            Debug.Log("Helper's generated ID is not original. Trying again...");
+            return GenerateId();
+        }
     }
 }

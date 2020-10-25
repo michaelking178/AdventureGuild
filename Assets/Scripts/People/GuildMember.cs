@@ -77,20 +77,20 @@ public class GuildMember : MonoBehaviour
         CheckLevel();
     }
 
-    public void AddExp(string expType, int _exp)
+    public void AddExp(Quest.Skill skillType, int _exp)
     {
         if (vocation.Title() != "Adventurer") return;
 
         Adventurer adv = (Adventurer)vocation;
-        if (expType == "Combat")
+        if (skillType == Quest.Skill.Combat)
         {
             adv.CombatExp += _exp;
         }
-        else if (expType == "Espionage")
+        else if (skillType == Quest.Skill.Espionage)
         {
             adv.EspionageExp += _exp;
         }
-        else if (expType == "Diplomacy")
+        else if (skillType == Quest.Skill.Diplomacy)
         {
             adv.DiplomacyExp += _exp;
         }

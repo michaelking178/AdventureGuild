@@ -43,31 +43,38 @@ public class Up_Barracks : Upgrade
     private int levelThreePopulation = 50;
 
     private PopulationManager populationManager;
+    private MenuManager menuManager;
+    private GameObject menu_UpgradeGuildhall;
     private int populationUpgrade;
 
     private new void Start()
     {
         base.Start();
         populationManager = FindObjectOfType<PopulationManager>();
+        menuManager = FindObjectOfType<MenuManager>();
+        menu_UpgradeGuildhall = FindObjectOfType<Menu_UpgradeGuildhall>().gameObject;
         StartCoroutine(DelayedCheckForUpgrade());
     }
 
     private void FixedUpdate()
     {
-        CheckForUpgrade();
+        if (menuManager.CurrentMenu == menu_UpgradeGuildhall)
+        {
+            CheckForUpgrade();
+        }
     }
 
     public override void Apply()
     {
         base.Apply();
         populationManager.SetPopulationCap(populationUpgrade);
-        if (populationManager.PopulationCap != levelThreePopulation)
+        if (populationManager.PopulationCap < levelThreePopulation)
         {
             IsPurchased = false;
         }
     }
 
-    public void CheckForUpgrade()
+    private void CheckForUpgrade()
     {
         if (populationManager.PopulationCap < levelOnePopulation)
         {

@@ -11,18 +11,23 @@ public class Menu_Settings : MonoBehaviour
 
     private AudioSource soundAudioSource;
     private AudioSource musicAudioSource;
+    private MenuManager menuManager;
 
     private void Start()
     {
         soundAudioSource = GameObject.Find("SoundManager").GetComponent<AudioSource>();
         musicAudioSource = GameObject.Find("MusicManager").GetComponent<AudioSource>();
+        menuManager = FindObjectOfType<MenuManager>();
         LoadMenu();
     }
 
     private void FixedUpdate()
     {
-        musicAudioSource.volume = musicVolume.value;
-        soundAudioSource.volume = soundVolume.value;
+        if (menuManager.CurrentMenu == gameObject)
+        {
+            musicAudioSource.volume = musicVolume.value;
+            soundAudioSource.volume = soundVolume.value;
+        }
     }
 
     public void LoadMenu()

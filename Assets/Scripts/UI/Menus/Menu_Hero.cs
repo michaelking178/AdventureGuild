@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HeroPanel : MonoBehaviour
+public class Menu_Hero : MonoBehaviour
 {
     [SerializeField]
     private Image heroImage;
@@ -35,6 +35,12 @@ public class HeroPanel : MonoBehaviour
     private Button heroBioCancel;
 
     private GuildMember hero;
+    private MenuManager menuManager;
+
+    private void Start()
+    {
+        menuManager = FindObjectOfType<MenuManager>();
+    }
 
     public void UpdateHeroPanel()
     {
@@ -45,7 +51,7 @@ public class HeroPanel : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (hero != null)
+        if (menuManager.CurrentMenu == gameObject && hero != null)
         {
             heroVocation.text = string.Format("Level {0} {1}", hero.Level, hero.Vocation.Title());
             heroExperience.text = string.Format("Experience: {0} / {1}", hero.Experience, CharacterLevel.LevelValues[hero.Level]);

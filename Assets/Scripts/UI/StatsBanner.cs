@@ -9,10 +9,14 @@ public class StatsBanner : MonoBehaviour
     private Guildhall guildhall;
     private PopulationManager populationManager;
 
-    private void FixedUpdate()
+    private void Start()
     {
         guildhall = FindObjectOfType<Guildhall>();
         populationManager = FindObjectOfType<PopulationManager>();
+    }
+
+    private void FixedUpdate()
+    {
         gold.text = guildhall.Gold.ToString();
         iron.text = guildhall.Iron.ToString();
         wood.text = guildhall.Wood.ToString();

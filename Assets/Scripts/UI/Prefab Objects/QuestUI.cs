@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class QuestUI : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject extensionPanel;
-
     [SerializeField]
     private TextMeshProUGUI questName;
 
@@ -17,16 +15,24 @@ public class QuestUI : MonoBehaviour
     private TextMeshProUGUI questLevel;
 
     [SerializeField]
-    private TextMeshProUGUI questExperience;
+    private Image skillIcon;
+    
+    [SerializeField]
+    private Image factionIcon;
 
     [SerializeField]
-    private TextMeshProUGUI questReward;
+    private List<Sprite> skillIcons;
+
+    [SerializeField]
+    private List<Sprite> factionIcons;
 
     private Quest quest;
     private QuestManager questManager;
     private MenuManager menuManager;
     private Menu_Quest menu_Quest;
     private Menu_QuestJournal questJournal;
+    private Color emptySlotColor = new Color(0,0,0,0.25f);
+    private Color fullSlotColor = new Color(1,1,1,1);
 
     private void Start()
     {
@@ -64,10 +70,38 @@ public class QuestUI : MonoBehaviour
     private void SetQuestUIAttributes()
     {
         questName.text = quest.questName;
-        questExperience.text = quest.Reward.Exp.ToString();
         questLevel.text = "Level " + quest.level;
-        questReward.text = Helpers.QuestRewardStr(quest);
+        SetQuestUIState();
+        SetQuestUISkill();
+        SetQuestUIFaction();
+    }
 
+    public void SetActiveQuest()
+    {
+        questManager.CurrentQuest = quest;
+    }
+
+    public void GoTo()
+    {
+        if (GetComponentInParent<QuestUIScrollView>().questUiMenu == "Menu_Quest")
+        {
+            menu_Quest.UpdateQuestMenu();
+            menuManager.OpenMenu("Menu_Quest");
+        }
+        else if (GetComponentInParent<QuestUIScrollView>().questUiMenu == "Menu_QuestJournal")
+        {
+            questJournal.SetQuest(quest);
+            questJournal.UpdateQuestJournal();
+            menuManager.OpenMenu("Menu_QuestJournal");
+        }
+        else
+        {
+            Debug.Log("Cannot navigate from QuestUI to " + GetComponentInParent<QuestUIScrollView>().questUiMenu);
+        }
+    }
+
+    private void SetQuestUIState()
+    {
         if (quest.State == Quest.Status.Completed || quest.State == Quest.Status.Failed)
         {
             questTime.text = quest.State.ToString();
@@ -89,33 +123,53 @@ public class QuestUI : MonoBehaviour
         }
     }
 
-    public void ShowPanel()
+    private void SetQuestUISkill()
     {
-        if (extensionPanel.activeSelf)
+        if (skillIcon != null)
         {
-            extensionPanel.SetActive(false);
+            switch (quest.QuestSkill)
+            {
+                case Quest.Skill.Combat:
+                    skillIcon.color = fullSlotColor;
+                    skillIcon.sprite = skillIcons[0];
+                    break;
+                case Quest.Skill.Espionage:
+                    skillIcon.color = fullSlotColor;
+                    skillIcon.sprite = skillIcons[2];
+                    break;
+                case Quest.Skill.Diplomacy:
+                    skillIcon.color = fullSlotColor;
+                    skillIcon.sprite = skillIcons[1];
+                    break;
+                default:
+                    skillIcon.color = emptySlotColor;
+                    break;
+            }
         }
-        else
+    }
+
+    private void SetQuestUIFaction()
+    {
+        if (factionIcon != null)
         {
-            extensionPanel.SetActive(true);
+            switch (quest.QuestFaction)
+            {
+                case Quest.Faction.MagesGuild:
+                    factionIcon.color = fullSlotColor;
+                    factionIcon.sprite = factionIcons[0];
+                    break;
+                case Quest.Faction.MerchantsGuild:
+                    factionIcon.color = fullSlotColor;
+                    factionIcon.sprite = factionIcons[0];
+                    break;
+                case Quest.Faction.RoyalPalace:
+                    factionIcon.color = fullSlotColor;
+                    factionIcon.sprite = factionIcons[0];
+                    break;
+                default:
+                    factionIcon.color = emptySlotColor;
+                    break;
+            }
         }
-    }
-
-    public void SetActiveQuest()
-    {
-        questManager.CurrentQuest = quest;
-    }
-
-    public void GoToQuestMenu()
-    {
-        menu_Quest.UpdateQuestMenu();
-        menuManager.OpenMenu("Menu_Quest");
-    }
-
-    public void GoToQuestJournal()
-    {
-        questJournal.SetQuest(quest);
-        questJournal.UpdateQuestJournal();
-        menuManager.OpenMenu("Menu_QuestJournal");
     }
 }

@@ -5,6 +5,8 @@ public class QuestUIScrollView : MonoBehaviour
     [SerializeField]
     private GameObject questUI;
 
+    public string questUiMenu = "";
+
     public void UpdateQuestList()
     {
         foreach (GameObject child in gameObject.GetChildren())

@@ -33,18 +33,24 @@ public class Menu_Marketplace : MonoBehaviour
 
     [HideInInspector]
     public int Total = 0;
+
     private int woodChange = 0, ironChange = 0;
+    private MenuManager menuManager;
 
     private void Start()
     {
         guildhall = FindObjectOfType<Guildhall>();
+        menuManager = FindObjectOfType<MenuManager>();
     }
 
     private void FixedUpdate()
     {
-        UpdateMarketplace();
-        CalculateTotal();
-        SetInteractables();
+        if (menuManager.CurrentMenu == gameObject)
+        {
+            UpdateMarketplace();
+            CalculateTotal();
+            SetInteractables();
+        }
     }
 
     private void SetInteractables()
@@ -114,7 +120,7 @@ public class Menu_Marketplace : MonoBehaviour
 
         playerGoldText.text = guildhall.Gold.ToString();
         totalText.text = Total.ToString();
-        if (Total == 0) totalText.color = Color.black;
+        if (Total == 0) totalText.color = Color.white;
         else if (Total > 0) totalText.color = Color.green;
         else totalText.color = Color.red;
     }

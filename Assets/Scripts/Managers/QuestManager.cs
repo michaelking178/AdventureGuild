@@ -21,6 +21,7 @@ public class QuestManager : MonoBehaviour
     private IncidentManager incidentManager;
     private Guildhall guildhall;
     private NotificationManager notificationManager;
+    private List<int> questIds;
 
     private readonly string failureMessage = "The challenges were too great, and I was defeated before completing my quest. I have returned to the Adventure Guild so that I may recover.";
     private string rewardMessage = "";
@@ -101,6 +102,8 @@ public class QuestManager : MonoBehaviour
         {
             questName = questToClone.questName,
             contractor = questToClone.contractor,
+            skill = questToClone.skill,
+            faction = questToClone.faction,
             description = questToClone.description,
             commencement = questToClone.commencement,
             completion = questToClone.completion,
@@ -186,6 +189,7 @@ public class QuestManager : MonoBehaviour
         guildhall.AdjustWood(quest.Reward.Wood);
         guildhall.AdjustRenown(quest.Reward.Renown);
         quest.GuildMember.AddExp(quest.Reward.Exp);
+        quest.GuildMember.AddExp(quest.QuestSkill, quest.Reward.SkillExp);
     }
 
     public List<Quest> GetQuestPool()
