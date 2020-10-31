@@ -169,12 +169,12 @@ public class PersonUI : MonoBehaviour
 
     private void AdjustStatsPanel()
     {
-        if (GuildMember.Vocation is Peasant)
+        if (GuildMember.Vocation is Peasant || GuildMember.Vocation is Artisan)
         {
             adventurerStats.SetActive(false);
             peasantStats.SetActive(true);
             Vector2 rectSize = statsPanel.GetComponent<RectTransform>().rect.size;
-            statsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(rectSize.x, 103.0f);
+            statsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(rectSize.x, 136.0f);
             Peasant peasant = (Peasant)GuildMember.Vocation;
             income.text = string.Format("{0}: {1}", peasant.IncomeResource.ToString(), peasant.Income);
         }
@@ -228,21 +228,21 @@ public class PersonUI : MonoBehaviour
 
     private void ConfirmRelease()
     {
-        popupManager.Confirm();
+        popupManager.Popup.GetComponentInChildren<Button>().onClick.RemoveListener(ConfirmRelease);
         FindObjectOfType<PopulationManager>().RemoveGuildMember(GuildMember);
         GetComponentInParent<PersonUIScrollView>().GetAllGuildMembers();
     }
 
     private void ConfirmPromoteAdventurer()
     {
-        popupManager.Confirm();
+        popupManager.Popup.GetComponentInChildren<Button>().onClick.RemoveListener(ConfirmPromoteAdventurer);
         FindObjectOfType<MenuManager>().OpenMenu("Menu_ManagePeople");
         GuildMember.PromoteToAdventurer();
     }
 
     private void ConfirmPromoteArtisan()
     {
-        popupManager.Confirm();
+        popupManager.Popup.GetComponentInChildren<Button>().onClick.RemoveListener(ConfirmPromoteArtisan);
         FindObjectOfType<MenuManager>().OpenMenu("Menu_ManagePeople");
         GuildMember.PromoteToArtisan();
     }

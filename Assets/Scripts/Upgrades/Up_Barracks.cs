@@ -102,6 +102,7 @@ public class Up_Barracks : Upgrade
         }
         else
         {
+            GetComponent<UpgradeItemFrame>().SetItemAttributes("Barracks III", "Increases the maximum population of the Adventure Guild to 50.");
             IsPurchased = true;
         }
     }

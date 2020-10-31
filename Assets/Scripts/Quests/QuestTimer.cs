@@ -27,9 +27,7 @@ public class QuestTimer : MonoBehaviour
         incidentManager = FindObjectOfType<IncidentManager>();
         if (IncidentTimer == 0)
         {
-            Debug.Log("Quest level: " + quest.level.ToString());
             IncidentTimer = Mathf.CeilToInt((quest.level / 3) + 1) * CreateIncidentTime();
-            Debug.Log(IncidentTimer.ToString());
         }
     }
 

@@ -44,11 +44,6 @@ public class PopupManager : MonoBehaviour
         Popup.GetComponent<PopupMenu>().Populate(_title, _sprite, _caller);
     }
 
-    public void Confirm()
-    {
-        Popup.GetComponentInChildren<Button>().onClick.RemoveListener(Confirm);
-    }
-
     private void ClearContent()
     {
         List<GameObject> children = Helpers.GetChildren(ContentPanel);

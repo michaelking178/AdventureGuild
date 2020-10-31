@@ -127,7 +127,7 @@ public class UpgradeItemFrame : MonoBehaviour
 
     private void Confirm()
     {
-        popupManager.Confirm();
+        popupManager.Popup.GetComponentInChildren<Button>().onClick.RemoveListener(Confirm);
         GetComponent<Upgrade>().Apply();
     }
 
