@@ -169,7 +169,7 @@ public class PersonUI : MonoBehaviour
 
     private void AdjustStatsPanel()
     {
-        if (GuildMember.Vocation is Peasant || GuildMember.Vocation is Artisan)
+        if (GuildMember.Vocation is Peasant)
         {
             adventurerStats.SetActive(false);
             peasantStats.SetActive(true);
@@ -177,6 +177,15 @@ public class PersonUI : MonoBehaviour
             statsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(rectSize.x, 136.0f);
             Peasant peasant = (Peasant)GuildMember.Vocation;
             income.text = string.Format("{0}: {1}", peasant.IncomeResource.ToString(), peasant.Income);
+        }
+        else if (GuildMember.Vocation is Artisan)
+        {
+            adventurerStats.SetActive(false);
+            peasantStats.SetActive(true);
+            Vector2 rectSize = statsPanel.GetComponent<RectTransform>().rect.size;
+            statsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(rectSize.x, 136.0f);
+            Artisan artisan = (Artisan)GuildMember.Vocation;
+            income.text = "None. Artisans will help to build the Adventure Guild.";
         }
         else if (GuildMember.Vocation is Adventurer adventurer)
         {
