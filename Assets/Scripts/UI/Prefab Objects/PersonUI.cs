@@ -75,7 +75,7 @@ public class PersonUI : MonoBehaviour
             }
             else
             {
-                exp.text = string.Format("{0} / {1}", GuildMember.Experience, CharacterLevel.LevelValues[GuildMember.Level]);
+                exp.text = string.Format("{0} / {1}", GuildMember.Experience, Levelling.GuildMemberLevel[GuildMember.Level]);
             }
             personVocation.text = string.Format("{0} - Level {1}", GuildMember.Vocation.Title(), GuildMember.Level.ToString());
             health.text = string.Format("Health: {0}/{1}", GuildMember.Hitpoints, GuildMember.MaxHitpoints);
@@ -193,9 +193,9 @@ public class PersonUI : MonoBehaviour
             peasantStats.SetActive(false);
             Vector2 rectSize = statsPanel.GetComponent<RectTransform>().rect.size;
             statsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(rectSize.x, 215.0f);
-            combatExp.text = "Combat: " + adventurer.CombatExp.ToString();
-            espionageExp.text = "Espionage: " + adventurer.EspionageExp.ToString();
-            diplomacyExp.text = "Diplomacy: " + adventurer.DiplomacyExp.ToString();
+            combatExp.text = string.Format("Combat: {0} ({1}/{2})", adventurer.CombatLevel.ToString(), adventurer.CombatExp.ToString(), Levelling.SkillLevel[adventurer.CombatLevel].ToString());
+            espionageExp.text = string.Format("Espionage: {0} ({1}/{2})", adventurer.EspionageLevel.ToString(), adventurer.EspionageExp.ToString(), Levelling.SkillLevel[adventurer.EspionageLevel].ToString());
+            diplomacyExp.text = string.Format("Diplomacy: {0} ({1}/{2})", adventurer.DiplomacyLevel.ToString(), adventurer.DiplomacyExp.ToString(), Levelling.SkillLevel[adventurer.DiplomacyLevel].ToString());
         }
     }
 

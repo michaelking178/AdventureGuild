@@ -51,6 +51,11 @@ public class GuildMember : MonoBehaviour
         Created = true;
     }
 
+    private void Start()
+    {
+        CheckSkillLevels();
+    }
+
     public void AdjustHitpoints(int change)
     {
         Hitpoints += change;
@@ -95,6 +100,7 @@ public class GuildMember : MonoBehaviour
         {
             adv.DiplomacyExp += _exp;
         }
+        CheckSkillLevels();
     }
 
     private void CheckLevel()
@@ -103,7 +109,7 @@ public class GuildMember : MonoBehaviour
         {
             return;
         }
-        while (Experience >= CharacterLevel.LevelValues[Level])
+        while (Experience >= Levelling.GuildMemberLevel[Level])
         {
             Level++;
             FindObjectOfType<NotificationManager>().CreateNotification(string.Format("{0} reached Level {1}!", person.name, Level), Notification.Type.GuildMember, Notification.Spirit.Good);
@@ -123,6 +129,25 @@ public class GuildMember : MonoBehaviour
         }
     }
 
+    private void CheckSkillLevels()
+    {
+        if (Vocation is Adventurer adventurer)
+        {
+            while (adventurer.CombatExp >= Levelling.GuildMemberLevel[adventurer.CombatLevel])
+            {
+                adventurer.CombatLevel++;
+            }
+            while (adventurer.EspionageExp >= Levelling.SkillLevel[adventurer.EspionageLevel])
+            {
+                adventurer.EspionageLevel++;
+            }
+            while (adventurer.DiplomacyExp >= Levelling.SkillLevel[adventurer.DiplomacyLevel])
+            {
+                adventurer.DiplomacyLevel++;
+            }
+        }
+    }
+
     public void PromoteToAdventurer()
     {
         Peasant peasant = (Peasant)Vocation;
@@ -130,6 +155,10 @@ public class GuildMember : MonoBehaviour
         Vocation = new Adventurer();
         Experience = 0;
         Level = 1;
+        Adventurer adventurer = (Adventurer)Vocation;
+        adventurer.CombatLevel = 1;
+        adventurer.EspionageLevel = 1;
+        adventurer.DiplomacyLevel = 1;
         MaxHitpoints = 100;
         Hitpoints = MaxHitpoints;
         FindObjectOfType<NotificationManager>().CreateNotification(string.Format("{0} has honed their skills and become an Adventurer!", person.name), Notification.Type.GuildMember, Notification.Spirit.Good);
