@@ -14,8 +14,9 @@ public class SaveData
     private List<QuestTimerData> questTimerDatas;
     private SettingsData settingsData;
     private PopulationManagerData populationManagerData;
+    private QuestManagerData questManagerData;
 
-    public SaveData(GuildMemberData _heroData, GuildhallData _guildhallData, List<GuildMemberData> _guildMemberDatas, List<QuestData> _questDataPool, List<QuestData> _questDataArchive, List<QuestTimerData> _questTimerDatas, SettingsData _settingsData, PopulationManagerData _populationManagerData)
+    public SaveData(GuildMemberData _heroData, GuildhallData _guildhallData, List<GuildMemberData> _guildMemberDatas, List<QuestData> _questDataPool, List<QuestData> _questDataArchive, List<QuestTimerData> _questTimerDatas, SettingsData _settingsData, PopulationManagerData _populationManagerData, QuestManagerData _questManagerData)
     {
         ApplicationVersion = Application.version;
         heroData = _heroData;
@@ -26,6 +27,7 @@ public class SaveData
         questTimerDatas = _questTimerDatas;
         settingsData = _settingsData;
         populationManagerData = _populationManagerData;
+        questManagerData = _questManagerData;
     }
 
     public void Load()
@@ -85,6 +87,11 @@ public class SaveData
         PopulationManager populationManager = GameObject.FindObjectOfType<PopulationManager>();
         populationManager.recoveryStartTime = populationManagerData.recoveryStartTime;
         populationManager.PopulationCap = populationManagerData.populationCap;
+
+        QuestManager questManager = GameObject.FindObjectOfType<QuestManager>();
+        questManager.CombatUnlocked = questManagerData.CombatUnlocked;
+        questManager.EspionageUnlocked = questManagerData.EspionageUnlocked;
+        questManager.DiplomacyUnlocked = questManagerData.DiplomacyUnlocked;
 
         if (settingsData != null)
         {

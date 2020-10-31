@@ -82,7 +82,7 @@ public class Up_Barracks : Upgrade
             IronCost = levelOneIronCost;
             WoodCost = levelOneWoodCost;
             populationUpgrade = levelOnePopulation;
-            GetComponent<UpgradeItemFrame>().SetItemAttributes("Barracks I", "Increases the maximum population of the Adventure Guild to 10");
+            GetComponent<UpgradeItemFrame>().SetItemAttributes("Barracks I", "Increases the maximum population of the Adventure Guild to 10.");
         }
         else if (populationManager.PopulationCap == levelOnePopulation)
         {
@@ -90,7 +90,7 @@ public class Up_Barracks : Upgrade
             IronCost = levelTwoIronCost;
             WoodCost = levelTwoWoodCost;
             populationUpgrade = levelTwoPopulation;
-            GetComponent<UpgradeItemFrame>().SetItemAttributes("Barracks II", "Increases the maximum population of the Adventure Guild to 25");
+            GetComponent<UpgradeItemFrame>().SetItemAttributes("Barracks II", "Increases the maximum population of the Adventure Guild to 25.");
         }
         else if (populationManager.PopulationCap == levelTwoPopulation)
         {
@@ -98,7 +98,7 @@ public class Up_Barracks : Upgrade
             IronCost = levelThreeIronCost;
             WoodCost = levelThreeWoodCost;
             populationUpgrade = levelThreePopulation;
-            GetComponent<UpgradeItemFrame>().SetItemAttributes("Barracks III", "Increases the maximum population of the Adventure Guild to 50");
+            GetComponent<UpgradeItemFrame>().SetItemAttributes("Barracks III", "Increases the maximum population of the Adventure Guild to 50.");
         }
         else
         {

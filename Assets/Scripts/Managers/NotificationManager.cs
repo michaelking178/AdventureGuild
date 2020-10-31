@@ -83,39 +83,40 @@ public class NotificationManager : MonoBehaviour
         }
     }
 
-    public void Notify(NotificationUI notificationUI)
-    {
-        StartCoroutine(NotifyAction(notificationUI));
-    }
+    // Todo: Remove Notify action if not needed
+    //public void Notify(NotificationUI notificationUI)
+    //{
+    //    StartCoroutine(NotifyAction(notificationUI));
+    //}
 
-    private IEnumerator NotifyAction(NotificationUI notificationUI)
-    {
-        if (FindObjectOfType<LevelManager>().CurrentLevel() != "Main")
-        {
-            NotificationUI[] notes = FindObjectsOfType<NotificationUI>();
-            foreach (NotificationUI note in notes)
-            {
-                note.Close();
-            }
-            yield return new WaitForSeconds(2);
-            FindObjectOfType<LevelManager>().LoadLevel("Main");
-            yield return new WaitForSeconds(1.5f);
-        }
-        if (notificationUI.Notification.NotificationType == Notification.Type.Quest)
-        {
-            GameObject.Find("Menu_QuestJournals").GetComponentInChildren<QuestUIScrollView>().UpdateQuestJournalList();
-            if (FindObjectOfType<MenuManager>().CurrentMenu.name != "Menu_QuestJournals")
-            {
-                FindObjectOfType<MenuManager>().OpenMenu("Menu_QuestJournals");
-            }
-        }
-        else if (notificationUI.Notification.NotificationType == Notification.Type.GuildMember)
-        {
-            GameObject.Find("Menu_ManagePeople").GetComponentInChildren<PersonUIScrollView>().GetAllGuildMembers();
-            if (FindObjectOfType<MenuManager>().CurrentMenu.name != "Menu_ManagePeople")
-            {
-                FindObjectOfType<MenuManager>().OpenMenu("Menu_ManagePeople");
-            }
-        }
-    }
+    //private IEnumerator NotifyAction(NotificationUI notificationUI)
+    //{
+    //    if (FindObjectOfType<LevelManager>().CurrentLevel() != "Main")
+    //    {
+    //        NotificationUI[] notes = FindObjectsOfType<NotificationUI>();
+    //        foreach (NotificationUI note in notes)
+    //        {
+    //            note.Close();
+    //        }
+    //        yield return new WaitForSeconds(2);
+    //        FindObjectOfType<LevelManager>().LoadLevel("Main");
+    //        yield return new WaitForSeconds(1.5f);
+    //    }
+    //    if (notificationUI.Notification.NotificationType == Notification.Type.Quest)
+    //    {
+    //        GameObject.Find("Menu_QuestJournals").GetComponentInChildren<QuestUIScrollView>().UpdateQuestJournalList();
+    //        if (FindObjectOfType<MenuManager>().CurrentMenu.name != "Menu_QuestJournals")
+    //        {
+    //            FindObjectOfType<MenuManager>().OpenMenu("Menu_QuestJournals");
+    //        }
+    //    }
+    //    else if (notificationUI.Notification.NotificationType == Notification.Type.GuildMember)
+    //    {
+    //        GameObject.Find("Menu_ManagePeople").GetComponentInChildren<PersonUIScrollView>().GetAllGuildMembers();
+    //        if (FindObjectOfType<MenuManager>().CurrentMenu.name != "Menu_ManagePeople")
+    //        {
+    //            FindObjectOfType<MenuManager>().OpenMenu("Menu_ManagePeople");
+    //        }
+    //    }
+    //}
 }

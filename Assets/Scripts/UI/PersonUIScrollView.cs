@@ -22,21 +22,21 @@ public class PersonUIScrollView : MonoBehaviour
         {
             if (guildMember.Vocation.Title() == "Adventurer")
             {
-                InstantiatePersonUI(guildMember, false);
+                InstantiatePersonUI(guildMember, false, true, false);
             }
         }
         foreach (GuildMember guildMember in populationManager.GuildMembers)
         {
             if (guildMember.Vocation.Title() == "Artisan")
             {
-                InstantiatePersonUI(guildMember, false);
+                InstantiatePersonUI(guildMember, false, true, false);
             }
         }
         foreach (GuildMember guildMember in populationManager.GuildMembers)
         {
             if (guildMember.Vocation.Title() == "Peasant")
             {
-                InstantiatePersonUI(guildMember, false);
+                InstantiatePersonUI(guildMember, false, true, true);
             }
         }
     }
@@ -49,7 +49,7 @@ public class PersonUIScrollView : MonoBehaviour
         }
         foreach (GuildMember guildMember in populationManager.GetAvailableAdventurers())
         {
-            InstantiatePersonUI(guildMember, true);
+            InstantiatePersonUI(guildMember, true, false, false);
         }
     }
 
@@ -63,32 +63,40 @@ public class PersonUIScrollView : MonoBehaviour
         {
             if (guildMember.Vocation.Title() == "Adventurer" && guildMember.IsAvailable)
             {
-                InstantiatePersonUI(guildMember, true);
+                InstantiatePersonUI(guildMember, true, false, false);
             }
         }
         foreach (GuildMember guildMember in FindObjectOfType<PopulationManager>().GuildMembers)
         {
             if (guildMember.Vocation.Title() == "Artisan" && guildMember.IsAvailable)
             {
-                InstantiatePersonUI(guildMember, true);
+                InstantiatePersonUI(guildMember, true, false, false);
             }
         }
         foreach (GuildMember guildMember in FindObjectOfType<PopulationManager>().GuildMembers)
         {
             if (guildMember.Vocation.Title() == "Peasant" && guildMember.IsAvailable)
             {
-                InstantiatePersonUI(guildMember, true);
+                InstantiatePersonUI(guildMember, true, false, false);
             }
         }
     }
 
-    private void InstantiatePersonUI(GuildMember guildMember, bool showButton)
+    private void InstantiatePersonUI(GuildMember guildMember, bool showContextButton, bool showReleaseButton, bool showPromoteButtons)
     {
         GameObject newPersonUI = Instantiate(personUI, transform);
         newPersonUI.GetComponent<PersonUI>().SetPerson(guildMember);
-        if (showButton && !newPersonUI.GetComponent<PersonUI>().contextBtn.activeSelf)
+        if (showContextButton && !newPersonUI.GetComponent<PersonUI>().contextBtn.activeSelf)
         {
-            newPersonUI.GetComponent<PersonUI>().ShowButton();
+            newPersonUI.GetComponent<PersonUI>().ShowContextButton();
+        }
+        if (showReleaseButton && !newPersonUI.GetComponent<PersonUI>().releaseBtn.activeSelf)
+        {
+            newPersonUI.GetComponent<PersonUI>().ShowReleaseButton();
+        }
+        if (showPromoteButtons && !newPersonUI.GetComponent<PersonUI>().promoteToAdventurerBtn.activeSelf && !newPersonUI.GetComponent<PersonUI>().promoteToArtisanBtn.activeSelf)
+        {
+            newPersonUI.GetComponent<PersonUI>().ShowPromoteButtons();
         }
     }
 }

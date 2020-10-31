@@ -58,7 +58,9 @@ public static class SaveSystem
 
         PopulationManagerData populationManagerData = new PopulationManagerData(Object.FindObjectOfType<PopulationManager>());
 
-        SaveData saveData = new SaveData(heroData, guildhallData, guildMemberDatas, questDataPool, questDataArchive, questTimerDatas, settingsData, populationManagerData);
+        QuestManagerData questManagerData = new QuestManagerData(Object.FindObjectOfType<QuestManager>());
+
+        SaveData saveData = new SaveData(heroData, guildhallData, guildMemberDatas, questDataPool, questDataArchive, questTimerDatas, settingsData, populationManagerData, questManagerData);
         formatter.Serialize(stream, saveData);
         stream.Close();
     }

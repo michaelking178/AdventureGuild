@@ -14,7 +14,8 @@ public class QuestTimer : MonoBehaviour
 
     public bool IsTiming { get; set; }
     public bool QuestFinished { get; set; } = false;
-    public int IncidentTimer { get; set; } = 10;
+    public int DefaultIncidentTimer { get; set; } = 10;
+    public int IncidentTimer { get; set; }
     public int IncidentQueue { get; set; }
 
     private QuestManager questManager;
@@ -24,6 +25,12 @@ public class QuestTimer : MonoBehaviour
     {
         questManager = FindObjectOfType<QuestManager>();
         incidentManager = FindObjectOfType<IncidentManager>();
+        if (IncidentTimer == 0)
+        {
+            Debug.Log("Quest level: " + quest.level.ToString());
+            IncidentTimer = Mathf.CeilToInt((quest.level / 3) + 1) * CreateIncidentTime();
+            Debug.Log(IncidentTimer.ToString());
+        }
     }
 
     private void FixedUpdate()
@@ -37,7 +44,7 @@ public class QuestTimer : MonoBehaviour
             {
                 for (int i = (IncidentQueue - quest.Incidents.Count); i > 0; i--)
                 {
-                    GenerateIncident(DateTime.Now.AddSeconds(-((i-1) * IncidentTimer)));
+                    GenerateIncident(DateTime.Now.AddSeconds(-(i-1) * IncidentTimer));
                     CheckHealth();
                     if (quest.GuildMember.Hitpoints == 0)
                     {
@@ -99,7 +106,7 @@ public class QuestTimer : MonoBehaviour
     {
         if (_time < (StartTime.AddSeconds(TimeLimit - 3.0f)))
         {
-            Incident incident = incidentManager.GetIncident(_time);
+            Incident incident = incidentManager.GetIncident(_time, quest.level, quest.GuildMember.Level);
             quest.Incidents.Add(incident);
             ApplyIncidentReward(incident);
         }
@@ -123,5 +130,10 @@ public class QuestTimer : MonoBehaviour
         {
             FailQuest();
         }
+    }
+
+    private int CreateIncidentTime()
+    {
+        return Mathf.CeilToInt(DefaultIncidentTimer * UnityEngine.Random.Range(0.75f, 1.25f));
     }
 }

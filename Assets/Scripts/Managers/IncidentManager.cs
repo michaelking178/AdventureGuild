@@ -6,7 +6,7 @@ public class IncidentManager : MonoBehaviour
     [SerializeField]
     private TextAsset incidentsJson;
 
-    public bool GrabIncident = false;
+    //public bool GrabIncident = false;
 
     private Incidents incidents;
 
@@ -15,28 +15,28 @@ public class IncidentManager : MonoBehaviour
         incidents = JsonUtility.FromJson<Incidents>(incidentsJson.text);
     }
 
-    private void Update()
-    {
-        if (GrabIncident)
-        {
-            GetIncident();
-            GrabIncident = false;
-        }
-    }
+    //private void Update()
+    //{
+    //    if (GrabIncident)
+    //    {
+    //        GetIncident();
+    //        GrabIncident = false;
+    //    }
+    //}
     
-    public Incident GetIncident()
-    {
-        return GenerateIncident();
-    }
+    //public Incident GetIncident()
+    //{
+    //    return GenerateIncident();
+    //}
 
-    public Incident GetIncident(DateTime _time)
+    public Incident GetIncident(DateTime _time, int questLevel, int adventurerLevel)
     {
-        Incident newIncident = GenerateIncident();
+        Incident newIncident = GenerateIncident(questLevel, adventurerLevel);
         newIncident.time = _time.ToString();
         return newIncident;
     }
 
-    private Incident GenerateIncident()
+    private Incident GenerateIncident(int questLevel, int adventurerLevel)
     {
         Incident newIncident = new Incident();
         Incident incidentToClone = incidents.GetRandomIncident();
@@ -44,7 +44,7 @@ public class IncidentManager : MonoBehaviour
         newIncident.goodResult = incidentToClone.goodResult;
         newIncident.badResult = incidentToClone.badResult;
         newIncident.neutralResult = incidentToClone.neutralResult;
-        newIncident.Init();
+        newIncident.Init(questLevel, adventurerLevel);
         return newIncident;
     }
 

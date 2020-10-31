@@ -21,14 +21,13 @@ public class QuestManager : MonoBehaviour
     private IncidentManager incidentManager;
     private Guildhall guildhall;
     private NotificationManager notificationManager;
-    private List<int> questIds;
 
     private readonly string failureMessage = "The challenges were too great, and I was defeated before completing my quest. I have returned to the Adventure Guild so that I may recover.";
     private string rewardMessage = "";
 
-    private bool combatUnlocked;
-    private bool espionageUnlocked;
-    private bool diplomacyUnlocked;
+    public bool CombatUnlocked { get; set; }
+    public bool EspionageUnlocked { get; set; }
+    public bool DiplomacyUnlocked { get; set; }
 
     public Quest CurrentQuest { get; set; }
 
@@ -62,10 +61,10 @@ public class QuestManager : MonoBehaviour
 
     public void PopulateQuestPool(int numOfQuests)
     {
-        int maxLevel = GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>().Level;  // TODO: QuestManager needs to check for the max level of all Adventurers, not just the Hero.
+        int maxLevel = GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>().Level;
         int breakout = 0;
 
-        // These if's should protect against the infinite loop caused by trying to add more quests than exist in the JSON file.
+        // Protect against infinite loop caused by trying to add more quests than exist in the JSON file.
         if (numOfQuests > 5)
         {
             numOfQuests = 5;
@@ -268,13 +267,13 @@ public class QuestManager : MonoBehaviour
         switch (_skill)
         {
             case "Combat":
-                combatUnlocked = true;
+                CombatUnlocked = true;
                 break;
             case "Espionage":
-                espionageUnlocked = true;
+                EspionageUnlocked = true;
                 break;
             case "Diplomacy":
-                diplomacyUnlocked = true;
+                DiplomacyUnlocked = true;
                 break;
             default:
                 Debug.Log("Cannot unlock skill: " + _skill);
@@ -287,11 +286,11 @@ public class QuestManager : MonoBehaviour
         switch (_skill)
         {
             case "Combat":
-                return combatUnlocked;
+                return CombatUnlocked;
             case "Espionage":
-                return espionageUnlocked;
+                return EspionageUnlocked;
             case "Diplomacy":
-                return diplomacyUnlocked;
+                return DiplomacyUnlocked;
             default:
                 Debug.Log("Cannot find skill: " + _skill);
                 return false;

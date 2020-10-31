@@ -11,28 +11,40 @@ public class Incident
     public Result result;
     public IncidentReward reward;
     public string rewardMessage = "";
+    public int questLevel, adventurerLevel;
 
-    public void Init()
+    public void Init(int _questLevel, int _adventurerLevel)
     {
+        questLevel = _questLevel;
+        adventurerLevel = _adventurerLevel;
         time = DateTime.Now.ToString();
-        result = (Result)UnityEngine.Random.Range(0, 3);
+        CalculateResult();
         if (result != Result.Neutral)
         {
-            reward = new IncidentReward(result);
+            reward = new IncidentReward(result, questLevel);
         }
-        switch (result)
+    }
+
+    private void CalculateResult()
+    {
+        int roll = UnityEngine.Random.Range(1, 101) - adventurerLevel + questLevel;
+        int good = 40;
+        int neutral = 20;
+
+        if (roll <= good)
         {
-            case Result.Good:
-                finalResult = goodResult;
-                break;
-            case Result.Bad:
-                finalResult = badResult;
-                break;
-            case Result.Neutral:
-                finalResult = neutralResult;
-                break;
-            default:
-                break;
+            result = Result.Good;
+            finalResult = goodResult;
+        }
+        else if (roll <= good + neutral)
+        {
+            result = Result.Neutral;
+            finalResult = neutralResult;
+        }
+        else
+        {
+            result = Result.Bad;
+            finalResult = badResult;
         }
     }
 }

@@ -200,4 +200,9 @@ public class PopulationManager : MonoBehaviour
     {
         PopulationCap = _populationCap;
     }
+
+    public void RemoveGuildMember(GuildMember _guildMember)
+    {
+        GuildMembers.Remove(_guildMember);
+    }
 }

@@ -6,9 +6,6 @@ using UnityEngine.UI;
 public class UpgradeItemFrame : MonoBehaviour
 {
     [SerializeField]
-    private PopupMenu popup;
-
-    [SerializeField]
     private string itemName = "ITEM_NAME";
 
     [SerializeField]
@@ -29,19 +26,29 @@ public class UpgradeItemFrame : MonoBehaviour
     private Color fontUnavailableColor = new Color(0.196f, 0.196f, 0.196f, 0.5f);
 
     private Sprite itemSprite;
-    private Guildhall guildhall;
     private Upgrade upgrade;
     private string defaultDescription;
     private bool isAvailable = true;
+    private PopupManager popupManager;
+    private MenuManager menuManager;
 
     private void Start()
     {
         defaultDescription = itemDescription;
         itemSprite = itemImage.sprite;
         itemNameText.text = itemName;
-        guildhall = FindObjectOfType<Guildhall>();
+        popupManager = FindObjectOfType<PopupManager>();
+        menuManager = FindObjectOfType<MenuManager>();
         upgrade = GetComponent<Upgrade>();
         StartCoroutine(DelayedCheckForPurchase());
+    }
+
+    private void FixedUpdate()
+    {
+        if (menuManager.CurrentMenu.name == "Menu_UpgradeGuildhall")
+        {
+            CheckForPurchase();
+        }
     }
 
     public void CheckForPurchase()
@@ -94,36 +101,34 @@ public class UpgradeItemFrame : MonoBehaviour
 
     public void CallPopup()
     {
-        popup.gameObject.SetActive(true);
         defaultDescription = itemDescription;
-
         if (upgrade.IsPurchased)
         {
-            defaultDescription += "\n Purchased!";
+            defaultDescription += "\n\n Purchased!";
+            popupManager.CreateDefaultContent(defaultDescription);
         }
         else
         {
-            defaultDescription += "\nYOU HAVE: Gold: " + guildhall.Gold.ToString() + ", Wood: " + guildhall.Wood.ToString() + ", Iron: " + guildhall.Iron.ToString();
-            defaultDescription += "\nCOST: Gold: " + upgrade.GoldCost.ToString() + ", Wood: " + upgrade.WoodCost.ToString() + ", Iron: " + upgrade.IronCost.ToString();
+            popupManager.CreateUpgradeContent(defaultDescription, upgrade.GoldCost, upgrade.WoodCost, upgrade.IronCost);
         }
 
         if (isAvailable)
         {
-            popup.SetDoubleButton("Purchase", "Cancel");
-            popup.GetComponentInChildren<Button>().onClick.AddListener(Confirm);
+            popupManager.SetDoubleButton("Purchase", "Cancel");
+            popupManager.Popup.GetComponentInChildren<Button>().onClick.AddListener(Confirm);
         }
         else
         {
-            popup.SetSingleButton("Cancel");
+            popupManager.SetSingleButton("Cancel");
         }
-        popup.Populate(itemName, defaultDescription, itemSprite, gameObject);
+        popupManager.Populate(itemName, itemSprite, gameObject);
+        popupManager.CallPopup();
     }
 
     private void Confirm()
     {
-        popup.GetComponentInChildren<Button>().onClick.RemoveListener(Confirm);
+        popupManager.Confirm();
         GetComponent<Upgrade>().Apply();
-        CheckForPurchase();
     }
 
     public void SetItemAttributes(string _name, string _description)

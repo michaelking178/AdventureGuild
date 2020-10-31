@@ -21,6 +21,8 @@ public class PopupMenu : MonoBehaviour
     private Animator anim;
     private GameObject caller;
 
+    public GameObject Content;
+
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -42,19 +44,18 @@ public class PopupMenu : MonoBehaviour
         cancelBtn.GetComponentInChildren<TextMeshProUGUI>().text = _cancelText;
     }
 
-    public void Populate(string _title, string _description, GameObject _caller)
+    public void Populate(string _title, GameObject _caller)
     {
         caller = _caller;
         title.text = _title;
-        description.text = _description;
         image.gameObject.SetActive(false);
         clickBlocker.SetActive(true);
         anim.SetTrigger("Open");
     }
 
-    public void Populate(string _title, string _description, Sprite _sprite, GameObject _caller)
+    public void Populate(string _title, Sprite _sprite, GameObject _caller)
     {
-        Populate(_title, _description, _caller);
+        Populate(_title, _caller);
         image.gameObject.SetActive(true);
         image.sprite = _sprite;
     }
