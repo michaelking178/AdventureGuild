@@ -30,7 +30,8 @@ public class PersonUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI exp;
 
-    public GameObject contextBtn;
+    public GameObject questBtn;
+    public GameObject trainingBtn;
     public GameObject releaseBtn;
     public GameObject promoteToAdventurerBtn;
     public GameObject promoteToArtisanBtn;
@@ -40,13 +41,31 @@ public class PersonUI : MonoBehaviour
     private GameObject adventurerStats;
 
     [SerializeField]
-    private TextMeshProUGUI combatExp;
+    private TextMeshProUGUI combatLevel;
 
     [SerializeField]
-    private TextMeshProUGUI espionageExp;
+    private TextMeshProUGUI espionageLevel;
 
     [SerializeField]
-    private TextMeshProUGUI diplomacyExp;
+    private TextMeshProUGUI diplomacyLevel;
+
+    [SerializeField]
+    private Slider combatSlider;
+
+    [SerializeField]
+    private Slider espionageSlider;
+
+    [SerializeField]
+    private Slider diplomacySlider;
+
+    [SerializeField]
+    private TextMeshProUGUI combatExpText;
+
+    [SerializeField]
+    private TextMeshProUGUI espionageExpText;
+
+    [SerializeField]
+    private TextMeshProUGUI diplomacyExpText;
 
     [Header("Peasant Stats")]
     [SerializeField]
@@ -92,6 +111,11 @@ public class PersonUI : MonoBehaviour
             {
                 availability.text = "Unavailable";
             }
+
+            if (extensionPanel.activeInHierarchy)
+            {
+                AdjustStatsPanel();
+            }
         }
     }
 
@@ -114,15 +138,27 @@ public class PersonUI : MonoBehaviour
         }
     }
 
-    public void ShowContextButton()
+    public void ShowQuestButton()
     {
-        if (contextBtn.activeSelf)
+        if (questBtn.activeSelf)
         {
-            contextBtn.SetActive(false);
+            questBtn.SetActive(false);
         }
         else
         {
-            contextBtn.SetActive(true);
+            questBtn.SetActive(true);
+        }
+    }
+
+    public void ShowTrainingButton()
+    {
+        if (trainingBtn.activeSelf)
+        {
+            trainingBtn.SetActive(false);
+        }
+        else
+        {
+            trainingBtn.SetActive(true);
         }
     }
 
@@ -193,9 +229,14 @@ public class PersonUI : MonoBehaviour
             peasantStats.SetActive(false);
             Vector2 rectSize = statsPanel.GetComponent<RectTransform>().rect.size;
             statsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(rectSize.x, 215.0f);
-            combatExp.text = string.Format("Combat: {0} ({1}/{2})", adventurer.CombatLevel.ToString(), adventurer.CombatExp.ToString(), Levelling.SkillLevel[adventurer.CombatLevel].ToString());
-            espionageExp.text = string.Format("Espionage: {0} ({1}/{2})", adventurer.EspionageLevel.ToString(), adventurer.EspionageExp.ToString(), Levelling.SkillLevel[adventurer.EspionageLevel].ToString());
-            diplomacyExp.text = string.Format("Diplomacy: {0} ({1}/{2})", adventurer.DiplomacyLevel.ToString(), adventurer.DiplomacyExp.ToString(), Levelling.SkillLevel[adventurer.DiplomacyLevel].ToString());
+            combatLevel.text = $"Combat: {adventurer.CombatLevel}";
+            espionageLevel.text = $"Espionage: {adventurer.EspionageLevel}";
+            diplomacyLevel.text = $"Diplomacy: {adventurer.DiplomacyLevel}";
+
+            combatExpText.text = $"{adventurer.CombatExp} / {Levelling.SkillLevel[adventurer.CombatLevel]}";
+            espionageExpText.text = $"{adventurer.EspionageExp} / {Levelling.SkillLevel[adventurer.EspionageLevel]}";
+            diplomacyExpText.text = $"{adventurer.DiplomacyExp} / {Levelling.SkillLevel[adventurer.DiplomacyLevel]}";
+            UpdateExpSliders(adventurer);
         }
     }
 
@@ -210,6 +251,21 @@ public class PersonUI : MonoBehaviour
                 else obj.GetComponent<Image>().color = new Color(1, 1, 1);
             }
         }
+    }
+
+    private void UpdateExpSliders(Adventurer adventurer)
+    {
+        combatSlider.minValue = Levelling.SkillLevel[adventurer.CombatLevel - 1];
+        combatSlider.maxValue = Levelling.SkillLevel[adventurer.CombatLevel];
+        combatSlider.value = adventurer.CombatExp;
+
+        espionageSlider.minValue = Levelling.SkillLevel[adventurer.EspionageLevel - 1];
+        espionageSlider.maxValue = Levelling.SkillLevel[adventurer.EspionageLevel];
+        espionageSlider.value = adventurer.EspionageExp;
+
+        diplomacySlider.minValue = Levelling.SkillLevel[adventurer.DiplomacyLevel - 1];
+        diplomacySlider.maxValue = Levelling.SkillLevel[adventurer.DiplomacyLevel];
+        diplomacySlider.value = adventurer.DiplomacyExp;
     }
 
     public void CallReleasePopup()

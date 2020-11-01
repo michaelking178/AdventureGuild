@@ -7,7 +7,10 @@ public class TraineeUI : MonoBehaviour
 
     private void Start()
     {
-        trainingManager = FindObjectOfType<TrainingManager>();
+        if (FindObjectOfType<TrainingManager>() != null)
+        {
+            trainingManager = FindObjectOfType<TrainingManager>();
+        }
         menuManager = FindObjectOfType<MenuManager>();
     }
 

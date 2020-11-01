@@ -25,9 +25,9 @@ public class NotificationManager : MonoBehaviour
         StartCoroutine(DisplayNotifications());
     }
 
-    public void CreateNotification(string _notification, Notification.Type _type, Notification.Spirit _spirit)
+    public void CreateNotification(string _notification, Notification.Spirit _spirit)
     {
-        Notification notification = new Notification(_notification, _type, _spirit);
+        Notification notification = new Notification(_notification, _spirit);
         notifications.Add(notification);
     }
 
@@ -82,41 +82,4 @@ public class NotificationManager : MonoBehaviour
             }
         }
     }
-
-    // Todo: Remove Notify action if not needed
-    //public void Notify(NotificationUI notificationUI)
-    //{
-    //    StartCoroutine(NotifyAction(notificationUI));
-    //}
-
-    //private IEnumerator NotifyAction(NotificationUI notificationUI)
-    //{
-    //    if (FindObjectOfType<LevelManager>().CurrentLevel() != "Main")
-    //    {
-    //        NotificationUI[] notes = FindObjectsOfType<NotificationUI>();
-    //        foreach (NotificationUI note in notes)
-    //        {
-    //            note.Close();
-    //        }
-    //        yield return new WaitForSeconds(2);
-    //        FindObjectOfType<LevelManager>().LoadLevel("Main");
-    //        yield return new WaitForSeconds(1.5f);
-    //    }
-    //    if (notificationUI.Notification.NotificationType == Notification.Type.Quest)
-    //    {
-    //        GameObject.Find("Menu_QuestJournals").GetComponentInChildren<QuestUIScrollView>().UpdateQuestJournalList();
-    //        if (FindObjectOfType<MenuManager>().CurrentMenu.name != "Menu_QuestJournals")
-    //        {
-    //            FindObjectOfType<MenuManager>().OpenMenu("Menu_QuestJournals");
-    //        }
-    //    }
-    //    else if (notificationUI.Notification.NotificationType == Notification.Type.GuildMember)
-    //    {
-    //        GameObject.Find("Menu_ManagePeople").GetComponentInChildren<PersonUIScrollView>().GetAllGuildMembers();
-    //        if (FindObjectOfType<MenuManager>().CurrentMenu.name != "Menu_ManagePeople")
-    //        {
-    //            FindObjectOfType<MenuManager>().OpenMenu("Menu_ManagePeople");
-    //        }
-    //    }
-    //}
 }

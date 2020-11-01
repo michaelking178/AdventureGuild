@@ -156,7 +156,7 @@ public class QuestManager : MonoBehaviour
 
     public void CompleteQuest(Quest quest)
     {
-        notificationManager.CreateNotification(string.Format("The quest \"{0}\" has completed!", quest.questName), Notification.Type.Quest, Notification.Spirit.Good);
+        notificationManager.CreateNotification(string.Format("The quest \"{0}\" has completed!", quest.questName), Notification.Spirit.Good);
         quest.State = Quest.Status.Completed;
         rewardMessage = "Quest Completed!";
         quest.Incidents.Add(incidentManager.CreateCustomIncident(quest.completion, Incident.Result.Good, rewardMessage, DateTime.Now));
@@ -170,7 +170,7 @@ public class QuestManager : MonoBehaviour
 
     public void FailQuest(Quest quest)
     {
-        notificationManager.CreateNotification(string.Format("The quest \"{0}\" has failed!", quest.questName), Notification.Type.Quest, Notification.Spirit.Bad);
+        notificationManager.CreateNotification(string.Format("The quest \"{0}\" has failed!", quest.questName), Notification.Spirit.Bad);
         quest.State = Quest.Status.Failed;
         rewardMessage = "Quest Failed!";
         quest.Incidents.Add(incidentManager.CreateCustomIncident(failureMessage, Incident.Result.Bad, rewardMessage));

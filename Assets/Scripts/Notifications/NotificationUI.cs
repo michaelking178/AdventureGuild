@@ -40,13 +40,6 @@ public class NotificationUI : MonoBehaviour
         }
     }
 
-    // Todo: Remove Notification Action if it's not needed anymore.
-    //public void Action()
-    //{
-    //    notificationManager.Notify(this);
-    //    Close();
-    //}
-
     public void Close()
     {
         StartCoroutine(CloseNotification());

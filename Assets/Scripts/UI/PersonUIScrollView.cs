@@ -12,6 +12,7 @@ public class PersonUIScrollView : MonoBehaviour
         populationManager = FindObjectOfType<PopulationManager>();
     }
 
+    // Manage People
     public void GetAllGuildMembers()
     {
         foreach(GameObject child in gameObject.GetChildren())
@@ -22,25 +23,26 @@ public class PersonUIScrollView : MonoBehaviour
         {
             if (guildMember.Vocation.Title() == "Adventurer")
             {
-                InstantiatePersonUI(guildMember, false, true, false);
+                InstantiatePersonUI(guildMember, false, false, true, false);
             }
         }
         foreach (GuildMember guildMember in populationManager.GuildMembers)
         {
             if (guildMember.Vocation.Title() == "Artisan")
             {
-                InstantiatePersonUI(guildMember, false, true, false);
+                InstantiatePersonUI(guildMember, false, false, true, false);
             }
         }
         foreach (GuildMember guildMember in populationManager.GuildMembers)
         {
             if (guildMember.Vocation.Title() == "Peasant")
             {
-                InstantiatePersonUI(guildMember, false, true, true);
+                InstantiatePersonUI(guildMember, false, false, true, true);
             }
         }
     }
 
+    // Quests
     public void GetAvailableAdventurers()
     {
         foreach (GameObject child in gameObject.GetChildren())
@@ -49,10 +51,11 @@ public class PersonUIScrollView : MonoBehaviour
         }
         foreach (GuildMember guildMember in populationManager.GetAvailableAdventurers())
         {
-            InstantiatePersonUI(guildMember, true, false, false);
+            InstantiatePersonUI(guildMember, true, false, false, false);
         }
     }
 
+    // Training
     public void GetAvailableGuildMembers()
     {
         foreach (GameObject child in gameObject.GetChildren())
@@ -63,32 +66,36 @@ public class PersonUIScrollView : MonoBehaviour
         {
             if (guildMember.Vocation.Title() == "Adventurer" && guildMember.IsAvailable)
             {
-                InstantiatePersonUI(guildMember, true, false, false);
+                InstantiatePersonUI(guildMember, false, true, false, false);
             }
         }
         foreach (GuildMember guildMember in FindObjectOfType<PopulationManager>().GuildMembers)
         {
             if (guildMember.Vocation.Title() == "Artisan" && guildMember.IsAvailable)
             {
-                InstantiatePersonUI(guildMember, true, false, false);
+                InstantiatePersonUI(guildMember, false, true, false, false);
             }
         }
         foreach (GuildMember guildMember in FindObjectOfType<PopulationManager>().GuildMembers)
         {
             if (guildMember.Vocation.Title() == "Peasant" && guildMember.IsAvailable)
             {
-                InstantiatePersonUI(guildMember, true, false, false);
+                InstantiatePersonUI(guildMember, false, true, false, false);
             }
         }
     }
 
-    private void InstantiatePersonUI(GuildMember guildMember, bool showContextButton, bool showReleaseButton, bool showPromoteButtons)
+    private void InstantiatePersonUI(GuildMember guildMember, bool showQuestButton, bool showTrainingButton, bool showReleaseButton, bool showPromoteButtons)
     {
         GameObject newPersonUI = Instantiate(personUI, transform);
         newPersonUI.GetComponent<PersonUI>().SetPerson(guildMember);
-        if (showContextButton && !newPersonUI.GetComponent<PersonUI>().contextBtn.activeSelf)
+        if (showQuestButton && !newPersonUI.GetComponent<PersonUI>().questBtn.activeSelf)
         {
-            newPersonUI.GetComponent<PersonUI>().ShowContextButton();
+            newPersonUI.GetComponent<PersonUI>().ShowQuestButton();
+        }
+        if (showTrainingButton && !newPersonUI.GetComponent<PersonUI>().trainingBtn.activeSelf)
+        {
+            newPersonUI.GetComponent<PersonUI>().ShowTrainingButton();
         }
         if (showReleaseButton && !newPersonUI.GetComponent<PersonUI>().releaseBtn.activeSelf)
         {

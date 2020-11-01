@@ -42,7 +42,7 @@ public class IncomeGenerator : MonoBehaviour
         GenerateIncome();
         if (goldToAdd > 0 || woodToAdd > 0 || ironToAdd > 0)
         {
-            FindObjectOfType<NotificationManager>().CreateNotification(string.Format("Peasants earned {0} GOLD, {1} WOOD, and {2} IRON while you were away!", goldToAdd, woodToAdd, ironToAdd), Notification.Type.GuildMember, Notification.Spirit.Good);
+            FindObjectOfType<NotificationManager>().CreateNotification(string.Format("Peasants earned {0} GOLD, {1} WOOD, and {2} IRON while you were away!", goldToAdd, woodToAdd, ironToAdd), Notification.Spirit.Good);
         }
         StartCoroutine(DelayedGenerateIncome());
     }

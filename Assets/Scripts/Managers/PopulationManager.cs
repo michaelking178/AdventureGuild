@@ -82,7 +82,7 @@ public class PopulationManager : MonoBehaviour
             newMember.Init(newPerson);
             newMember.Avatar = avatar;
             GuildMembers.Add(newMember);
-            notificationManager.CreateNotification(string.Format("{0} has heard of your Renown and joined the Adventure Guild!", newMember.person.name), Notification.Type.GuildMember, Notification.Spirit.Good);
+            notificationManager.CreateNotification(string.Format("{0} has heard of your Renown and joined the Adventure Guild!", newMember.person.name), Notification.Spirit.Good);
         }
     }
 
