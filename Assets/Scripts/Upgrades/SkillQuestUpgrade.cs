@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Up_SkillQuests : Upgrade
+public class SkillQuestUpgrade : Upgrade
 {
     [SerializeField]
     private string skill = "";

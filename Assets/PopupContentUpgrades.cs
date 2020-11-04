@@ -15,8 +15,12 @@ public class PopupContentUpgrades : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI ironText;
 
+    [SerializeField]
+    private TextMeshProUGUI artisansText;
+
     private Guildhall guildhall;
-    private int goldCost, woodCost, ironCost;
+    private PopulationManager populationManager;
+    private int goldCost, woodCost, ironCost, artisanCost;
 
     private Color affordable = new Color(0, 0.34f, 0);
     private Color unaffordable = new Color(0.5f, 0, 0);
@@ -24,21 +28,31 @@ public class PopupContentUpgrades : MonoBehaviour
     private void Start()
     {
         guildhall = FindObjectOfType<Guildhall>();
+        populationManager = FindObjectOfType<PopulationManager>();
     }
 
-    public void Init(string _description, int _goldCost, int _woodCost, int _ironCost)
+    public void Init(string _description, int _goldCost, int _woodCost, int _ironCost, int _artisanCost)
     {
         goldCost = _goldCost;
         woodCost = _woodCost;
         ironCost = _ironCost;
+        artisanCost = _artisanCost;
         description.text = _description;
     }
 
     private void FixedUpdate()
     {
-        goldText.text = string.Format("Gold: {0} / {1}", guildhall.Gold.ToString(), goldCost.ToString());
-        woodText.text = string.Format("Wood: {0} / {1}", guildhall.Wood.ToString(), woodCost.ToString());
-        ironText.text = string.Format("Iron: {0} / {1}", guildhall.Iron.ToString(), ironCost.ToString());
+        goldText.text = $"Gold: {guildhall.Gold} / {goldCost}";
+        woodText.text = $"Wood: {guildhall.Wood} / {woodCost}";
+        ironText.text = $"Iron: {guildhall.Iron} / {ironCost}";
+        if (artisanCost == 0)
+        {
+            artisansText.text = "";
+        }
+        else
+        {
+            artisansText.text = $"Artisans required: {artisanCost}";
+        }
 
         if (goldCost <= guildhall.Gold) goldText.color = affordable;
         else goldText.color = unaffordable;
@@ -48,5 +62,8 @@ public class PopupContentUpgrades : MonoBehaviour
 
         if (ironCost <= guildhall.Iron) ironText.color = affordable;
         else ironText.color = unaffordable;
+
+        if (artisanCost <= populationManager.Artisans().Count) artisansText.color = affordable;
+        else artisansText.color = unaffordable;
     }
 }

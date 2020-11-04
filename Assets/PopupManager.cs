@@ -15,11 +15,11 @@ public class PopupManager : MonoBehaviour
         Popup.gameObject.SetActive(true);
     }
 
-    public void CreateUpgradeContent(string _description, int _goldCost, int _woodCost, int _ironCost)
+    public void CreateUpgradeContent(string _description, int _goldCost, int _woodCost, int _ironCost, int _artisanCost)
     {
         ClearContent();
         GameObject popupContent = Instantiate(UpgradeContent, ContentPanel.transform);
-        popupContent.GetComponent<PopupContentUpgrades>().Init(_description, _goldCost, _woodCost, _ironCost);
+        popupContent.GetComponent<PopupContentUpgrades>().Init(_description, _goldCost, _woodCost, _ironCost, _artisanCost);
     }
 
     public void CreateDefaultContent(string _description)

@@ -109,7 +109,7 @@ public class UpgradeItemFrame : MonoBehaviour
         }
         else
         {
-            popupManager.CreateUpgradeContent(defaultDescription, upgrade.GoldCost, upgrade.WoodCost, upgrade.IronCost);
+            popupManager.CreateUpgradeContent(defaultDescription, upgrade.GoldCost, upgrade.WoodCost, upgrade.IronCost, upgrade.ArtisanCost);
         }
 
         if (isAvailable)

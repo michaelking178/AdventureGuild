@@ -1,17 +1,10 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Up_Barracks : Upgrade
+public class BarracksUpgrade : Upgrade
 {
     [Header("Level One Upgrade")]
-    [SerializeField]
-    private int levelOneGoldCost;
-
-    [SerializeField]
-    private int levelOneIronCost;
-
-    [SerializeField]
-    private int levelOneWoodCost;
+    // Costs inherited from Upgrade
 
     [SerializeField]
     private int levelOnePopulation = 10;
@@ -27,6 +20,9 @@ public class Up_Barracks : Upgrade
     private int levelTwoWoodCost;
 
     [SerializeField]
+    private int levelTwoArtisanCost;
+
+    [SerializeField]
     private int levelTwoPopulation = 25;
 
     [Header("Level Three Upgrade")]
@@ -38,6 +34,9 @@ public class Up_Barracks : Upgrade
 
     [SerializeField]
     private int levelThreeWoodCost;
+
+    [SerializeField]
+    private int levelThreeArtisanCost;
 
     [SerializeField]
     private int levelThreePopulation = 50;
@@ -78,25 +77,24 @@ public class Up_Barracks : Upgrade
     {
         if (populationManager.PopulationCap < levelOnePopulation)
         {
-            GoldCost = levelOneGoldCost;
-            IronCost = levelOneIronCost;
-            WoodCost = levelOneWoodCost;
             populationUpgrade = levelOnePopulation;
             GetComponent<UpgradeItemFrame>().SetItemAttributes("Barracks I", "Increases the maximum population of the Adventure Guild to 10.");
         }
         else if (populationManager.PopulationCap == levelOnePopulation)
         {
-            GoldCost = levelTwoGoldCost;
-            IronCost = levelTwoIronCost;
-            WoodCost = levelTwoWoodCost;
+            base.GoldCost = levelTwoGoldCost;
+            base.IronCost = levelTwoIronCost;
+            base.WoodCost = levelTwoWoodCost;
+            base.ArtisanCost = levelTwoArtisanCost;
             populationUpgrade = levelTwoPopulation;
             GetComponent<UpgradeItemFrame>().SetItemAttributes("Barracks II", "Increases the maximum population of the Adventure Guild to 25.");
         }
         else if (populationManager.PopulationCap == levelTwoPopulation)
         {
-            GoldCost = levelThreeGoldCost;
-            IronCost = levelThreeIronCost;
-            WoodCost = levelThreeWoodCost;
+            base.GoldCost = levelThreeGoldCost;
+            base.IronCost = levelThreeIronCost;
+            base.WoodCost = levelThreeWoodCost;
+            base.ArtisanCost = levelThreeArtisanCost;
             populationUpgrade = levelThreePopulation;
             GetComponent<UpgradeItemFrame>().SetItemAttributes("Barracks III", "Increases the maximum population of the Adventure Guild to 50.");
         }

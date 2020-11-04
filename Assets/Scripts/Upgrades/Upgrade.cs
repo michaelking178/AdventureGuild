@@ -6,6 +6,7 @@ public abstract class Upgrade : MonoBehaviour
     public int GoldCost;
     public int IronCost;
     public int WoodCost;
+    public int ArtisanCost;
 
     protected Guildhall guildhall;
 
