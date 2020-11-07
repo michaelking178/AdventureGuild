@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngineInternal;
 
 [Serializable]
 public class Guildhall : MonoBehaviour
@@ -9,7 +8,8 @@ public class Guildhall : MonoBehaviour
     public int Iron { get; set; }
     public int Wood { get; set; }
     public int Renown { get; set; }
-    public float renownThreshold = 10.0f;
+    public int RenownLevel { get; set; } = 1;
+    public int RenownThreshold { get { return Levelling.RenownLevel[RenownLevel]; } }
 
     public int GoldIncome { get; set; } = 0;
     public int IronIncome { get; set; } = 0;
@@ -31,39 +31,11 @@ public class Guildhall : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Renown >= renownThreshold)
+        if (Renown >= Levelling.RenownLevel[RenownLevel])
         {
-            IncrementRenown();
+            RenownLevel++;
             populationManager.CreateGuildMember();
             questManager.PopulateQuestPool(UnityEngine.Random.Range(3, 6));
-        }
-    }
-
-    private void IncrementRenown()
-    {
-        if (renownThreshold < 50)
-        {
-            renownThreshold *= 2f;
-        }
-        else if (renownThreshold < 250)
-        {
-            renownThreshold *= 1.5f;
-        }
-        else if (renownThreshold < 480)
-        {
-            renownThreshold = Mathf.RoundToInt(renownThreshold * 1.333333f);
-        }
-        else if (renownThreshold < 600)
-        {
-            renownThreshold *= 1.25f;
-        }
-        else if (renownThreshold < 1200)
-        {
-            renownThreshold += 150;
-        }
-        else
-        {
-            renownThreshold += 200;
         }
     }
 

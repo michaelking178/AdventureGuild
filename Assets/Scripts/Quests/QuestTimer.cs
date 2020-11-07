@@ -20,11 +20,13 @@ public class QuestTimer : MonoBehaviour
 
     private QuestManager questManager;
     private IncidentManager incidentManager;
+    private Guildhall guildhall;
 
     private void Start()
     {
         questManager = FindObjectOfType<QuestManager>();
         incidentManager = FindObjectOfType<IncidentManager>();
+        guildhall = FindObjectOfType<Guildhall>();
         if (IncidentTimer == 0)
         {
             IncidentTimer = Mathf.CeilToInt((quest.level / 3) + 1) * CreateIncidentTime();
@@ -47,12 +49,14 @@ public class QuestTimer : MonoBehaviour
                     if (quest.GuildMember.Hitpoints == 0)
                     {
                         i = 1;
+                        FindObjectOfType<PopulationManager>().RecoveryStartTime = DateTime.Now.AddSeconds(-CurrentTime);
                     }
                 }
             }
         }
         else if (quest.GuildMember != null)
         {
+            FindObjectOfType<PopulationManager>().RecoveryStartTime = DateTime.Now.AddSeconds(-CurrentTime);
             CompleteQuest();
         }
         else
@@ -114,9 +118,17 @@ public class QuestTimer : MonoBehaviour
     {
         if (incident.reward != null)
         {
-            FindObjectOfType<Guildhall>().AdjustGold(incident.reward.Gold);
-            FindObjectOfType<Guildhall>().AdjustIron(incident.reward.Iron);
-            FindObjectOfType<Guildhall>().AdjustWood(incident.reward.Wood);
+            //Todo: ExpBoost debug can be removed later.
+            if (FindObjectOfType<PopulationManager>().DebugBoostEnabled)
+            {
+                incident.reward.Gold *= FindObjectOfType<PopulationManager>().DebugBoost;
+                incident.reward.Iron *= FindObjectOfType<PopulationManager>().DebugBoost;
+                incident.reward.Wood *= FindObjectOfType<PopulationManager>().DebugBoost;
+            }
+
+            guildhall.AdjustGold(incident.reward.Gold);
+            guildhall.AdjustIron(incident.reward.Iron);
+            guildhall.AdjustWood(incident.reward.Wood);
             quest.GuildMember.AddExp(incident.reward.Experience);
             quest.GuildMember.AdjustHitpoints(incident.reward.Hitpoints);
         }

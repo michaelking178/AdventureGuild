@@ -34,7 +34,7 @@ public class HeroMaker : MonoBehaviour
         hero.Avatar = defaultHeroSprite;
         hero.Vocation = new Adventurer();
         hero.IsAvailable = true;
-        hero.bio = "";
+        hero.Bio = "";
         populationManager.GuildMembers.Add(hero);
     }
 

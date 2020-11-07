@@ -21,10 +21,7 @@ public class QuestUI : MonoBehaviour
     private Image factionIcon;
 
     [SerializeField]
-    private List<Sprite> skillIcons;
-
-    [SerializeField]
-    private List<Sprite> factionIcons;
+    private Image relicIcon;
 
     private Quest quest;
     private QuestManager questManager;
@@ -32,7 +29,10 @@ public class QuestUI : MonoBehaviour
     private Menu_Quest menu_Quest;
     private Menu_QuestJournal questJournal;
     private Color emptySlotColor = new Color(0,0,0,0.25f);
-    private Color fullSlotColor = new Color(1,1,1,1);
+    private Color combatColor = new Color(1,0,0,1);
+    private Color espionageColor = new Color(1,1,0,1);
+    private Color diplomacyColor = new Color(0,0,1,1);
+    private Color factionColor = new Color(1,1,1,1);
 
     private void Start()
     {
@@ -72,8 +72,9 @@ public class QuestUI : MonoBehaviour
         questName.text = quest.questName;
         questLevel.text = "Level " + quest.level;
         SetQuestUIState();
-        SetQuestUISkill();
-        SetQuestUIFaction();
+        SetSkillGem();
+        SetFactionGem();
+        SetRelicGem();
     }
 
     public void SetActiveQuest()
@@ -123,23 +124,20 @@ public class QuestUI : MonoBehaviour
         }
     }
 
-    private void SetQuestUISkill()
+    private void SetSkillGem()
     {
         if (skillIcon != null)
         {
             switch (quest.QuestSkill)
             {
                 case Quest.Skill.Combat:
-                    skillIcon.color = fullSlotColor;
-                    skillIcon.sprite = skillIcons[0];
+                    skillIcon.color = combatColor;
                     break;
                 case Quest.Skill.Espionage:
-                    skillIcon.color = fullSlotColor;
-                    skillIcon.sprite = skillIcons[2];
+                    skillIcon.color = espionageColor;
                     break;
                 case Quest.Skill.Diplomacy:
-                    skillIcon.color = fullSlotColor;
-                    skillIcon.sprite = skillIcons[1];
+                    skillIcon.color = diplomacyColor;
                     break;
                 default:
                     skillIcon.color = emptySlotColor;
@@ -148,28 +146,30 @@ public class QuestUI : MonoBehaviour
         }
     }
 
-    private void SetQuestUIFaction()
+    private void SetFactionGem()
     {
         if (factionIcon != null)
         {
             switch (quest.QuestFaction)
             {
                 case Quest.Faction.MagesGuild:
-                    factionIcon.color = fullSlotColor;
-                    factionIcon.sprite = factionIcons[0];
+                    factionIcon.color = factionColor;
                     break;
                 case Quest.Faction.MerchantsGuild:
-                    factionIcon.color = fullSlotColor;
-                    factionIcon.sprite = factionIcons[0];
+                    factionIcon.color = factionColor;
                     break;
                 case Quest.Faction.RoyalPalace:
-                    factionIcon.color = fullSlotColor;
-                    factionIcon.sprite = factionIcons[0];
+                    factionIcon.color = factionColor;
                     break;
                 default:
                     factionIcon.color = emptySlotColor;
                     break;
             }
         }
+    }
+
+    private void SetRelicGem()
+    {
+        relicIcon.color = emptySlotColor;
     }
 }

@@ -1,29 +1,24 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class SkillQuestUpgrade : Upgrade
+public class WorkshopUpgrade : Upgrade
 {
-    [SerializeField]
-    private string skill = "";
-
-    private QuestManager questManager;
-
+    // Start is called before the first frame update
     private new void Start()
     {
         base.Start();
-        questManager = FindObjectOfType<QuestManager>();
         StartCoroutine(DelayedCheckForUpgrade());
     }
 
     public override void Apply()
     {
         base.Apply();
-        questManager.UnlockSkill(skill);
+        populationManager.EnableArtisans();
     }
 
     public void CheckForUpgrade()
     {
-        IsPurchased = questManager.IsSkillUnlocked(skill);
+        IsPurchased = FindObjectOfType<PopulationManager>().ArtisansEnabled;
     }
 
     private IEnumerator DelayedCheckForUpgrade()

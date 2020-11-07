@@ -1,9 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GuildMember : MonoBehaviour
 {
-    [SerializeField]
     public Person person;
 
     private Vocation vocation;
@@ -33,7 +31,7 @@ public class GuildMember : MonoBehaviour
     public int Level { get; set; }
     public bool IsAvailable { get; set; }
     public bool IsIncapacitated { get; set; }
-    public string bio { get; set; }
+    public string Bio { get; set; }
     public bool Created { get; set; } = false;
 
     public void Init(Person _person)
@@ -47,7 +45,7 @@ public class GuildMember : MonoBehaviour
         Vocation = new Peasant();
         IsAvailable = true;
         IsIncapacitated = false;
-        bio = "";
+        Bio = "";
         Created = true;
     }
 
@@ -79,12 +77,20 @@ public class GuildMember : MonoBehaviour
 
     public void AddExp(int _exp)
     {
+        // Todo: DebugBoost testing tool can be removed later.
+        PopulationManager populationManager = FindObjectOfType<PopulationManager>();
+        if (populationManager.DebugBoostEnabled) _exp *= populationManager.DebugBoost;
+
         Experience += _exp;
         CheckLevel();
     }
 
     public void AddExp(Quest.Skill skillType, int _exp)
     {
+        // Todo: DebugBoost testing tool can be removed later.
+        PopulationManager populationManager = FindObjectOfType<PopulationManager>();
+        if (populationManager.DebugBoostEnabled) _exp *= populationManager.DebugBoost;
+
         if (vocation.Title() != "Adventurer") return;
 
         Adventurer adv = (Adventurer)vocation;

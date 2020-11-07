@@ -41,7 +41,6 @@ public class BarracksUpgrade : Upgrade
     [SerializeField]
     private int levelThreePopulation = 50;
 
-    private PopulationManager populationManager;
     private MenuManager menuManager;
     private GameObject menu_UpgradeGuildhall;
     private int populationUpgrade;
@@ -49,7 +48,6 @@ public class BarracksUpgrade : Upgrade
     private new void Start()
     {
         base.Start();
-        populationManager = FindObjectOfType<PopulationManager>();
         menuManager = FindObjectOfType<MenuManager>();
         menu_UpgradeGuildhall = FindObjectOfType<Menu_UpgradeGuildhall>().gameObject;
         StartCoroutine(DelayedCheckForUpgrade());
@@ -82,19 +80,19 @@ public class BarracksUpgrade : Upgrade
         }
         else if (populationManager.PopulationCap == levelOnePopulation)
         {
-            base.GoldCost = levelTwoGoldCost;
-            base.IronCost = levelTwoIronCost;
-            base.WoodCost = levelTwoWoodCost;
-            base.ArtisanCost = levelTwoArtisanCost;
+            GoldCost = levelTwoGoldCost;
+            IronCost = levelTwoIronCost;
+            WoodCost = levelTwoWoodCost;
+            ArtisanCost = levelTwoArtisanCost;
             populationUpgrade = levelTwoPopulation;
             GetComponent<UpgradeItemFrame>().SetItemAttributes("Barracks II", "Increases the maximum population of the Adventure Guild to 25.");
         }
         else if (populationManager.PopulationCap == levelTwoPopulation)
         {
-            base.GoldCost = levelThreeGoldCost;
-            base.IronCost = levelThreeIronCost;
-            base.WoodCost = levelThreeWoodCost;
-            base.ArtisanCost = levelThreeArtisanCost;
+            GoldCost = levelThreeGoldCost;
+            IronCost = levelThreeIronCost;
+            WoodCost = levelThreeWoodCost;
+            ArtisanCost = levelThreeArtisanCost;
             populationUpgrade = levelThreePopulation;
             GetComponent<UpgradeItemFrame>().SetItemAttributes("Barracks III", "Increases the maximum population of the Adventure Guild to 50.");
         }

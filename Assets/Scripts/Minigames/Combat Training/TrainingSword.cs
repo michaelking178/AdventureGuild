@@ -16,6 +16,9 @@ public class TrainingSword : MonoBehaviour
     private int speed = 25;
     private float startTime = 0f;
 
+    public int Swings = 0;
+    public int Hits = 0;
+
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -38,6 +41,7 @@ public class TrainingSword : MonoBehaviour
     {
         if (!FindObjectOfType<TrainingManager>().GameOver)
         {
+            Swings++;
             StartCoroutine(SwingMovement(position));
         }
     }

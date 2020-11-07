@@ -6,28 +6,12 @@ public class IncidentManager : MonoBehaviour
     [SerializeField]
     private TextAsset incidentsJson;
 
-    //public bool GrabIncident = false;
-
     private Incidents incidents;
 
     private void Start()
     {
         incidents = JsonUtility.FromJson<Incidents>(incidentsJson.text);
     }
-
-    //private void Update()
-    //{
-    //    if (GrabIncident)
-    //    {
-    //        GetIncident();
-    //        GrabIncident = false;
-    //    }
-    //}
-    
-    //public Incident GetIncident()
-    //{
-    //    return GenerateIncident();
-    //}
 
     public Incident GetIncident(DateTime _time, int questLevel, int adventurerLevel)
     {

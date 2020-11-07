@@ -12,12 +12,6 @@ public class TrainingManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI scoreText;
 
-    [SerializeField]
-    private TextMeshProUGUI expText;
-
-    [SerializeField]
-    private TextMeshProUGUI combatExpText;
-
     [Header("Instructions Panel")]
     [SerializeField]
     private Image instructionsImage;
@@ -31,12 +25,21 @@ public class TrainingManager : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI resultsScore;
-    
+
+    [SerializeField]
+    private TextMeshProUGUI resultsAccuracy;
+
+    [SerializeField]
+    private TextMeshProUGUI resultsFinalScore;
+
     [SerializeField]
     private TextMeshProUGUI resultsExp;
 
     [SerializeField]
     private TextMeshProUGUI resultsCombatExp;
+
+    [SerializeField]
+    private GameObject clickBlockerPanel;
 
     [Header("Game Stats")]
     public float TimeLimit = 30f;
@@ -44,6 +47,7 @@ public class TrainingManager : MonoBehaviour
     public bool GameOver;
 
     private GuildMember guildMember;
+    private TrainingSword sword;
     private int score = 0;
     private int exp = 0;
     private int combatExp = 0;
@@ -52,6 +56,11 @@ public class TrainingManager : MonoBehaviour
 
     private void Start()
     {
+        // Todo: ExpBoost debug stuff can be removed later.
+        if (FindObjectOfType<PopulationManager>().DebugBoostEnabled == true) TimeLimit = 10f;
+        else TimeLimit = 30f;
+
+        sword = FindObjectOfType<TrainingSword>();
         countdown = 3.5f;
         GameOver = true;
         TimeRemaining = TimeLimit;
@@ -86,8 +95,6 @@ public class TrainingManager : MonoBehaviour
         }
         timeText.text = Helpers.FormatTimer((int)TimeRemaining);
         scoreText.text = score.ToString();
-        expText.text = exp.ToString();
-        combatExpText.text = combatExp.ToString();
     }
 
     public void SetGuildMember(GuildMember _guildMember)
@@ -103,24 +110,33 @@ public class TrainingManager : MonoBehaviour
     public void AddPoints(int points)
     {
         score += points;
-        exp += Mathf.FloorToInt(points / 10);
-        combatExp = Mathf.FloorToInt(exp / 2);
     }
 
     private void StopGame()
     {
         GameOver = true;
         countdown = 3.5f;
+        clickBlockerPanel.SetActive(true);
+
+        float accuracy = (float)sword.Hits / sword.Swings;
+        int accuracyPercent = Mathf.RoundToInt(accuracy * 100);
+
+        resultsScore.text = $"Score: {score}";
+        score = Mathf.RoundToInt(score * accuracy);
+
+        exp = Mathf.CeilToInt(score / 10);
+        combatExp = Mathf.CeilToInt(score / 20);
         resultsImage.GetComponent<Animator>().SetTrigger("Open");
-        resultsScore.text = string.Format("Score: {0}", score.ToString());
-        resultsExp.text = string.Format("Experience Gained: {0}", exp.ToString());
+        resultsAccuracy.text = $"Accuracy: {accuracyPercent}%";
+        resultsFinalScore.text = $"Final Score: {score}";
+        resultsExp.text = $"Experience Gained: {exp}";
         if (guildMember.Vocation is Adventurer)
         {
-            resultsCombatExp.text = string.Format("Combat Exp Gained: {0}", combatExp.ToString());
+            resultsCombatExp.text = $"Combat Exp Gained: {combatExp}";
         }
         else
         {
-            resultsCombatExp.text = string.Format("An Adventurer would have gained {0} Combat Exp!", combatExp.ToString());
+            resultsCombatExp.text = $"An Adventurer would have gained {combatExp} Combat Exp!";
         }
     }
 

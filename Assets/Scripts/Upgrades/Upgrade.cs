@@ -9,10 +9,12 @@ public abstract class Upgrade : MonoBehaviour
     public int ArtisanCost;
 
     protected Guildhall guildhall;
+    protected PopulationManager populationManager;
 
     public void Start()
     {
         guildhall = FindObjectOfType<Guildhall>();
+        populationManager = FindObjectOfType<PopulationManager>();
     }
 
     public virtual void Apply()
@@ -25,7 +27,7 @@ public abstract class Upgrade : MonoBehaviour
 
     public bool CanAfford()
     {
-        if (guildhall.Gold < GoldCost || guildhall.Wood < WoodCost || guildhall.Iron < IronCost)
+        if (guildhall.Gold < GoldCost || guildhall.Wood < WoodCost || guildhall.Iron < IronCost || populationManager.Artisans().Count < ArtisanCost)
         {
             return false;
         }

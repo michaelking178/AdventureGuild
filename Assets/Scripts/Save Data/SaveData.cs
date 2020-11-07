@@ -32,6 +32,29 @@ public class SaveData
 
     public void Load()
     {
+        if (settingsData != null)
+        {
+            LoadSettings();
+        }
+        LoadHero();
+        LoadGuildhall();
+        LoadPopulationManager();
+        LoadQuestManager();
+        LoadGuildMembers();
+        LoadQuestPool();
+        LoadQuestArchive();
+        LoadQuestTimers();
+    }
+
+    private void LoadSettings()
+    {
+        GameObject.Find("MusicManager").GetComponent<AudioSource>().volume = settingsData.musicVolume;
+        GameObject.Find("SoundManager").GetComponent<AudioSource>().volume = settingsData.soundVolume;
+        GameObject.Find("Population Manager").GetComponent<PopulationManager>().DebugBoostEnabled = settingsData.debugBoostEnabled;
+    }
+
+    private void LoadHero()
+    {
         GuildMember hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>();
         hero.person = heroData.person;
         hero.Vocation = heroData.adventurer;
@@ -43,26 +66,51 @@ public class SaveData
         hero.Experience = heroData.experience;
         hero.Level = heroData.level;
         hero.IsAvailable = heroData.isAvailable;
-        hero.bio = heroData.bio;
+        hero.Bio = heroData.bio;
         GameObject.FindObjectOfType<PopulationManager>().GuildMembers.Add(hero);
+    }
 
+    private void LoadGuildhall()
+    {
         Guildhall guildhall = GameObject.FindObjectOfType<Guildhall>();
         guildhall.Gold = guildhallData.gold;
         guildhall.Iron = guildhallData.iron;
         guildhall.Wood = guildhallData.wood;
         guildhall.Renown = guildhallData.renown;
-        guildhall.renownThreshold = guildhallData.renownThreshold;
+        guildhall.RenownLevel = guildhallData.renownLevel;
         guildhall.GoldIncome = guildhallData.goldIncome;
         guildhall.IronIncome = guildhallData.ironIncome;
         guildhall.WoodIncome = guildhallData.woodIncome;
         guildhall.StartTime = guildhallData.startTime;
+    }
 
+    private void LoadPopulationManager()
+    {
+        PopulationManager populationManager = GameObject.FindObjectOfType<PopulationManager>();
+        populationManager.RecoveryStartTime = populationManagerData.recoveryStartTime;
+        populationManager.PopulationCap = populationManagerData.populationCap;
+        populationManager.ArtisansEnabled = populationManagerData.artisansEnabled;
+    }
+
+    private void LoadQuestManager()
+    {
+        QuestManager questManager = GameObject.FindObjectOfType<QuestManager>();
+        questManager.CombatUnlocked = questManagerData.CombatUnlocked;
+        questManager.EspionageUnlocked = questManagerData.EspionageUnlocked;
+        questManager.DiplomacyUnlocked = questManagerData.DiplomacyUnlocked;
+    }
+
+    private void LoadGuildMembers()
+    {
         foreach (GuildMemberData guildMemberData in guildMemberDatas)
         {
             // PopulationManager needs to handle this because GuildMember inherits Monobehaviour so must be instantiated.
             GameObject.FindObjectOfType<PopulationManager>().LoadGuildMember(guildMemberData);
         }
+    }
 
+    private void LoadQuestPool()
+    {
         List<Quest> _questPool = new List<Quest>();
         foreach (QuestData questData in questDataPool)
         {
@@ -70,7 +118,10 @@ public class SaveData
             _questPool.Add(newQuest);
         }
         GameObject.FindObjectOfType<QuestManager>().SetQuestPool(_questPool);
+    }
 
+    private void LoadQuestArchive()
+    {
         List<Quest> _questArchive = new List<Quest>();
         foreach (QuestData questData in questDataArchive)
         {
@@ -78,25 +129,14 @@ public class SaveData
             _questArchive.Add(newQuest);
         }
         GameObject.FindObjectOfType<QuestManager>().SetQuestArchive(_questArchive);
+    }
 
+    private void LoadQuestTimers()
+    {
         foreach (QuestTimerData questTimerData in questTimerDatas)
         {
             // QuestManager needs to handle this because QuestTimer inherits Monobehaviour so must be instantiated.
             GameObject.FindObjectOfType<QuestManager>().LoadQuestTimer(questTimerData);
-        }
-        PopulationManager populationManager = GameObject.FindObjectOfType<PopulationManager>();
-        populationManager.recoveryStartTime = populationManagerData.recoveryStartTime;
-        populationManager.PopulationCap = populationManagerData.populationCap;
-
-        QuestManager questManager = GameObject.FindObjectOfType<QuestManager>();
-        questManager.CombatUnlocked = questManagerData.CombatUnlocked;
-        questManager.EspionageUnlocked = questManagerData.EspionageUnlocked;
-        questManager.DiplomacyUnlocked = questManagerData.DiplomacyUnlocked;
-
-        if (settingsData != null)
-        {
-            GameObject.Find("MusicManager").GetComponent<AudioSource>().volume = settingsData.musicVolume;
-            GameObject.Find("SoundManager").GetComponent<AudioSource>().volume = settingsData.soundVolume;
         }
     }
 

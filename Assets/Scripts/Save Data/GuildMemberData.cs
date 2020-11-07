@@ -36,6 +36,6 @@ public class GuildMemberData
         experience = guildMember.Experience;
         level = guildMember.Level;
         isAvailable = guildMember.IsAvailable;
-        bio = guildMember.bio;
+        bio = guildMember.Bio;
     }
 }

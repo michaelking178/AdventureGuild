@@ -21,6 +21,10 @@ public class PopulationManager : MonoBehaviour
     public Sprite defaultMaleAvatar;
     public Sprite defaultFemaleAvatar;
 
+    // Todo: DebugBoost testing tool can be removed later.
+    public bool DebugBoostEnabled = false;
+    public int DebugBoost = 3;
+
     [Header("Name Lists")]
     [SerializeField]
     private Names maleNames;
@@ -35,12 +39,13 @@ public class PopulationManager : MonoBehaviour
     public List<GuildMember> GuildMembers = new List<GuildMember>();
 
     public int PopulationCap { get; set; } = 5;
+    public System.DateTime RecoveryStartTime;
+    public bool ArtisansEnabled = false;
 
     private NotificationManager notificationManager;
     private int recoveryQueue;
     private float recoveryTime;
     private float recoveryCheckpoint = 30.0f;
-    public System.DateTime recoveryStartTime;
 
     private void Start()
     {
@@ -48,9 +53,9 @@ public class PopulationManager : MonoBehaviour
         maleNames = JsonUtility.FromJson<Names>(maleNamesJson.text);
         femaleNames = JsonUtility.FromJson<Names>(femaleNamesJson.text);
         lastNames = JsonUtility.FromJson<Names>(lastNamesJson.text);
-        if (recoveryStartTime == System.DateTime.MinValue)
+        if (RecoveryStartTime == System.DateTime.MinValue)
         {
-            recoveryStartTime = System.DateTime.Now;
+            RecoveryStartTime = System.DateTime.Now;
         }
     }
 
@@ -109,13 +114,13 @@ public class PopulationManager : MonoBehaviour
             newMember.Vocation = guildMemberData.vocation;
         }
         newMember.IsAvailable = guildMemberData.isAvailable;
-        newMember.bio = guildMemberData.bio;
+        newMember.Bio = guildMemberData.bio;
         GuildMembers.Add(newMember);
     }
 
     private void RecoverHitpoints()
     {
-        System.TimeSpan difference = System.DateTime.Now - recoveryStartTime;
+        System.TimeSpan difference = System.DateTime.Now - RecoveryStartTime;
         recoveryTime = (float)difference.TotalSeconds;
         recoveryQueue = Mathf.FloorToInt(recoveryTime / recoveryCheckpoint);
         for (int i = 0; i < recoveryQueue; i++)
@@ -128,9 +133,9 @@ public class PopulationManager : MonoBehaviour
                 }
             }
         }
-        if (System.DateTime.Now > recoveryStartTime.AddSeconds(recoveryCheckpoint))
+        if (System.DateTime.Now > RecoveryStartTime.AddSeconds(recoveryCheckpoint))
         {
-            recoveryStartTime = System.DateTime.Now;
+            RecoveryStartTime = System.DateTime.Now;
         }
     }
 
@@ -204,5 +209,10 @@ public class PopulationManager : MonoBehaviour
     public void RemoveGuildMember(GuildMember _guildMember)
     {
         GuildMembers.Remove(_guildMember);
+    }
+
+    public void EnableArtisans()
+    {
+        ArtisansEnabled = true;
     }
 }

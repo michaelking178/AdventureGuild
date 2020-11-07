@@ -183,6 +183,15 @@ public class QuestManager : MonoBehaviour
 
     public void ApplyQuestReward(Quest quest)
     {
+        // Todo: ExpBoost debug can be removed later.
+        if (FindObjectOfType<PopulationManager>().DebugBoostEnabled)
+        {
+            quest.Reward.Gold *= FindObjectOfType<PopulationManager>().DebugBoost;
+            quest.Reward.Iron *= FindObjectOfType<PopulationManager>().DebugBoost;
+            quest.Reward.Wood *= FindObjectOfType<PopulationManager>().DebugBoost;
+            quest.Reward.Renown *= FindObjectOfType<PopulationManager>().DebugBoost;
+        }
+
         guildhall.AdjustGold(quest.Reward.Gold);
         guildhall.AdjustIron(quest.Reward.Iron);
         guildhall.AdjustWood(quest.Reward.Wood);

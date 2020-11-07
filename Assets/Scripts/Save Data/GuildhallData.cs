@@ -8,7 +8,7 @@ public class GuildhallData
     public int wood;
     public int weapons;
     public int renown;
-    public float renownThreshold;
+    public int renownLevel;
     public int goldIncome;
     public int ironIncome;
     public int woodIncome;
@@ -21,7 +21,7 @@ public class GuildhallData
         wood = guildhall.Wood;
         weapons = 0;
         renown = guildhall.Renown;
-        renownThreshold = guildhall.renownThreshold;
+        renownLevel = guildhall.RenownLevel;
         goldIncome = guildhall.GoldIncome;
         ironIncome = guildhall.IronIncome;
         woodIncome = guildhall.WoodIncome;

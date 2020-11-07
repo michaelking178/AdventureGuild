@@ -56,7 +56,7 @@ public class Menu_Hero : MonoBehaviour
             heroVocation.text = string.Format("Level {0} {1}", hero.Level, hero.Vocation.Title());
             heroExperience.text = string.Format("Experience: {0} / {1}", hero.Experience, Levelling.GuildMemberLevel[hero.Level]);
             heroHealth.text = string.Format("Health: {0}/{1}", hero.Hitpoints.ToString(), hero.MaxHitpoints.ToString());
-            heroBioText.text = hero.bio;
+            heroBioText.text = hero.Bio;
         }
     }
 
@@ -67,12 +67,12 @@ public class Menu_Hero : MonoBehaviour
         heroBioInput.gameObject.SetActive(true);
         heroBioDone.gameObject.SetActive(true);
         heroBioCancel.gameObject.SetActive(true);
-        heroBioInput.text = hero.bio;
+        heroBioInput.text = hero.Bio;
     }
 
     public void UpdateBio()
     {
-        hero.bio = heroBioInput.text;
+        hero.Bio = heroBioInput.text;
         CloseBioEditor();
     }
 

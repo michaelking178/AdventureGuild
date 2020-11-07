@@ -94,10 +94,10 @@ public class PersonUI : MonoBehaviour
             }
             else
             {
-                exp.text = string.Format("{0} / {1}", GuildMember.Experience, Levelling.GuildMemberLevel[GuildMember.Level]);
+                exp.text = $"{GuildMember.Experience} / {Levelling.GuildMemberLevel[GuildMember.Level]}";
             }
-            personVocation.text = string.Format("{0} - Level {1}", GuildMember.Vocation.Title(), GuildMember.Level.ToString());
-            health.text = string.Format("Health: {0}/{1}", GuildMember.Hitpoints, GuildMember.MaxHitpoints);
+            personVocation.text = $"{GuildMember.Vocation.Title()} - Level {GuildMember.Level}";
+            health.text = $"Health: {GuildMember.Hitpoints} / {GuildMember.MaxHitpoints}";
 
             if (GuildMember.IsAvailable && !GuildMember.IsIncapacitated)
             {
@@ -189,16 +189,16 @@ public class PersonUI : MonoBehaviour
             {
                 promoteToAdventurerBtn.SetActive(true);
             }
-        }
-        if (GuildMember.Vocation is Peasant && GuildMember.Level >= 5)
-        {
-            if (promoteToArtisanBtn.activeSelf)
+            if (FindObjectOfType<PopulationManager>().ArtisansEnabled)
             {
-                promoteToArtisanBtn.SetActive(false);
-            }
-            else
-            {
-                promoteToArtisanBtn.SetActive(true);
+                if (promoteToArtisanBtn.activeSelf)
+                {
+                    promoteToArtisanBtn.SetActive(false);
+                }
+                else
+                {
+                    promoteToArtisanBtn.SetActive(true);
+                }
             }
         }
     }
@@ -270,7 +270,7 @@ public class PersonUI : MonoBehaviour
 
     public void CallReleasePopup()
     {
-        string description = string.Format("Are you sure you wish to release {0} from the Adventure Guild? This cannot be undone.", GuildMember.person.name);
+        string description = $"Are you sure you wish to release {GuildMember.person.name} from the Adventure Guild? This cannot be undone.";
         popupManager.CreateDefaultContent(description);
         popupManager.SetDoubleButton("Release", "Cancel");
         popupManager.Popup.GetComponentInChildren<Button>().onClick.AddListener(ConfirmRelease);
@@ -281,7 +281,7 @@ public class PersonUI : MonoBehaviour
 
     public void CallPromoteToPopup(string _vocation)
     {
-        string description = string.Format("Are you sure you wish to promote {0} to {1}?", GuildMember.person.name, _vocation);
+        string description = $"Are you sure you wish to promote {GuildMember.person.name} to {_vocation}?";
         popupManager.CreateDefaultContent(description);
         popupManager.SetDoubleButton("Promote", "Cancel");
         if (_vocation == "Adventurer") popupManager.Popup.GetComponentInChildren<Button>().onClick.AddListener(ConfirmPromoteAdventurer);
@@ -301,14 +301,14 @@ public class PersonUI : MonoBehaviour
     private void ConfirmPromoteAdventurer()
     {
         popupManager.Popup.GetComponentInChildren<Button>().onClick.RemoveListener(ConfirmPromoteAdventurer);
-        FindObjectOfType<MenuManager>().OpenMenu("Menu_ManagePeople");
+        FindObjectOfType<MenuManager>().OpenMenu("Menu_Hub");
         GuildMember.PromoteToAdventurer();
     }
 
     private void ConfirmPromoteArtisan()
     {
         popupManager.Popup.GetComponentInChildren<Button>().onClick.RemoveListener(ConfirmPromoteArtisan);
-        FindObjectOfType<MenuManager>().OpenMenu("Menu_ManagePeople");
+        FindObjectOfType<MenuManager>().OpenMenu("Menu_Hub");
         GuildMember.PromoteToArtisan();
     }
 }

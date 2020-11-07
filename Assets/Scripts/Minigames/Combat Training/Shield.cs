@@ -19,11 +19,11 @@ public class Shield : MonoBehaviour
     private int newQuadrant;
     private bool striking = false;
     private TrainingManager trainingManager;
-    private TrainingSword trainingSword;
+    private TrainingSword sword;
 
     void Start()
     {
-        trainingSword = FindObjectOfType<TrainingSword>();
+        sword = FindObjectOfType<TrainingSword>();
         trainingManager = FindObjectOfType<TrainingManager>();
         startTime = Time.time;
         repositionDelay = defaultRepositionDelay;
@@ -74,7 +74,8 @@ public class Shield : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
         if (!trainingManager.GameOver && hit.collider != null)
         {
-            trainingSword.Swing(hit.point);
+            sword.Hits++;
+            sword.Swing(hit.point);
             StartCoroutine(StrikeShield(hit.point));
         }
     }
