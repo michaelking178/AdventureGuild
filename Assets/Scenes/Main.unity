@@ -7199,11 +7199,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 2063472304}
+      objectReference: {fileID: 917928249}
     - target: {fileID: 3658182472099775555, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: CheckForPurchases
+      value: Reset
       objectReference: {fileID: 0}
     - target: {fileID: 3658182472099775555, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}
@@ -10163,8 +10163,6 @@ MonoBehaviour:
   defaultMaleAvatar: {fileID: 21300000, guid: 6a0cfe1bd1ac0864587661ea6b770948, type: 3}
   defaultFemaleAvatar: {fileID: 21300000, guid: fb55aef5f7042b94e895001dc65b3b47,
     type: 3}
-  DebugBoostEnabled: 0
-  DebugBoost: 3
   maleNames:
     prefixes: []
     suffixes: []
@@ -10176,6 +10174,8 @@ MonoBehaviour:
     suffixes: []
   GuildMembers: []
   ArtisansEnabled: 0
+  DebugBoostEnabled: 0
+  DebugBoost: 3
 --- !u!1 &545611543
 GameObject:
   m_ObjectHideFlags: 0
@@ -26598,7 +26598,7 @@ PrefabInstance:
     - target: {fileID: 3658182472099775555, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3658182472099775555, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}
@@ -26659,11 +26659,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 1537509039}
+      objectReference: {fileID: 917928249}
     - target: {fileID: 3658182472099775555, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: PlaySound
+      value: Reset
       objectReference: {fileID: 0}
     - target: {fileID: 3658182472099775555, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}
@@ -33225,7 +33225,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: v. 0.0.7.1
+  m_text: v. 0.0.7.2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 66ca03310849d5643b81fa09ed2cd405, type: 2}
   m_sharedMaterial: {fileID: 8847002362934079468, guid: 66ca03310849d5643b81fa09ed2cd405,

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PopulationManager : MonoBehaviour
@@ -21,10 +22,6 @@ public class PopulationManager : MonoBehaviour
     public Sprite defaultMaleAvatar;
     public Sprite defaultFemaleAvatar;
 
-    // Todo: DebugBoost testing tool can be removed later.
-    public bool DebugBoostEnabled = false;
-    public int DebugBoost = 3;
-
     [Header("Name Lists")]
     [SerializeField]
     private Names maleNames;
@@ -37,31 +34,41 @@ public class PopulationManager : MonoBehaviour
 
     [Header("Guild Members")]
     public List<GuildMember> GuildMembers = new List<GuildMember>();
-
     public int PopulationCap { get; set; } = 5;
-    public System.DateTime RecoveryStartTime;
+    public DateTime RecoveryStartTime;
+    public DateTime RecruitStartTime;
     public bool ArtisansEnabled = false;
 
-    private NotificationManager notificationManager;
-    private int recoveryQueue;
+    private int hitpointRecovery = 5;
+    private float recoveryTimer = 30.0f;
     private float recoveryTime;
-    private float recoveryCheckpoint = 30.0f;
+    private int recoveryQueue;
+    private float recruitTimer = 3600.0f;
+    private float recruitTime;
+    private int recruitQueue = 0;
+
+    private NotificationManager notificationManager;
+    private Guildhall guildhall;
+
+    // Todo: DebugBoost testing tool can be removed later.
+    public bool DebugBoostEnabled = false;
+    public int DebugBoost = 3;
 
     private void Start()
     {
         notificationManager = FindObjectOfType<NotificationManager>();
+        guildhall = FindObjectOfType<Guildhall>();
         maleNames = JsonUtility.FromJson<Names>(maleNamesJson.text);
         femaleNames = JsonUtility.FromJson<Names>(femaleNamesJson.text);
         lastNames = JsonUtility.FromJson<Names>(lastNamesJson.text);
-        if (RecoveryStartTime == System.DateTime.MinValue)
-        {
-            RecoveryStartTime = System.DateTime.Now;
-        }
+        if (RecoveryStartTime == System.DateTime.MinValue) RecoveryStartTime = System.DateTime.Now;
+        if (RecruitStartTime == System.DateTime.MinValue) RecruitStartTime = System.DateTime.Now;
     }
 
     private void FixedUpdate()
     {
         RecoverHitpoints();
+        PassiveRecruitment();
     }
 
     public void CreateGuildMember()
@@ -69,18 +76,18 @@ public class PopulationManager : MonoBehaviour
         if (GuildMembers.Count < PopulationCap)
         {
             string firstName;
-            string lastName = lastNames.prefixes[Random.Range(0, lastNames.prefixes.Length)] + lastNames.suffixes[Random.Range(0, lastNames.suffixes.Length)];
+            string lastName = lastNames.prefixes[UnityEngine.Random.Range(0, lastNames.prefixes.Length)] + lastNames.suffixes[UnityEngine.Random.Range(0, lastNames.suffixes.Length)];
             Sprite avatar;
-            int gender = Random.Range(0, 2);
+            int gender = UnityEngine.Random.Range(0, 2);
             if (gender == 0)
             {
-                firstName = maleNames.prefixes[Random.Range(0, maleNames.prefixes.Length)] + maleNames.suffixes[Random.Range(0, maleNames.suffixes.Length)];
-                avatar = maleAvatars[Random.Range(0, maleAvatars.Count)];
+                firstName = maleNames.prefixes[UnityEngine.Random.Range(0, maleNames.prefixes.Length)] + maleNames.suffixes[UnityEngine.Random.Range(0, maleNames.suffixes.Length)];
+                avatar = maleAvatars[UnityEngine.Random.Range(0, maleAvatars.Count)];
             }
             else
             {
-                firstName = femaleNames.prefixes[Random.Range(0, femaleNames.prefixes.Length)] + femaleNames.suffixes[Random.Range(0, femaleNames.suffixes.Length)];
-                avatar = femaleAvatars[Random.Range(0, femaleAvatars.Count)];
+                firstName = femaleNames.prefixes[UnityEngine.Random.Range(0, femaleNames.prefixes.Length)] + femaleNames.suffixes[UnityEngine.Random.Range(0, femaleNames.suffixes.Length)];
+                avatar = femaleAvatars[UnityEngine.Random.Range(0, femaleAvatars.Count)];
             }
             Person newPerson = new Person(gender, firstName, lastName);
             GuildMember newMember = Instantiate(guildMemberPrefab, transform);
@@ -120,23 +127,48 @@ public class PopulationManager : MonoBehaviour
 
     private void RecoverHitpoints()
     {
-        System.TimeSpan difference = System.DateTime.Now - RecoveryStartTime;
+        TimeSpan difference = DateTime.Now - RecoveryStartTime;
         recoveryTime = (float)difference.TotalSeconds;
-        recoveryQueue = Mathf.FloorToInt(recoveryTime / recoveryCheckpoint);
+        recoveryQueue = Mathf.FloorToInt(recoveryTime / recoveryTimer);
         for (int i = 0; i < recoveryQueue; i++)
         {
             foreach (GuildMember guildMember in GuildMembers)
             {
                 if (guildMember.Hitpoints != guildMember.MaxHitpoints && guildMember.IsAvailable)
                 {
-                    guildMember.AdjustHitpoints(5);
+                    guildMember.AdjustHitpoints(hitpointRecovery);
                 }
             }
         }
-        if (System.DateTime.Now > RecoveryStartTime.AddSeconds(recoveryCheckpoint))
+        if (DateTime.Now > RecoveryStartTime.AddSeconds(recoveryTimer))
         {
-            RecoveryStartTime = System.DateTime.Now;
+            RecoveryStartTime = DateTime.Now;
         }
+    }
+
+    private void PassiveRecruitment()
+    {
+        TimeSpan difference = DateTime.Now - RecruitStartTime;
+        recruitTime = (float)difference.TotalSeconds;
+        recruitQueue = Mathf.FloorToInt(recruitTime / recruitTimer);
+        for (int i = 0; i < recruitQueue; i++)
+        {
+            CheckForRecruit();
+        }
+        if (DateTime.Now > RecruitStartTime.AddSeconds(recruitTimer))
+        {
+            RecruitStartTime = DateTime.Now;
+        }
+    }
+
+    private void CheckForRecruit()
+    {
+
+        float odds = (float)((PopulationCap - GuildMembers.Count) * guildhall.Renown) / (Levelling.RenownLevel[guildhall.RenownLevel] * PopulationCap);
+        Debug.Log($"Odds: {odds}");
+        float roll = UnityEngine.Random.Range(0.01f, 1.0f);
+        Debug.Log($"Roll: {roll}");
+        if (roll <= odds) CreateGuildMember();
     }
 
     public List<GuildMember> GetAvailableAdventurers()

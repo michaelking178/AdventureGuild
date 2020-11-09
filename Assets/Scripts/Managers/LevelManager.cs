@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    private string[] compatibleVersions = { "0.0.7.1", "0.0.7.2" };
+
     private void Awake()
     {
         ClearOldSave();
@@ -49,9 +51,14 @@ public class LevelManager : MonoBehaviour
 
     private void ClearOldSave()
     {
-        if (SaveSystem.SaveFileExists() && SaveSystem.GetSaveVersion() != Application.version)
+        if (SaveSystem.SaveFileExists())
         {
-            SaveSystem.DeleteGame();
+            bool isCompatible = false;
+            foreach (string version in compatibleVersions)
+            {
+                if (SaveSystem.GetSaveVersion() == version) isCompatible = true;
+            }
+            if (isCompatible == false) SaveSystem.DeleteGame();
         }
     }
 }

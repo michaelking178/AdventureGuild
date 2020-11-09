@@ -90,6 +90,15 @@ public class SaveData
         populationManager.RecoveryStartTime = populationManagerData.recoveryStartTime;
         populationManager.PopulationCap = populationManagerData.populationCap;
         populationManager.ArtisansEnabled = populationManagerData.artisansEnabled;
+
+        if (populationManagerData.recruitStartTime != null)
+        {
+            populationManager.RecruitStartTime = populationManagerData.recruitStartTime;
+        }
+        else
+        {
+            populationManager.RecruitStartTime = DateTime.MinValue;
+        }
     }
 
     private void LoadQuestManager()

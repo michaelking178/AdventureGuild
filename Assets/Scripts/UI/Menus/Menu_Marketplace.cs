@@ -53,6 +53,50 @@ public class Menu_Marketplace : MonoBehaviour
         }
     }
 
+    public void UpdateMarketplace()
+    {
+        buyWoodSlider.maxValue = MaxWoodInventory / 10;
+        buyWoodText.text = (buyWoodSlider.value * 10).ToString() + "/" + MaxWoodInventory;
+
+        buyIronSlider.maxValue = MaxIronInventory / 10;
+        buyIronText.text = (buyIronSlider.value * 10).ToString() + "/" + MaxIronInventory;
+
+        sellWoodSlider.maxValue = GetWoodMax() / 10;
+        sellWoodText.text = (sellWoodSlider.value * 10).ToString() + "/" + guildhall.Wood.ToString();
+
+        sellIronSlider.maxValue = GetIronMax() / 10;
+        sellIronText.text = (sellIronSlider.value * 10).ToString() + "/" + guildhall.Iron.ToString();
+
+        woodChange = (int)(buyWoodSlider.value - sellWoodSlider.value) * 10;
+        ironChange = (int)(buyIronSlider.value - sellIronSlider.value) * 10;
+    }
+
+    public int GetWoodMax()
+    {
+        return guildhall.Wood - (guildhall.Wood % 10);
+    }
+
+    public int GetIronMax()
+    {
+        return guildhall.Iron - (guildhall.Iron % 10);
+    }
+
+    public void Confirm()
+    {
+        guildhall.AdjustGold(Total);
+        guildhall.AdjustWood(woodChange);
+        guildhall.AdjustIron(ironChange);
+        Reset();
+    }
+
+    public void Reset()
+    {
+        buyWoodSlider.value = 0;
+        buyIronSlider.value = 0;
+        sellWoodSlider.value = 0;
+        sellIronSlider.value = 0;
+    }
+
     private void SetInteractables()
     {
         if (buyWoodSlider.value > 0 || sellWoodSlider.maxValue == 0)
@@ -84,34 +128,6 @@ public class Menu_Marketplace : MonoBehaviour
         }
     }
 
-    public void UpdateMarketplace()
-    {
-        buyWoodSlider.maxValue = MaxWoodInventory / 10;
-        buyWoodText.text = (buyWoodSlider.value * 10).ToString() + "/" + MaxWoodInventory;
-
-        buyIronSlider.maxValue = MaxIronInventory / 10;
-        buyIronText.text = (buyIronSlider.value * 10).ToString() + "/" + MaxIronInventory;
-
-        sellWoodSlider.maxValue = GetWoodMax() / 10;
-        sellWoodText.text = (sellWoodSlider.value * 10).ToString() + "/" + guildhall.Wood.ToString();
-
-        sellIronSlider.maxValue = GetIronMax() / 10;
-        sellIronText.text = (sellIronSlider.value * 10).ToString() + "/" + guildhall.Iron.ToString();
-
-        woodChange = (int)(buyWoodSlider.value - sellWoodSlider.value) * 10;
-        ironChange = (int)(buyIronSlider.value - sellIronSlider.value) * 10;
-    }
-
-    public int GetWoodMax()
-    {
-        return guildhall.Wood - (guildhall.Wood % 10);
-    }
-
-    public int GetIronMax()
-    {
-        return guildhall.Iron - (guildhall.Iron % 10);
-    }
-
     private void CalculateTotal()
     {
         int sellTotal = (int)(((sellWoodSlider.value * WoodValue) + (sellIronSlider.value * IronValue)) * SellDepreciation);
@@ -123,18 +139,6 @@ public class Menu_Marketplace : MonoBehaviour
         if (Total == 0) totalText.color = Color.white;
         else if (Total > 0) totalText.color = Color.green;
         else totalText.color = Color.red;
-    }
-
-    public void Confirm()
-    {
-        guildhall.AdjustGold(Total);
-        guildhall.AdjustWood(woodChange);
-        guildhall.AdjustIron(ironChange);
-
-        buyWoodSlider.value = 0;
-        buyIronSlider.value = 0;
-        sellWoodSlider.value = 0;
-        sellIronSlider.value = 0;
     }
 
     private void DisableSlider(Slider slider)
