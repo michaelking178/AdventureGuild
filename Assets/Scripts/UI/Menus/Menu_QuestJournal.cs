@@ -56,7 +56,7 @@ public class Menu_QuestJournal : MonoBehaviour
             return;
         }
         questName.text = quest.questName;
-        summary.text = string.Format("{0}\nI, {1}, hereby set out to {2} Success shall reap these rewards:", quest.startTime.ToString(), quest.GuildMember.person.name, quest.commencement);
+        summary.text = $"{quest.startTime}\nI, {quest.GuildMember.person.name}, hereby set out to {quest.commencement} Success shall reap these rewards:";
         questReward.text = Helpers.QuestRewardStr(quest);
         incidentCount = quest.Incidents.Count;
         UpdateIncidents();
@@ -73,7 +73,7 @@ public class Menu_QuestJournal : MonoBehaviour
         foreach (Incident incident in quest.Incidents)
         {
             TextMeshProUGUI incidentText = Instantiate(incidentTextPrefab, incidentContainer.transform);
-            incidentText.text = string.Format("{0}\n{1}", incident.time, incident.description + " " + incident.finalResult);
+            incidentText.text = $"Day {quest.Incidents.IndexOf(incident) + 1}\n{incident.description} {incident.finalResult}";
             TextMeshProUGUI incidentRewardText = Instantiate(incidentRewardTextPrefab, incidentContainer.transform);
             switch (incident.result)
             {

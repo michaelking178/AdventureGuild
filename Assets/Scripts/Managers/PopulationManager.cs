@@ -164,10 +164,8 @@ public class PopulationManager : MonoBehaviour
     private void CheckForRecruit()
     {
 
-        float odds = (float)((PopulationCap - GuildMembers.Count) * guildhall.Renown) / (Levelling.RenownLevel[guildhall.RenownLevel] * PopulationCap);
-        Debug.Log($"Odds: {odds}");
+        float odds = (float)(((PopulationCap - GuildMembers.Count) * guildhall.Renown) / (Levelling.RenownLevel[guildhall.RenownLevel] * PopulationCap)) * 0.5f;
         float roll = UnityEngine.Random.Range(0.01f, 1.0f);
-        Debug.Log($"Roll: {roll}");
         if (roll <= odds) CreateGuildMember();
     }
 

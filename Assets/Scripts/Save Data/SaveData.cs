@@ -159,7 +159,7 @@ public class SaveData
         questToLoad.description = _questData.description;
         questToLoad.commencement = _questData.commencement;
         questToLoad.completion = _questData.completion;
-        questToLoad.id = _questData.id;
+        questToLoad.id = QuestIDCompatibility(_questData.id);
         questToLoad.level = _questData.level;
         questToLoad.time = _questData.time;
         questToLoad.questInstanceId = _questData.questInstanceId;
@@ -174,5 +174,77 @@ public class SaveData
         questToLoad.QuestSkill = _questData.questSkill;
         questToLoad.QuestFaction = _questData.questFaction;
         return questToLoad;
+    }
+
+    private int QuestIDCompatibility(int _id)
+    {
+        switch (_id)
+        {
+            case 001: return 001001;
+            case 002: return 001002;
+            case 003: return 001003;
+            case 004: return 001004;
+            case 005: return 001005;
+            case 006: return 001006;
+            case 007: return 001007;
+            case 008: return 001008;
+            case 009: return 001009;
+            case 010: return 001010;
+            case 011: return 001011;
+            case 012: return 001012;
+            case 013: return 001013;
+            case 014: return 001014;
+            case 015: return 001015;
+
+            case 016: return 005001;
+            case 017: return 005002;
+            case 018: return 005003;
+            case 019: return 005004;
+            case 020: return 005005;
+            case 021: return 005006;
+            case 022: return 005007;
+            case 023: return 005008;
+            case 024: return 005009;
+            case 025: return 005010;
+            case 026: return 005011;
+            case 027: return 005012;
+            case 028: return 005013;
+            case 029: return 005014;
+            case 030: return 005015;
+
+            case 031: return 010001;
+            case 032: return 010002;
+            case 033: return 010003;
+            case 034: return 010004;
+            case 035: return 010005;
+            case 036: return 010006;
+            case 037: return 010007;
+            case 038: return 010008;
+            case 039: return 010009;
+            case 040: return 010010;
+            case 041: return 010011;
+            case 042: return 010012;
+            case 043: return 010013;
+            case 044: return 010014;
+            case 045: return 010015;
+
+            case 046: return 015001;
+            case 047: return 015002;
+            case 048: return 015003;
+            case 049: return 015004;
+            case 050: return 015005;
+            case 051: return 015006;
+            case 052: return 015007;
+            case 053: return 015008;
+            case 054: return 015009;
+            case 055: return 015010;
+            case 056: return 015011;
+            case 057: return 015012;
+            case 058: return 015013;
+            case 059: return 015014;
+            case 060: return 015015;
+
+            default: return _id;
+        }
     }
 }
