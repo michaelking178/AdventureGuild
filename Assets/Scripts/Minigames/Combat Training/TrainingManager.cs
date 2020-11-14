@@ -45,13 +45,14 @@ public class TrainingManager : MonoBehaviour
     public float TimeLimit = 30f;
     public float TimeRemaining = 0;
     public bool GameOver;
+    public float defaultCountdown = 5.5f;
 
     private GuildMember guildMember;
     private TrainingSword sword;
     private int score = 0;
     private int exp = 0;
     private int combatExp = 0;
-    private float countdown;
+    public float countdown;
     private bool countingDown;
 
     private void Start()
@@ -60,8 +61,8 @@ public class TrainingManager : MonoBehaviour
         if (FindObjectOfType<PopulationManager>().DebugBoostEnabled == true) TimeLimit = 10f;
         else TimeLimit = 30f;
 
+        countdown = defaultCountdown;
         sword = FindObjectOfType<TrainingSword>();
-        countdown = 3.5f;
         GameOver = true;
         TimeRemaining = TimeLimit;
     }
@@ -71,7 +72,7 @@ public class TrainingManager : MonoBehaviour
         if (!GameOver)
         {
             TimeRemaining -= Time.deltaTime;
-            if (TimeRemaining < 0)
+            if (TimeRemaining < 0.125f)
             {
                 TimeRemaining = 0;
                 StopGame();
@@ -112,10 +113,18 @@ public class TrainingManager : MonoBehaviour
         score += points;
     }
 
+    public void ApplyResults()
+    {
+        resultsImage.GetComponent<Animator>().SetTrigger("Close");
+        guildMember.AddExp(exp);
+        guildMember.AddExp(Quest.Skill.Combat, combatExp);
+        ResetGame();
+    }
+
     private void StopGame()
     {
         GameOver = true;
-        countdown = 3.5f;
+        countdown = defaultCountdown;
         clickBlockerPanel.SetActive(true);
 
         float accuracy = (float)sword.Hits / sword.Swings;
@@ -145,17 +154,9 @@ public class TrainingManager : MonoBehaviour
         instructionsImage.GetComponent<Animator>().SetTrigger("Open");
         yield return new WaitForSeconds(1);
         countingDown = true;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(countdown);
         instructionsImage.GetComponent<Animator>().SetTrigger("Close");
         GameOver = false;
-    }
-
-    public void ApplyResults()
-    {
-        resultsImage.GetComponent<Animator>().SetTrigger("Close");
-        guildMember.AddExp(exp);
-        guildMember.AddExp(Quest.Skill.Combat, combatExp);
-        ResetGame();
     }
 
     private void ResetGame()
@@ -163,7 +164,7 @@ public class TrainingManager : MonoBehaviour
         score = 0;
         exp = 0;
         combatExp = 0;
-        countdown = 3.5f;
+        countdown = defaultCountdown;
         TimeRemaining = TimeLimit;
         guildMember = null;
         FindObjectOfType<Shield>().ResetShieldSpeed();
