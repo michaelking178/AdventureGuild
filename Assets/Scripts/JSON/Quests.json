@@ -29,7 +29,7 @@
       "faction": "",
       "skill": "",
       "description": "Some sneaky goblin has been harrassing my farm. I doubt I'll see the chickens again but I would like my tools and other stock back. Please send a good tracker to find the little devil.",
-      "commencement": "aid this farmer Wendell in dispersing the goblin and retrieving his farm supplies. I should be careful; goblins are small and weak, but devilishly tricky...",
+      "commencement": "aid this farmer Wendell in dispatching the goblin and retrieving his farm supplies. I should be careful; goblins are small and weak, but devilishly tricky...",
       "completion": "I found the goblin's lair and approached under cover of daylight (for, as everyone knows, goblins abhor the light of the sun). I found the farmer's tools and those livestock that yet lived. The goblin awoke quite suddenly and beset me with poison darts. With a swing of my blade I split the conniving creature's skull before its darts had a chance to find their mark. I have returned the farmer's goods, and now make my way back to the Adventure Guild.",
       "level": 1
     },
@@ -68,13 +68,13 @@
     },
     {
       "id": "001007",
-      "questName": "QUEST_NAME_001007",
-      "contractor": "CONTRACTOR_NAME",
+      "questName": "Slum Service",
+      "contractor": "Brock the Foul",
       "faction": "",
       "skill": "",
-      "description": "QUEST_DESCRIPTION",
-      "commencement": "COMMENCE_QUEST",
-      "completion": "COMPLETE_QUEST",
+      "description": "I seek the aid of an adventurer who is not so proud as to forget us lowly folk. During the village festival last moon, my neighbour and I partook in more than our share of the spirits and lost our wits. Sometime during the night I recall falling into a ditch and losing my lucky rat's foot. Please, if you be willing, search the ditches around town for my rat's foot. You'll know it by its bronzing.",
+      "commencement": "find this lost rat's foot for Brock the Foul. Surely even a miresome peasant deserves to hold his luck in tact.",
+      "completion": "After traversing the roadways for several days I found the place where Brock fell into the ditch. It looked akin to a hog wallow and smelled... like Brock. After no short time of digging through the filth I saw within the muck a glint of sunlight. Sure enough it was the bronzed rat's foot. I cleaned myself up as best I could in a nearby pond and returned to collect the reward from the begrimed but grateful Brock. I now head back to the Adventure Guild to clean (or burn) my clothes.",
       "level": 1
     },
     {
@@ -178,13 +178,13 @@
     },
     {
       "id": "005002",
-      "questName": "Slum Service",
-      "contractor": "Willard Notting",
+      "questName": "QUEST_NAME_005002",
+      "contractor": "CONTRACTOR_NAME",
       "faction": "",
       "skill": "",
-      "description": "I seek the aid of an adventurer who is not so proud as to forget us lowly village folk. During the festival last moon, my neighbour and I partook over our share of the spirits and lost our wits. Sometime during the night I recall falling in a ditch and losing my lucky rat's foot. Please, if you're willing, search the ditches around town for my rat's foot. You'll know it by its bronzing.",
-      "commencement": "to locate this poor wretch's lost rat's foot. Hopefully its location is less awful than its description...",
-      "completion": "After scouring far and wide for the lucky rat's foot, I finally found it half-buried in a muddy ditch. The villager certainly travelled far in his stupor before losing it. I journeyed back to the village to return the lost token and now return to the Adventure Guild, rather more smelly than when I left.",
+      "description": "QUEST_DESCRIPTION",
+      "commencement": "COMMENCE_QUEST",
+      "completion": "COMPLETE_QUEST",
       "level": 5
     },
     {
@@ -194,7 +194,7 @@
       "faction": "",
       "skill": "",
       "description": "My daughter has been taken captive by some brutish bandits! They demanded a ransom that cost me half my life's savings, but I paid it all the same. Yet they refuse to return her and demand even more money! I beg, seek out these bandits and end them. Then bring my daughter home!",
-      "commencement": "to find these bandits and rescue the daughter held captive. Perhaps I can return the poor farmer's ransom money in the process.",
+      "commencement": "find these bandits and rescue the daughter held captive. Perhaps I can return the poor farmer's ransom money in the process.",
       "completion": "I found the bandits hiding out in an abandoned farmstead. The girl was bound to the horse post outside, tired and malnourished. As I approached the bandits beset me, flailing blade and blunt in an amateurish show of force. I deftly dispatched two of the larger ones and the rest fled. I untied the girl and found her father's ransom money inside the house. Having returned both to the farmer and received a reward, I now return to the Adventure Guild.",
       "level": 5
     },
@@ -205,7 +205,7 @@
       "faction": "RoyalPalace",
       "skill": "",
       "description": "By order of the Royal Palace: I am seeking an adventurer who will aid us in clearing out an infestation of giant bats from the battlements of the citadel. These creatures are not the average bat seen about the countryside. They are large... very large. And hungry for blood, it seems. I've lost two recruits on what I thought was a mundane maintenance task, and I've no interest in risking any more of my men. Payment will be awarded upon inspection of the cleared battlements.",
-      "commencement": "to aid the Guard Captain in clearing out the infestation of giant bats in the citadel battlements. I must be doubly careful, not only of the bats' bite, but of the battlement's height.",
+      "commencement": "aid the Guard Captain in clearing out the infestation of giant bats in the citadel battlements. I must be doubly careful, not only of the bats' bite, but of the battlement's height.",
       "completion": "I have successfully aided in eradicating the giant bats infesting the citadel battlements. They were surely the largest bats I've seen within the city limits, and their taste for blood was fierce. However between myself, Guard Captain Helrick and several soldiers we cleared the colony. I now return to the Adventure Guild, the Palace's reward in hand.",
       "level": 5
     },
@@ -216,19 +216,19 @@
       "faction": "",
       "skill": "",
       "description": "The earth within the graveyard has been unsettled of late. A gods-fearin' man such as myself holds no interest in explorin' what dark underhappenin's may cause such a ruckus and so I reach out to an adventurer. Prepare ye to face all manner of nightly terrors as ye take up this task. Undead wanderers, perhaps? Vampires pale? The depraved dead-devourers seeking sightlessly their next victuous victim? I know not. I charge ye to investigate.",
-      "commencement": "to discover (and thence lay to rest) whatever disturbs the graveyard in the night. I am prepared for what unholy ghouls may lay in my path, though admittedly apprehensive.",
+      "commencement": "discover (and thence lay to rest) whatever disturbs the graveyard in the night. I am prepared for what unholy ghouls may lay in my path, though admittedly apprehensive.",
       "completion": "I waited in the graveyard two nights, observing the silent stones and statues as they stood in unwatching guard over the dead below. On the third night I heard the noise of disturbance in the earth some distance away. Upon investigation I found the cause of the unsettled graves: robbers. The filth-ridden crooks were scowering the recently deceased for gold and jewels. I charged them head-on and in their surprise they did little to respond. With the butt of my blade I rendered them all unconscious and bound them. It is not for me to decide their fate; they have been left to the will (or whim) of the judiciary. I found the graveyard keeper afterward and collected my reward. I now return to the Adventure Guild, in need of a hot bath.",
       "level": 5
     },
     {
       "id": "005006",
-      "questName": "QUEST_NAME_005006",
-      "contractor": "CONTRACTOR_NAME",
-      "faction": "",
+      "questName": "Rooftop Relic",
+      "contractor": "Conjurer Aritax",
+      "faction": "MagesGuild",
       "skill": "",
-      "description": "QUEST_DESCRIPTION",
-      "commencement": "COMMENCE_QUEST",
-      "completion": "COMPLETE_QUEST",
+      "description": "We are reaching out to the Adventure Guild for aid in retrieving a minor relic. During a routine relocation incantation an acolyte managed to transport a small focus stone onto the roof of the temple. How the young mage accomplished such a precise act of failure is beyond me. Normally we would easily retrieve the stone ourselves but certain parts of the temple are protected against magic so we must retrieve it the \"old-fashioned\" way. We need someone with an aptitude for risking their life and limb for meagre payment, so here we are.",
+      "commencement": "travel to the temple in question and retrieve the focus stone. Falling from the rooftop is no concern of mine... hitting the ground is though.",
+      "completion": "The temple rooftop was a steep and precarious pitch. To make matters worse, rain happened to begin falling just as I arrived. Nevertheless I scaled the walls and clambered up the slippery rooftop slates. Between the shoulders of an overhanging gargoyle I found the focus stone glimmering softly. As I tucked the stone into my pouch I felt my grip on the rain-swept stone give way, and I fell. Sliding down stone and then falling through air, I felt the cold wind and saw the ground quickly approaching. In the final moment I became weightless and floated to the earth like a feather. Conjurer Aritax stood before me, shaking his head in disdain. \"You're lucky I've compassion,\" he said to me. \"I could easily have benefitted from your services for free just now.\" I thanked him and departed with the reward. The Mage's Guild is a strange, unkind place. I return now to the Adventure Guild.",
       "level": 5
     },
     {
@@ -344,7 +344,7 @@
     {
       "id": "010002",
       "questName": "Sparring With Mages",
-      "contractor": "Efenheorla",
+      "contractor": "Conjurer Efenheorla",
       "faction": "MagesGuild",
       "skill": "",
       "description": "Mamortorr seeks adventurers to participate in the training of our novices, preparing them for inevitable combat scenarios. This area is not safe from thieves and bandits so not even foraging for herbal reagents can be guaranteed not to require battle-readiness. Meet the mages at the Mamortorr training field as soon as possible.",
@@ -355,7 +355,7 @@
     {
       "id": "010003",
       "questName": "Sparring With Mages",
-      "contractor": "Waeterhond",
+      "contractor": "Hydromancer Waeterhond",
       "faction": "MagesGuild",
       "skill": "",
       "description": "Mamortorr seeks adventurers to participate in the training of our novices, preparing them for inevitable combat scenarios. This area is not safe from thieves and bandits so not even foraging for herbal reagents can be guaranteed not to require battle-readiness. Meet the mages at the Mamortorr training field as soon as possible.",
@@ -366,7 +366,7 @@
     {
       "id": "010004",
       "questName": "Sparring With Mages",
-      "contractor": "Fyrheort",
+      "contractor": "Pyromancer Fyrheort",
       "faction": "MagesGuild",
       "skill": "",
       "description": "Mamortorr seeks adventurers to participate in the training of our novices, preparing them for inevitable combat scenarios. This area is not safe from thieves and bandits so not even foraging for herbal reagents can be guaranteed not to require battle-readiness. Meet the mages at the Mamortorr training field as soon as possible.",
