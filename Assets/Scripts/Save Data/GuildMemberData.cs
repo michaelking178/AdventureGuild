@@ -4,9 +4,9 @@
 public class GuildMemberData
 {
     public int id;
-    public Person person = null;
-    public Vocation vocation = null;
-    public Adventurer adventurer = null;
+    public Person person;
+    public Vocation vocation;
+    public Adventurer adventurer;
     public string avatarSpriteName = "";
     public int maxHitpoints;
     public int hitpoints;

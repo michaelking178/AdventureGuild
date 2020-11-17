@@ -23,6 +23,9 @@ public class BarracksUpgrade : Upgrade
     private int levelTwoArtisanCost;
 
     [SerializeField]
+    private float levelTwoConstructionTime;
+
+    [SerializeField]
     private int levelTwoPopulation = 25;
 
     [Header("Level Three Upgrade")]
@@ -37,6 +40,9 @@ public class BarracksUpgrade : Upgrade
 
     [SerializeField]
     private int levelThreeArtisanCost;
+
+    [SerializeField]
+    private float levelThreeConstructionTime;
 
     [SerializeField]
     private int levelThreePopulation = 50;

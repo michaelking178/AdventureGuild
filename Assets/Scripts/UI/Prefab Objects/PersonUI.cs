@@ -275,7 +275,7 @@ public class PersonUI : MonoBehaviour
         popupManager.SetDoubleButton("Release", "Cancel");
         popupManager.Popup.GetComponentInChildren<Button>().onClick.AddListener(ConfirmRelease);
 
-        popupManager.Populate("Release Guild Member", GuildMember.Avatar, gameObject);
+        popupManager.Populate("Release Guild Member", GuildMember.Avatar);
         popupManager.CallPopup();
     }
 
@@ -287,7 +287,7 @@ public class PersonUI : MonoBehaviour
         if (_vocation == "Adventurer") popupManager.Popup.GetComponentInChildren<Button>().onClick.AddListener(ConfirmPromoteAdventurer);
         else popupManager.Popup.GetComponentInChildren<Button>().onClick.AddListener(ConfirmPromoteArtisan);
 
-        popupManager.Populate("Promote", GuildMember.Avatar, gameObject);
+        popupManager.Populate("Promote", GuildMember.Avatar);
         popupManager.CallPopup();
     }
 
@@ -295,7 +295,7 @@ public class PersonUI : MonoBehaviour
     {
         popupManager.Popup.GetComponentInChildren<Button>().onClick.RemoveListener(ConfirmRelease);
         FindObjectOfType<PopulationManager>().RemoveGuildMember(GuildMember);
-        GetComponentInParent<PersonUIScrollView>().GetAllGuildMembers();
+        GetComponentInParent<PersonUIScrollView>().PopulateManagePeopleUI();
     }
 
     private void ConfirmPromoteAdventurer()

@@ -13,7 +13,7 @@ public class ResetBtn : MonoBehaviour
         popupManager.SetDoubleButton("Reset", "Cancel");
         popupManager.Popup.GetComponentInChildren<Button>().onClick.AddListener(Confirm);
 
-        popupManager.Populate("Reset Game", popupSprite, gameObject);
+        popupManager.Populate("Reset Game", popupSprite);
         popupManager.CallPopup();
     }
 

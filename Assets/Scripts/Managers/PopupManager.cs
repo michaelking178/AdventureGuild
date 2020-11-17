@@ -39,9 +39,9 @@ public class PopupManager : MonoBehaviour
         Popup.GetComponent<PopupMenu>().SetDoubleButton(btnText1, btnText2);
     }
 
-    public void Populate(string _title, Sprite _sprite, GameObject _caller)
+    public void Populate(string _title, Sprite _sprite)
     {
-        Popup.GetComponent<PopupMenu>().Populate(_title, _sprite, _caller);
+        Popup.GetComponent<PopupMenu>().Populate(_title, _sprite);
     }
 
     private void ClearContent()

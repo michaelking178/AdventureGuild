@@ -7,6 +7,7 @@ public abstract class Upgrade : MonoBehaviour
     public int IronCost;
     public int WoodCost;
     public int ArtisanCost;
+    public float constructionTime;
 
     protected Guildhall guildhall;
     protected PopulationManager populationManager;

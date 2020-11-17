@@ -26,14 +26,8 @@ public class Menu_QuestJournal : MonoBehaviour
     [SerializeField]
     private Scrollbar scrollbar;
 
-    private MenuManager menuManager;
     private Quest quest;
     private int incidentCount;
-
-    private void Start()
-    {
-        menuManager = FindObjectOfType<MenuManager>();
-    }
 
     private void FixedUpdate()
     {

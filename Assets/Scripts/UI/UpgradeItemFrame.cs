@@ -27,10 +27,10 @@ public class UpgradeItemFrame : MonoBehaviour
 
     private Sprite itemSprite;
     private Upgrade upgrade;
-    private string defaultDescription;
-    private bool isAvailable = true;
     private PopupManager popupManager;
     private MenuManager menuManager;
+    private string defaultDescription = "";
+    private bool isAvailable = true;
 
     private void Start()
     {
@@ -121,7 +121,7 @@ public class UpgradeItemFrame : MonoBehaviour
         {
             popupManager.SetSingleButton("Cancel");
         }
-        popupManager.Populate(itemName, itemSprite, gameObject);
+        popupManager.Populate(itemName, itemSprite);
         popupManager.CallPopup();
     }
 

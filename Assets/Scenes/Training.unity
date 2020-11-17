@@ -919,6 +919,7 @@ MonoBehaviour:
   TimeLimit: 30
   TimeRemaining: 0
   GameOver: 0
+  defaultCountdown: 5.5
   countdown: 5.5
 --- !u!1 &239261235
 GameObject:
@@ -2632,7 +2633,7 @@ PrefabInstance:
     - target: {fileID: 3658182472099775555, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
-      value: GetAvailableGuildMembers
+      value: PopulateCombatTrainingUI
       objectReference: {fileID: 0}
     - target: {fileID: 3658182472099775555, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}

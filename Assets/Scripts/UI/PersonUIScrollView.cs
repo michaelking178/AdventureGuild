@@ -13,7 +13,7 @@ public class PersonUIScrollView : MonoBehaviour
     }
 
     // Manage People
-    public void GetAllGuildMembers()
+    public void PopulateManagePeopleUI()
     {
         foreach(GameObject child in gameObject.GetChildren())
         {
@@ -43,7 +43,7 @@ public class PersonUIScrollView : MonoBehaviour
     }
 
     // Quests
-    public void GetAvailableAdventurers()
+    public void PopulateQuestAdventurerUI()
     {
         foreach (GameObject child in gameObject.GetChildren())
         {
@@ -56,7 +56,7 @@ public class PersonUIScrollView : MonoBehaviour
     }
 
     // Training
-    public void GetAvailableGuildMembers()
+    public void PopulateCombatTrainingUI()
     {
         foreach (GameObject child in gameObject.GetChildren())
         {
@@ -65,13 +65,6 @@ public class PersonUIScrollView : MonoBehaviour
         foreach (GuildMember guildMember in FindObjectOfType<PopulationManager>().GuildMembers)
         {
             if (guildMember.Vocation.Title() == "Adventurer" && guildMember.IsAvailable)
-            {
-                InstantiatePersonUI(guildMember, false, true, false, false);
-            }
-        }
-        foreach (GuildMember guildMember in FindObjectOfType<PopulationManager>().GuildMembers)
-        {
-            if (guildMember.Vocation.Title() == "Artisan" && guildMember.IsAvailable)
             {
                 InstantiatePersonUI(guildMember, false, true, false, false);
             }

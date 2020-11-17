@@ -7,6 +7,6 @@ public class Menu_SelectTrainee : MonoBehaviour
 
     void Start()
     {
-        personUIScrollView.GetAvailableGuildMembers();
+        personUIScrollView.PopulateCombatTrainingUI();
     }
 }

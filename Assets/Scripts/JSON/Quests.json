@@ -387,13 +387,13 @@
     },
     {
       "id": "010006",
-      "questName": "QUEST_NAME_010006",
-      "contractor": "CONTRACTOR_NAME",
-      "faction": "",
+      "questName": "Beneath the Bulwark",
+      "contractor": "Guard Captain Helrick",
+      "faction": "RoyalPalace",
       "skill": "",
-      "description": "QUEST_DESCRIPTION",
-      "commencement": "COMMENCE_QUEST",
-      "completion": "COMPLETE_QUEST",
+      "description": "By order of the Royal Palace: An adventurer both daring and discreet is needed to find an item of great importance to the Young Prince. During his daily walk about the ramparts, the Prince dropped a toy horse over the edge which fell among the rocks below. We were unable to retrieve it and fear it has fallen through the crevases into the caverns below. The adventurer who takes this charge will be duly rewarded under the condition that they tell no one what they see in the caverns.",
+      "commencement": "find the Young Prince's lost toy horse. Surely this is a paltry task; what dangers could possibly lurk in under the very roots of the Royal Palace?",
+      "completion": "I explored the rocks at the base of the ramparts and did indeed find crevases which opened into deep caverns below. I made my way within and found... Darkness. Not that which is expected in the subterrain, but an inky blackness that my torch could not dispel. I heard shuffling in the darkness, moans and shrieks in the distance below. Everyone few minutes I heard the distinct wavering blast of magic echoing from the depths. Each moment spent within the caverns filled me further with foreboding. I know not what sordid deeds are unfolding beneath the belly of the Royal Palace, but for now I wish not to find out. I discovered the toy horse after some time of searching amongst the rocks and rubble and departed presently. The reward was paid by the Guard Captain and I return now to the Adventure Guild.",
       "level": 10
     },
     {

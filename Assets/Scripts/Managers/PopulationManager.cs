@@ -125,50 +125,6 @@ public class PopulationManager : MonoBehaviour
         GuildMembers.Add(newMember);
     }
 
-    private void RecoverHitpoints()
-    {
-        TimeSpan difference = DateTime.Now - RecoveryStartTime;
-        recoveryTime = (float)difference.TotalSeconds;
-        recoveryQueue = Mathf.FloorToInt(recoveryTime / recoveryTimer);
-        for (int i = 0; i < recoveryQueue; i++)
-        {
-            foreach (GuildMember guildMember in GuildMembers)
-            {
-                if (guildMember.Hitpoints != guildMember.MaxHitpoints && guildMember.IsAvailable)
-                {
-                    guildMember.AdjustHitpoints(hitpointRecovery);
-                }
-            }
-        }
-        if (DateTime.Now > RecoveryStartTime.AddSeconds(recoveryTimer))
-        {
-            RecoveryStartTime = DateTime.Now;
-        }
-    }
-
-    private void PassiveRecruitment()
-    {
-        TimeSpan difference = DateTime.Now - RecruitStartTime;
-        recruitTime = (float)difference.TotalSeconds;
-        recruitQueue = Mathf.FloorToInt(recruitTime / recruitTimer);
-        for (int i = 0; i < recruitQueue; i++)
-        {
-            CheckForRecruit();
-        }
-        if (DateTime.Now > RecruitStartTime.AddSeconds(recruitTimer))
-        {
-            RecruitStartTime = DateTime.Now;
-        }
-    }
-
-    private void CheckForRecruit()
-    {
-
-        float odds = (float)(((PopulationCap - GuildMembers.Count) * guildhall.Renown) / (Levelling.RenownLevel[guildhall.RenownLevel] * PopulationCap)) * 0.5f;
-        float roll = UnityEngine.Random.Range(0.01f, 1.0f);
-        if (roll <= odds) CreateGuildMember();
-    }
-
     public List<GuildMember> GetAvailableAdventurers()
     {
         List<GuildMember> adventurers = new List<GuildMember>();
@@ -244,5 +200,48 @@ public class PopulationManager : MonoBehaviour
     public void EnableArtisans()
     {
         ArtisansEnabled = true;
+    }
+
+    private void RecoverHitpoints()
+    {
+        TimeSpan difference = DateTime.Now - RecoveryStartTime;
+        recoveryTime = (float)difference.TotalSeconds;
+        recoveryQueue = Mathf.FloorToInt(recoveryTime / recoveryTimer);
+        for (int i = 0; i < recoveryQueue; i++)
+        {
+            foreach (GuildMember guildMember in GuildMembers)
+            {
+                if (guildMember.Hitpoints != guildMember.MaxHitpoints && guildMember.IsAvailable)
+                {
+                    guildMember.AdjustHitpoints(hitpointRecovery);
+                }
+            }
+        }
+        if (DateTime.Now > RecoveryStartTime.AddSeconds(recoveryTimer))
+        {
+            RecoveryStartTime = DateTime.Now;
+        }
+    }
+
+    private void PassiveRecruitment()
+    {
+        TimeSpan difference = DateTime.Now - RecruitStartTime;
+        recruitTime = (float)difference.TotalSeconds;
+        recruitQueue = Mathf.FloorToInt(recruitTime / recruitTimer);
+        for (int i = 0; i < recruitQueue; i++)
+        {
+            CheckForRecruit();
+        }
+        if (DateTime.Now > RecruitStartTime.AddSeconds(recruitTimer))
+        {
+            RecruitStartTime = DateTime.Now;
+        }
+    }
+
+    private void CheckForRecruit()
+    {
+        float odds = (float)(((PopulationCap - GuildMembers.Count) * guildhall.Renown) / (Levelling.RenownLevel[guildhall.RenownLevel] * PopulationCap)) * 0.5f;
+        float roll = UnityEngine.Random.Range(0.01f, 1.0f);
+        if (roll <= odds) CreateGuildMember();
     }
 }
