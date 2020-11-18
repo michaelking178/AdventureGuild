@@ -14,7 +14,7 @@ public class PersonUIScrollView : MonoBehaviour
     }
 
     // Manage People
-    public void PopulateManagePeopleUI()
+    public void GetAllPeopleUI()
     {
         populationManager.SortGuildMembersByLevel();
         foreach (GameObject child in gameObject.GetChildren())
@@ -52,7 +52,7 @@ public class PersonUIScrollView : MonoBehaviour
     }
 
     // Quests
-    public void PopulateQuestAdventurerUI()
+    public void GetAvailableAdventurersUI()
     {
         populationManager.SortGuildMembersByLevel();
         foreach (GameObject child in gameObject.GetChildren())
@@ -60,7 +60,10 @@ public class PersonUIScrollView : MonoBehaviour
             Destroy(child);
         }
         List<GuildMember> guildMembers = new List<GuildMember>();
-        guildMembers.Add(GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>());
+
+        if (GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>().IsAvailable)
+            guildMembers.Add(GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>());
+
         foreach (GuildMember guildMember in populationManager.GetAvailableAdventurers())
         {
             if (!guildMember.gameObject.CompareTag("Hero"))
@@ -73,7 +76,7 @@ public class PersonUIScrollView : MonoBehaviour
     }
 
     // Construction
-    public void PopulateArtisansUI()
+    public void GetAvailableArtisansUI()
     {
         populationManager.SortGuildMembersByLevel();
         foreach (GameObject child in gameObject.GetChildren())
@@ -86,8 +89,8 @@ public class PersonUIScrollView : MonoBehaviour
         }
     }
 
-    // Training
-    public void PopulateCombatTrainingUI()
+    // Combat Training (Adventurers and Peasants)
+    public void GetCombatTrainingPeopleUI()
     {
         populationManager.SortGuildMembersByLevel();
         foreach (GameObject child in gameObject.GetChildren())

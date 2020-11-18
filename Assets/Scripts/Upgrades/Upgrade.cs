@@ -35,7 +35,7 @@ public abstract class Upgrade : MonoBehaviour
 
     public bool CanAfford()
     {
-        if (guildhall.Gold < GoldCost || guildhall.Wood < WoodCost || guildhall.Iron < IronCost || populationManager.Artisans().Count < ArtisanCost)
+        if (guildhall.Gold < GoldCost || guildhall.Wood < WoodCost || guildhall.Iron < IronCost || guildhall.ArtisanProficiency < ArtisanCost)
         {
             return false;
         }

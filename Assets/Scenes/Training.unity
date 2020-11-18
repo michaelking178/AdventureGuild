@@ -1762,7 +1762,7 @@ SpriteRenderer:
   m_SortingLayerID: -1672794575
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0399bd634d3837f4db6a240cf71875e6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c348cbfd93d4d3544b2516c5b30e9265, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1781,7 +1781,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 408706404}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.25, y: 1.86, z: 0}
+  m_LocalPosition: {x: 0.06, y: 0.011, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 1211202051}
@@ -1805,6 +1805,9 @@ MonoBehaviour:
   - {x: -1.25, y: -1.86}
   - {x: 1.25, y: -1.86}
   defaultRepositionDelay: 2
+  blue: {r: 0, g: 1, b: 1, a: 1}
+  green: {r: 0, g: 1, b: 0, a: 1}
+  red: {r: 1, g: 0, b: 0, a: 1}
 --- !u!70 &408706408
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2633,7 +2636,7 @@ PrefabInstance:
     - target: {fileID: 3658182472099775555, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
-      value: PopulateCombatTrainingUI
+      value: GetCombatTrainingPeopleUI
       objectReference: {fileID: 0}
     - target: {fileID: 3658182472099775555, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}

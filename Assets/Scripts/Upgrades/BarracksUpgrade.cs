@@ -33,6 +33,9 @@ public class BarracksUpgrade : Upgrade
     private float levelTwoConstructionTime;
 
     [SerializeField]
+    private int levelTwoExperience;
+
+    [SerializeField]
     private int levelTwoPopulation = 25;
 
 
@@ -57,6 +60,9 @@ public class BarracksUpgrade : Upgrade
 
     [SerializeField]
     private float levelThreeConstructionTime;
+
+    [SerializeField]
+    private int levelThreeExperience;
 
     [SerializeField]
     private int levelThreePopulation = 50;
@@ -95,7 +101,7 @@ public class BarracksUpgrade : Upgrade
     {
         if (populationManager.PopulationCap < levelOnePopulation)
         {
-            return;
+            populationUpgrade = levelOnePopulation;
         }
         else if (populationManager.PopulationCap == levelOnePopulation)
         {
@@ -103,9 +109,10 @@ public class BarracksUpgrade : Upgrade
             IronCost = levelTwoIronCost;
             WoodCost = levelTwoWoodCost;
             ArtisanCost = levelTwoArtisanCost;
+            Experience = levelTwoExperience;
             populationUpgrade = levelTwoPopulation;
             Name = levelTwoName;
-            Description = levelThreeDescription;
+            Description = levelTwoDescription;
         }
         else if (populationManager.PopulationCap == levelTwoPopulation)
         {
@@ -113,6 +120,7 @@ public class BarracksUpgrade : Upgrade
             IronCost = levelThreeIronCost;
             WoodCost = levelThreeWoodCost;
             ArtisanCost = levelThreeArtisanCost;
+            Experience = levelThreeExperience;
             populationUpgrade = levelThreePopulation;
             Name = levelThreeName;
             Description = levelThreeDescription;

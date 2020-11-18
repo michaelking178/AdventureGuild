@@ -7,6 +7,9 @@ public class Shield : MonoBehaviour
     private Vector2[] quadrants = new Vector2[4];
 
     public float defaultRepositionDelay = 2.0f;
+    public Color blue;
+    public Color green;
+    public Color red;
 
     private Vector2 shieldCenter = new Vector2();
     private float shieldCenterXOffset = 442/1024; // These are based on the sprite's size vs. what appears to be the center of the shield
@@ -106,7 +109,7 @@ public class Shield : MonoBehaviour
             if (quadrant == currentQuadrant)
             {
                 FindObjectOfType<TrainingSword>().ClangSound();
-                if (spriteRenderer.color != Color.red) StrikeShield(clickPos, spriteRenderer.color);
+                if (spriteRenderer.color != red) StrikeShield(clickPos, spriteRenderer.color);
                 else StrikeRedShield();
             }
             else
@@ -120,15 +123,15 @@ public class Shield : MonoBehaviour
     private Color GetRandomColor()
     {
         float rand = Random.Range(0.0f, 1.0f);
-        if (rand <= 0.1f) return Color.red;
-        else if (rand <= 0.3f) return Color.green;
-        else return Color.white;
+        if (rand <= 0.1f) return red;
+        else if (rand <= 0.3f) return green;
+        else return blue;
     }
 
     private void StrikeShield(Vector2 _clickPos, Color _color)
     {
         trainingManager.AddPoints(PointsValue(_clickPos));
-        if (_color == Color.white) currentTime = repositionDelay;
+        if (_color == blue) currentTime = repositionDelay;
     }
 
     private void StrikeRedShield()

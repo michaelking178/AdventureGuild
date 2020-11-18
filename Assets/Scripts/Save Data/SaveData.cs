@@ -169,7 +169,6 @@ public class SaveData
         if (constructionManagerData == null)
         {
             Debug.Log("No ConstructionManagerData found!");
-            ConstructionManagerCompat();
         }
         else
         {
@@ -223,14 +222,6 @@ public class SaveData
         questToLoad.QuestSkill = _questData.questSkill;
         questToLoad.QuestFaction = _questData.questFaction;
         return questToLoad;
-    }
-
-    private void ConstructionManagerCompat()
-    {
-        ConstructionManager constructionManager = GameObject.FindObjectOfType<ConstructionManager>();
-        constructionManager.ConstructionJob = null;
-        constructionManager.UnderConstruction = false;
-        constructionManager.StartTime = DateTime.MinValue;
     }
 
     private int QuestIDCompatibility(int _id)

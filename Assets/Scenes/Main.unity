@@ -1079,33 +1079,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 70922436}
   m_CullTransparentMesh: 0
---- !u!1 &76412587 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5243194596823050676, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-    type: 3}
-  m_PrefabInstance: {fileID: 2032949167}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &76412588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 76412587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2b2167ed8a829c479c2093992002acc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Meeting Room
-  Description: Unlocks quests that are dependent upon the Diplomacy skill.
-  GoldCost: 1750
-  IronCost: 500
-  WoodCost: 900
-  ArtisanCost: 2
-  constructionTime: 7200
-  Experience: 1250
-  skill: Diplomacy
 --- !u!1 &92371595
 GameObject:
   m_ObjectHideFlags: 0
@@ -2420,13 +2393,12 @@ RectTransform:
   - {fileID: 1740423815}
   - {fileID: 1476138234}
   - {fileID: 1551166689}
-  - {fileID: 1508978512}
   m_Father: {fileID: 901294612}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00024414062}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &143532204
@@ -5696,7 +5668,7 @@ PrefabInstance:
     - target: {fileID: 3658182472099775555, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: PopulateArtisansUI
+      value: GetAvailableArtisansUI
       objectReference: {fileID: 0}
     - target: {fileID: 3658182472099775555, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}
@@ -6128,6 +6100,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5718801351506138956, guid: ae1edb590af5687408ce2d55f2d7ee4c,
         type: 3}
+    - target: {fileID: 5075509166707013726, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
+        type: 3}
+      propertyPath: upgrade
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5075509166707013726, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
+        type: 3}
+      propertyPath: upgradeName
+      value: TrainingYard
+      objectReference: {fileID: 0}
     - target: {fileID: 5243194596823050676, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
         type: 3}
       propertyPath: m_Name
@@ -6737,7 +6719,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.30362266}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -67, y: -53}
-  m_SizeDelta: {x: 57.29706, y: -53.00049}
+  m_SizeDelta: {x: 57.29706, y: 719.3552}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &316897006
 MonoBehaviour:
@@ -6862,7 +6844,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -1.38, y: 0.0014648438}
+  m_AnchoredPosition: {x: -1.38, y: -0.00048828125}
   m_SizeDelta: {x: 2882.9473, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &317503831
@@ -6912,6 +6894,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 317503829}
   m_CullTransparentMesh: 0
+--- !u!1 &322242544
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 322242545}
+  - component: {fileID: 322242546}
+  m_Layer: 0
+  m_Name: Workshop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &322242545
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322242544}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1754778024}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &322242546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322242544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d17f03d164cf3784db67070e26e1fb70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Workshop
+  Description: Unlocks the ability to promote Peasants to Artisans.
+  GoldCost: 1000
+  IronCost: 250
+  WoodCost: 500
+  ArtisanCost: 0
+  constructionTime: 60
+  Experience: 0
 --- !u!114 &329464809 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -2773276992186878300, guid: dd56249054746b24a8d8c9b07659811b,
@@ -8355,6 +8388,97 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1142219172}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &402838651
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 402838652}
+  - component: {fileID: 402838653}
+  m_Layer: 5
+  m_Name: Extender
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &402838652
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402838651}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1988953678}
+  m_Father: {fileID: 8229061034973960483}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -419}
+  m_SizeDelta: {x: 262.1926, y: 262.1926}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &402838653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402838651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_PressedColor: {r: 0.6037736, g: 0.6009256, b: 0.6009256, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1988953679}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8229061034973960486}
+        m_MethodName: Extend
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &405218605
 GameObject:
   m_ObjectHideFlags: 0
@@ -11019,8 +11143,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.15200001}
   m_AnchorMax: {x: 1, y: 0.24579766}
-  m_AnchoredPosition: {x: -597.9, y: 83.299805}
-  m_SizeDelta: {x: -1564.2041, y: -233.75818}
+  m_AnchoredPosition: {x: -597.9, y: 117}
+  m_SizeDelta: {x: -1564.2041, y: -301.2016}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &492982049
 MonoBehaviour:
@@ -16347,6 +16471,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5718801351506138956, guid: ae1edb590af5687408ce2d55f2d7ee4c,
         type: 3}
+    - target: {fileID: 5075509166707013726, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
+        type: 3}
+      propertyPath: upgrade
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5075509166707013726, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
+        type: 3}
+      propertyPath: upgradeName
+      value: Barracks
+      objectReference: {fileID: 0}
     - target: {fileID: 5243194596823050676, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
         type: 3}
       propertyPath: m_Name
@@ -16375,58 +16509,13 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 818943379}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &818943381 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5243194596823050676, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-    type: 3}
-  m_PrefabInstance: {fileID: 818943379}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &818943382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 818943381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9dfa8339eb9fa54fb4f68d4b39096cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Barracks I
-  Description: Increases the maximum population of the Adventure Guild to 10.
-  GoldCost: 1000
-  IronCost: 300
-  WoodCost: 500
-  ArtisanCost: 1
-  constructionTime: 3600
-  Experience: 500
-  levelOnePopulation: 10
-  levelTwoName: Barracks II
-  levelTwoDescription: Increases the maximum population of the Adventure Guild to
-    25.
-  levelTwoGoldCost: 2000
-  levelTwoIronCost: 500
-  levelTwoWoodCost: 1000
-  levelTwoArtisanCost: 2
-  levelTwoConstructionTime: 3600
-  levelTwoPopulation: 25
-  levelThreeName: Barracks III
-  levelThreeDescription: Increases the maximum population of the Adventure Guild
-    to 50.
-  levelThreeGoldCost: 3000
-  levelThreeIronCost: 1000
-  levelThreeWoodCost: 2000
-  levelThreeArtisanCost: 5
-  levelThreeConstructionTime: 21600
-  levelThreePopulation: 50
 --- !u!114 &818943383 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7600194203924522912, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
     type: 3}
   m_PrefabInstance: {fileID: 818943379}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 818943381}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e34b5e36b4b12d34dbf6db649171fb6e, type: 3}
@@ -16438,7 +16527,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 818943379}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 818943381}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e69c9ae804d8c184d9b56ff0504e6c7c, type: 3}
@@ -20259,7 +20348,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2010418378}
   m_HandleRect: {fileID: 2010418376}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -21333,7 +21422,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 16777215
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -22637,6 +22726,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1078349390}
   m_CullTransparentMesh: 0
+--- !u!1 &1088022579
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1088022580}
+  - component: {fileID: 1088022581}
+  m_Layer: 0
+  m_Name: Library
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1088022580
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088022579}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1754778024}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1088022581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088022579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b138f2564e40c1d4c98b927ab7b5e0b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Library
+  Description: 
+  GoldCost: 0
+  IronCost: 0
+  WoodCost: 0
+  ArtisanCost: 0
+  constructionTime: 0
+  Experience: 0
+  Boost: 0
 --- !u!1 &1088252377
 GameObject:
   m_ObjectHideFlags: 0
@@ -22672,6 +22813,7 @@ RectTransform:
   - {fileID: 1557169541}
   - {fileID: 492982048}
   - {fileID: 1419172105}
+  - {fileID: 1566491483}
   m_Father: {fileID: 564517730}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25028,6 +25170,58 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1202645801}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1206547558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1206547559}
+  - component: {fileID: 1206547560}
+  m_Layer: 0
+  m_Name: ArtifactHall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1206547559
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206547558}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1754778024}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1206547560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206547558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b138f2564e40c1d4c98b927ab7b5e0b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Artifact Hall
+  Description: 
+  GoldCost: 0
+  IronCost: 0
+  WoodCost: 0
+  ArtisanCost: 0
+  constructionTime: 0
+  Experience: 0
+  Boost: 0
 --- !u!1 &1221635168
 GameObject:
   m_ObjectHideFlags: 0
@@ -26657,6 +26851,78 @@ MonoBehaviour:
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 1
+--- !u!1 &1336454490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1336454491}
+  - component: {fileID: 1336454492}
+  m_Layer: 0
+  m_Name: Barracks
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1336454491
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336454490}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1754778024}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1336454492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336454490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9dfa8339eb9fa54fb4f68d4b39096cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Barracks I
+  Description: Increases the maximum population of the Adventure Guild to 10.
+  GoldCost: 1000
+  IronCost: 300
+  WoodCost: 500
+  ArtisanCost: 1
+  constructionTime: 1800
+  Experience: 300
+  levelOnePopulation: 10
+  levelTwoName: Barracks II
+  levelTwoDescription: Increases the maximum population of the Adventure Guild to
+    25.
+  levelTwoGoldCost: 2000
+  levelTwoIronCost: 500
+  levelTwoWoodCost: 1000
+  levelTwoArtisanCost: 5
+  levelTwoConstructionTime: 3600
+  levelTwoExperience: 2400
+  levelTwoPopulation: 25
+  levelThreeName: Barracks III
+  levelThreeDescription: Increases the maximum population of the Adventure Guild
+    to 50.
+  levelThreeGoldCost: 3000
+  levelThreeIronCost: 1000
+  levelThreeWoodCost: 2000
+  levelThreeArtisanCost: 20
+  levelThreeConstructionTime: 21600
+  levelThreeExperience: 10000
+  levelThreePopulation: 50
 --- !u!1 &1340766203
 GameObject:
   m_ObjectHideFlags: 0
@@ -26899,7 +27165,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 41.600098, y: -0.0007324219}
+  m_AnchoredPosition: {x: 41.600098, y: -0.00024414062}
   m_SizeDelta: {x: -128.76733, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1349162954
@@ -28406,8 +28672,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.15200001}
   m_AnchorMax: {x: 1, y: 0.24579766}
-  m_AnchoredPosition: {x: 968, y: 83.299805}
-  m_SizeDelta: {x: -2304.4407, y: -233.75818}
+  m_AnchoredPosition: {x: 968, y: 117.009766}
+  m_SizeDelta: {x: -2304.4407, y: -301.18134}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1419172106
 MonoBehaviour:
@@ -28573,6 +28839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf93e223b34b6a840a83f4a641f3568e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ArtisanProficiency: 0
 --- !u!114 &1420308248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28700,7 +28967,7 @@ PrefabInstance:
     - target: {fileID: 3658182472099775555, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: PopulateQuestAdventurerUI
+      value: GetAvailableAdventurersUI
       objectReference: {fileID: 0}
     - target: {fileID: 3658182472099775555, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}
@@ -29365,6 +29632,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5718801351506138956, guid: ae1edb590af5687408ce2d55f2d7ee4c,
         type: 3}
+    - target: {fileID: 5075509166707013726, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
+        type: 3}
+      propertyPath: upgrade
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5075509166707013726, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
+        type: 3}
+      propertyPath: upgradeName
+      value: Library
+      objectReference: {fileID: 0}
     - target: {fileID: 5243194596823050676, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
         type: 3}
       propertyPath: m_Name
@@ -29393,33 +29670,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1476138233}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1476138235 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5243194596823050676, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-    type: 3}
-  m_PrefabInstance: {fileID: 1476138233}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1476138236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1476138235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b138f2564e40c1d4c98b927ab7b5e0b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Library
-  Description: 
-  GoldCost: 0
-  IronCost: 0
-  WoodCost: 0
-  ArtisanCost: 0
-  constructionTime: 0
-  Experience: 0
-  Boost: 0
 --- !u!1 &1488518869
 GameObject:
   m_ObjectHideFlags: 0
@@ -30008,188 +30258,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1505349861}
   m_CullTransparentMesh: 0
---- !u!1001 &1508978511
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 143532203}
-    m_Modifications:
-    - target: {fileID: 3047910475112092601, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047910475112092601, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047910475112092601, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047910475112092601, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047910475112092601, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047910475112092601, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047910475112092601, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047910475112092601, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047910475112092601, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047910475112092601, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047910475112092601, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047910475112092601, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 480
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047910475112092601, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -2500
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047910475112092601, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 960
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047910475112092601, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047910475112092601, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047910475112092601, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047910475112092601, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047910475112092601, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047910475112092601, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047910475112092601, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047910475112092601, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.49999997
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047910475112092601, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.49999997
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047910475112092601, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5075509166707013726, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: ToggleAvailability
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5075509166707013726, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: itemName
-      value: Market Square
-      objectReference: {fileID: 0}
-    - target: {fileID: 5075509166707013726, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: popup
-      value: 
-      objectReference: {fileID: 1564202492218707200}
-    - target: {fileID: 5075509166707013726, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: itemDescription
-      value: Listen to merchants for a chance to gain valuable aid... (Watch ads
-        for bonuses)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5075509166707013726, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: popupContentUpgrades
-      value: 
-      objectReference: {fileID: 5718801351506138956, guid: ae1edb590af5687408ce2d55f2d7ee4c,
-        type: 3}
-    - target: {fileID: 5243194596823050676, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: m_Name
-      value: Upgrade_MarketSquare
-      objectReference: {fileID: 0}
-    - target: {fileID: 5243194596823050676, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6481741399342386115, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -8.213135
-      objectReference: {fileID: 0}
-    - target: {fileID: 6875959678652654368, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c299c1c4ba6389e44a3795afd6ddbfa8, type: 3}
---- !u!224 &1508978512 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3047910475112092601, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-    type: 3}
-  m_PrefabInstance: {fileID: 1508978511}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1517482013
 GameObject:
   m_ObjectHideFlags: 0
@@ -31350,6 +31418,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5718801351506138956, guid: ae1edb590af5687408ce2d55f2d7ee4c,
         type: 3}
+    - target: {fileID: 5075509166707013726, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
+        type: 3}
+      propertyPath: upgrade
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5075509166707013726, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
+        type: 3}
+      propertyPath: upgradeName
+      value: ArtifactHall
+      objectReference: {fileID: 0}
     - target: {fileID: 5243194596823050676, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
         type: 3}
       propertyPath: m_Name
@@ -31806,6 +31884,163 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1557169540}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1566491482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1566491483}
+  - component: {fileID: 1566491485}
+  - component: {fileID: 1566491484}
+  m_Layer: 5
+  m_Name: txt_ExpNotice
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1566491483
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566491482}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1088252378}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.15200001}
+  m_AnchorMax: {x: 1, y: 0.24579766}
+  m_AnchoredPosition: {x: -0.009033203, y: -106}
+  m_SizeDelta: {x: -368.42236, y: -301.2016}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1566491484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566491482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Selected Artisans will share the job's experience.
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 66ca03310849d5643b81fa09ed2cd405, type: 2}
+  m_sharedMaterial: {fileID: 8847002362934079468, guid: 66ca03310849d5643b81fa09ed2cd405,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4279834905
+  m_fontColor: {r: 0.09803922, g: 0.09803922, b: 0.09803922, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_outlineColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontSize: 100
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 18
+  m_fontSizeMax: 100
+  m_fontStyle: 0
+  m_textAlignment: 258
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_firstOverflowCharacterIndex: -1
+  m_linkedTextComponent: {fileID: 0}
+  m_isLinkedTextComponent: 0
+  m_isTextTruncated: 0
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_ignoreRectMaskCulling: 0
+  m_ignoreCulling: 1
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_firstVisibleCharacter: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_textInfo:
+    textComponent: {fileID: 1566491484}
+    characterCount: 50
+    spriteCount: 0
+    spaceCount: 6
+    wordCount: 7
+    linkCount: 0
+    lineCount: 1
+    pageCount: 1
+    materialCount: 1
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+  m_hasFontAssetChanged: 0
+  m_subTextObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1566491485
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566491482}
+  m_CullTransparentMesh: 0
 --- !u!1 &1566921946
 GameObject:
   m_ObjectHideFlags: 0
@@ -34715,33 +34950,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1707848709}
   m_CullTransparentMesh: 0
---- !u!1 &1708767751 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5243194596823050676, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-    type: 3}
-  m_PrefabInstance: {fileID: 1740423814}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1708767752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708767751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2b2167ed8a829c479c2093992002acc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Spy Room
-  Description: Unlocks quests that are dependent upon the Espionage skill.
-  GoldCost: 1750
-  IronCost: 550
-  WoodCost: 800
-  ArtisanCost: 2
-  constructionTime: 7200
-  Experience: 1250
-  skill: Espionage
 --- !u!1 &1715238671
 GameObject:
   m_ObjectHideFlags: 0
@@ -35167,33 +35375,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1726951402}
   m_CullTransparentMesh: 0
---- !u!1 &1730825598 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5243194596823050676, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-    type: 3}
-  m_PrefabInstance: {fileID: 296955045}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1730825599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1730825598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2b2167ed8a829c479c2093992002acc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Training Yard
-  Description: Unlocks quests that are dependent upon the Combat skill.
-  GoldCost: 1750
-  IronCost: 600
-  WoodCost: 850
-  ArtisanCost: 2
-  constructionTime: 7200
-  Experience: 1250
-  skill: Combat
 --- !u!1 &1732544007
 GameObject:
   m_ObjectHideFlags: 0
@@ -35648,6 +35829,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5718801351506138956, guid: ae1edb590af5687408ce2d55f2d7ee4c,
         type: 3}
+    - target: {fileID: 5075509166707013726, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
+        type: 3}
+      propertyPath: upgrade
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5075509166707013726, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
+        type: 3}
+      propertyPath: upgradeName
+      value: SpyRoom
+      objectReference: {fileID: 0}
     - target: {fileID: 5243194596823050676, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
         type: 3}
       propertyPath: m_Name
@@ -35927,7 +36118,14 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 322242545}
+  - {fileID: 1336454491}
+  - {fileID: 2022673445}
+  - {fileID: 1803631234}
+  - {fileID: 1899086551}
+  - {fileID: 1088022580}
+  - {fileID: 1206547559}
   m_Father: {fileID: 2135752564}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -36770,6 +36968,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1802879914}
   m_CullTransparentMesh: 0
+--- !u!1 &1803631233
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1803631234}
+  - component: {fileID: 1803631235}
+  m_Layer: 0
+  m_Name: MeetingRoom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1803631234
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803631233}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1754778024}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1803631235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803631233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2b2167ed8a829c479c2093992002acc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Meeting Room
+  Description: Unlocks quests that are dependent upon the Diplomacy skill.
+  GoldCost: 7500
+  IronCost: 2000
+  WoodCost: 4500
+  ArtisanCost: 3
+  constructionTime: 7200
+  Experience: 1250
+  skill: Diplomacy
 --- !u!1001 &1808988195
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38259,6 +38509,58 @@ RectTransform:
   m_AnchoredPosition: {x: 8774, y: -16614}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1899086550
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1899086551}
+  - component: {fileID: 1899086552}
+  m_Layer: 0
+  m_Name: SpyRoom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1899086551
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899086550}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1754778024}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1899086552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899086550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2b2167ed8a829c479c2093992002acc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Spy Room
+  Description: Unlocks quests that are dependent upon the Espionage skill.
+  GoldCost: 7500
+  IronCost: 2000
+  WoodCost: 4500
+  ArtisanCost: 3
+  constructionTime: 7200
+  Experience: 1250
+  skill: Espionage
 --- !u!1 &1904189223
 GameObject:
   m_ObjectHideFlags: 0
@@ -39342,7 +39644,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: v. 0.0.7.2
+  m_text: v. 0.0.8.0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 66ca03310849d5643b81fa09ed2cd405, type: 2}
   m_sharedMaterial: {fileID: 8847002362934079468, guid: 66ca03310849d5643b81fa09ed2cd405,
@@ -40433,6 +40735,16 @@ PrefabInstance:
       propertyPath: itemDescription
       value: Allows Peasants to be promoted to Artisans.
       objectReference: {fileID: 0}
+    - target: {fileID: 5075509166707013726, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
+        type: 3}
+      propertyPath: upgrade
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5075509166707013726, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
+        type: 3}
+      propertyPath: upgradeName
+      value: Workshop
+      objectReference: {fileID: 0}
     - target: {fileID: 5243194596823050676, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
         type: 3}
       propertyPath: m_Name
@@ -40466,32 +40778,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1977117730}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1977117732 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5243194596823050676, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
-    type: 3}
-  m_PrefabInstance: {fileID: 1977117730}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1977117733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1977117732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d17f03d164cf3784db67070e26e1fb70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Workshop
-  Description: Unlocks the ability to promote Peasants to Artisans.
-  GoldCost: 1000
-  IronCost: 250
-  WoodCost: 500
-  ArtisanCost: 0
-  constructionTime: 1800
-  Experience: 0
 --- !u!1 &1978238576
 GameObject:
   m_ObjectHideFlags: 0
@@ -40968,9 +41254,8 @@ GameObject:
   - component: {fileID: 1988953678}
   - component: {fileID: 1988953680}
   - component: {fileID: 1988953679}
-  - component: {fileID: 1988953681}
   m_Layer: 5
-  m_Name: Extender
+  m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40987,13 +41272,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8229061034973960483}
-  m_RootOrder: 4
+  m_Father: {fileID: 402838652}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3, y: -393}
-  m_SizeDelta: {x: 134.32706, y: 73.04163}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 178.63885, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1988953679
 MonoBehaviour:
@@ -41032,60 +41317,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1988953677}
   m_CullTransparentMesh: 0
---- !u!114 &1988953681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1988953677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_PressedColor: {r: 0.6037736, g: 0.6009256, b: 0.6009256, a: 1}
-    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1988953679}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8229061034973960486}
-        m_MethodName: Extend
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1991419531 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4266102102537735381, guid: 311599e7b3f822341b0dd692db8906f5,
@@ -41246,6 +41477,58 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &2022673444
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2022673445}
+  - component: {fileID: 2022673446}
+  m_Layer: 0
+  m_Name: TrainingYard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2022673445
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022673444}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1754778024}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2022673446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022673444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2b2167ed8a829c479c2093992002acc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Training Yard
+  Description: Unlocks quests that are dependent upon the Combat skill.
+  GoldCost: 7500
+  IronCost: 2000
+  WoodCost: 4500
+  ArtisanCost: 3
+  constructionTime: 7200
+  Experience: 1250
+  skill: Combat
 --- !u!1 &2029019824
 GameObject:
   m_ObjectHideFlags: 0
@@ -41477,6 +41760,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5718801351506138956, guid: ae1edb590af5687408ce2d55f2d7ee4c,
         type: 3}
+    - target: {fileID: 5075509166707013726, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
+        type: 3}
+      propertyPath: upgrade
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5075509166707013726, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
+        type: 3}
+      propertyPath: upgradeName
+      value: MeetingRoom
+      objectReference: {fileID: 0}
     - target: {fileID: 5243194596823050676, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
         type: 3}
       propertyPath: m_Name
@@ -42043,7 +42336,7 @@ PrefabInstance:
     - target: {fileID: 3658182472099775555, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
-      value: ResetSliderValue
+      value: ResetScrollbarValue
       objectReference: {fileID: 0}
     - target: {fileID: 3658182472099775555, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}
@@ -42078,7 +42371,7 @@ PrefabInstance:
     - target: {fileID: 3658182472099775555, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: PopulateManagePeopleUI
+      value: GetAllPeopleUI
       objectReference: {fileID: 0}
     - target: {fileID: 3658182472099775555, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}
@@ -42999,7 +43292,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.30362266}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -67, y: -53}
-  m_SizeDelta: {x: 57.29706, y: -53.00049}
+  m_SizeDelta: {x: 57.29706, y: 793.1306}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &2095156513
 MonoBehaviour:
@@ -47810,7 +48103,7 @@ RectTransform:
   - {fileID: 8229061033318692913}
   - {fileID: 396541587}
   - {fileID: 984653229}
-  - {fileID: 1988953678}
+  - {fileID: 402838652}
   m_Father: {fileID: 4905022197270525106}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

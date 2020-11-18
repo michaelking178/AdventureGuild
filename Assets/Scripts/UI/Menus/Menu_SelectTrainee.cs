@@ -14,6 +14,6 @@ public class Menu_SelectTrainee : MonoBehaviour
     private IEnumerator PopulateUI()
     {
         yield return new WaitForSeconds(0.1f);
-        personUIScrollView.PopulateCombatTrainingUI();
+        personUIScrollView.GetCombatTrainingPeopleUI();
     }
 }

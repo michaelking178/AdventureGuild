@@ -17,21 +17,6 @@ public class ConstructionManager : MonoBehaviour
         Artisans = new List<GuildMember>();
     }
 
-    private void OnLevelWasLoaded(int level)
-    {
-        if (FindObjectOfType<LevelManager>().CurrentLevel() == "Main")
-        {
-            Upgrade[] upgrades = FindObjectsOfType<Upgrade>();
-            foreach (Upgrade upgrade in upgrades)
-            {
-                if (upgrade.Name == ConstructionName)
-                {
-                    ConstructionJob = upgrade;
-                }
-            }
-        }
-    }
-
     private void FixedUpdate()
     {
         if (ConstructionJob != null && UnderConstruction)
@@ -64,15 +49,28 @@ public class ConstructionManager : MonoBehaviour
     public void BeginConstruction()
     {
         UnderConstruction = true;
-        // ConstructionJob.PayForUpgrade();
+        ConstructionJob.PayForUpgrade();
         StartTime = DateTime.Now;
+        foreach(GuildMember artisan in Artisans)
+        {
+            artisan.IsAvailable = false;
+        }
     }
 
     public void CompleteConstruction()
     {
         UnderConstruction = false;
         ConstructionJob.Apply();
-        FindObjectOfType<NotificationManager>().CreateNotification($"{ConstructionJob.Name} is finished construction!", Notification.Spirit.Good);
+
+        int artisanExpShare = Mathf.RoundToInt(ConstructionJob.Experience / Artisans.Count);
+        foreach (GuildMember artisan in Artisans)
+        {
+            artisan.AddExp(artisanExpShare);
+            artisan.IsAvailable = true;
+        }
+        Artisans.Clear();
+
+        FindObjectOfType<NotificationManager>().CreateNotification($"Artisans have completed the {ConstructionJob.Name} construction job!", Notification.Spirit.Good);
         ConstructionJob = null;
     }
 
@@ -92,5 +90,18 @@ public class ConstructionManager : MonoBehaviour
             pro += artisan.Level;
         }
         return pro;
+    }
+
+    public Upgrade GetUpgrade(string upgradeName)
+    {
+        foreach(GameObject upgradeObj in Helpers.GetChildren(gameObject))
+        {
+            if (upgradeObj.GetComponent<Upgrade>().name == upgradeName)
+            {
+                return upgradeObj.GetComponent<Upgrade>();
+            }
+        }
+        Debug.Log($"Cannot find Upgrade with name {upgradeName}");
+        return null;
     }
 }

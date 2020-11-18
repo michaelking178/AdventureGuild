@@ -10,7 +10,7 @@ public class Guildhall : MonoBehaviour
     public int Renown { get; set; }
     public int RenownLevel { get; set; } = 1;
     public int RenownThreshold { get { return Levelling.RenownLevel[RenownLevel]; } }
-    public int ArtisanProficiency { get; set; }
+    public int ArtisanProficiency;
 
     public int GoldIncome { get; set; } = 0;
     public int IronIncome { get; set; } = 0;
@@ -32,6 +32,7 @@ public class Guildhall : MonoBehaviour
 
     private void FixedUpdate()
     {
+        CalculateArtisanProficiency();
         if (Renown >= Levelling.RenownLevel[RenownLevel])
         {
             RenownLevel++;

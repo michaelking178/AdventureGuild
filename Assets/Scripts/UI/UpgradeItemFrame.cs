@@ -6,6 +6,12 @@ using UnityEngine.UI;
 public class UpgradeItemFrame : MonoBehaviour
 {
     [SerializeField]
+    private string upgradeName;
+
+    [SerializeField]
+    private Upgrade upgrade;
+
+    [SerializeField]
     private Image itemImage;
 
     [SerializeField]
@@ -24,9 +30,7 @@ public class UpgradeItemFrame : MonoBehaviour
     private Color unavailableColor = new Color(1, 1, 1, 0.25f);
     private Color fontAvailableColor = new Color(0.196f, 0.196f, 0.196f, 1);
     private Color fontUnavailableColor = new Color(0.196f, 0.196f, 0.196f, 0.5f);
-
     private Sprite itemSprite;
-    private Upgrade upgrade;
     private PopupManager popupManager;
     private MenuManager menuManager;
     private ConstructionManager constructionManager;
@@ -37,7 +41,7 @@ public class UpgradeItemFrame : MonoBehaviour
         popupManager = FindObjectOfType<PopupManager>();
         menuManager = FindObjectOfType<MenuManager>();
         constructionManager = FindObjectOfType<ConstructionManager>();
-        upgrade = GetComponent<Upgrade>();
+        upgrade = constructionManager.GetUpgrade(upgradeName);
         itemSprite = itemImage.sprite;
         itemNameText.text = upgrade.Name;
         StartCoroutine(DelayedCheckForPurchase());
@@ -45,7 +49,7 @@ public class UpgradeItemFrame : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (menuManager.CurrentMenu.name == "Menu_UpgradeGuildhall")
+        if (menuManager.CurrentMenu.name == "Menu_UpgradeGuildhall" && upgrade != null)
         {
             CheckForPurchase();
             itemNameText.text = upgrade.Name;
@@ -53,6 +57,10 @@ public class UpgradeItemFrame : MonoBehaviour
             if (constructionManager.ConstructionJob != null && constructionManager.ConstructionJob.name == upgrade.name && constructionManager.UnderConstruction)
             {
                 DisplayTimer();
+            }
+            else
+            {
+                HideTimer();
             }
         }
     }
@@ -135,6 +143,12 @@ public class UpgradeItemFrame : MonoBehaviour
     {
         timerPanel.SetActive(true);
         timerText.text = Helpers.FormatTimer((int)(upgrade.constructionTime - constructionManager.TimeElapsed));
+    }
+
+    public void HideTimer()
+    {
+        timerPanel.SetActive(false);
+        timerText.text = "";
     }
 
     private IEnumerator DelayedCheckForPurchase()

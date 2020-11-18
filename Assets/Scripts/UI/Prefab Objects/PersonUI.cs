@@ -30,6 +30,9 @@ public class PersonUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI exp;
 
+    [SerializeField]
+    private Slider expSlider;
+
     public GameObject beginBtn;
     public GameObject releaseBtn;
     public GameObject promoteToAdventurerBtn;
@@ -74,11 +77,13 @@ public class PersonUI : MonoBehaviour
     private TextMeshProUGUI income;
 
     private PopupManager popupManager;
+    private QuestManager questManager;
 
     private void Start()
     {
-        AdjustStatsPanel();
         popupManager = FindObjectOfType<PopupManager>();
+        questManager = FindObjectOfType<QuestManager>();
+        AdjustStatsPanel();
     }
 
     private void FixedUpdate()
@@ -86,6 +91,7 @@ public class PersonUI : MonoBehaviour
         if (GuildMember != null)
         {
             personName.text = GuildMember.person.name;
+            UpdateExpSlider();
 
             if (GuildMember.Vocation is Peasant && GuildMember.Level == 10)
             {
@@ -214,14 +220,57 @@ public class PersonUI : MonoBehaviour
             peasantStats.SetActive(false);
             Vector2 rectSize = statsPanel.GetComponent<RectTransform>().rect.size;
             statsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(rectSize.x, 215.0f);
-            combatLevel.text = $"Combat: {adventurer.CombatLevel}";
-            espionageLevel.text = $"Espionage: {adventurer.EspionageLevel}";
-            diplomacyLevel.text = $"Diplomacy: {adventurer.DiplomacyLevel}";
 
-            combatExpText.text = $"{adventurer.CombatExp} / {Levelling.SkillLevel[adventurer.CombatLevel]}";
-            espionageExpText.text = $"{adventurer.EspionageExp} / {Levelling.SkillLevel[adventurer.EspionageLevel]}";
-            diplomacyExpText.text = $"{adventurer.DiplomacyExp} / {Levelling.SkillLevel[adventurer.DiplomacyLevel]}";
-            UpdateExpSliders(adventurer);
+            if (!questManager.CombatUnlocked)
+            {
+                combatExpText.gameObject.SetActive(false);
+                combatSlider.gameObject.SetActive(false);
+                combatLevel.text = "Combat: Locked";
+            }
+            else
+            {
+                combatExpText.gameObject.SetActive(true);
+                combatSlider.gameObject.SetActive(true);
+                combatLevel.text = $"Combat: {adventurer.CombatLevel}";
+                combatExpText.text = $"{adventurer.CombatExp} / {Levelling.SkillLevel[adventurer.CombatLevel]}";
+                combatSlider.minValue = Levelling.SkillLevel[adventurer.CombatLevel - 1];
+                combatSlider.maxValue = Levelling.SkillLevel[adventurer.CombatLevel];
+                combatSlider.value = adventurer.CombatExp;
+            }
+
+            if (!questManager.EspionageUnlocked)
+            {
+                espionageExpText.gameObject.SetActive(false);
+                espionageSlider.gameObject.SetActive(false);
+                espionageLevel.text = "Espionage: Locked";
+            }
+            else
+            {
+                espionageExpText.gameObject.SetActive(true);
+                espionageSlider.gameObject.SetActive(true);
+                espionageLevel.text = $"Espionage: {adventurer.EspionageLevel}";
+                espionageExpText.text = $"{adventurer.EspionageExp} / {Levelling.SkillLevel[adventurer.EspionageLevel]}";
+                espionageSlider.minValue = Levelling.SkillLevel[adventurer.EspionageLevel - 1];
+                espionageSlider.maxValue = Levelling.SkillLevel[adventurer.EspionageLevel];
+                espionageSlider.value = adventurer.EspionageExp;
+            }
+            
+            if (!questManager.DiplomacyUnlocked)
+            {
+                diplomacyExpText.gameObject.SetActive(false);
+                diplomacySlider.gameObject.SetActive(false);
+                diplomacyLevel.text = "Diplomacy: Locked";
+            }
+            else
+            {
+                diplomacyExpText.gameObject.SetActive(true);
+                diplomacySlider.gameObject.SetActive(true);
+                diplomacyLevel.text = $"Diplomacy: {adventurer.DiplomacyLevel}";
+                diplomacyExpText.text = $"{adventurer.DiplomacyExp} / {Levelling.SkillLevel[adventurer.DiplomacyLevel]}";
+                diplomacySlider.minValue = Levelling.SkillLevel[adventurer.DiplomacyLevel - 1];
+                diplomacySlider.maxValue = Levelling.SkillLevel[adventurer.DiplomacyLevel];
+                diplomacySlider.value = adventurer.DiplomacyExp;
+            }
         }
     }
 
@@ -238,19 +287,11 @@ public class PersonUI : MonoBehaviour
         }
     }
 
-    private void UpdateExpSliders(Adventurer adventurer)
+    private void UpdateExpSlider()
     {
-        combatSlider.minValue = Levelling.SkillLevel[adventurer.CombatLevel - 1];
-        combatSlider.maxValue = Levelling.SkillLevel[adventurer.CombatLevel];
-        combatSlider.value = adventurer.CombatExp;
-
-        espionageSlider.minValue = Levelling.SkillLevel[adventurer.EspionageLevel - 1];
-        espionageSlider.maxValue = Levelling.SkillLevel[adventurer.EspionageLevel];
-        espionageSlider.value = adventurer.EspionageExp;
-
-        diplomacySlider.minValue = Levelling.SkillLevel[adventurer.DiplomacyLevel - 1];
-        diplomacySlider.maxValue = Levelling.SkillLevel[adventurer.DiplomacyLevel];
-        diplomacySlider.value = adventurer.DiplomacyExp;
+        expSlider.minValue = Levelling.GuildMemberLevel[GuildMember.Level - 1];
+        expSlider.maxValue = Levelling.GuildMemberLevel[GuildMember.Level];
+        expSlider.value = GuildMember.Experience;
     }
 
     public void CallReleasePopup()
@@ -280,7 +321,7 @@ public class PersonUI : MonoBehaviour
     {
         popupManager.Popup.GetComponentInChildren<Button>().onClick.RemoveListener(ConfirmRelease);
         FindObjectOfType<PopulationManager>().RemoveGuildMember(GuildMember);
-        GetComponentInParent<PersonUIScrollView>().PopulateManagePeopleUI();
+        GetComponentInParent<PersonUIScrollView>().GetAllPeopleUI();
     }
 
     private void ConfirmPromoteAdventurer()
