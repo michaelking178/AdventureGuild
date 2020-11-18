@@ -91,12 +91,12 @@ public static class Helpers
         int hours = 0;
         int minutes = 0;
 
-        if (timeRemaining > 3600)
+        if (timeRemaining > 3599)
         {
             hours = Mathf.FloorToInt(timeRemaining / 3600);
             timeRemaining %= 3600;
         }
-        if (timeRemaining > 60)
+        if (timeRemaining > 59)
         {
             minutes = Mathf.FloorToInt(timeRemaining / 60);
             timeRemaining %= 60;

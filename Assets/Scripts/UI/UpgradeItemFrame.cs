@@ -6,16 +6,16 @@ using UnityEngine.UI;
 public class UpgradeItemFrame : MonoBehaviour
 {
     [SerializeField]
-    private string itemName = "ITEM_NAME";
-
-    [SerializeField]
-    private string itemDescription = "ITEM_DESCRIPTION";
-
-    [SerializeField]
     private Image itemImage;
 
     [SerializeField]
     private Image checkmarkImage;
+
+    [SerializeField]
+    private GameObject timerPanel;
+
+    [SerializeField]
+    private TextMeshProUGUI timerText;
 
     [SerializeField]
     private TextMeshProUGUI itemNameText;
@@ -29,17 +29,17 @@ public class UpgradeItemFrame : MonoBehaviour
     private Upgrade upgrade;
     private PopupManager popupManager;
     private MenuManager menuManager;
-    private string defaultDescription = "";
+    private ConstructionManager constructionManager;
     private bool isAvailable = true;
 
     private void Start()
     {
-        defaultDescription = itemDescription;
-        itemSprite = itemImage.sprite;
-        itemNameText.text = itemName;
         popupManager = FindObjectOfType<PopupManager>();
         menuManager = FindObjectOfType<MenuManager>();
+        constructionManager = FindObjectOfType<ConstructionManager>();
         upgrade = GetComponent<Upgrade>();
+        itemSprite = itemImage.sprite;
+        itemNameText.text = upgrade.Name;
         StartCoroutine(DelayedCheckForPurchase());
     }
 
@@ -48,6 +48,12 @@ public class UpgradeItemFrame : MonoBehaviour
         if (menuManager.CurrentMenu.name == "Menu_UpgradeGuildhall")
         {
             CheckForPurchase();
+            itemNameText.text = upgrade.Name;
+
+            if (constructionManager.ConstructionJob != null && constructionManager.ConstructionJob.name == upgrade.name && constructionManager.UnderConstruction)
+            {
+                DisplayTimer();
+            }
         }
     }
 
@@ -65,13 +71,6 @@ public class UpgradeItemFrame : MonoBehaviour
         {
             SetUnavailable();
         }
-    }
-
-    private IEnumerator DelayedCheckForPurchase()
-    {
-        yield return new WaitForSeconds(1.5f);
-        CheckForPurchase();
-        yield return null;
     }
 
     public bool IsAvailable()
@@ -101,15 +100,14 @@ public class UpgradeItemFrame : MonoBehaviour
 
     public void CallPopup()
     {
-        defaultDescription = itemDescription;
         if (upgrade.IsPurchased)
         {
-            defaultDescription += "\n\n Purchased!";
-            popupManager.CreateDefaultContent(defaultDescription);
+            upgrade.Description += "\n\n Purchased!";
+            popupManager.CreateDefaultContent(upgrade.Description);
         }
         else
         {
-            popupManager.CreateUpgradeContent(defaultDescription, upgrade.GoldCost, upgrade.WoodCost, upgrade.IronCost, upgrade.ArtisanCost);
+            popupManager.CreateUpgradeContent(upgrade.Description, upgrade.GoldCost, upgrade.WoodCost, upgrade.IronCost, upgrade.ArtisanCost);
         }
 
         if (isAvailable)
@@ -121,21 +119,34 @@ public class UpgradeItemFrame : MonoBehaviour
         {
             popupManager.SetSingleButton("Cancel");
         }
-        popupManager.Populate(itemName, itemSprite);
+        popupManager.Populate(upgrade.Name, itemSprite);
         popupManager.CallPopup();
+    }
+
+    public void SelectUpgrade()
+    {
+        Menu_Construction construction = FindObjectOfType<Menu_Construction>();
+        construction.SetUpgrade(upgrade);
+        construction.Populate();
+        menuManager.OpenMenu(construction.gameObject.name);
+    }
+
+    public void DisplayTimer()
+    {
+        timerPanel.SetActive(true);
+        timerText.text = Helpers.FormatTimer((int)(upgrade.constructionTime - constructionManager.TimeElapsed));
+    }
+
+    private IEnumerator DelayedCheckForPurchase()
+    {
+        yield return new WaitForSeconds(1.5f);
+        CheckForPurchase();
+        yield return null;
     }
 
     private void Confirm()
     {
         popupManager.Popup.GetComponentInChildren<Button>().onClick.RemoveListener(Confirm);
         GetComponent<Upgrade>().Apply();
-    }
-
-    public void SetItemAttributes(string _name, string _description)
-    {
-        itemName = _name;
-        itemNameText.text = itemName;
-        itemDescription = _description;
-        defaultDescription = itemDescription;
     }
 }

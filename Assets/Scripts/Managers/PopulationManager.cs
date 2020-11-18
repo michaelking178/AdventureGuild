@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class PopulationManager : MonoBehaviour
 {
@@ -138,6 +139,19 @@ public class PopulationManager : MonoBehaviour
         return adventurers;
     }
 
+    public List<GuildMember> GetAvailableArtisans()
+    {
+        List<GuildMember> artisans = new List<GuildMember>();
+        foreach (GuildMember guildMember in GuildMembers)
+        {
+            if (guildMember.Vocation is Artisan && guildMember.IsAvailable)
+            {
+                artisans.Add(guildMember);
+            }
+        }
+        return artisans;
+    }
+
     public List<GuildMember> Adventurers()
     {
         List<GuildMember> adventurers = new List<GuildMember>();
@@ -197,6 +211,12 @@ public class PopulationManager : MonoBehaviour
         GuildMembers.Remove(_guildMember);
     }
 
+    public void SortGuildMembersByLevel()
+    {
+        List<GuildMember> sorted = GuildMembers.OrderByDescending(gm => gm.Level).ToList();
+        GuildMembers = sorted;
+    }
+
     public void EnableArtisans()
     {
         ArtisansEnabled = true;
@@ -240,7 +260,7 @@ public class PopulationManager : MonoBehaviour
 
     private void CheckForRecruit()
     {
-        float odds = (float)(((PopulationCap - GuildMembers.Count) * guildhall.Renown) / (Levelling.RenownLevel[guildhall.RenownLevel] * PopulationCap)) * 0.5f;
+        float odds = ((PopulationCap - GuildMembers.Count) * guildhall.Renown) / (Levelling.RenownLevel[guildhall.RenownLevel] * PopulationCap) * 0.5f;
         float roll = UnityEngine.Random.Range(0.01f, 1.0f);
         if (roll <= odds) CreateGuildMember();
     }

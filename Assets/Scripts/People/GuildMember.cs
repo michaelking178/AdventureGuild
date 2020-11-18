@@ -34,6 +34,9 @@ public class GuildMember : MonoBehaviour
     public string Bio { get; set; }
     public bool Created { get; set; } = false;
 
+    private Guildhall guildhall;
+    private NotificationManager notificationManager;
+
     public void Init(Person _person)
     {
         person = _person;
@@ -51,6 +54,8 @@ public class GuildMember : MonoBehaviour
 
     private void Start()
     {
+        guildhall = FindObjectOfType<Guildhall>();
+        notificationManager = FindObjectOfType<NotificationManager>();
         CheckSkillLevels();
     }
 
@@ -118,20 +123,21 @@ public class GuildMember : MonoBehaviour
         while (Experience >= Levelling.GuildMemberLevel[Level])
         {
             Level++;
-            FindObjectOfType<NotificationManager>().CreateNotification(string.Format("{0} reached Level {1}!", person.name, Level), Notification.Spirit.Good);
+            notificationManager.CreateNotification(string.Format("{0} reached Level {1}!", person.name, Level), Notification.Spirit.Good);
 
             if (Vocation is Peasant peasant)
             {
-                FindObjectOfType<Guildhall>().AdjustIncome(peasant.IncomeResource, -peasant.Income);
+                guildhall.AdjustIncome(peasant.IncomeResource, -peasant.Income);
                 peasant.Income = Mathf.CeilToInt(peasant.Income * 1.5f);
-                FindObjectOfType<Guildhall>().AdjustIncome(peasant.IncomeResource, peasant.Income);
+                guildhall.AdjustIncome(peasant.IncomeResource, peasant.Income);
                 if (Level == 5)
                 {
-                    FindObjectOfType<NotificationManager>().CreateNotification(string.Format("{0} can now choose a vocation!", person.name, Level), Notification.Spirit.Good);
+                    notificationManager.CreateNotification(string.Format("{0} can now choose a vocation!", person.name, Level), Notification.Spirit.Good);
                 }
             }
             MaxHitpoints += 10;
             Hitpoints = MaxHitpoints;
+            guildhall.CalculateArtisanProficiency();
         }
     }
 
@@ -157,7 +163,7 @@ public class GuildMember : MonoBehaviour
     public void PromoteToAdventurer()
     {
         Peasant peasant = (Peasant)Vocation;
-        FindObjectOfType<Guildhall>().AdjustIncome(peasant.IncomeResource, -peasant.Income);
+        guildhall.AdjustIncome(peasant.IncomeResource, -peasant.Income);
         Vocation = new Adventurer();
         Experience = 0;
         Level = 1;
@@ -167,18 +173,18 @@ public class GuildMember : MonoBehaviour
         adventurer.DiplomacyLevel = 1;
         MaxHitpoints = 100;
         Hitpoints = MaxHitpoints;
-        FindObjectOfType<NotificationManager>().CreateNotification(string.Format("{0} has honed their skills and become an Adventurer!", person.name), Notification.Spirit.Good);
+        notificationManager.CreateNotification(string.Format("{0} has honed their skills and become an Adventurer!", person.name), Notification.Spirit.Good);
     }
 
     public void PromoteToArtisan()
     {
         Peasant peasant = (Peasant)Vocation;
-        FindObjectOfType<Guildhall>().AdjustIncome(peasant.IncomeResource, -peasant.Income);
+        guildhall.AdjustIncome(peasant.IncomeResource, -peasant.Income);
         Vocation = new Artisan();
         Experience = 0;
         Level = 1;
         MaxHitpoints = 100;
         Hitpoints = MaxHitpoints;
-        FindObjectOfType<NotificationManager>().CreateNotification(string.Format("{0} has honed their skills and become an Artisan!", person.name), Notification.Spirit.Good);
+        notificationManager.CreateNotification(string.Format("{0} has honed their skills and become an Artisan!", person.name), Notification.Spirit.Good);
     }
 }

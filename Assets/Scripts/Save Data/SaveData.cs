@@ -15,8 +15,20 @@ public class SaveData
     private SettingsData settingsData;
     private PopulationManagerData populationManagerData;
     private QuestManagerData questManagerData;
+    private ConstructionManagerData constructionManagerData;
 
-    public SaveData(GuildMemberData _heroData, GuildhallData _guildhallData, List<GuildMemberData> _guildMemberDatas, List<QuestData> _questDataPool, List<QuestData> _questDataArchive, List<QuestTimerData> _questTimerDatas, SettingsData _settingsData, PopulationManagerData _populationManagerData, QuestManagerData _questManagerData)
+    public SaveData(
+        GuildMemberData _heroData, 
+        GuildhallData _guildhallData, 
+        List<GuildMemberData> _guildMemberDatas, 
+        List<QuestData> _questDataPool, 
+        List<QuestData> _questDataArchive, 
+        List<QuestTimerData> _questTimerDatas, 
+        SettingsData _settingsData, 
+        PopulationManagerData _populationManagerData, 
+        QuestManagerData _questManagerData,
+        ConstructionManagerData _constructionManagerData
+        )
     {
         ApplicationVersion = Application.version;
         heroData = _heroData;
@@ -28,6 +40,7 @@ public class SaveData
         settingsData = _settingsData;
         populationManagerData = _populationManagerData;
         questManagerData = _questManagerData;
+        constructionManagerData = _constructionManagerData;
     }
 
     public void Load()
@@ -44,6 +57,7 @@ public class SaveData
         LoadQuestPool();
         LoadQuestArchive();
         LoadQuestTimers();
+        LoadConstructionManager();
     }
 
     private void LoadSettings()
@@ -149,6 +163,41 @@ public class SaveData
         }
     }
 
+    private void LoadConstructionManager()
+    {
+        ConstructionManager constructionManager = GameObject.FindObjectOfType<ConstructionManager>();
+        if (constructionManagerData == null)
+        {
+            Debug.Log("No ConstructionManagerData found!");
+            ConstructionManagerCompat();
+        }
+        else
+        {
+            if (!constructionManagerData.UnderConstruction)
+            {
+                constructionManager.ConstructionJob = null;
+            }
+            else
+            {
+                Upgrade[] upgrades = GameObject.FindObjectsOfType<Upgrade>();
+                foreach (Upgrade upgrade in upgrades)
+                {
+                    if (upgrade.Name == constructionManagerData.ConstructionJobName)
+                    {
+                        constructionManager.ConstructionJob = upgrade;
+                    }
+                }
+                foreach (int id in constructionManagerData.ArtisanIDs)
+                {
+                    constructionManager.AddArtisan(GameObject.FindObjectOfType<PopulationManager>().FindGuildMemberById(id));
+                }
+                constructionManager.StartTime = constructionManagerData.StartTime;
+            }
+            constructionManager.ConstructionName = constructionManagerData.ConstructionJobName;
+            constructionManager.UnderConstruction = constructionManagerData.UnderConstruction;
+        }
+    }
+
     private Quest LoadQuest(QuestData _questData)
     {
         Quest questToLoad = new Quest();
@@ -174,6 +223,14 @@ public class SaveData
         questToLoad.QuestSkill = _questData.questSkill;
         questToLoad.QuestFaction = _questData.questFaction;
         return questToLoad;
+    }
+
+    private void ConstructionManagerCompat()
+    {
+        ConstructionManager constructionManager = GameObject.FindObjectOfType<ConstructionManager>();
+        constructionManager.ConstructionJob = null;
+        constructionManager.UnderConstruction = false;
+        constructionManager.StartTime = DateTime.MinValue;
     }
 
     private int QuestIDCompatibility(int _id)

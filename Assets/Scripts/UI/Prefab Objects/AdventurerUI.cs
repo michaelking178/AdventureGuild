@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class SelectAdventurerUI : MonoBehaviour
+public class AdventurerUI : MonoBehaviour
 {
     private MenuManager menuManager;
     private QuestManager questManager;

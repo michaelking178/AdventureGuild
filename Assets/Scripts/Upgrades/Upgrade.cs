@@ -2,12 +2,15 @@
 
 public abstract class Upgrade : MonoBehaviour
 {
+    public string Name;
+    public string Description;
     public bool IsPurchased { get; set; } = false;
     public int GoldCost;
     public int IronCost;
     public int WoodCost;
     public int ArtisanCost;
     public float constructionTime;
+    public int Experience;
 
     protected Guildhall guildhall;
     protected PopulationManager populationManager;
@@ -18,12 +21,16 @@ public abstract class Upgrade : MonoBehaviour
         populationManager = FindObjectOfType<PopulationManager>();
     }
 
-    public virtual void Apply()
+    public virtual void PayForUpgrade()
     {
-        IsPurchased = true;
         guildhall.AdjustGold(-GoldCost);
         guildhall.AdjustWood(-WoodCost);
         guildhall.AdjustIron(-IronCost);
+    }
+
+    public virtual void Apply()
+    {
+        IsPurchased = true;
     }
 
     public bool CanAfford()

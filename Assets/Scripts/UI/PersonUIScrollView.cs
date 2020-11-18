@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class PersonUIScrollView : MonoBehaviour
 {
@@ -15,80 +16,117 @@ public class PersonUIScrollView : MonoBehaviour
     // Manage People
     public void PopulateManagePeopleUI()
     {
-        foreach(GameObject child in gameObject.GetChildren())
+        populationManager.SortGuildMembersByLevel();
+        foreach (GameObject child in gameObject.GetChildren())
         {
             Destroy(child);
         }
+
+        List<GuildMember> guildMembers = new List<GuildMember>();
+        guildMembers.Add(GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>());
         foreach (GuildMember guildMember in populationManager.GuildMembers)
         {
-            if (guildMember.Vocation.Title() == "Adventurer")
+            if (guildMember.Vocation.Title() == "Adventurer" && !guildMember.gameObject.CompareTag("Hero"))
             {
-                InstantiatePersonUI(guildMember, false, false, true, false);
+                guildMembers.Add(guildMember);
             }
         }
         foreach (GuildMember guildMember in populationManager.GuildMembers)
         {
             if (guildMember.Vocation.Title() == "Artisan")
             {
-                InstantiatePersonUI(guildMember, false, false, true, false);
+                guildMembers.Add(guildMember);
             }
         }
         foreach (GuildMember guildMember in populationManager.GuildMembers)
         {
             if (guildMember.Vocation.Title() == "Peasant")
             {
-                InstantiatePersonUI(guildMember, false, false, true, true);
+                guildMembers.Add(guildMember);
             }
+        }
+        foreach (GuildMember guildMember in guildMembers)
+        {
+            InstantiatePersonUI(guildMember, false, true, true);
         }
     }
 
     // Quests
     public void PopulateQuestAdventurerUI()
     {
+        populationManager.SortGuildMembersByLevel();
         foreach (GameObject child in gameObject.GetChildren())
         {
             Destroy(child);
         }
+        List<GuildMember> guildMembers = new List<GuildMember>();
+        guildMembers.Add(GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>());
         foreach (GuildMember guildMember in populationManager.GetAvailableAdventurers())
         {
-            InstantiatePersonUI(guildMember, true, false, false, false);
+            if (!guildMember.gameObject.CompareTag("Hero"))
+                guildMembers.Add(guildMember);
+        }
+        foreach (GuildMember gm in guildMembers)
+        {
+            InstantiatePersonUI(gm, true, false, false);
+        }
+    }
+
+    // Construction
+    public void PopulateArtisansUI()
+    {
+        populationManager.SortGuildMembersByLevel();
+        foreach (GameObject child in gameObject.GetChildren())
+        {
+            Destroy(child);
+        }
+        foreach (GuildMember guildMember in populationManager.GetAvailableArtisans())
+        {
+            InstantiatePersonUI(guildMember, false, false, false);
         }
     }
 
     // Training
     public void PopulateCombatTrainingUI()
     {
+        populationManager.SortGuildMembersByLevel();
         foreach (GameObject child in gameObject.GetChildren())
         {
             Destroy(child);
         }
-        foreach (GuildMember guildMember in FindObjectOfType<PopulationManager>().GuildMembers)
+
+        List<GuildMember> guildMembers = new List<GuildMember>();
+
+        if (GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>().IsAvailable)
+            guildMembers.Add(GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>());
+
+        foreach (GuildMember guildMember in FindObjectOfType<PopulationManager>().GetAvailableAdventurers())
         {
-            if (guildMember.Vocation.Title() == "Adventurer" && guildMember.IsAvailable)
+            if (!guildMember.gameObject.CompareTag("Hero"))
             {
-                InstantiatePersonUI(guildMember, false, true, false, false);
+                guildMembers.Add(guildMember);
             }
         }
         foreach (GuildMember guildMember in FindObjectOfType<PopulationManager>().GuildMembers)
         {
             if (guildMember.Vocation.Title() == "Peasant" && guildMember.IsAvailable)
             {
-                InstantiatePersonUI(guildMember, false, true, false, false);
+                guildMembers.Add(guildMember);
             }
+        }
+        foreach (GuildMember gm in guildMembers)
+        {
+            InstantiatePersonUI(gm, true, false, false);
         }
     }
 
-    private void InstantiatePersonUI(GuildMember guildMember, bool showQuestButton, bool showTrainingButton, bool showReleaseButton, bool showPromoteButtons)
+    private void InstantiatePersonUI(GuildMember guildMember, bool showBeginButton, bool showReleaseButton, bool showPromoteButtons)
     {
         GameObject newPersonUI = Instantiate(personUI, transform);
         newPersonUI.GetComponent<PersonUI>().SetPerson(guildMember);
-        if (showQuestButton && !newPersonUI.GetComponent<PersonUI>().questBtn.activeSelf)
+        if (showBeginButton && !newPersonUI.GetComponent<PersonUI>().beginBtn.activeSelf)
         {
-            newPersonUI.GetComponent<PersonUI>().ShowQuestButton();
-        }
-        if (showTrainingButton && !newPersonUI.GetComponent<PersonUI>().trainingBtn.activeSelf)
-        {
-            newPersonUI.GetComponent<PersonUI>().ShowTrainingButton();
+            newPersonUI.GetComponent<PersonUI>().ShowBeginButton();
         }
         if (showReleaseButton && !newPersonUI.GetComponent<PersonUI>().releaseBtn.activeSelf)
         {

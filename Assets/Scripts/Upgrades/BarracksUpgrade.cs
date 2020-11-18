@@ -9,7 +9,14 @@ public class BarracksUpgrade : Upgrade
     [SerializeField]
     private int levelOnePopulation = 10;
 
+
     [Header("Level Two Upgrade")]
+    [SerializeField]
+    private string levelTwoName;
+
+    [SerializeField]
+    private string levelTwoDescription;
+
     [SerializeField]
     private int levelTwoGoldCost;
 
@@ -28,7 +35,14 @@ public class BarracksUpgrade : Upgrade
     [SerializeField]
     private int levelTwoPopulation = 25;
 
+
     [Header("Level Three Upgrade")]
+    [SerializeField]
+    private string levelThreeName;
+
+    [SerializeField]
+    private string levelThreeDescription;
+
     [SerializeField]
     private int levelThreeGoldCost;
 
@@ -81,8 +95,7 @@ public class BarracksUpgrade : Upgrade
     {
         if (populationManager.PopulationCap < levelOnePopulation)
         {
-            populationUpgrade = levelOnePopulation;
-            GetComponent<UpgradeItemFrame>().SetItemAttributes("Barracks I", "Increases the maximum population of the Adventure Guild to 10.");
+            return;
         }
         else if (populationManager.PopulationCap == levelOnePopulation)
         {
@@ -91,7 +104,8 @@ public class BarracksUpgrade : Upgrade
             WoodCost = levelTwoWoodCost;
             ArtisanCost = levelTwoArtisanCost;
             populationUpgrade = levelTwoPopulation;
-            GetComponent<UpgradeItemFrame>().SetItemAttributes("Barracks II", "Increases the maximum population of the Adventure Guild to 25.");
+            Name = levelTwoName;
+            Description = levelThreeDescription;
         }
         else if (populationManager.PopulationCap == levelTwoPopulation)
         {
@@ -100,11 +114,13 @@ public class BarracksUpgrade : Upgrade
             WoodCost = levelThreeWoodCost;
             ArtisanCost = levelThreeArtisanCost;
             populationUpgrade = levelThreePopulation;
-            GetComponent<UpgradeItemFrame>().SetItemAttributes("Barracks III", "Increases the maximum population of the Adventure Guild to 50.");
+            Name = levelThreeName;
+            Description = levelThreeDescription;
         }
         else
         {
-            GetComponent<UpgradeItemFrame>().SetItemAttributes("Barracks III", "Increases the maximum population of the Adventure Guild to 50.");
+            Name = levelThreeName;
+            Description = levelThreeDescription;
             IsPurchased = true;
         }
     }

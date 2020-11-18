@@ -1163,7 +1163,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 178.4
+  m_fontSize: 178.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1351,7 +1351,7 @@ GameObject:
   - component: {fileID: 301900360}
   - component: {fileID: 301900359}
   m_Layer: 5
-  m_Name: PeopleViewport
+  m_Name: Viewport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1569,7 +1569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef5d288ef0e6ff343ac174403e9da9d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  personUI: {fileID: 9054479892892241340, guid: 48a255743b3b7e547b9e1b29e213f554,
+  personUI: {fileID: 4454220336416829153, guid: 02772f9f83bc2fa4895ee9156427681d,
     type: 3}
 --- !u!114 &360557456
 MonoBehaviour:
@@ -4945,7 +4945,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 178.55
+  m_fontSize: 178.85
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5102,7 +5102,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 177.55
+  m_fontSize: 177.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5830,7 +5830,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 176.85
+  m_fontSize: 177.2
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

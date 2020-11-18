@@ -30,8 +30,7 @@ public class PersonUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI exp;
 
-    public GameObject questBtn;
-    public GameObject trainingBtn;
+    public GameObject beginBtn;
     public GameObject releaseBtn;
     public GameObject promoteToAdventurerBtn;
     public GameObject promoteToArtisanBtn;
@@ -138,33 +137,21 @@ public class PersonUI : MonoBehaviour
         }
     }
 
-    public void ShowQuestButton()
+    public void ShowBeginButton()
     {
-        if (questBtn.activeSelf)
+        if (beginBtn.activeSelf)
         {
-            questBtn.SetActive(false);
+            beginBtn.SetActive(false);
         }
         else
         {
-            questBtn.SetActive(true);
-        }
-    }
-
-    public void ShowTrainingButton()
-    {
-        if (trainingBtn.activeSelf)
-        {
-            trainingBtn.SetActive(false);
-        }
-        else
-        {
-            trainingBtn.SetActive(true);
+            beginBtn.SetActive(true);
         }
     }
 
     public void ShowReleaseButton()
     {
-        if (GuildMember.gameObject.tag != "Hero" && GuildMember.IsAvailable)
+        if (!GuildMember.gameObject.CompareTag("Hero") && GuildMember.IsAvailable)
         {
             if (releaseBtn.activeSelf)
             {
@@ -205,14 +192,13 @@ public class PersonUI : MonoBehaviour
 
     private void AdjustStatsPanel()
     {
-        if (GuildMember.Vocation is Peasant)
+        if (GuildMember.Vocation is Peasant peasant)
         {
             adventurerStats.SetActive(false);
             peasantStats.SetActive(true);
             Vector2 rectSize = statsPanel.GetComponent<RectTransform>().rect.size;
             statsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(rectSize.x, 136.0f);
-            Peasant peasant = (Peasant)GuildMember.Vocation;
-            income.text = string.Format("{0}: {1}", peasant.IncomeResource.ToString(), peasant.Income);
+            income.text = $"{peasant.IncomeResource}: {peasant.Income}";
         }
         else if (GuildMember.Vocation is Artisan)
         {
@@ -220,7 +206,6 @@ public class PersonUI : MonoBehaviour
             peasantStats.SetActive(true);
             Vector2 rectSize = statsPanel.GetComponent<RectTransform>().rect.size;
             statsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(rectSize.x, 136.0f);
-            Artisan artisan = (Artisan)GuildMember.Vocation;
             income.text = "None. Artisans will help to build the Adventure Guild.";
         }
         else if (GuildMember.Vocation is Adventurer adventurer)

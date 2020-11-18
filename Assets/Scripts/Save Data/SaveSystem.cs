@@ -60,7 +60,21 @@ public static class SaveSystem
 
         QuestManagerData questManagerData = new QuestManagerData(Object.FindObjectOfType<QuestManager>());
 
-        SaveData saveData = new SaveData(heroData, guildhallData, guildMemberDatas, questDataPool, questDataArchive, questTimerDatas, settingsData, populationManagerData, questManagerData);
+        ConstructionManagerData constructionManagerData = new ConstructionManagerData(Object.FindObjectOfType<ConstructionManager>());
+
+        SaveData saveData = new SaveData(
+            heroData, 
+            guildhallData, 
+            guildMemberDatas, 
+            questDataPool, 
+            questDataArchive, 
+            questTimerDatas, 
+            settingsData, 
+            populationManagerData, 
+            questManagerData,
+            constructionManagerData
+            );
+
         formatter.Serialize(stream, saveData);
         stream.Close();
     }

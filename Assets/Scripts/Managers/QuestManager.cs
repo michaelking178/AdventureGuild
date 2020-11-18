@@ -17,19 +17,17 @@ public class QuestManager : MonoBehaviour
     [SerializeField]
     private List<Quest> questArchive;
 
+    public bool CombatUnlocked { get; set; }
+    public bool EspionageUnlocked { get; set; }
+    public bool DiplomacyUnlocked { get; set; }
+    public Quest CurrentQuest { get; set; }
+
     private Quests quests;                  // quests is just a reference to the entire Quest JSON list. It shouldn't be used directly.
     private IncidentManager incidentManager;
     private Guildhall guildhall;
     private NotificationManager notificationManager;
-
     private readonly string failureMessage = "The challenges were too great, and I was defeated before completing my quest. I have returned to the Adventure Guild so that I may recover.";
     private string rewardMessage = "";
-
-    public bool CombatUnlocked { get; set; }
-    public bool EspionageUnlocked { get; set; }
-    public bool DiplomacyUnlocked { get; set; }
-
-    public Quest CurrentQuest { get; set; }
 
     private void Start()
     {
@@ -91,26 +89,8 @@ public class QuestManager : MonoBehaviour
             {
                 questPool.Add(quest);
             }
-            SortQuestPool();
+            SortQuestPoolByStartTime();
         }
-    }
-
-    private Quest CloneQuest(Quest questToClone)
-    {
-        Quest quest = new Quest
-        {
-            questName = questToClone.questName,
-            contractor = questToClone.contractor,
-            skill = questToClone.skill,
-            faction = questToClone.faction,
-            description = questToClone.description,
-            commencement = questToClone.commencement,
-            completion = questToClone.completion,
-            id = questToClone.id,
-            level = questToClone.level
-        };
-        quest.Init();
-        return quest;
     }
 
     public Quest GetQuestById(int _id)
@@ -164,8 +144,8 @@ public class QuestManager : MonoBehaviour
         quest.GuildMember.IsAvailable= true;
         questArchive.Add(quest);
         questPool.Remove(quest);
-        SortQuestPool();
-        SortQuestArchive();
+        SortQuestPoolByStartTime();
+        SortQuestArchiveByStartTime();
     }
 
     public void FailQuest(Quest quest)
@@ -177,8 +157,8 @@ public class QuestManager : MonoBehaviour
         quest.GuildMember.IsAvailable = true;
         questArchive.Add(quest);
         questPool.Remove(quest);
-        SortQuestPool();
-        SortQuestArchive();
+        SortQuestPoolByStartTime();
+        SortQuestArchiveByStartTime();
     }
 
     public void ApplyQuestReward(Quest quest)
@@ -239,33 +219,19 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    private Quest FindQuestById(int _id)
+    public void SortQuestPoolByLevel()
     {
-        foreach(Quest quest in questPool)
-        {
-            if (quest.questInstanceId == _id)
-            {
-                return quest;
-            }
-        }
-        foreach(Quest quest in questArchive)
-        {
-            if (quest.questInstanceId == _id)
-            {
-                return quest;
-            }
-        }
-        Debug.Log("FindQuestById() did not return a Quest!");
-        return null;
+        List<Quest> sorted = questPool.OrderBy(quest => quest.level).ToList();
+        questPool = sorted;
     }
 
-    public void SortQuestPool()
+    public void SortQuestPoolByStartTime()
     {
         List<Quest> sorted = questPool.OrderByDescending(quest => quest.startTime).ToList();
         questPool = sorted;
     }
 
-        public void SortQuestArchive()
+        public void SortQuestArchiveByStartTime()
     {
         List<Quest> sorted = questArchive.OrderByDescending(quest => quest.startTime).ToList();
         questArchive = sorted;
@@ -304,5 +270,43 @@ public class QuestManager : MonoBehaviour
                 Debug.Log("Cannot find skill: " + _skill);
                 return false;
         }
+    }
+
+    private Quest CloneQuest(Quest questToClone)
+    {
+        Quest quest = new Quest
+        {
+            questName = questToClone.questName,
+            contractor = questToClone.contractor,
+            skill = questToClone.skill,
+            faction = questToClone.faction,
+            description = questToClone.description,
+            commencement = questToClone.commencement,
+            completion = questToClone.completion,
+            id = questToClone.id,
+            level = questToClone.level
+        };
+        quest.Init();
+        return quest;
+    }
+
+    private Quest FindQuestById(int _id)
+    {
+        foreach (Quest quest in questPool)
+        {
+            if (quest.questInstanceId == _id)
+            {
+                return quest;
+            }
+        }
+        foreach (Quest quest in questArchive)
+        {
+            if (quest.questInstanceId == _id)
+            {
+                return quest;
+            }
+        }
+        Debug.Log("FindQuestById() did not return a Quest!");
+        return null;
     }
 }

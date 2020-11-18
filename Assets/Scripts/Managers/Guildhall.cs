@@ -10,6 +10,7 @@ public class Guildhall : MonoBehaviour
     public int Renown { get; set; }
     public int RenownLevel { get; set; } = 1;
     public int RenownThreshold { get { return Levelling.RenownLevel[RenownLevel]; } }
+    public int ArtisanProficiency { get; set; }
 
     public int GoldIncome { get; set; } = 0;
     public int IronIncome { get; set; } = 0;
@@ -37,6 +38,16 @@ public class Guildhall : MonoBehaviour
             populationManager.CreateGuildMember();
             questManager.PopulateQuestPool(UnityEngine.Random.Range(3, 6));
         }
+    }
+
+    public void CalculateArtisanProficiency()
+    {
+        int proficiency = 0;
+        foreach (GuildMember guildmember in populationManager.Artisans())
+        {
+            proficiency += guildmember.Level;
+        }
+        ArtisanProficiency = proficiency;
     }
 
     public void AdjustGold(int change)
