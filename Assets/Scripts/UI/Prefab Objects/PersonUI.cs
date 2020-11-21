@@ -96,6 +96,7 @@ public class PersonUI : MonoBehaviour
             if (GuildMember.Vocation is Peasant && GuildMember.Level == 10)
             {
                 exp.text = "MAX";
+                expSlider.value = expSlider.maxValue;
             }
             else
             {

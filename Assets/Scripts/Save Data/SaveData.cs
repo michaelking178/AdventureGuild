@@ -168,7 +168,7 @@ public class SaveData
         ConstructionManager constructionManager = GameObject.FindObjectOfType<ConstructionManager>();
         if (constructionManagerData == null)
         {
-            Debug.Log("No ConstructionManagerData found!");
+            Debug.Log("SAVEDATA.CS: No ConstructionManagerData found!");
         }
         else
         {
@@ -181,14 +181,22 @@ public class SaveData
                 Upgrade[] upgrades = GameObject.FindObjectsOfType<Upgrade>();
                 foreach (Upgrade upgrade in upgrades)
                 {
-                    if (upgrade.Name == constructionManagerData.ConstructionJobName)
+                    if (upgrade.name == constructionManagerData.ConstructionJobName)
                     {
                         constructionManager.ConstructionJob = upgrade;
                     }
                 }
                 foreach (int id in constructionManagerData.ArtisanIDs)
                 {
-                    constructionManager.AddArtisan(GameObject.FindObjectOfType<PopulationManager>().FindGuildMemberById(id));
+                    GuildMember artisan = GameObject.FindObjectOfType<PopulationManager>().FindGuildMemberById(id);
+                    if (artisan == null)
+                    {
+                        Debug.Log($"SAVEDATA.CS: Cannot find Artisan with ID #{id}");
+                    }
+                    else
+                    {
+                        constructionManager.AddArtisan(artisan);
+                    }
                 }
                 constructionManager.StartTime = constructionManagerData.StartTime;
             }

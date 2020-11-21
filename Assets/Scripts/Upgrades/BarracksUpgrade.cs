@@ -4,7 +4,7 @@ using UnityEngine;
 public class BarracksUpgrade : Upgrade
 {
     [Header("Level One Upgrade")]
-    // Costs inherited from Upgrade
+    // Level 1 Name, Description, Costs and Time inherited from Upgrade
 
     [SerializeField]
     private int levelOnePopulation = 10;
@@ -69,7 +69,7 @@ public class BarracksUpgrade : Upgrade
 
     private MenuManager menuManager;
     private GameObject menu_UpgradeGuildhall;
-    private int populationUpgrade;
+    private int populationUpgrade = 10;
 
     private new void Start()
     {
@@ -90,6 +90,8 @@ public class BarracksUpgrade : Upgrade
     public override void Apply()
     {
         base.Apply();
+        Debug.Log("Applying Barracks Upgrade");
+        CheckForUpgrade();
         populationManager.SetPopulationCap(populationUpgrade);
         if (populationManager.PopulationCap < levelThreePopulation)
         {
@@ -111,6 +113,7 @@ public class BarracksUpgrade : Upgrade
             ArtisanCost = levelTwoArtisanCost;
             Experience = levelTwoExperience;
             populationUpgrade = levelTwoPopulation;
+            constructionTime = levelTwoConstructionTime;
             Name = levelTwoName;
             Description = levelTwoDescription;
         }
@@ -122,6 +125,7 @@ public class BarracksUpgrade : Upgrade
             ArtisanCost = levelThreeArtisanCost;
             Experience = levelThreeExperience;
             populationUpgrade = levelThreePopulation;
+            constructionTime = levelThreeConstructionTime;
             Name = levelThreeName;
             Description = levelThreeDescription;
         }

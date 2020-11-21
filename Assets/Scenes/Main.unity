@@ -8397,7 +8397,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 402838652}
-  - component: {fileID: 402838653}
   m_Layer: 5
   m_Name: Extender
   m_TagString: Untagged
@@ -8425,60 +8424,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -419}
   m_SizeDelta: {x: 262.1926, y: 262.1926}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &402838653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 402838651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_PressedColor: {r: 0.6037736, g: 0.6009256, b: 0.6009256, a: 1}
-    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1988953679}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8229061034973960486}
-        m_MethodName: Extend
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &405218605
 GameObject:
   m_ObjectHideFlags: 0
@@ -12044,7 +11989,7 @@ MonoBehaviour:
   GuildMembers: []
   ArtisansEnabled: 0
   DebugBoostEnabled: 0
-  DebugBoost: 3
+  DebugBoost: 5
 --- !u!1 &545611543
 GameObject:
   m_ObjectHideFlags: 0
@@ -16308,7 +16253,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 818943383, guid: c299c1c4ba6389e44a3795afd6ddbfa8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 818943383, guid: c299c1c4ba6389e44a3795afd6ddbfa8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -16328,6 +16273,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 818943383, guid: c299c1c4ba6389e44a3795afd6ddbfa8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 818943383, guid: c299c1c4ba6389e44a3795afd6ddbfa8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 818943385}
+    - target: {fileID: 818943383, guid: c299c1c4ba6389e44a3795afd6ddbfa8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: AssignConstructionJob
+      objectReference: {fileID: 0}
+    - target: {fileID: 818943383, guid: c299c1c4ba6389e44a3795afd6ddbfa8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2102801322013230196, guid: c299c1c4ba6389e44a3795afd6ddbfa8,
@@ -24435,7 +24392,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: Testing tool to speed up progression (exp values still appear normal but
-    their payoff is x3)
+    their payoff is x5)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 66ca03310849d5643b81fa09ed2cd405, type: 2}
   m_sharedMaterial: {fileID: 8847002362934079468, guid: 66ca03310849d5643b81fa09ed2cd405,
@@ -24985,7 +24942,7 @@ PrefabInstance:
     - target: {fileID: 3658182472099775555, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3658182472099775555, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}
@@ -26900,7 +26857,7 @@ MonoBehaviour:
   IronCost: 300
   WoodCost: 500
   ArtisanCost: 1
-  constructionTime: 1800
+  constructionTime: 10
   Experience: 300
   levelOnePopulation: 10
   levelTwoName: Barracks II
@@ -26910,7 +26867,7 @@ MonoBehaviour:
   levelTwoIronCost: 500
   levelTwoWoodCost: 1000
   levelTwoArtisanCost: 5
-  levelTwoConstructionTime: 3600
+  levelTwoConstructionTime: 30
   levelTwoExperience: 2400
   levelTwoPopulation: 25
   levelThreeName: Barracks III
@@ -27165,7 +27122,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 41.600098, y: -0.00024414062}
+  m_AnchoredPosition: {x: 41.600098, y: -0.00048828125}
   m_SizeDelta: {x: -128.76733, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1349162954
@@ -36144,6 +36101,7 @@ MonoBehaviour:
   ConstructionJob: {fileID: 0}
   UnderConstruction: 0
   TimeElapsed: 0
+  Artisans: []
   ConstructionName: 
 --- !u!1 &1762972278
 GameObject:
@@ -39644,7 +39602,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: v. 0.0.8.0
+  m_text: v. 0.0.8.1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 66ca03310849d5643b81fa09ed2cd405, type: 2}
   m_sharedMaterial: {fileID: 8847002362934079468, guid: 66ca03310849d5643b81fa09ed2cd405,
@@ -48081,6 +48039,7 @@ GameObject:
   - component: {fileID: 8229061034973960484}
   - component: {fileID: 8229061034973960486}
   - component: {fileID: 8229061034973960487}
+  - component: {fileID: 8229061034973960488}
   m_Layer: 5
   m_Name: Stats Banner
   m_TagString: Untagged
@@ -48189,6 +48148,60 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8229061034973960488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8229061034973960482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_PressedColor: {r: 0.6037736, g: 0.6009256, b: 0.6009256, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1988953679}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8229061034973960486}
+        m_MethodName: Extend
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &8883026594606008913
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -106,37 +106,9 @@ public class UpgradeItemFrame : MonoBehaviour
         checkmarkImage.gameObject.SetActive(true);
     }
 
-    public void CallPopup()
-    {
-        if (upgrade.IsPurchased)
-        {
-            upgrade.Description += "\n\n Purchased!";
-            popupManager.CreateDefaultContent(upgrade.Description);
-        }
-        else
-        {
-            popupManager.CreateUpgradeContent(upgrade.Description, upgrade.GoldCost, upgrade.WoodCost, upgrade.IronCost, upgrade.ArtisanCost);
-        }
-
-        if (isAvailable)
-        {
-            popupManager.SetDoubleButton("Purchase", "Cancel");
-            popupManager.Popup.GetComponentInChildren<Button>().onClick.AddListener(Confirm);
-        }
-        else
-        {
-            popupManager.SetSingleButton("Cancel");
-        }
-        popupManager.Populate(upgrade.Name, itemSprite);
-        popupManager.CallPopup();
-    }
-
     public void SelectUpgrade()
     {
-        Menu_Construction construction = FindObjectOfType<Menu_Construction>();
-        construction.SetUpgrade(upgrade);
-        construction.Populate();
-        menuManager.OpenMenu(construction.gameObject.name);
+        menuManager.OpenMenu(FindObjectOfType<Menu_Construction>().name);
     }
 
     public void DisplayTimer()
@@ -151,16 +123,15 @@ public class UpgradeItemFrame : MonoBehaviour
         timerText.text = "";
     }
 
+    public void AssignConstructionJob()
+    {
+        constructionManager.SetConstructionJob(upgrade);
+    }
+
     private IEnumerator DelayedCheckForPurchase()
     {
         yield return new WaitForSeconds(1.5f);
         CheckForPurchase();
         yield return null;
-    }
-
-    private void Confirm()
-    {
-        popupManager.Popup.GetComponentInChildren<Button>().onClick.RemoveListener(Confirm);
-        GetComponent<Upgrade>().Apply();
     }
 }

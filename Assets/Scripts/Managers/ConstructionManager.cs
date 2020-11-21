@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,9 +8,8 @@ public class ConstructionManager : MonoBehaviour
     public Upgrade ConstructionJob;
     public bool UnderConstruction = false;
     public float TimeElapsed;
-    public List<GuildMember> Artisans { get; set; }
+    public List<GuildMember> Artisans;
     public DateTime StartTime;
-
     public string ConstructionName = "";
 
     private void Start()
@@ -25,7 +25,7 @@ public class ConstructionManager : MonoBehaviour
 
             if (TimeElapsed >= ConstructionJob.constructionTime)
             {
-                CompleteConstruction();
+                StartCoroutine(CompleteConstruction());
             }
         }
     }
@@ -33,7 +33,7 @@ public class ConstructionManager : MonoBehaviour
     public void SetConstructionJob(Upgrade upgrade)
     {
         ConstructionJob = upgrade;
-        ConstructionName = upgrade.Name;
+        ConstructionName = upgrade.name;
     }
 
     public void AddArtisan(GuildMember artisan)
@@ -57,28 +57,35 @@ public class ConstructionManager : MonoBehaviour
         }
     }
 
-    public void CompleteConstruction()
+    public IEnumerator CompleteConstruction()
     {
         UnderConstruction = false;
+        yield return new WaitForSeconds(0.5f);
+        Debug.Log("CONSTRUCTIONMANAGER.CS: Construction Complete!");
         ConstructionJob.Apply();
 
-        int artisanExpShare = Mathf.RoundToInt(ConstructionJob.Experience / Artisans.Count);
-        foreach (GuildMember artisan in Artisans)
+        if (Artisans.Count != 0)
         {
-            artisan.AddExp(artisanExpShare);
-            artisan.IsAvailable = true;
+            int artisanExpShare = Mathf.RoundToInt(ConstructionJob.Experience / Artisans.Count);
+            foreach (GuildMember artisan in Artisans)
+            {
+                artisan.AddExp(artisanExpShare);
+                artisan.IsAvailable = true;
+            }
         }
-        Artisans.Clear();
 
         FindObjectOfType<NotificationManager>().CreateNotification($"Artisans have completed the {ConstructionJob.Name} construction job!", Notification.Spirit.Good);
-        ConstructionJob = null;
+        ClearConstruction();
     }
 
     public void ClearConstruction()
     {
         if (!UnderConstruction)
         {
+            TimeElapsed = 0;
+            ConstructionName = "";
             ConstructionJob = null;
+            Artisans.Clear();
         }
     }
 
@@ -101,7 +108,7 @@ public class ConstructionManager : MonoBehaviour
                 return upgradeObj.GetComponent<Upgrade>();
             }
         }
-        Debug.Log($"Cannot find Upgrade with name {upgradeName}");
+        Debug.Log($"CONSTRUCTIONMANAGER.CS: Cannot find Upgrade with name {upgradeName}");
         return null;
     }
 }

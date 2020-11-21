@@ -2,7 +2,22 @@
 
 public class Menu_UpgradeGuildhall : MonoBehaviour
 {
-    public void CheckForPurchases()
+    private MenuManager menuManager;
+
+    private void Start()
+    {
+        menuManager = FindObjectOfType<MenuManager>();
+    }
+
+    private void FixedUpdate()
+    {
+        if (menuManager.CurrentMenu == gameObject)
+        {
+            CheckForPurchases();
+        }
+    }
+
+    private void CheckForPurchases()
     {
         foreach (UpgradeItemFrame upgrade in GetComponentsInChildren<UpgradeItemFrame>())
         {

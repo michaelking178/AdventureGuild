@@ -436,6 +436,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e69c9ae804d8c184d9b56ff0504e6c7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upgradeName: 
+  upgrade: {fileID: 0}
   itemImage: {fileID: 5243194596452395237}
   checkmarkImage: {fileID: 7347546788189273579}
   timerPanel: {fileID: 8054392395939641959}
@@ -497,6 +499,17 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 5075509166707013726}
         m_MethodName: SelectUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5075509166707013726}
+        m_MethodName: AssignConstructionJob
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

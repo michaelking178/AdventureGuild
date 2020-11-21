@@ -19,7 +19,7 @@ public class GuildMember : MonoBehaviour
             }
             else
             {
-                Debug.Log(string.Format("{0} already has a vocation!", person.name));
+                Debug.Log($"{person.name} already has a vocation!");
             }
         }
     }
@@ -123,7 +123,7 @@ public class GuildMember : MonoBehaviour
         while (Experience >= Levelling.GuildMemberLevel[Level])
         {
             Level++;
-            notificationManager.CreateNotification(string.Format("{0} reached Level {1}!", person.name, Level), Notification.Spirit.Good);
+            notificationManager.CreateNotification($"{person.name} reached Level {Level}!", Notification.Spirit.Good);
 
             if (Vocation is Peasant peasant)
             {
@@ -132,7 +132,7 @@ public class GuildMember : MonoBehaviour
                 guildhall.AdjustIncome(peasant.IncomeResource, peasant.Income);
                 if (Level == 5)
                 {
-                    notificationManager.CreateNotification(string.Format("{0} can now choose a vocation!", person.name, Level), Notification.Spirit.Good);
+                    notificationManager.CreateNotification($"{person.name} can now choose a Vocation!", Notification.Spirit.Good);
                 }
             }
             MaxHitpoints += 10;
@@ -173,7 +173,7 @@ public class GuildMember : MonoBehaviour
         adventurer.DiplomacyLevel = 1;
         MaxHitpoints = 100;
         Hitpoints = MaxHitpoints;
-        notificationManager.CreateNotification(string.Format("{0} has honed their skills and become an Adventurer!", person.name), Notification.Spirit.Good);
+        notificationManager.CreateNotification($"{person.name} has honed their skills and become an Adventurer!", Notification.Spirit.Good);
     }
 
     public void PromoteToArtisan()
@@ -185,6 +185,6 @@ public class GuildMember : MonoBehaviour
         Level = 1;
         MaxHitpoints = 100;
         Hitpoints = MaxHitpoints;
-        notificationManager.CreateNotification(string.Format("{0} has honed their skills and become an Artisan!", person.name), Notification.Spirit.Good);
+        notificationManager.CreateNotification($"{person.name} has honed their skills and become an Artisan!", Notification.Spirit.Good);
     }
 }
