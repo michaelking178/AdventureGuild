@@ -23,6 +23,7 @@ public class Shield : MonoBehaviour
     private TrainingManager trainingManager;
     private TrainingSword sword;
     private SpriteRenderer spriteRenderer;
+    private int pointsModifier = 2;
 
     void Start()
     {
@@ -72,12 +73,19 @@ public class Shield : MonoBehaviour
         currentTime = repositionDelay;
     }
 
+    public void ResetPositionAndColor()
+    {
+        spriteRenderer.color = blue;
+        transform.position = Vector3.zero;
+    }
+
     public int PointsValue(Vector2 clickPos)
     {
         float xDifference = Mathf.Abs(shieldCenter.x - clickPos.x);
         float yDifference = Mathf.Abs(shieldCenter.y - clickPos.y);
-        int modifier = (int)((xDifference + yDifference) * 100);
-        return (100 - modifier);
+        int points = (int)((xDifference + yDifference) * 100);
+        int finalPoints = points * pointsModifier;
+        return ((100 * pointsModifier) - finalPoints);
     }
 
     private void ChangePosition()

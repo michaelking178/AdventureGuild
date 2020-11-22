@@ -14,7 +14,6 @@ public class WorkshopUpgrade : Upgrade
     {
         base.Apply();
         populationManager.EnableArtisans();
-        Debug.Log("WORKSHOPUPGRADE.CS: Workshop upgrade applied!");
     }
 
     public void CheckForUpgrade()

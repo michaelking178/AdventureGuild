@@ -18,6 +18,6 @@ public class TraineeUI : MonoBehaviour
     {
         trainingManager.SetGuildMember(GetComponent<PersonUI>().GuildMember);
         menuManager.OpenMenu("Menu_Training");
-        trainingManager.StartGame();
+        trainingManager.OpenInstructions();
     }
 }

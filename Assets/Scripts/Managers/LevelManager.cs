@@ -4,7 +4,13 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    private string[] compatibleVersions = { "0.0.7.1", "0.0.7.2", "0.0.8.0", "0.0.8.1" };
+    private string[] compatibleVersions = { 
+        "0.0.7.1", 
+        "0.0.7.2", 
+        "0.0.8.0", 
+        "0.0.8.1",
+        "0.0.8.2"
+    };
 
     private void Awake()
     {

@@ -12,9 +12,9 @@ public class Reward
 
     public Reward(int questLevel, Quest.Skill skill)
     {
-        Gold = 100 * (questLevel + 1 + Mathf.FloorToInt(questLevel / 5));
-        Iron = 10 * (questLevel + 1 + Mathf.FloorToInt(questLevel / 5));
-        Wood = 25 * (questLevel + 1 + Mathf.FloorToInt(questLevel / 5));
+        Gold = 200 * (questLevel + 1 + Mathf.FloorToInt(questLevel / 5));
+        Iron = 20 * (questLevel + 1 + Mathf.FloorToInt(questLevel / 5));
+        Wood = 50 * (questLevel + 1 + Mathf.FloorToInt(questLevel / 5));
         Exp = 100 * (questLevel + 1 + Mathf.FloorToInt(questLevel / 5));
         Renown = 2 * (questLevel + 1 + Mathf.FloorToInt(questLevel / 5));
         if (skill != Quest.Skill.None)

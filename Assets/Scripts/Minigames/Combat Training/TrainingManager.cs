@@ -42,48 +42,41 @@ public class TrainingManager : MonoBehaviour
     private GameObject clickBlockerPanel;
 
     [Header("Game Stats")]
-    public float TimeLimit = 30f;
+    public float TimeLimit = 15f;
     public float TimeRemaining = 0;
     public bool GameOver;
-    public float defaultCountdown = 5.5f;
 
     private GuildMember guildMember;
     private TrainingSword sword;
+    private Shield shield;
     private int score = 0;
     private int exp = 0;
     private int combatExp = 0;
-    public float countdown;
-    private bool countingDown;
+    private float defaultCountdown = 4.0f;
+    private float countdown;
+    private bool countingDown = false;
 
     private void Start()
     {
         // Todo: ExpBoost debug stuff can be removed later.
         if (FindObjectOfType<PopulationManager>().DebugBoostEnabled == true) TimeLimit = 10f;
-        else TimeLimit = 30f;
 
         countdown = defaultCountdown;
         sword = FindObjectOfType<TrainingSword>();
+        shield = FindObjectOfType<Shield>();
         GameOver = true;
         TimeRemaining = TimeLimit;
     }
 
     private void FixedUpdate()
     {
-        if (!GameOver)
-        {
-            TimeRemaining -= Time.deltaTime;
-            if (TimeRemaining < 0.125f)
-            {
-                TimeRemaining = 0;
-                StopGame();
-            }
-        }
         if (countingDown && countdown > 0f)
         {
-            countdown -= Time.deltaTime;
+            countdownText.gameObject.SetActive(true);
+            countdown -= (Time.deltaTime * 1.25f);
             if ((int)countdown == 0)
             {
-                countdownText.text = "Begin!";
+                countdownText.text = "GO!";
             }
             else
             {
@@ -93,9 +86,20 @@ public class TrainingManager : MonoBehaviour
         else
         {
             countingDown = false;
+            countdownText.gameObject.SetActive(false);
         }
-        timeText.text = Helpers.FormatTimer((int)TimeRemaining);
-        scoreText.text = score.ToString();
+
+        if (!GameOver)
+        {
+            timeText.text = Helpers.FormatTimer((int)TimeRemaining);
+            scoreText.text = score.ToString();
+            TimeRemaining -= Time.deltaTime;
+            if (TimeRemaining < 0.125f)
+            {
+                TimeRemaining = 0;
+                StopGame();
+            }
+        }
     }
 
     public void SetGuildMember(GuildMember _guildMember)
@@ -103,9 +107,9 @@ public class TrainingManager : MonoBehaviour
         guildMember = _guildMember;
     }
 
-    public void StartGame()
+    public void OpenInstructions()
     {
-        StartCoroutine(StartTraining());
+        instructionsImage.GetComponent<Animator>().SetTrigger("Open");
     }
 
     public void AddPoints(int points)
@@ -124,8 +128,11 @@ public class TrainingManager : MonoBehaviour
     private void StopGame()
     {
         GameOver = true;
-        countdown = defaultCountdown;
         clickBlockerPanel.SetActive(true);
+        StartCoroutine(ResetShield());
+
+        timeText.text = "";
+        scoreText.text = "";
 
         float accuracy = (float)sword.Hits / sword.Swings;
         int accuracyPercent = Mathf.RoundToInt(accuracy * 100);
@@ -135,6 +142,7 @@ public class TrainingManager : MonoBehaviour
 
         exp = Mathf.CeilToInt(score / 10);
         combatExp = Mathf.CeilToInt(score / 20);
+
         resultsImage.GetComponent<Animator>().SetTrigger("Open");
         resultsAccuracy.text = $"Accuracy: {accuracyPercent}%";
         resultsFinalScore.text = $"Final Score: {score}";
@@ -149,14 +157,24 @@ public class TrainingManager : MonoBehaviour
         }
     }
 
-    private IEnumerator StartTraining()
+    public void BeginTraining()
     {
-        instructionsImage.GetComponent<Animator>().SetTrigger("Open");
-        yield return new WaitForSeconds(1);
-        countingDown = true;
-        yield return new WaitForSeconds(countdown);
+        StartCoroutine(Countdown());
+    }
+
+    private IEnumerator Countdown()
+    {
         instructionsImage.GetComponent<Animator>().SetTrigger("Close");
+        yield return new WaitForSeconds(0.5f);
+        countingDown = true;
+        yield return new WaitForSeconds(3.25f);
         GameOver = false;
+    }
+
+    private IEnumerator ResetShield()
+    {
+        yield return new WaitForSeconds(1.0f);
+        shield.ResetPositionAndColor();
     }
 
     private void ResetGame()
@@ -164,10 +182,11 @@ public class TrainingManager : MonoBehaviour
         score = 0;
         exp = 0;
         combatExp = 0;
-        countdown = defaultCountdown;
         TimeRemaining = TimeLimit;
+        countdown = defaultCountdown;
         guildMember = null;
-        FindObjectOfType<Shield>().ResetShieldSpeed();
-        countdownText.text = "";
+        shield.ResetShieldSpeed();
+        timeText.text = Helpers.FormatTimer((int)TimeRemaining);
+        scoreText.text = score.ToString();
     }
 }

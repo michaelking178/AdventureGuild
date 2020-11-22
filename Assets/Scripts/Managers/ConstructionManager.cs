@@ -61,7 +61,6 @@ public class ConstructionManager : MonoBehaviour
     {
         UnderConstruction = false;
         yield return new WaitForSeconds(0.5f);
-        Debug.Log("CONSTRUCTIONMANAGER.CS: Construction Complete!");
         ConstructionJob.Apply();
 
         if (Artisans.Count != 0)

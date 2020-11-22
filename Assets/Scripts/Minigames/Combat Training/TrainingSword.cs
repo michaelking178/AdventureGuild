@@ -9,15 +9,16 @@ public class TrainingSword : MonoBehaviour
     [SerializeField]
     private AudioClip[] swordClangs;
 
+    public int Swings = 0;
+    public int Hits = 0;
+
     private AudioSource audioSource;
     private Vector2 startPos;
     private Vector2 movementPos;
     private float distance;
     private int speed = 25;
     private float startTime = 0f;
-
-    public int Swings = 0;
-    public int Hits = 0;
+    private float swingResistance = 0.1f;
 
     private void Start()
     {
@@ -52,13 +53,13 @@ public class TrainingSword : MonoBehaviour
         movementPos = position;
         startTime = Time.time;
         distance = Vector2.Distance(startPos, movementPos);
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(swingResistance);
 
         startPos = transform.position;
         movementPos = Vector2.zero;
         startTime = Time.time;
         distance = Vector2.Distance(startPos, movementPos);
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(swingResistance);
     }
 
     public void ClangSound()

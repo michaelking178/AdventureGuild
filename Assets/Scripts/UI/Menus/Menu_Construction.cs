@@ -50,16 +50,6 @@ public class Menu_Construction : MonoBehaviour
         if (menuManager.CurrentMenu == gameObject)
         {
             Populate();
-            if (constructionManager.ConstructionJob != null && (constructionManager.UnderConstruction || !constructionManager.ConstructionJob.CanAfford()))
-            {
-                buildButton.interactable = false;
-                buildButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color(0.196f, 0.196f, 0.196f, 0.5f);
-            }
-            else
-            {
-                buildButton.interactable = true;
-                buildButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color(0.196f, 0.196f, 0.196f, 1);
-            }
         }
     }
 
@@ -123,6 +113,21 @@ public class Menu_Construction : MonoBehaviour
 
     private void SetButtons(Upgrade upgrade)
     {
+        if (constructionManager.UnderConstruction || !constructionManager.ConstructionJob.CanAfford())
+        {
+            selectArtisansButton.interactable = false;
+            buildButton.interactable = false;
+            selectArtisansButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color(0.196f, 0.196f, 0.196f, 0.5f);
+            buildButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color(0.196f, 0.196f, 0.196f, 0.5f);
+        }
+        else
+        {
+            selectArtisansButton.interactable = true;
+            buildButton.interactable = true;
+            selectArtisansButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color(0.196f, 0.196f, 0.196f, 1);
+            buildButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color(0.196f, 0.196f, 0.196f, 1);
+        }
+
         if (upgrade.ArtisanCost == 0)
         {
             buildButton.gameObject.SetActive(true);

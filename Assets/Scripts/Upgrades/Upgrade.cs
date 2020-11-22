@@ -30,7 +30,6 @@ public abstract class Upgrade : MonoBehaviour
 
     public virtual void Apply()
     {
-        Debug.Log("UPGRADE.CS: base Upgrade Applied!");
         IsPurchased = true;
     }
 
