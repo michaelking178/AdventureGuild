@@ -24,6 +24,7 @@ public class QuestManager : MonoBehaviour
 
     private Quests quests;                  // quests is just a reference to the entire Quest JSON list. It shouldn't be used directly.
     private IncidentManager incidentManager;
+    private LevelManager levelManager;
     private Guildhall guildhall;
     private NotificationManager notificationManager;
     private readonly string failureMessage = "The challenges were too great, and I was defeated before completing my quest. I have returned to the Adventure Guild so that I may recover.";
@@ -32,6 +33,7 @@ public class QuestManager : MonoBehaviour
     private void Start()
     {
         incidentManager = FindObjectOfType<IncidentManager>();
+        levelManager = FindObjectOfType<LevelManager>();
         guildhall = FindObjectOfType<Guildhall>();
         notificationManager = FindObjectOfType<NotificationManager>();
         quests = JsonUtility.FromJson<Quests>(questsJson.text);
@@ -51,6 +53,8 @@ public class QuestManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (levelManager.CurrentLevel() == "Title") return;
+
         if (GetQuestsByStatus(Quest.Status.New).Count <= 3)
         {
             PopulateQuestPool(UnityEngine.Random.Range(3,6));
@@ -277,7 +281,6 @@ public class QuestManager : MonoBehaviour
         Quest quest = new Quest
         {
             questName = questToClone.questName,
-            contractor = questToClone.contractor,
             skill = questToClone.skill,
             faction = questToClone.faction,
             description = questToClone.description,
@@ -286,6 +289,21 @@ public class QuestManager : MonoBehaviour
             id = questToClone.id,
             level = questToClone.level
         };
+
+        if (questToClone.contractor == "")
+        {
+            string gender;
+
+            int genderRoll = UnityEngine.Random.Range(0, 2);
+            if (genderRoll == 0)
+                gender = "male";
+            else
+                gender = "female";
+            quest.contractor = FindObjectOfType<NameGenerator>().FullName(gender);
+        }
+        else
+            quest.contractor = questToClone.contractor;
+
         quest.Init();
         return quest;
     }

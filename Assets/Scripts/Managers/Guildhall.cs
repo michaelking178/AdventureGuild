@@ -12,16 +12,26 @@ public class Guildhall : MonoBehaviour
     public int RenownThreshold { get { return Levelling.RenownLevel[RenownLevel]; } }
     public int ArtisanProficiency;
 
+    public int MaxGold { get; set; } = 2500;
+    public int MaxIron { get; set; } = 1000;
+    public int MaxWood { get; set; } = 1000;
+
     public int GoldIncome { get; set; } = 0;
     public int IronIncome { get; set; } = 0;
     public int WoodIncome { get; set; } = 0;
+
+    public int MaxGoldIncome { get; set; } = 250;
+    public int MaxIronIncome { get; set; } = 100;
+    public int MaxWoodIncome { get; set; } = 100;
     public DateTime StartTime { get; set; }
 
+    private LevelManager levelManager;
     private PopulationManager populationManager;
     private QuestManager questManager;
 
     private void Start()
     {
+        levelManager = FindObjectOfType<LevelManager>();
         populationManager = FindObjectOfType<PopulationManager>();
         questManager = FindObjectOfType<QuestManager>();
         if (StartTime == DateTime.MinValue)
@@ -32,6 +42,8 @@ public class Guildhall : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (levelManager.CurrentLevel() == "Title") return;
+
         CalculateArtisanProficiency();
         if (Renown >= Levelling.RenownLevel[RenownLevel])
         {
@@ -58,6 +70,10 @@ public class Guildhall : MonoBehaviour
         {
             Gold = 0;
         }
+        else if (Gold > MaxGold)
+        {
+            Gold = MaxGold;
+        }
     }
 
     public void AdjustIron(int change)
@@ -67,6 +83,10 @@ public class Guildhall : MonoBehaviour
         {
             Iron = 0;
         }
+        else if (Iron > MaxIron)
+        {
+            Iron = MaxIron;
+        }
     }
 
     public void AdjustWood(int change)
@@ -75,6 +95,10 @@ public class Guildhall : MonoBehaviour
         if (Wood < 0)
         {
             Wood = 0;
+        }
+        else if (Wood > MaxWood)
+        {
+            Wood = MaxWood;
         }
     }
 

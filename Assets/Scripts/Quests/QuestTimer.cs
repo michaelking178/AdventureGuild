@@ -18,12 +18,14 @@ public class QuestTimer : MonoBehaviour
     public int IncidentTimer { get; set; }
     public int IncidentQueue { get; set; }
 
+    private LevelManager levelManager;
     private QuestManager questManager;
     private IncidentManager incidentManager;
     private Guildhall guildhall;
 
     private void Start()
     {
+        levelManager = FindObjectOfType<LevelManager>();
         questManager = FindObjectOfType<QuestManager>();
         incidentManager = FindObjectOfType<IncidentManager>();
         guildhall = FindObjectOfType<Guildhall>();
@@ -35,6 +37,8 @@ public class QuestTimer : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (levelManager.CurrentLevel() == "Title") return;
+
         if (IsTiming && CurrentTime <= TimeLimit)
         {
             TimeSpan difference = DateTime.Now - StartTime;
@@ -61,7 +65,7 @@ public class QuestTimer : MonoBehaviour
         }
         else
         {
-            Debug.Log(string.Format("QuestTimer unable to complete quest \"{0}\" ({1})", quest.questName, quest.questInstanceId));
+            Debug.Log($"QuestTimer unable to complete quest \"{quest.questName}\" ({quest.questInstanceId})");
         }
     }
 

@@ -9,7 +9,8 @@ public class LevelManager : MonoBehaviour
         "0.0.7.2", 
         "0.0.8.0", 
         "0.0.8.1",
-        "0.0.8.2"
+        "0.0.8.2",
+        "0.0.8.3"
     };
 
     private void Awake()
@@ -23,6 +24,16 @@ public class LevelManager : MonoBehaviour
         {
             SaveSystem.LoadGame();
         }
+        if (CurrentLevel() == "Title")
+        {
+            StartCoroutine(TitleTransition());
+        }
+    }
+
+    private IEnumerator TitleTransition()
+    {
+        yield return new WaitForSeconds(3);
+        LoadLevelDirect("Main");
     }
 
     public void LoadLevel(string scene)

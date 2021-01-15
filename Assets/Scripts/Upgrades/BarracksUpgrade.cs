@@ -3,13 +3,11 @@ using UnityEngine;
 
 public class BarracksUpgrade : Upgrade
 {
-    [Header("Level One Upgrade")]
     // Level 1 Name, Description, Costs and Time inherited from Upgrade
-
     [SerializeField]
     private int levelOnePopulation = 10;
 
-
+    #region Level Two
     [Header("Level Two Upgrade")]
     [SerializeField]
     private string levelTwoName;
@@ -37,8 +35,9 @@ public class BarracksUpgrade : Upgrade
 
     [SerializeField]
     private int levelTwoPopulation = 25;
+    #endregion
 
-
+    #region Level Three
     [Header("Level Three Upgrade")]
     [SerializeField]
     private string levelThreeName;
@@ -66,31 +65,18 @@ public class BarracksUpgrade : Upgrade
 
     [SerializeField]
     private int levelThreePopulation = 50;
+    #endregion
 
-    private MenuManager menuManager;
-    private GameObject menu_UpgradeGuildhall;
     private int populationUpgrade = 10;
 
     private new void Start()
     {
         base.Start();
-        menuManager = FindObjectOfType<MenuManager>();
-        menu_UpgradeGuildhall = FindObjectOfType<Menu_UpgradeGuildhall>().gameObject;
-        StartCoroutine(DelayedCheckForUpgrade());
-    }
-
-    private void FixedUpdate()
-    {
-        if (menuManager.CurrentMenu == menu_UpgradeGuildhall)
-        {
-            CheckForUpgrade();
-        }
     }
 
     public override void Apply()
     {
         base.Apply();
-        Debug.Log("Applying Barracks Upgrade");
         CheckForUpgrade();
         populationManager.SetPopulationCap(populationUpgrade);
         if (populationManager.PopulationCap < levelThreePopulation)
@@ -99,7 +85,7 @@ public class BarracksUpgrade : Upgrade
         }
     }
 
-    private void CheckForUpgrade()
+    protected override void CheckForUpgrade()
     {
         if (populationManager.PopulationCap < levelOnePopulation)
         {
@@ -135,12 +121,5 @@ public class BarracksUpgrade : Upgrade
             Description = levelThreeDescription;
             IsPurchased = true;
         }
-    }
-
-    private IEnumerator DelayedCheckForUpgrade()
-    {
-        yield return new WaitForSeconds(1);
-        CheckForUpgrade();
-        yield return null;
     }
 }

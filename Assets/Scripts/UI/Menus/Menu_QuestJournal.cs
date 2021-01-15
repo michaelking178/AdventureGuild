@@ -49,8 +49,9 @@ public class Menu_QuestJournal : MonoBehaviour
             Debug.LogError("Menu_QuestJournal has no quest assigned!");
             return;
         }
+        string commencement = string.Format(quest.commencement, quest.contractor);
         questName.text = quest.questName;
-        summary.text = $"{quest.startTime}\nI, {quest.GuildMember.person.name}, hereby set out to {quest.commencement} Success shall reap these rewards:";
+        summary.text = $"{quest.startTime}\nI, {quest.GuildMember.person.name}, hereby set out to {commencement} Success shall reap these rewards:";
         questReward.text = Helpers.QuestRewardStr(quest);
         incidentCount = quest.Incidents.Count;
         UpdateIncidents();

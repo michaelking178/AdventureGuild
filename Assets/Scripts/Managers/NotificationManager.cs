@@ -13,11 +13,13 @@ public class NotificationManager : MonoBehaviour
 
     public List<Notification> notifications;
 
+    private LevelManager levelManager;
     private Vector2 position;
     private float notchOffset = -200.0f;
 
     private void Start()
     {
+        levelManager = FindObjectOfType<LevelManager>();
         notifications = new List<Notification>();
         notificationUIs = new List<GameObject>();
         position = new Vector2(-3400, notchOffset);
@@ -33,6 +35,7 @@ public class NotificationManager : MonoBehaviour
 
     private IEnumerator DisplayNotifications()
     {
+        yield return new WaitForSeconds(4);
         while(true)
         {
             if (notifications.Count > 0)
@@ -65,7 +68,7 @@ public class NotificationManager : MonoBehaviour
 
     private IEnumerator MoveNotificationStack()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4);
         while (true)
         {
             yield return new WaitForFixedUpdate();

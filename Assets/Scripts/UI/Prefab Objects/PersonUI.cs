@@ -175,13 +175,16 @@ public class PersonUI : MonoBehaviour
     {
         if (GuildMember.Vocation is Peasant && GuildMember.Level >= 5)
         {
-            if (promoteToAdventurerBtn.activeSelf)
+            if (FindObjectOfType<PopulationManager>().AdventurersEnabled)
             {
-                promoteToAdventurerBtn.SetActive(false);
-            }
-            else
-            {
-                promoteToAdventurerBtn.SetActive(true);
+                if (promoteToAdventurerBtn.activeSelf)
+                {
+                    promoteToAdventurerBtn.SetActive(false);
+                }
+                else
+                {
+                    promoteToAdventurerBtn.SetActive(true);
+                }
             }
             if (FindObjectOfType<PopulationManager>().ArtisansEnabled)
             {

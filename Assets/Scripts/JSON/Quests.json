@@ -25,11 +25,11 @@
     {
       "id": "001003",
       "questName": "Goblin in the Dell",
-      "contractor": "Farmer Wendel",
+      "contractor": "",
       "faction": "",
       "skill": "",
       "description": "Some sneaky goblin has been harrassing my farm. I doubt I'll see the chickens again but I would like my tools and other stock back. Please send a good tracker to find the little devil.",
-      "commencement": "aid this farmer Wendell in dispatching the goblin and retrieving his farm supplies. I should be careful; goblins are small and weak, but devilishly tricky...",
+      "commencement": "aid this farmer {0} in dispatching the goblin and retrieving the farm supplies. I should be careful; goblins are small and weak, but devilishly tricky...",
       "completion": "I found the goblin's lair and approached under cover of daylight (for, as everyone knows, goblins abhor the light of the sun). I found the farmer's tools and those livestock that yet lived. The goblin awoke quite suddenly and beset me with poison darts. With a swing of my blade I split the conniving creature's skull before its darts had a chance to find their mark. I have returned the farmer's goods, and now make my way back to the Adventure Guild.",
       "level": 1
     },
@@ -47,7 +47,7 @@
     {
       "id": "001005",
       "questName": "Petal Locket Purloined",
-      "contractor": "Peddler Tillson",
+      "contractor": "",
       "faction": "",
       "skill": "",
       "description": "Beggin' the help of any who might be able. I've lost that what's most precious to me in the world, and will pay someone to find it! My grand-dad left me a locket when he passed containing a single wilted petal of a flower from the other side of the world, likewise left to him by his grand-dad and so on. While not worth much in trade, that locket is worth everything to my family. A week or so back, it up and disappeared! We suspect a traveller who was lollygagging around our shop at the time must have pilfered it. Please, will someone set out after the thief and return my locket?",
@@ -79,13 +79,13 @@
     },
     {
       "id": "001008",
-      "questName": "QUEST_NAME_001008",
-      "contractor": "CONTRACTOR_NAME",
+      "questName": "Ghouls at the Gate",
+      "contractor": "Townspeople of Dendrey",
       "faction": "",
       "skill": "",
-      "description": "QUEST_DESCRIPTION",
-      "commencement": "COMMENCE_QUEST",
-      "completion": "COMPLETE_QUEST",
+      "description": "Our village is under an evil siege! Every night a horde of ghouls approaches our walls and bangs on our gates. Last week a poor maid was taking an evening stroll and... Well, we need this dealt with. We've no idea why the monsters are here, but we need them destroyed.",
+      "commencement": "travel to the town of Dendrey and aid in dispatching this drove of the undead.",
+      "completion": "The town of Dendrey was hushed upon my arrival, like everyone was holding their breath. In the waning daylight hours we laid fire traps on the field outside the wall. As the sun disappeared behind the horizon, the first of the ghouls appeared. Slowly the stumbling pack grew into a horde and they were at the walls, stratching and moaning. We sprung our trap with a well-placed fire arrow and the field erupted in flames. The ghouls, barely aware of their own demise, continued scratching and moaning as they shrivelled into dust. We picked off the stragglers and in the morning we cleaned the field of the remains. I stayed one extra night to ensure the ghouls were defeated, and indeed they were. The townspeople gratefully paid the reward, and I now return to the Adventure Guild.",
       "level": 1
     },
     {
@@ -178,24 +178,24 @@
     },
     {
       "id": "005002",
-      "questName": "QUEST_NAME_005002",
-      "contractor": "CONTRACTOR_NAME",
+      "questName": "Birds of a Feather",
+      "contractor": "",
       "faction": "",
       "skill": "",
-      "description": "QUEST_DESCRIPTION",
-      "commencement": "COMMENCE_QUEST",
-      "completion": "COMPLETE_QUEST",
+      "description": "Thieves ransacked my shop! I went to the town guard to report the crime of course, and they just says to me, they says, \"What did the thieves look like?\" And I says, \"I don't know, it was the middle o' the night and I were asleep!\" And they laughed and laughed and sent me away. So here I am, requestin' the aid of a world-wise adventurer who might take pity on me. I don't know how to find these scoundrels, only that they stole an odd selection of items: a feathered cowl, a ceramic egg, and a stuffed crow.",
+      "commencement": "seek out the thieves who ransacked {0}'s shop. It is a strange collection of items to be stolen... I wonder why they were taken.",
+      "completion": "Asking around town I learned that several bird-related items had been stolen from various shops in recent nights: a raven's perch, a bag of seeds, and a lucky pidgeon's foot. I decided to watch the nearby aviary for suspicious activity. Sure enough, the very night I arrived I observed a frantic man in tattered clothes constructing a shrine with the stolen goods. I watched him curiously as he lit candles and began a strange chant. The birds of the aviary awoke and began swirling through the air as one to the lilt of the chant. I decided it was time to end this. I crept out and hit him over the head. In that moment the birds scattered and returned to their nests and perches. I turned the madman in to the authorities and returned the stolen goods. I now return to the Adventure Guild, none the more informed as to what exactly I witnessed...",
       "level": 5
     },
     {
       "id": "005003",
       "questName": "Ransom Reneged",
-      "contractor": "Atelwald Herrien",
+      "contractor": "",
       "faction": "",
       "skill": "",
       "description": "My daughter has been taken captive by some brutish bandits! They demanded a ransom that cost me half my life's savings, but I paid it all the same. Yet they refuse to return her and demand even more money! I beg, seek out these bandits and end them. Then bring my daughter home!",
       "commencement": "find these bandits and rescue the daughter held captive. Perhaps I can return the poor farmer's ransom money in the process.",
-      "completion": "I found the bandits hiding out in an abandoned farmstead. The girl was bound to the horse post outside, tired and malnourished. As I approached the bandits beset me, flailing blade and blunt in an amateurish show of force. I deftly dispatched two of the larger ones and the rest fled. I untied the girl and found her father's ransom money inside the house. Having returned both to the farmer and received a reward, I now return to the Adventure Guild.",
+      "completion": "I found the bandits hiding out in an abandoned farmstead. The girl was bound to the horse post outside, tired and malnourished. As I approached the bandits beset me, flailing blade and blunt in an amateurish show of force. I deftly dispatched two of the larger ones and the rest fled. I untied the girl and found her family's ransom money inside the house. Having returned both to the farmer and received a reward, I now return to the Adventure Guild.",
       "level": 5
     },
     {
@@ -226,9 +226,9 @@
       "contractor": "Conjurer Aritax",
       "faction": "MagesGuild",
       "skill": "",
-      "description": "We are reaching out to the Adventure Guild for aid in retrieving a minor relic. During a routine relocation incantation an acolyte managed to transport a small focus stone onto the roof of the temple. How the young mage accomplished such a precise act of failure is beyond me. Normally we would easily retrieve the stone ourselves but certain parts of the temple are protected against magic so we must retrieve it the \"old-fashioned\" way. We need someone with an aptitude for risking life and limb for meagre payment, so here we are.",
+      "description": "We are reaching out to the Adventure Guild for aid in retrieving a minor relic. During a routine relocation incantation an acolyte managed to transport a small focus stone onto the roof of the temple in Talwick. How the young mage accomplished such a precise act of failure is beyond me. Normally we would easily retrieve the stone ourselves but certain parts of the temple are protected against magic so we must retrieve it the \"old-fashioned\" way. We need someone with an aptitude for risking life and limb for meagre payment, so here we are.",
       "commencement": "travel to the temple in question and retrieve the focus stone. Falling from the rooftop is no concern of mine... hitting the ground is though.",
-      "completion": "The temple rooftop was a steep and precarious pitch. To make matters worse, rain began to fall just as I arrived. Nevertheless I scaled the walls and clambered up the slippery rooftop slates. Between the shoulders of an overhanging gargoyle I found the focus stone glimmering softly. As I tucked the stone into my pouch I felt my grip on the rain-swept stone give way. I fell. Sliding down stone and then falling through air, I felt the cold wind and saw the ground quickly approaching. In the final moment I became weightless and floated to the earth like a feather. Conjurer Aritax stood before me, shaking his head in disdain. \"You're lucky I've compassion,\" he said to me. \"I could easily have benefitted from your services for free just now.\" I thanked him and departed with the reward. The Mage's Guild is a strange, unkind place. I return now to the Adventure Guild.",
+      "completion": "I arrived at the temple in the village of Talwick. The temple rooftop was a steep and precarious pitch. To make matters worse, rain began to fall just as I arrived. Nevertheless I scaled the walls and clambered up the slippery rooftop slates. Between the shoulders of an overhanging gargoyle I found the focus stone glimmering softly. As I tucked the stone into my pouch I felt my grip on the rain-swept stone give way. I fell. Sliding down stone and then falling through air, I felt the cold wind and saw the ground quickly approaching. In the final moment I became weightless and floated to the earth like a feather. Conjurer Aritax stood before me, shaking his head in disdain. \"You're lucky I've compassion,\" he said to me. \"I could easily have benefitted from your services for free just now.\" I thanked him and departed with the reward. The Mage's Guild is a strange, unkind place. I return now to the Adventure Guild.",
       "level": 5
     },
     {
@@ -503,7 +503,7 @@
       "skill": "",
       "description": "Our village has been infected by some foul disease and we seek aid in finding the source. Our priest believes us to be cursed while the healer suspects something more mundane. Please, come to the village of Talwick and investigate this sickness!",
       "commencement": "to find the cause of the sickness in the village of Talwick. Be it magic or malady I will get to the bottom of it and save the villagers.",
-      "completion": "I arrived at the village of Talwick and was greeted by the stench of sickness. I set immediately to investigating. The food supply was secure and clean, a nearby sorceror was conducting some experiments but nothing dastardly. Finally, I checked the well from whence the villagers drew their water. A foulness hung within that well, and so I spelunked down inside with a torch. At the bottom I found a crude charm ",
+      "completion": "I arrived at the village of Talwick and was greeted by the stench of sickness. I set immediately to investigating. The food supply was secure and clean, a nearby sorceror was conducting some experiments but nothing dastardly. Finally, I checked the well from whence the villagers draw their water. A foulness hung within that depth, and so I spelunked down inside with a torch. At the bottom I found a crude charm. I removed the charm and within the day the water had cleared and the stench was gone. Upon questioning the healer he became agitated and struck out at me. I restrained him and turn him over to the village counsel to do as they will. What will a man not do to profit off of those around him? In any case, I return now to the Adventure Guild, reward in hand.",
       "level": 15
     },
     {

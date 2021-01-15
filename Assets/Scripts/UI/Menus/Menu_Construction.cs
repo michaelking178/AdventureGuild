@@ -38,6 +38,8 @@ public class Menu_Construction : MonoBehaviour
     private MenuManager menuManager;
     private ConstructionManager constructionManager;
 
+    public Upgrade ConstructionJob;
+
     private void Start()
     {
         guildhall = FindObjectOfType<Guildhall>();
@@ -55,54 +57,54 @@ public class Menu_Construction : MonoBehaviour
 
     public void Populate()
     {
-        if (constructionManager.ConstructionJob != null)
+        if (ConstructionJob != null)
         {
-            SetButtons(constructionManager.ConstructionJob);
+            SetButtons();
 
-            if (constructionManager.ConstructionJob.ArtisanCost == 0) artisanCostText.gameObject.SetActive(false);
+            if (ConstructionJob.ArtisanCost == 0) artisanCostText.gameObject.SetActive(false);
             else artisanCostText.gameObject.SetActive(true);
 
-            if (constructionManager.ConstructionJob.GoldCost == 0) goldCostText.gameObject.SetActive(false);
+            if (ConstructionJob.GoldCost == 0) goldCostText.gameObject.SetActive(false);
             else goldCostText.gameObject.SetActive(true);
 
-            if (constructionManager.ConstructionJob.WoodCost == 0) woodCostText.gameObject.SetActive(false);
+            if (ConstructionJob.WoodCost == 0) woodCostText.gameObject.SetActive(false);
             else woodCostText.gameObject.SetActive(true);
 
-            if (constructionManager.ConstructionJob.GoldCost == 0) goldCostText.gameObject.SetActive(false);
+            if (ConstructionJob.GoldCost == 0) goldCostText.gameObject.SetActive(false);
             else goldCostText.gameObject.SetActive(true);
 
-            if (constructionManager.ConstructionJob.IronCost == 0) ironCostText.gameObject.SetActive(false);
+            if (ConstructionJob.IronCost == 0) ironCostText.gameObject.SetActive(false);
             else ironCostText.gameObject.SetActive(true);
 
-            projectText.text = constructionManager.ConstructionJob.Name;
+            projectText.text = ConstructionJob.Name;
 
-            artisanCostText.text = $"Artisan Proficiency: {constructionManager.ConstructionJob.ArtisanCost}";
-            SetColor(artisanCostText, guildhall.ArtisanProficiency, constructionManager.ConstructionJob.ArtisanCost);
+            artisanCostText.text = $"Artisan Proficiency: {ConstructionJob.ArtisanCost}";
+            SetColor(artisanCostText, guildhall.ArtisanProficiency, ConstructionJob.ArtisanCost);
 
-            goldCostText.text = $"Gold: {guildhall.Gold} / {constructionManager.ConstructionJob.GoldCost}";
-            SetColor(goldCostText, guildhall.Gold, constructionManager.ConstructionJob.GoldCost);
+            goldCostText.text = $"Gold: {guildhall.Gold} / {ConstructionJob.GoldCost}";
+            SetColor(goldCostText, guildhall.Gold, ConstructionJob.GoldCost);
 
-            woodCostText.text = $"Wood: {guildhall.Wood} / {constructionManager.ConstructionJob.WoodCost}";
-            SetColor(woodCostText, guildhall.Wood, constructionManager.ConstructionJob.WoodCost);
+            woodCostText.text = $"Wood: {guildhall.Wood} / {ConstructionJob.WoodCost}";
+            SetColor(woodCostText, guildhall.Wood, ConstructionJob.WoodCost);
 
-            ironCostText.text = $"Iron: {guildhall.Iron} / {constructionManager.ConstructionJob.IronCost}";
-            SetColor(ironCostText, guildhall.Iron, constructionManager.ConstructionJob.IronCost);
+            ironCostText.text = $"Iron: {guildhall.Iron} / {ConstructionJob.IronCost}";
+            SetColor(ironCostText, guildhall.Iron, ConstructionJob.IronCost);
 
-            timeText.text = Helpers.FormatTimer((int)constructionManager.ConstructionJob.constructionTime);
-            expText.text = $"{constructionManager.ConstructionJob.Experience} Artisan Experience";
-            upgradeText.text = constructionManager.ConstructionJob.Description;
+            timeText.text = Helpers.FormatTimer((int)ConstructionJob.constructionTime);
+            expText.text = $"{ConstructionJob.Experience} Artisan Experience";
+            upgradeText.text = ConstructionJob.Description;
         }
     }
 
     public void BeginConstruction()
     {
-        constructionManager.SetConstructionJob(constructionManager.ConstructionJob);
+        constructionManager.SetConstructionJob(ConstructionJob);
         constructionManager.BeginConstruction();
     }
 
     public void PassUpgradeToSelectArtisans()
     {
-        FindObjectOfType<Menu_SelectArtisans>().SetUpgrade(constructionManager.ConstructionJob);
+        FindObjectOfType<Menu_SelectArtisans>().SetUpgrade(ConstructionJob);
     }
 
     private void SetColor(TextMeshProUGUI text, int have, int need)
@@ -111,9 +113,9 @@ public class Menu_Construction : MonoBehaviour
         else text.color = Color.green;
     }
 
-    private void SetButtons(Upgrade upgrade)
+    private void SetButtons()
     {
-        if (constructionManager.UnderConstruction || !constructionManager.ConstructionJob.CanAfford())
+        if (constructionManager.UnderConstruction || !ConstructionJob.CanAfford())
         {
             selectArtisansButton.interactable = false;
             buildButton.interactable = false;
@@ -128,7 +130,7 @@ public class Menu_Construction : MonoBehaviour
             buildButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color(0.196f, 0.196f, 0.196f, 1);
         }
 
-        if (upgrade.ArtisanCost == 0)
+        if (ConstructionJob.ArtisanCost == 0)
         {
             buildButton.gameObject.SetActive(true);
             selectArtisansButton.gameObject.SetActive(false);

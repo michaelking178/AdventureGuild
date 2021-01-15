@@ -12,7 +12,6 @@ public class SkillQuestUpgrade : Upgrade
     {
         base.Start();
         questManager = FindObjectOfType<QuestManager>();
-        StartCoroutine(DelayedCheckForUpgrade());
     }
 
     public override void Apply()
@@ -21,15 +20,8 @@ public class SkillQuestUpgrade : Upgrade
         questManager.UnlockSkill(skill);
     }
 
-    public void CheckForUpgrade()
+    protected override void CheckForUpgrade()
     {
         IsPurchased = questManager.IsSkillUnlocked(skill);
-    }
-
-    private IEnumerator DelayedCheckForUpgrade()
-    {
-        yield return new WaitForSeconds(1);
-        CheckForUpgrade();
-        yield return null;
     }
 }

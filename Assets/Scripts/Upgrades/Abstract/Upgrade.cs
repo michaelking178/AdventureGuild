@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public abstract class Upgrade : MonoBehaviour
 {
@@ -12,14 +13,29 @@ public abstract class Upgrade : MonoBehaviour
     public float constructionTime;
     public int Experience;
 
+    private LevelManager levelManager;
     protected Guildhall guildhall;
     protected PopulationManager populationManager;
 
-    public void Start()
+    protected void Start()
     {
+        levelManager = FindObjectOfType<LevelManager>();
         guildhall = FindObjectOfType<Guildhall>();
         populationManager = FindObjectOfType<PopulationManager>();
+        StartCoroutine(DelayedCheckForUpgrade());
     }
+
+    private void Update()
+    {
+        if (levelManager.CurrentLevel() == "Title") return;
+
+        if (FindObjectOfType<MenuManager>().CurrentMenu.name == "Menu_UpgradeGuildhall")
+        {
+            CheckForUpgrade();
+        }
+    }
+
+    protected virtual void CheckForUpgrade(){}
 
     public virtual void PayForUpgrade()
     {
@@ -40,5 +56,12 @@ public abstract class Upgrade : MonoBehaviour
             return false;
         }
         return true;
+    }
+
+    private IEnumerator DelayedCheckForUpgrade()
+    {
+        yield return new WaitForSeconds(1);
+        CheckForUpgrade();
+        yield return null;
     }
 }

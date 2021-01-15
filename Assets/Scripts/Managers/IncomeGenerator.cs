@@ -25,9 +25,9 @@ public class IncomeGenerator : MonoBehaviour
             ironToAdd = guildhall.IronIncome * totalIntervalsPassed;
             woodToAdd = guildhall.WoodIncome * totalIntervalsPassed;
 
-            if (goldToAdd > 5000) goldToAdd = 5000;
-            if (ironToAdd > 2500) ironToAdd = 2500;
-            if (woodToAdd > 2500) woodToAdd = 5000;
+            if (goldToAdd > guildhall.MaxGoldIncome) goldToAdd = guildhall.MaxGoldIncome;
+            if (ironToAdd > guildhall.MaxIronIncome) ironToAdd = guildhall.MaxIronIncome;
+            if (woodToAdd > guildhall.MaxWoodIncome) woodToAdd = guildhall.MaxWoodIncome;
 
             guildhall.AdjustGold(goldToAdd);
             guildhall.AdjustIron(ironToAdd);

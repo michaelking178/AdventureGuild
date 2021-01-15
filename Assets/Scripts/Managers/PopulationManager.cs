@@ -5,16 +5,6 @@ using System.Linq;
 
 public class PopulationManager : MonoBehaviour
 {
-    [Header("Resources")]
-    [SerializeField]
-    private TextAsset maleNamesJson;
-
-    [SerializeField]
-    private TextAsset femaleNamesJson;
-
-    [SerializeField]
-    private TextAsset lastNamesJson;
-
     [SerializeField]
     private GuildMember guildMemberPrefab;
 
@@ -23,21 +13,13 @@ public class PopulationManager : MonoBehaviour
     public Sprite defaultMaleAvatar;
     public Sprite defaultFemaleAvatar;
 
-    [Header("Name Lists")]
-    [SerializeField]
-    private Names maleNames;
-
-    [SerializeField]
-    private Names femaleNames;
-
-    [SerializeField]
-    private Names lastNames;
-
     [Header("Guild Members")]
     public List<GuildMember> GuildMembers = new List<GuildMember>();
     public int PopulationCap { get; set; } = 5;
     public DateTime RecoveryStartTime;
     public DateTime RecruitStartTime;
+
+    public bool AdventurersEnabled = false;
     public bool ArtisansEnabled = false;
 
     private int hitpointRecovery = 5;
@@ -48,8 +30,10 @@ public class PopulationManager : MonoBehaviour
     private float recruitTime;
     private int recruitQueue = 0;
 
+    private LevelManager levelManager;
     private NotificationManager notificationManager;
     private Guildhall guildhall;
+    private NameGenerator nameGenerator;
 
     // Todo: DebugBoost testing tool can be removed later.
     public bool DebugBoostEnabled = false;
@@ -57,17 +41,19 @@ public class PopulationManager : MonoBehaviour
 
     private void Start()
     {
+        levelManager = FindObjectOfType<LevelManager>();
         notificationManager = FindObjectOfType<NotificationManager>();
         guildhall = FindObjectOfType<Guildhall>();
-        maleNames = JsonUtility.FromJson<Names>(maleNamesJson.text);
-        femaleNames = JsonUtility.FromJson<Names>(femaleNamesJson.text);
-        lastNames = JsonUtility.FromJson<Names>(lastNamesJson.text);
+        nameGenerator = FindObjectOfType<NameGenerator>();
+
         if (RecoveryStartTime == System.DateTime.MinValue) RecoveryStartTime = System.DateTime.Now;
         if (RecruitStartTime == System.DateTime.MinValue) RecruitStartTime = System.DateTime.Now;
     }
 
     private void FixedUpdate()
     {
+        if (levelManager.CurrentLevel() == "Title") return;
+
         RecoverHitpoints();
         PassiveRecruitment();
     }
@@ -77,17 +63,17 @@ public class PopulationManager : MonoBehaviour
         if (GuildMembers.Count < PopulationCap)
         {
             string firstName;
-            string lastName = lastNames.prefixes[UnityEngine.Random.Range(0, lastNames.prefixes.Length)] + lastNames.suffixes[UnityEngine.Random.Range(0, lastNames.suffixes.Length)];
+            string lastName = nameGenerator.LastName();
             Sprite avatar;
             int gender = UnityEngine.Random.Range(0, 2);
             if (gender == 0)
             {
-                firstName = maleNames.prefixes[UnityEngine.Random.Range(0, maleNames.prefixes.Length)] + maleNames.suffixes[UnityEngine.Random.Range(0, maleNames.suffixes.Length)];
+                firstName = nameGenerator.FirstName("male");
                 avatar = maleAvatars[UnityEngine.Random.Range(0, maleAvatars.Count)];
             }
             else
             {
-                firstName = femaleNames.prefixes[UnityEngine.Random.Range(0, femaleNames.prefixes.Length)] + femaleNames.suffixes[UnityEngine.Random.Range(0, femaleNames.suffixes.Length)];
+                firstName = nameGenerator.FirstName("female");
                 avatar = femaleAvatars[UnityEngine.Random.Range(0, femaleAvatars.Count)];
             }
             Person newPerson = new Person(gender, firstName, lastName);
@@ -95,7 +81,7 @@ public class PopulationManager : MonoBehaviour
             newMember.Init(newPerson);
             newMember.Avatar = avatar;
             GuildMembers.Add(newMember);
-            notificationManager.CreateNotification(string.Format("{0} has heard of your Renown and joined the Adventure Guild!", newMember.person.name), Notification.Spirit.Good);
+            notificationManager.CreateNotification($"{newMember.person.name} has heard of your Renown and joined the Adventure Guild!", Notification.Spirit.Good);
         }
     }
 
@@ -215,6 +201,11 @@ public class PopulationManager : MonoBehaviour
     {
         List<GuildMember> sorted = GuildMembers.OrderByDescending(gm => gm.Level).ToList();
         GuildMembers = sorted;
+    }
+
+    public void EnableAdventurers()
+    {
+        AdventurersEnabled = true;
     }
 
     public void EnableArtisans()

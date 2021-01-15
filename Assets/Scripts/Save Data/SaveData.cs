@@ -58,6 +58,8 @@ public class SaveData
         LoadQuestArchive();
         LoadQuestTimers();
         LoadConstructionManager();
+
+        Debug.Log("Game loaded successfully!");
     }
 
     private void LoadSettings()
@@ -96,6 +98,17 @@ public class SaveData
         guildhall.IronIncome = guildhallData.ironIncome;
         guildhall.WoodIncome = guildhallData.woodIncome;
         guildhall.StartTime = guildhallData.startTime;
+        guildhall.MaxGold = guildhallData.maxGold;
+        guildhall.MaxIron = guildhallData.maxIron;
+        guildhall.MaxWood = guildhallData.maxWood;
+        guildhall.MaxGoldIncome = guildhallData.maxGoldIncome;
+        guildhall.MaxIronIncome = guildhallData.maxIronIncome;
+        guildhall.MaxWoodIncome = guildhallData.maxWoodIncome;
+
+        if (guildhall.MaxGold == 0)
+        {
+            GuildhallCompat(guildhall);
+        }
     }
 
     private void LoadPopulationManager()
@@ -103,6 +116,7 @@ public class SaveData
         PopulationManager populationManager = GameObject.FindObjectOfType<PopulationManager>();
         populationManager.RecoveryStartTime = populationManagerData.recoveryStartTime;
         populationManager.PopulationCap = populationManagerData.populationCap;
+        populationManager.AdventurersEnabled = populationManagerData.adventurersEnabled;
         populationManager.ArtisansEnabled = populationManagerData.artisansEnabled;
 
         if (populationManagerData.recruitStartTime != null)
@@ -230,6 +244,16 @@ public class SaveData
         questToLoad.QuestSkill = _questData.questSkill;
         questToLoad.QuestFaction = _questData.questFaction;
         return questToLoad;
+    }
+
+    private void GuildhallCompat(Guildhall guildhall)
+    {
+        guildhall.MaxGold = 2500;
+        guildhall.MaxIron = 1000;
+        guildhall.MaxWood = 1000;
+        guildhall.MaxGoldIncome = 250;
+        guildhall.MaxIronIncome = 100;
+        guildhall.MaxWoodIncome = 100;
     }
 
     private int QuestIDCompatibility(int _id)

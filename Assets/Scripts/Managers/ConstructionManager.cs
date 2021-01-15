@@ -12,13 +12,18 @@ public class ConstructionManager : MonoBehaviour
     public DateTime StartTime;
     public string ConstructionName = "";
 
+    private LevelManager levelManager;
+
     private void Start()
     {
+        levelManager = FindObjectOfType<LevelManager>();
         Artisans = new List<GuildMember>();
     }
 
     private void FixedUpdate()
     {
+        if (levelManager.CurrentLevel() == "Title") return;
+
         if (ConstructionJob != null && UnderConstruction)
         {
             TimeElapsed = (float)(DateTime.Now - StartTime).TotalSeconds;
