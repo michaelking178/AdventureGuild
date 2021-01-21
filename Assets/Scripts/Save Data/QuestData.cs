@@ -6,7 +6,7 @@ public class QuestData
 {
     public string questName, contractor, skill, faction, description, commencement, completion;
     public int id, level, time, nextQuestID;
-    public bool questChain;
+    public bool continuingQuest, questChain;
     public int questInstanceId;
     public Reward Reward;
     public int guildMemberId = 0;
@@ -28,6 +28,9 @@ public class QuestData
         id = quest.id;
         level = quest.level;
         time = quest.time;
+        continuingQuest = quest.continuingQuest;
+        questChain = quest.questChain;
+        nextQuestID = quest.nextQuestID;
         questInstanceId = quest.questInstanceId;
         Reward = quest.Reward;
         if (quest.GuildMember != null)

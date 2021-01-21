@@ -21,9 +21,11 @@ public class ConstructionManagerData
         }
         UnderConstruction = constructionManager.UnderConstruction;
         StartTime = constructionManager.StartTime;
-        foreach(GuildMember artisan in constructionManager.Artisans)
+
+        foreach (GuildMember artisan in constructionManager.Artisans)
         {
             ArtisanIDs.Add(artisan.Id);
+            UnityEngine.Debug.Log($"Artisan IDs: {ArtisanIDs.Count}");
         }
     }
 }

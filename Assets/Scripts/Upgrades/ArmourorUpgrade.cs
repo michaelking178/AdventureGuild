@@ -5,14 +5,24 @@
         base.Start();
     }
 
+    private void Update()
+    {
+        if (levelManager.CurrentLevel() == "Title") return;
+
+        if (FindObjectOfType<MenuManager>().CurrentMenu.name == "Menu_UpgradeGuildhall")
+        {
+            CheckForUpgrade();
+        }
+    }
+
     public override void Apply()
     {
         base.Apply();
         populationManager.EnableAdventurers();
     }
 
-    protected void CheckForUpgrade()
+    protected override void CheckForUpgrade()
     {
-        IsPurchased = FindObjectOfType<PopulationManager>().AdventurersEnabled;
+        IsPurchased = populationManager.AdventurersEnabled;
     }
 }

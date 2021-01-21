@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BarracksUpgrade : Upgrade
 {
@@ -74,6 +73,16 @@ public class BarracksUpgrade : Upgrade
         base.Start();
     }
 
+    private void Update()
+    {
+        if (levelManager.CurrentLevel() == "Title") return;
+
+        if (FindObjectOfType<MenuManager>().CurrentMenu.name == "Menu_UpgradeGuildhall")
+        {
+            CheckForUpgrade();
+        }
+    }
+
     public override void Apply()
     {
         base.Apply();
@@ -85,8 +94,9 @@ public class BarracksUpgrade : Upgrade
         }
     }
 
-    protected void CheckForUpgrade()
+    protected override void CheckForUpgrade()
     {
+        PopulationManager populationManager = FindObjectOfType<PopulationManager>();
         if (populationManager.PopulationCap < levelOnePopulation)
         {
             populationUpgrade = levelOnePopulation;

@@ -6,7 +6,6 @@ public class TreasuryUpgrade : MaxResourceUpgrade
     private new void Start()
     {
         base.Start();
-        StartCoroutine(DelayedCheckForUpgrade());
     }
 
     private void Update()
@@ -19,7 +18,7 @@ public class TreasuryUpgrade : MaxResourceUpgrade
         }
     }
 
-    private IEnumerator DelayedCheckForUpgrade()
+    protected override IEnumerator DelayedCheckForUpgrade()
     {
         yield return new WaitForSeconds(1);
         CheckForUpgrade(guildhall.MaxGold);

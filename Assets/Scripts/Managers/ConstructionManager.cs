@@ -8,7 +8,7 @@ public class ConstructionManager : MonoBehaviour
     public Upgrade ConstructionJob;
     public bool UnderConstruction = false;
     public float TimeElapsed;
-    public List<GuildMember> Artisans;
+    public List<GuildMember> Artisans = new List<GuildMember>();
     public DateTime StartTime;
     public string ConstructionName = "";
 
@@ -17,7 +17,6 @@ public class ConstructionManager : MonoBehaviour
     private void Start()
     {
         levelManager = FindObjectOfType<LevelManager>();
-        Artisans = new List<GuildMember>();
     }
 
     private void FixedUpdate()
@@ -68,7 +67,7 @@ public class ConstructionManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         ConstructionJob.Apply();
 
-        if (Artisans.Count != 0)
+        if (Artisans.Count > 0)
         {
             int artisanExpShare = Mathf.RoundToInt(ConstructionJob.Experience / Artisans.Count);
             foreach (GuildMember artisan in Artisans)

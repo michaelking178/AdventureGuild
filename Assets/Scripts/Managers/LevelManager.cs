@@ -11,7 +11,10 @@ public class LevelManager : MonoBehaviour
         "0.0.8.1",
         "0.0.8.2",
         "0.0.8.3",
-        "0.0.8.4"
+        "0.0.8.4",
+        "0.0.8.5",
+        "0.0.8.5b",
+        "0.0.8.5c"
     };
 
     private void Awake()

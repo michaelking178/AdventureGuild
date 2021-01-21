@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public abstract class Upgrade : MonoBehaviour
 {
@@ -15,16 +16,32 @@ public abstract class Upgrade : MonoBehaviour
     protected LevelManager levelManager;
     protected Guildhall guildhall;
     protected PopulationManager populationManager;
+    protected QuestManager questManager;
 
     protected void Start()
     {
         levelManager = FindObjectOfType<LevelManager>();
         guildhall = FindObjectOfType<Guildhall>();
         populationManager = FindObjectOfType<PopulationManager>();
+        questManager = FindObjectOfType<QuestManager>();
+        StartCoroutine(DelayedCheckForUpgrade());
+    }
+
+    protected virtual IEnumerator DelayedCheckForUpgrade()
+    {
+        yield return new WaitForSeconds(1);
+        CheckForUpgrade();
+        yield return null;
+    }
+
+    protected virtual void CheckForUpgrade() 
+    {
+        Debug.Log($"{gameObject.name} has not defined CheckForUpgrade() and is using the empty base class method!");
     }
 
     public void PayForUpgrade()
     {
+        Guildhall guildhall = FindObjectOfType<Guildhall>();
         guildhall.AdjustGold(-GoldCost);
         guildhall.AdjustWood(-WoodCost);
         guildhall.AdjustIron(-IronCost);

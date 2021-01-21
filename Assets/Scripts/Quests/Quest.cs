@@ -10,7 +10,7 @@ public class Quest
 
     public string questName, contractor, skill, faction, description, commencement, completion;
     public int id, level, time, nextQuestID;
-    public bool questChain;
+    public bool continuingQuest, questChain;
     public int questInstanceId;
     public Reward Reward;
     public GuildMember GuildMember;

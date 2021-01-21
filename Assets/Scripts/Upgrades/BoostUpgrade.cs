@@ -8,11 +8,6 @@ public class BoostUpgrade : Upgrade
     public enum BoostStat { QuestExperience, QuestDifficulty, QuestResources, TrainingExperience }
     public BoostStat Boost;
 
-    private new void Start()
-    {
-        base.Start();
-    }
-
     public void ApplyBoost()
     {
         switch (Boost)
@@ -30,7 +25,7 @@ public class BoostUpgrade : Upgrade
         }
     }
 
-    protected void CheckForUpgrade()
+    protected new void CheckForUpgrade()
     {
         throw new NotImplementedException();
     }

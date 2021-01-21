@@ -85,6 +85,7 @@ public class QuestManager : MonoBehaviour
                 while (!Helpers.IsUniqueMember(questToClone.questName, questsToGet.Select(q => q.questName).ToList())
                         || !Helpers.IsUniqueMember(questToClone.questName, questPool.Select(q => q.questName).ToList())
                         || questToClone.level > maxLevel + 1
+                        || questToClone.continuingQuest
                         || breakout < 50);
                 Quest quest = CloneQuest(questToClone);
                 questsToGet.Add(quest);
@@ -291,6 +292,7 @@ public class QuestManager : MonoBehaviour
             commencement = questToClone.commencement,
             completion = questToClone.completion,
             id = questToClone.id,
+            continuingQuest = questToClone.continuingQuest,
             questChain = questToClone.questChain,
             nextQuestID = questToClone.nextQuestID,
             level = questToClone.level

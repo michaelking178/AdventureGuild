@@ -127,7 +127,7 @@ public class MaxResourceUpgrade : Upgrade
 
     protected int maxUpgrade = 0;
 
-    private new void Start()
+    protected new void Start()
     {
         base.Start();
     }

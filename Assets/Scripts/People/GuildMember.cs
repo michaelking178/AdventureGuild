@@ -122,7 +122,7 @@ public class GuildMember : MonoBehaviour
         while (Experience >= Levelling.GuildMemberLevel[Level])
         {
             Level++;
-            FindObjectOfType<NotificationManager>().CreateNotification($"{person.name} reached Level {Level}!", Notification.Spirit.Good);
+            notificationManager.CreateNotification($"{person.name} reached Level {Level}!", Notification.Spirit.Good);
 
             if (Vocation is Peasant peasant)
             {
@@ -131,7 +131,7 @@ public class GuildMember : MonoBehaviour
                 guildhall.AdjustIncome(peasant.IncomeResource, peasant.Income);
                 if (Level == 5)
                 {
-                    FindObjectOfType<NotificationManager>().CreateNotification($"{person.name} can now choose a Vocation!", Notification.Spirit.Good);
+                    notificationManager.CreateNotification($"{person.name} can now choose a Vocation!", Notification.Spirit.Good);
                 }
             }
             MaxHitpoints += 10;
@@ -172,7 +172,7 @@ public class GuildMember : MonoBehaviour
         adventurer.DiplomacyLevel = 1;
         MaxHitpoints = 100;
         Hitpoints = MaxHitpoints;
-        FindObjectOfType<NotificationManager>().CreateNotification($"{person.name} has honed their skills and become an Adventurer!", Notification.Spirit.Good);
+        notificationManager.CreateNotification($"{person.name} has honed their skills and become an Adventurer!", Notification.Spirit.Good);
     }
 
     public void PromoteToArtisan()
@@ -184,6 +184,6 @@ public class GuildMember : MonoBehaviour
         Level = 1;
         MaxHitpoints = 100;
         Hitpoints = MaxHitpoints;
-        FindObjectOfType<NotificationManager>().CreateNotification($"{person.name} has honed their skills and become an Artisan!", Notification.Spirit.Good);
+        notificationManager.CreateNotification($"{person.name} has honed their skills and become an Artisan!", Notification.Spirit.Good);
     }
 }

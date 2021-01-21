@@ -179,6 +179,7 @@ public class SaveData
 
     private void LoadConstructionManager()
     {
+        Debug.Log($"Artisan IDs: {constructionManagerData.ArtisanIDs.Count}");
         ConstructionManager constructionManager = GameObject.FindObjectOfType<ConstructionManager>();
         if (constructionManagerData == null)
         {
@@ -203,13 +204,15 @@ public class SaveData
                 foreach (int id in constructionManagerData.ArtisanIDs)
                 {
                     GuildMember artisan = GameObject.FindObjectOfType<PopulationManager>().FindGuildMemberById(id);
+                    Debug.Log($"Artisan ID: {artisan.Id}");
                     if (artisan == null)
                     {
                         Debug.Log($"SAVEDATA.CS: Cannot find Artisan with ID #{id}");
                     }
                     else
                     {
-                        constructionManager.AddArtisan(artisan);
+                        constructionManager.Artisans.Add(artisan);
+                        Debug.Log($"{artisan.person.name} has been added to the Construction Manager Artisans list.");
                     }
                 }
                 constructionManager.StartTime = constructionManagerData.StartTime;
@@ -232,6 +235,7 @@ public class SaveData
         questToLoad.id = QuestIDCompatibility(_questData.id);
         questToLoad.level = _questData.level;
         questToLoad.time = _questData.time;
+        questToLoad.continuingQuest = _questData.continuingQuest;
         questToLoad.questChain = _questData.questChain;
         questToLoad.nextQuestID = _questData.nextQuestID;
         questToLoad.questInstanceId = _questData.questInstanceId;

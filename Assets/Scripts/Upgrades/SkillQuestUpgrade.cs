@@ -1,17 +1,23 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SkillQuestUpgrade : Upgrade
 {
     [SerializeField]
     private string skill = "";
 
-    private QuestManager questManager;
-
     private new void Start()
     {
         base.Start();
-        questManager = FindObjectOfType<QuestManager>();
+    }
+
+    private void Update()
+    {
+        if (levelManager.CurrentLevel() == "Title") return;
+
+        if (FindObjectOfType<MenuManager>().CurrentMenu.name == "Menu_UpgradeGuildhall")
+        {
+            CheckForUpgrade();
+        }
     }
 
     public override void Apply()
@@ -20,7 +26,7 @@ public class SkillQuestUpgrade : Upgrade
         questManager.UnlockSkill(skill);
     }
 
-    protected void CheckForUpgrade()
+    protected override void CheckForUpgrade()
     {
         IsPurchased = questManager.IsSkillUnlocked(skill);
     }
