@@ -10,7 +10,8 @@ public class LevelManager : MonoBehaviour
         "0.0.8.0", 
         "0.0.8.1",
         "0.0.8.2",
-        "0.0.8.3"
+        "0.0.8.3",
+        "0.0.8.4"
     };
 
     private void Awake()
@@ -32,7 +33,7 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator TitleTransition()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1.5f);
         LoadLevelDirect("Main");
     }
 

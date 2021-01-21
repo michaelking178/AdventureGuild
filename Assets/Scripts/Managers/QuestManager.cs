@@ -148,6 +148,10 @@ public class QuestManager : MonoBehaviour
         quest.GuildMember.IsAvailable= true;
         questArchive.Add(quest);
         questPool.Remove(quest);
+        if (quest.questChain)
+        {
+            AddQuestToPool(quest);
+        }
         SortQuestPoolByStartTime();
         SortQuestArchiveByStartTime();
     }
@@ -287,6 +291,8 @@ public class QuestManager : MonoBehaviour
             commencement = questToClone.commencement,
             completion = questToClone.completion,
             id = questToClone.id,
+            questChain = questToClone.questChain,
+            nextQuestID = questToClone.nextQuestID,
             level = questToClone.level
         };
 
@@ -326,5 +332,12 @@ public class QuestManager : MonoBehaviour
         }
         Debug.Log("FindQuestById() did not return a Quest!");
         return null;
+    }
+
+    private void AddQuestToPool(Quest previousQuest)
+    {
+        Quest quest = CloneQuest(quests.GetQuestById(previousQuest.nextQuestID));
+        questPool.Add(quest);
+        SortQuestPoolByStartTime();
     }
 }

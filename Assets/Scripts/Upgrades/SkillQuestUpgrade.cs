@@ -20,7 +20,7 @@ public class SkillQuestUpgrade : Upgrade
         questManager.UnlockSkill(skill);
     }
 
-    protected override void CheckForUpgrade()
+    protected void CheckForUpgrade()
     {
         IsPurchased = questManager.IsSkillUnlocked(skill);
     }

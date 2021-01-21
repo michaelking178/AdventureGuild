@@ -1,13 +1,29 @@
-﻿public class StorageYardUpgrade : MaxResourceUpgrade
+﻿using System.Collections;
+using UnityEngine;
+
+public class StorageYardUpgrade : MaxResourceUpgrade
 {
     private new void Start()
     {
         base.Start();
+        StartCoroutine(DelayedCheckForUpgrade());
     }
 
-    protected override void CheckForUpgrade()
+    private void Update()
     {
+        if (levelManager.CurrentLevel() == "Title") return;
+
+        if (FindObjectOfType<MenuManager>().CurrentMenu.name == "Menu_UpgradeGuildhall")
+        {
+            CheckForUpgrade(guildhall.MaxWood);
+        }
+    }
+
+    private IEnumerator DelayedCheckForUpgrade()
+    {
+        yield return new WaitForSeconds(1);
         CheckForUpgrade(guildhall.MaxWood);
+        yield return null;
     }
 
     public override void Apply()

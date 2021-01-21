@@ -85,7 +85,7 @@ public class BarracksUpgrade : Upgrade
         }
     }
 
-    protected override void CheckForUpgrade()
+    protected void CheckForUpgrade()
     {
         if (populationManager.PopulationCap < levelOnePopulation)
         {

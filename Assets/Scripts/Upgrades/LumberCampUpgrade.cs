@@ -5,7 +5,7 @@
         base.Start();
     }
 
-    protected override void CheckForUpgrade()
+    protected void CheckForUpgrade()
     {
         CheckForUpgrade(guildhall.MaxWoodIncome);
     }

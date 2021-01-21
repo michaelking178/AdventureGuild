@@ -23,6 +23,19 @@ public class QuestUI : MonoBehaviour
     [SerializeField]
     private Image relicIcon;
 
+    [Header("Extension Panel")]
+    [SerializeField]
+    private GameObject extensionPanel;
+
+    [SerializeField]
+    private TextMeshProUGUI contractorText;
+
+    [SerializeField]
+    private TextMeshProUGUI rewardText;
+
+    [SerializeField]
+    private TextMeshProUGUI briefingText;
+
     private Quest quest;
     private QuestManager questManager;
     private MenuManager menuManager;
@@ -75,6 +88,10 @@ public class QuestUI : MonoBehaviour
         SetSkillGem();
         SetFactionGem();
         SetRelicGem();
+        if (extensionPanel != null)
+        {
+            SetExtensionPanelContent();
+        }
     }
 
     public void SetActiveQuest()
@@ -171,5 +188,46 @@ public class QuestUI : MonoBehaviour
     private void SetRelicGem()
     {
         relicIcon.color = emptySlotColor;
+    }
+
+    private void SetExtensionPanelContent()
+    {
+        if (quest.faction != "")
+        {
+            contractorText.text = quest.contractor + " of the " + quest.GetFactionString();
+        }
+        else
+        {
+            contractorText.text = quest.contractor;
+        }
+        rewardText.text = Helpers.QuestRewardStr(quest);
+        briefingText.text = quest.description;
+        foreach (TextSizer textSizer in GetComponentsInChildren<TextSizer>())
+        {
+            textSizer.Refresh();
+        }
+    }
+
+    public void ToggleExtensionPanel()
+    {
+        if (extensionPanel.activeInHierarchy)
+        {
+            contractorText.text = "";
+            rewardText.text = "";
+            briefingText.text = "";
+            extensionPanel.SetActive(false);
+        }
+        else
+        {
+            SetExtensionPanelContent();
+            extensionPanel.SetActive(true);
+        }
+    }
+
+    public void AcceptQuest()
+    {
+        SetActiveQuest();
+        GameObject.Find("Menu_SelectAdventurer").GetComponentInChildren<PersonUIScrollView>().GetAvailableAdventurersUI();
+        menuManager.OpenMenu("Menu_SelectAdventurer");
     }
 }

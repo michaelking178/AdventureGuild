@@ -30,7 +30,7 @@ public class BoostUpgrade : Upgrade
         }
     }
 
-    protected override void CheckForUpgrade()
+    protected void CheckForUpgrade()
     {
         throw new NotImplementedException();
     }

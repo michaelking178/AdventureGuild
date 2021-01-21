@@ -169,10 +169,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 3120, y: 1440}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -255,8 +255,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -201}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0, y: -1354.9}
+  m_SizeDelta: {x: 2114.4846, y: 347.7038}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &487948209
 MonoBehaviour:
@@ -306,8 +306,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 200
+  m_fontSizeBase: 200
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -413,8 +413,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 85}
-  m_SizeDelta: {x: 433.7389, y: 432.7389}
+  m_AnchoredPosition: {x: 0, y: 566}
+  m_SizeDelta: {x: 3097.7388, y: 2939.7388}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &676752347
 MonoBehaviour:
@@ -636,8 +636,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.25273034}
   m_AnchorMax: {x: 0.5, y: 0.25273034}
-  m_AnchoredPosition: {x: 2.8, y: 3.5}
-  m_SizeDelta: {x: 302.14734, y: 50}
+  m_AnchoredPosition: {x: 2.8, y: 20}
+  m_SizeDelta: {x: 2175.1582, y: 338.638}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1528019700
 MonoBehaviour:
@@ -687,8 +687,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 28
-  m_fontSizeBase: 28
+  m_fontSize: 200
+  m_fontSizeBase: 200
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -766,16 +766,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1903243723411386436, guid: b2f96042f55d1414a8b22fad0671dfe7,
-        type: 3}
-      propertyPath: constructionTime
-      value: 1800
-      objectReference: {fileID: 0}
-    - target: {fileID: 1903243723706222680, guid: b2f96042f55d1414a8b22fad0671dfe7,
-        type: 3}
-      propertyPath: constructionTime
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 1903243723826136778, guid: b2f96042f55d1414a8b22fad0671dfe7,
         type: 3}
       propertyPath: m_RootOrder
@@ -835,11 +825,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Persistents
-      objectReference: {fileID: 0}
-    - target: {fileID: 1903243723826136781, guid: b2f96042f55d1414a8b22fad0671dfe7,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2f96042f55d1414a8b22fad0671dfe7, type: 3}

@@ -14,4 +14,10 @@ public class HeroAvatarFrame : MonoBehaviour
     {
         avatarImage.sprite = guildMember.Avatar;
     }
+
+    public void SetHeroFrame()
+    {
+        GuildMember hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>();
+        avatarImage.sprite = hero.Avatar;
+    }
 }

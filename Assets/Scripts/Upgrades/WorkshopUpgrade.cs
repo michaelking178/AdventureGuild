@@ -11,7 +11,7 @@
         populationManager.EnableArtisans();
     }
 
-    protected override void CheckForUpgrade()
+    protected void CheckForUpgrade()
     {
         IsPurchased = FindObjectOfType<PopulationManager>().ArtisansEnabled;
     }

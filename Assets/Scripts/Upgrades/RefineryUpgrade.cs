@@ -1,13 +1,29 @@
-﻿public class RefineryUpgrade : MaxResourceUpgrade
+﻿using System.Collections;
+using UnityEngine;
+
+public class RefineryUpgrade : MaxResourceUpgrade
 {
     private new void Start()
     {
         base.Start();
+        StartCoroutine(DelayedCheckForUpgrade());
     }
 
-    protected override void CheckForUpgrade()
+    private void Update()
     {
+        if (levelManager.CurrentLevel() == "Title") return;
+
+        if (FindObjectOfType<MenuManager>().CurrentMenu.name == "Menu_UpgradeGuildhall")
+        {
+            CheckForUpgrade(guildhall.MaxIron);
+        }
+    }
+
+    private IEnumerator DelayedCheckForUpgrade()
+    {
+        yield return new WaitForSeconds(1);
         CheckForUpgrade(guildhall.MaxIron);
+        yield return null;
     }
 
     public override void Apply()

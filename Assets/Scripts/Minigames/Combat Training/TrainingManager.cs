@@ -188,5 +188,6 @@ public class TrainingManager : MonoBehaviour
         shield.ResetShieldSpeed();
         timeText.text = Helpers.FormatTimer((int)TimeRemaining);
         scoreText.text = score.ToString();
+        countdownText.text = "";
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class QuestUIScrollView : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class QuestUIScrollView : MonoBehaviour
         foreach (Quest quest in questManager.GetQuestsByStatus(Quest.Status.New))
         {
             GameObject newQuestUI = Instantiate(questUI, transform);
-            newQuestUI.GetComponent<QuestUI>().SetQuest(quest);
+            StartCoroutine(SetupQuestUI(quest, newQuestUI));
         }
     }
 
@@ -51,4 +52,11 @@ public class QuestUIScrollView : MonoBehaviour
             }
         }
     }
+
+    private IEnumerator SetupQuestUI(Quest quest, GameObject questUI)
+    {
+        questUI.GetComponent<QuestUI>().SetQuest(quest);
+        yield return new WaitForSeconds(0.5f);
+        questUI.GetComponent<QuestUI>().ToggleExtensionPanel();
+    }    
 }

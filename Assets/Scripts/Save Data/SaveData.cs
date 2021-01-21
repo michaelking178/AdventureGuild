@@ -232,6 +232,8 @@ public class SaveData
         questToLoad.id = QuestIDCompatibility(_questData.id);
         questToLoad.level = _questData.level;
         questToLoad.time = _questData.time;
+        questToLoad.questChain = _questData.questChain;
+        questToLoad.nextQuestID = _questData.nextQuestID;
         questToLoad.questInstanceId = _questData.questInstanceId;
         questToLoad.Reward = _questData.Reward;
         if (_questData.guildMemberId != 0)
