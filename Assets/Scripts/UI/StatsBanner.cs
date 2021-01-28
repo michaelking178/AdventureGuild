@@ -32,15 +32,15 @@ public class StatsBanner : MonoBehaviour
         renown.text = guildhall.Renown.ToString() + "/" + guildhall.RenownThreshold.ToString();
 
         artisanProficiency.text = guildhall.ArtisanProficiency.ToString();
-        maxGold.text = guildhall.MaxGold.ToString();
-        maxIron.text = guildhall.MaxIron.ToString();
-        maxWood.text = guildhall.MaxWood.ToString();
-        currentGoldIncome.text = guildhall.GoldIncome.ToString() + "/hr";
-        currentIronIncome.text = guildhall.IronIncome.ToString() + "/hr";
-        currentWoodIncome.text = guildhall.WoodIncome.ToString() + "/hr";
-        maxGoldIncome.text = guildhall.MaxGoldIncome.ToString();
-        maxIronIncome.text = guildhall.MaxIronIncome.ToString();
-        maxWoodIncome.text = guildhall.MaxWoodIncome.ToString();
+        maxGold.text = string.Format("{0:n0}", guildhall.MaxGold);
+        maxIron.text = string.Format("{0:n0}", guildhall.MaxIron);
+        maxWood.text = string.Format("{0:n0}", guildhall.MaxWood);
+        currentGoldIncome.text = string.Format("{0:n0}", guildhall.GoldIncome) + "/hr";
+        currentIronIncome.text = string.Format("{0:n0}", guildhall.IronIncome) + "/hr";
+        currentWoodIncome.text = string.Format("{0:n0}", guildhall.WoodIncome) + "/hr";
+        maxGoldIncome.text = string.Format("{0:n0}", guildhall.MaxGoldIncome);
+        maxIronIncome.text = string.Format("{0:n0}", guildhall.MaxIronIncome);
+        maxWoodIncome.text = string.Format("{0:n0}", guildhall.MaxWoodIncome);
 
         if (guildhall.GoldIncome == 0) timeToMaxGold.text = "Gold: N/A";
         else timeToMaxGold.text = "Gold: " + CalculateTimeToMax(guildhall.GoldIncome, guildhall.MaxGoldIncome).ToString() + " hours";

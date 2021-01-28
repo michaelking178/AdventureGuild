@@ -179,7 +179,6 @@ public class SaveData
 
     private void LoadConstructionManager()
     {
-        Debug.Log($"Artisan IDs: {constructionManagerData.ArtisanIDs.Count}");
         ConstructionManager constructionManager = GameObject.FindObjectOfType<ConstructionManager>();
         if (constructionManagerData == null)
         {
@@ -212,7 +211,6 @@ public class SaveData
                     else
                     {
                         constructionManager.Artisans.Add(artisan);
-                        Debug.Log($"{artisan.person.name} has been added to the Construction Manager Artisans list.");
                     }
                 }
                 constructionManager.StartTime = constructionManagerData.StartTime;

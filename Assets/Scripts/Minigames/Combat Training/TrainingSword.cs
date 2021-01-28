@@ -25,6 +25,7 @@ public class TrainingSword : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         startPos = transform.position;
         movementPos = startPos;
+        audioSource.volume = FindObjectOfType<SoundManager>().GetComponent<AudioSource>().volume;
     }
 
     private void FixedUpdate()

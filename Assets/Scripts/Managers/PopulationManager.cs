@@ -15,7 +15,7 @@ public class PopulationManager : MonoBehaviour
 
     [Header("Guild Members")]
     public List<GuildMember> GuildMembers = new List<GuildMember>();
-    public int PopulationCap { get; set; } = 5;
+    public int PopulationCap { get; set; } = 10;
     public DateTime RecoveryStartTime;
     public DateTime RecruitStartTime;
 

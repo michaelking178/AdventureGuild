@@ -44,34 +44,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Barracks I
-  Description: Increases the maximum population of the Adventure Guild to 10.
-  GoldCost: 1000
-  IronCost: 300
-  WoodCost: 500
+  Description: Increases the maximum population of the Adventure Guild to 25.
+  GoldCost: 10000
+  IronCost: 3000
+  WoodCost: 5000
   ArtisanCost: 1
   constructionTime: 3600
   Experience: 300
-  levelOnePopulation: 10
+  levelOnePopulation: 25
   levelTwoName: Barracks II
   levelTwoDescription: Increases the maximum population of the Adventure Guild to
-    25.
-  levelTwoGoldCost: 2000
-  levelTwoIronCost: 500
-  levelTwoWoodCost: 1000
-  levelTwoArtisanCost: 5
+    50.
+  levelTwoGoldCost: 20000
+  levelTwoIronCost: 5000
+  levelTwoWoodCost: 10000
+  levelTwoArtisanCost: 10
   levelTwoConstructionTime: 10800
   levelTwoExperience: 2400
-  levelTwoPopulation: 25
+  levelTwoPopulation: 50
   levelThreeName: Barracks III
   levelThreeDescription: Increases the maximum population of the Adventure Guild
-    to 50.
-  levelThreeGoldCost: 3000
-  levelThreeIronCost: 1000
-  levelThreeWoodCost: 2000
+    to 100.
+  levelThreeGoldCost: 30000
+  levelThreeIronCost: 10000
+  levelThreeWoodCost: 20000
   levelThreeArtisanCost: 20
   levelThreeConstructionTime: 21600
   levelThreeExperience: 10000
-  levelThreePopulation: 50
+  levelThreePopulation: 100
 --- !u!1 &1903243723023610859
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
   IronCost: 200
   WoodCost: 400
   ArtisanCost: 0
-  constructionTime: 60
+  constructionTime: 600
   Experience: 0
 --- !u!1 &1903243723098216107
 GameObject:
@@ -225,46 +225,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Lumber Camp I
   Description: Increases the maximum passive Wood income to 250.
-  GoldCost: 1200
-  IronCost: 400
-  WoodCost: 600
+  GoldCost: 12000
+  IronCost: 4000
+  WoodCost: 6000
   ArtisanCost: 1
   constructionTime: 3600
   Experience: 400
   LevelOneUpgrade: 250
   LevelTwoName: Lumber Camp II
   LevelTwoDescription: Increases the maximum passive Wood income to 500.
-  LevelTwoGoldCost: 2400
-  LevelTwoIronCost: 800
-  LevelTwoWoodCost: 1200
-  LevelTwoArtisanCost: 2
+  LevelTwoGoldCost: 24000
+  LevelTwoIronCost: 8000
+  LevelTwoWoodCost: 12000
+  LevelTwoArtisanCost: 10
   LevelTwoConstructionTime: 7200
   LevelTwoExperience: 800
   LevelTwoUpgrade: 500
   LevelThreeName: Lumber Camp III
   LevelThreeDescription: Increases the maximum passive Wood income to 1000.
-  LevelThreeGoldCost: 4800
-  LevelThreeIronCost: 1600
-  LevelThreeWoodCost: 2400
-  LevelThreeArtisanCost: 4
+  LevelThreeGoldCost: 48000
+  LevelThreeIronCost: 16000
+  LevelThreeWoodCost: 24000
+  LevelThreeArtisanCost: 20
   LevelThreeConstructionTime: 14400
   LevelThreeExperience: 1600
   LevelThreeUpgrade: 1000
   LevelFourName: Lumber Camp IV
   LevelFourDescription: Increases the maximum passive Wood income to 2000.
-  LevelFourGoldCost: 9600
-  LevelFourIronCost: 3200
-  LevelFourWoodCost: 4800
-  LevelFourArtisanCost: 8
+  LevelFourGoldCost: 96000
+  LevelFourIronCost: 32000
+  LevelFourWoodCost: 48000
+  LevelFourArtisanCost: 30
   LevelFourConstructionTime: 28800
   LevelFourExperience: 3200
   LevelFourUpgrade: 2000
   LevelFiveName: Lumber Camp V
   LevelFiveDescription: Increases the maximum passive Wood income to 4000.
-  LevelFiveGoldCost: 19200
-  LevelFiveIronCost: 6400
-  LevelFiveWoodCost: 9600
-  LevelFiveArtisanCost: 16
+  LevelFiveGoldCost: 192000
+  LevelFiveIronCost: 64000
+  LevelFiveWoodCost: 96000
+  LevelFiveArtisanCost: 40
   LevelFiveConstructionTime: 57600
   LevelFiveExperience: 6400
   LevelFiveUpgrade: 4000
@@ -455,50 +455,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Treasury I
-  Description: Increases the Guildhall's maximum Gold storage to 5000.
-  GoldCost: 1000
-  IronCost: 250
-  WoodCost: 500
+  Description: Increases the Guildhall's maximum Gold storage to 100,000.
+  GoldCost: 10000
+  IronCost: 2500
+  WoodCost: 5000
   ArtisanCost: 1
   constructionTime: 1800
   Experience: 200
-  LevelOneUpgrade: 5000
+  LevelOneUpgrade: 100000
   LevelTwoName: Treasury II
-  LevelTwoDescription: Increases the Guildhall's maximum Gold storage to 10,000.
-  LevelTwoGoldCost: 5000
-  LevelTwoIronCost: 1000
-  LevelTwoWoodCost: 2500
-  LevelTwoArtisanCost: 4
+  LevelTwoDescription: Increases the Guildhall's maximum Gold storage to 250,000.
+  LevelTwoGoldCost: 50000
+  LevelTwoIronCost: 10000
+  LevelTwoWoodCost: 25000
+  LevelTwoArtisanCost: 10
   LevelTwoConstructionTime: 3600
   LevelTwoExperience: 600
-  LevelTwoUpgrade: 10000
+  LevelTwoUpgrade: 250000
   LevelThreeName: Treasury III
-  LevelThreeDescription: Increases the Guildhall's maximum Gold storage to 25,000.
-  LevelThreeGoldCost: 10000
-  LevelThreeIronCost: 2500
-  LevelThreeWoodCost: 6000
-  LevelThreeArtisanCost: 8
+  LevelThreeDescription: Increases the Guildhall's maximum Gold storage to 500,000.
+  LevelThreeGoldCost: 100000
+  LevelThreeIronCost: 25000
+  LevelThreeWoodCost: 60000
+  LevelThreeArtisanCost: 20
   LevelThreeConstructionTime: 7200
   LevelThreeExperience: 1600
-  LevelThreeUpgrade: 25000
+  LevelThreeUpgrade: 500000
   LevelFourName: Treasury IV
-  LevelFourDescription: Increases the Guildhall's maximum Gold storage to 50,000.
-  LevelFourGoldCost: 25000
-  LevelFourIronCost: 5000
-  LevelFourWoodCost: 10000
-  LevelFourArtisanCost: 16
+  LevelFourDescription: Increases the Guildhall's maximum Gold storage to 1,000,000.
+  LevelFourGoldCost: 250000
+  LevelFourIronCost: 50000
+  LevelFourWoodCost: 100000
+  LevelFourArtisanCost: 30
   LevelFourConstructionTime: 14400
   LevelFourExperience: 3000
-  LevelFourUpgrade: 50000
+  LevelFourUpgrade: 1000000
   LevelFiveName: Treasury V
-  LevelFiveDescription: Increases the Guildhall's maximum Gold storage to 100,000.
-  LevelFiveGoldCost: 30000
-  LevelFiveIronCost: 7500
-  LevelFiveWoodCost: 12500
-  LevelFiveArtisanCost: 32
+  LevelFiveDescription: Increases the Guildhall's maximum Gold storage to 5,000,000.
+  LevelFiveGoldCost: 300000
+  LevelFiveIronCost: 75000
+  LevelFiveWoodCost: 125000
+  LevelFiveArtisanCost: 40
   LevelFiveConstructionTime: 28800
   LevelFiveExperience: 6400
-  LevelFiveUpgrade: 100000
+  LevelFiveUpgrade: 5000000
 --- !u!1 &1903243723437584409
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,10 +604,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Meeting Room
   Description: Unlocks quests that are dependent upon the Diplomacy skill.
-  GoldCost: 7500
-  IronCost: 2000
-  WoodCost: 4500
-  ArtisanCost: 3
+  GoldCost: 75000
+  IronCost: 20000
+  WoodCost: 45000
+  ArtisanCost: 30
   constructionTime: 7200
   Experience: 1250
   skill: Diplomacy
@@ -757,10 +757,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Spy Room
   Description: Unlocks quests that are dependent upon the Espionage skill.
-  GoldCost: 7500
-  IronCost: 2000
-  WoodCost: 4500
-  ArtisanCost: 3
+  GoldCost: 75000
+  IronCost: 20000
+  WoodCost: 45000
+  ArtisanCost: 30
   constructionTime: 7200
   Experience: 1250
   skill: Espionage
@@ -939,10 +939,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Training Yard
   Description: Unlocks quests that are dependent upon the Combat skill.
-  GoldCost: 7500
-  IronCost: 2000
-  WoodCost: 4500
-  ArtisanCost: 3
+  GoldCost: 75000
+  IronCost: 20000
+  WoodCost: 45000
+  ArtisanCost: 30
   constructionTime: 7200
   Experience: 1250
   skill: Combat
@@ -990,50 +990,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Storage Yard I
-  Description: Increases the Guildhall's maximum Wood storage to 2500.
-  GoldCost: 1000
-  IronCost: 250
-  WoodCost: 500
+  Description: Increases the Guildhall's maximum Wood storage to 50000.
+  GoldCost: 10000
+  IronCost: 2500
+  WoodCost: 5000
   ArtisanCost: 1
   constructionTime: 1800
   Experience: 200
-  LevelOneUpgrade: 2500
+  LevelOneUpgrade: 50000
   LevelTwoName: Storage Yard II
-  LevelTwoDescription: Increases the Guildhall's maximum Wood storage to 5000.
-  LevelTwoGoldCost: 5000
-  LevelTwoIronCost: 1000
-  LevelTwoWoodCost: 2500
-  LevelTwoArtisanCost: 4
+  LevelTwoDescription: Increases the Guildhall's maximum Wood storage to 100,000.
+  LevelTwoGoldCost: 50000
+  LevelTwoIronCost: 10000
+  LevelTwoWoodCost: 25000
+  LevelTwoArtisanCost: 10
   LevelTwoConstructionTime: 3600
   LevelTwoExperience: 600
-  LevelTwoUpgrade: 5000
+  LevelTwoUpgrade: 100000
   LevelThreeName: Storage Yard III
-  LevelThreeDescription: Increases the Guildhall's maximum Wood storage to 10,000.
-  LevelThreeGoldCost: 10000
-  LevelThreeIronCost: 2500
-  LevelThreeWoodCost: 5000
-  LevelThreeArtisanCost: 6
+  LevelThreeDescription: Increases the Guildhall's maximum Wood storage to 250,000.
+  LevelThreeGoldCost: 100000
+  LevelThreeIronCost: 25000
+  LevelThreeWoodCost: 50000
+  LevelThreeArtisanCost: 20
   LevelThreeConstructionTime: 7200
   LevelThreeExperience: 1200
-  LevelThreeUpgrade: 10000
+  LevelThreeUpgrade: 250000
   LevelFourName: Storage Yard IV
-  LevelFourDescription: Increases the Guildhall's maximum Wood storage to 25,000.
-  LevelFourGoldCost: 20000
-  LevelFourIronCost: 5000
-  LevelFourWoodCost: 10000
-  LevelFourArtisanCost: 12
+  LevelFourDescription: Increases the Guildhall's maximum Wood storage to 500,000.
+  LevelFourGoldCost: 200000
+  LevelFourIronCost: 50000
+  LevelFourWoodCost: 100000
+  LevelFourArtisanCost: 30
   LevelFourConstructionTime: 14400
   LevelFourExperience: 2400
-  LevelFourUpgrade: 25000
+  LevelFourUpgrade: 500000
   LevelFiveName: Storage Yard V
-  LevelFiveDescription: Increases the Guildhall's maximum Wood storage to 50,000.
-  LevelFiveGoldCost: 28000
-  LevelFiveIronCost: 10000
-  LevelFiveWoodCost: 18000
-  LevelFiveArtisanCost: 20
+  LevelFiveDescription: Increases the Guildhall's maximum Wood storage to 1,000,000.
+  LevelFiveGoldCost: 280000
+  LevelFiveIronCost: 100000
+  LevelFiveWoodCost: 180000
+  LevelFiveArtisanCost: 40
   LevelFiveConstructionTime: 28800
   LevelFiveExperience: 4800
-  LevelFiveUpgrade: 50000
+  LevelFiveUpgrade: 1000000
 --- !u!1 &1903243723826136781
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,46 +1134,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Iron Mine I
   Description: Increases the maximum passive Iron income to 250.
-  GoldCost: 1200
-  IronCost: 400
-  WoodCost: 600
+  GoldCost: 12000
+  IronCost: 4000
+  WoodCost: 6000
   ArtisanCost: 1
   constructionTime: 3600
   Experience: 400
   LevelOneUpgrade: 250
   LevelTwoName: Iron Mine II
   LevelTwoDescription: Increases the maximum passive Iron income to 500.
-  LevelTwoGoldCost: 2400
-  LevelTwoIronCost: 800
-  LevelTwoWoodCost: 1200
-  LevelTwoArtisanCost: 2
+  LevelTwoGoldCost: 24000
+  LevelTwoIronCost: 8000
+  LevelTwoWoodCost: 12000
+  LevelTwoArtisanCost: 10
   LevelTwoConstructionTime: 7200
   LevelTwoExperience: 800
   LevelTwoUpgrade: 500
   LevelThreeName: Iron Mine III
   LevelThreeDescription: Increases the maximum passive Iron income to 1000.
-  LevelThreeGoldCost: 4800
-  LevelThreeIronCost: 1600
-  LevelThreeWoodCost: 2400
-  LevelThreeArtisanCost: 4
+  LevelThreeGoldCost: 48000
+  LevelThreeIronCost: 16000
+  LevelThreeWoodCost: 24000
+  LevelThreeArtisanCost: 20
   LevelThreeConstructionTime: 14400
   LevelThreeExperience: 1600
   LevelThreeUpgrade: 1000
   LevelFourName: Iron Mine IV
   LevelFourDescription: Increases the maximum passive Iron income to 2000.
-  LevelFourGoldCost: 9600
-  LevelFourIronCost: 3200
-  LevelFourWoodCost: 4800
-  LevelFourArtisanCost: 8
+  LevelFourGoldCost: 96000
+  LevelFourIronCost: 32000
+  LevelFourWoodCost: 48000
+  LevelFourArtisanCost: 30
   LevelFourConstructionTime: 28800
   LevelFourExperience: 3200
   LevelFourUpgrade: 2000
   LevelFiveName: Iron Mine V
   LevelFiveDescription: Increases the maximum passive Iron income to 4000.
-  LevelFiveGoldCost: 19200
-  LevelFiveIronCost: 6400
-  LevelFiveWoodCost: 9600
-  LevelFiveArtisanCost: 16
+  LevelFiveGoldCost: 192000
+  LevelFiveIronCost: 64000
+  LevelFiveWoodCost: 96000
+  LevelFiveArtisanCost: 40
   LevelFiveConstructionTime: 57600
   LevelFiveExperience: 6400
   LevelFiveUpgrade: 4000
@@ -1349,46 +1349,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Merchant I
   Description: Increases the maximum passive Gold income to 500.
-  GoldCost: 1200
-  IronCost: 400
-  WoodCost: 600
+  GoldCost: 12000
+  IronCost: 4000
+  WoodCost: 6000
   ArtisanCost: 1
   constructionTime: 3600
   Experience: 400
   LevelOneUpgrade: 500
   LevelTwoName: Merchant II
   LevelTwoDescription: Increases the maximum passive Gold income to 1000.
-  LevelTwoGoldCost: 2400
-  LevelTwoIronCost: 800
-  LevelTwoWoodCost: 1200
-  LevelTwoArtisanCost: 2
+  LevelTwoGoldCost: 24000
+  LevelTwoIronCost: 8000
+  LevelTwoWoodCost: 12000
+  LevelTwoArtisanCost: 10
   LevelTwoConstructionTime: 7200
   LevelTwoExperience: 800
   LevelTwoUpgrade: 1000
   LevelThreeName: Merchant III
   LevelThreeDescription: Increases the maximum passive Gold income to 2000.
-  LevelThreeGoldCost: 4800
-  LevelThreeIronCost: 1600
-  LevelThreeWoodCost: 2400
-  LevelThreeArtisanCost: 4
+  LevelThreeGoldCost: 48000
+  LevelThreeIronCost: 16000
+  LevelThreeWoodCost: 24000
+  LevelThreeArtisanCost: 20
   LevelThreeConstructionTime: 14400
   LevelThreeExperience: 1600
   LevelThreeUpgrade: 2000
   LevelFourName: Merchant IV
   LevelFourDescription: Increases the maximum passive Gold income to 4000.
-  LevelFourGoldCost: 9600
-  LevelFourIronCost: 3200
-  LevelFourWoodCost: 4800
-  LevelFourArtisanCost: 8
+  LevelFourGoldCost: 96000
+  LevelFourIronCost: 32000
+  LevelFourWoodCost: 48000
+  LevelFourArtisanCost: 30
   LevelFourConstructionTime: 28800
   LevelFourExperience: 3200
   LevelFourUpgrade: 4000
   LevelFiveName: Merchant V
   LevelFiveDescription: Increases the maximum passive Gold income to 8000.
-  LevelFiveGoldCost: 19200
-  LevelFiveIronCost: 6400
-  LevelFiveWoodCost: 9600
-  LevelFiveArtisanCost: 16
+  LevelFiveGoldCost: 192000
+  LevelFiveIronCost: 64000
+  LevelFiveWoodCost: 96000
+  LevelFiveArtisanCost: 40
   LevelFiveConstructionTime: 57600
   LevelFiveExperience: 6400
   LevelFiveUpgrade: 8000
@@ -1441,7 +1441,7 @@ MonoBehaviour:
   IronCost: 250
   WoodCost: 500
   ArtisanCost: 0
-  constructionTime: 120
+  constructionTime: 1200
   Experience: 0
 --- !u!1 &1903243724262455425
 GameObject:
@@ -1487,50 +1487,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Refinery I
-  Description: Increases the Guildhall's maximum Iron storage to 2500.
-  GoldCost: 1000
-  IronCost: 250
-  WoodCost: 500
+  Description: Increases the Guildhall's maximum Iron storage to 50,000.
+  GoldCost: 10000
+  IronCost: 2500
+  WoodCost: 5000
   ArtisanCost: 1
   constructionTime: 1800
   Experience: 200
-  LevelOneUpgrade: 2500
+  LevelOneUpgrade: 50000
   LevelTwoName: Refinery II
-  LevelTwoDescription: Increases the Guildhall's maximum Iron storage to 5000.
-  LevelTwoGoldCost: 5000
-  LevelTwoIronCost: 1000
-  LevelTwoWoodCost: 2500
-  LevelTwoArtisanCost: 4
+  LevelTwoDescription: Increases the Guildhall's maximum Iron storage to 100,000.
+  LevelTwoGoldCost: 50000
+  LevelTwoIronCost: 10000
+  LevelTwoWoodCost: 25000
+  LevelTwoArtisanCost: 10
   LevelTwoConstructionTime: 3600
   LevelTwoExperience: 600
-  LevelTwoUpgrade: 5000
+  LevelTwoUpgrade: 100000
   LevelThreeName: Refinery III
-  LevelThreeDescription: Increases the Guildhall's maximum Iron storage to 10,000.
-  LevelThreeGoldCost: 10000
-  LevelThreeIronCost: 2500
-  LevelThreeWoodCost: 5000
-  LevelThreeArtisanCost: 6
+  LevelThreeDescription: Increases the Guildhall's maximum Iron storage to 250,000.
+  LevelThreeGoldCost: 100000
+  LevelThreeIronCost: 25000
+  LevelThreeWoodCost: 50000
+  LevelThreeArtisanCost: 20
   LevelThreeConstructionTime: 7200
   LevelThreeExperience: 1200
-  LevelThreeUpgrade: 10000
+  LevelThreeUpgrade: 250000
   LevelFourName: Refinery IV
-  LevelFourDescription: Increases the Guildhall's maximum Iron storage to 25,000.
-  LevelFourGoldCost: 20000
-  LevelFourIronCost: 5000
-  LevelFourWoodCost: 10000
-  LevelFourArtisanCost: 12
+  LevelFourDescription: Increases the Guildhall's maximum Iron storage to 500,000.
+  LevelFourGoldCost: 200000
+  LevelFourIronCost: 50000
+  LevelFourWoodCost: 100000
+  LevelFourArtisanCost: 30
   LevelFourConstructionTime: 14400
   LevelFourExperience: 2400
-  LevelFourUpgrade: 25000
+  LevelFourUpgrade: 500000
   LevelFiveName: Refinery V
-  LevelFiveDescription: Increases the Guildhall's maximum Iron storage to 50,000.
-  LevelFiveGoldCost: 30000
-  LevelFiveIronCost: 12500
-  LevelFiveWoodCost: 20000
-  LevelFiveArtisanCost: 26
+  LevelFiveDescription: Increases the Guildhall's maximum Iron storage to 1,000,000.
+  LevelFiveGoldCost: 300000
+  LevelFiveIronCost: 125000
+  LevelFiveWoodCost: 200000
+  LevelFiveArtisanCost: 40
   LevelFiveConstructionTime: 14400
   LevelFiveExperience: 4800
-  LevelFiveUpgrade: 50000
+  LevelFiveUpgrade: 1000000
 --- !u!1 &1903243724359244207
 GameObject:
   m_ObjectHideFlags: 0
