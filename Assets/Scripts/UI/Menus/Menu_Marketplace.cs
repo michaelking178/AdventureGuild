@@ -86,15 +86,15 @@ public class Menu_Marketplace : MonoBehaviour
         guildhall.AdjustGold(Total);
         guildhall.AdjustWood(woodChange);
         guildhall.AdjustIron(ironChange);
-        Reset();
+        ResetSliders();
     }
 
-    public void Reset()
+    public void ResetSliders()
     {
-        buyWoodSlider.value = 0;
-        buyIronSlider.value = 0;
-        sellWoodSlider.value = 0;
-        sellIronSlider.value = 0;
+        buyWoodSlider.GetComponent<MarketplaceSlider>().ResetSlider();
+        buyIronSlider.GetComponent<MarketplaceSlider>().ResetSlider();
+        sellWoodSlider.GetComponent<MarketplaceSlider>().ResetSlider();
+        sellIronSlider.GetComponent<MarketplaceSlider>().ResetSlider();
     }
 
     private void SetInteractables()

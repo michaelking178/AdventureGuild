@@ -5,7 +5,7 @@ public class MarketplaceSlider : MonoBehaviour
 {
     public enum SliderType { BuyWood, SellWood, BuyIron, SellIron }
     public SliderType sliderType;
-    
+
     private int resourceCost = 0;
     private float previousValue = 0;
     private Menu_Marketplace marketplace;
@@ -37,9 +37,10 @@ public class MarketplaceSlider : MonoBehaviour
         }
     }
 
-    public void CheckValueLimit(float quantity)
+    public void CheckBuyLimit(float quantity)
     {
-        if (resourceCost * (quantity - previousValue) > (guildhall.Gold + marketplace.Total))
+        float goldCost = resourceCost * (quantity - previousValue);
+        if (goldCost > guildhall.Gold + marketplace.Total)
         {
             slider.value = previousValue;
         }
@@ -47,5 +48,24 @@ public class MarketplaceSlider : MonoBehaviour
         {
             previousValue = quantity;
         }
+    }
+
+    public void CheckSellLimit(float quantity)
+    {
+        float goldProfit = -resourceCost * (quantity - previousValue);
+        if (goldProfit + guildhall.Gold + marketplace.Total > guildhall.MaxGold)
+        {
+            slider.value = previousValue;
+        }
+        else
+        {
+            previousValue = quantity;
+        }
+    }
+
+    public void ResetSlider()
+    {
+        previousValue = 0;
+        slider.value = 0;
     }
 }
