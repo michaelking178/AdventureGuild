@@ -27,6 +27,7 @@ public class QuestManager : MonoBehaviour
     private LevelManager levelManager;
     private Guildhall guildhall;
     private NotificationManager notificationManager;
+    private BoostManager boostManager;
     private readonly string failureMessage = "The challenges were too great, and I was defeated before completing my quest. I have returned to the Adventure Guild so that I may recover.";
     private string rewardMessage = "";
 
@@ -36,6 +37,7 @@ public class QuestManager : MonoBehaviour
         levelManager = FindObjectOfType<LevelManager>();
         guildhall = FindObjectOfType<Guildhall>();
         notificationManager = FindObjectOfType<NotificationManager>();
+        boostManager = FindObjectOfType<BoostManager>();
         quests = JsonUtility.FromJson<Quests>(questsJson.text);
         if (questPool == null)
         {
@@ -131,6 +133,7 @@ public class QuestManager : MonoBehaviour
 
     public void StartQuest()
     {
+        CheckForBoosts();
         QuestTimer questTimer = Instantiate(questTimerPrefab, transform);
         questTimer.SetQuest(CurrentQuest);
         questTimer.StartTimer();
@@ -341,5 +344,29 @@ public class QuestManager : MonoBehaviour
         Quest quest = CloneQuest(quests.GetQuestById(previousQuest.nextQuestID));
         questPool.Add(quest);
         SortQuestPoolByStartTime();
+    }
+
+    private void CheckForBoosts()
+    {
+        if (boostManager.IsQuestExpBoosted)
+        {
+            float boostedExp = CurrentQuest.Reward.Exp * FindObjectOfType<QuestExpBoost>().BoostValue;
+            CurrentQuest.Reward.Exp = Convert.ToInt32(boostedExp);
+        }
+        if (boostManager.IsQuestGoldBoosted)
+        {
+            float boostedGold = CurrentQuest.Reward.Gold * FindObjectOfType<QuestGoldBoost>().BoostValue;
+            CurrentQuest.Reward.Gold = Convert.ToInt32(boostedGold);
+        }
+        if (boostManager.IsQuestWoodBoosted)
+        {
+            float boostedWood = CurrentQuest.Reward.Wood * FindObjectOfType<QuestWoodBoost>().BoostValue;
+            CurrentQuest.Reward.Wood = Convert.ToInt32(boostedWood);
+        }
+        if (boostManager.IsQuestIronBoosted)
+        {
+            float boostedIron = CurrentQuest.Reward.Iron * FindObjectOfType<QuestIronBoost>().BoostValue;
+            CurrentQuest.Reward.Iron = Convert.ToInt32(boostedIron);
+        }
     }
 }
