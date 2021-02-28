@@ -20,9 +20,9 @@ public class AdventurerUI : MonoBehaviour
 
     private void GoToQuestJournal()
     {
-        Menu_QuestJournal questJournal = menuManager.GetMenu("Menu_QuestJournal").GetComponent<Menu_QuestJournal>();
+        Menu_QuestJournal questJournal = FindObjectOfType<Menu_QuestJournal>();
         questJournal.SetQuest(questManager.CurrentQuest);
         questJournal.UpdateQuestJournal();
-        menuManager.OpenMenu("Menu_QuestJournal");
+        menuManager.OpenMenu(questJournal);
     }
 }

@@ -83,7 +83,8 @@ public class PersonUI : MonoBehaviour
     {
         popupManager = FindObjectOfType<PopupManager>();
         questManager = FindObjectOfType<QuestManager>();
-        AdjustStatsPanel();
+        ShowExtensionPanel();
+        ShowExtensionPanel();
     }
 
     private void FixedUpdate()
@@ -131,6 +132,13 @@ public class PersonUI : MonoBehaviour
         SetColor();
     }
 
+    public void ClearPerson()
+    {
+        GuildMember = null;
+        transform.SetParent(FindObjectOfType<PersonUIPool>().transform);
+        gameObject.SetActive(false);
+    }
+
     public void ShowExtensionPanel()
     {
         if (extensionPanel.activeSelf)
@@ -140,8 +148,12 @@ public class PersonUI : MonoBehaviour
         else
         {
             extensionPanel.SetActive(true);
-            avatarFrame.SetFrameAvatar(GuildMember);
+            if (GuildMember != null)
+                avatarFrame.SetFrameAvatar(GuildMember);
         }
+        AdjustStatsPanel();
+        Canvas.ForceUpdateCanvases();
+        LayoutRebuilder.MarkLayoutForRebuild(GetComponent<RectTransform>());
     }
 
     public void ShowBeginButton()
@@ -202,78 +214,81 @@ public class PersonUI : MonoBehaviour
 
     private void AdjustStatsPanel()
     {
-        if (GuildMember.Vocation is Peasant peasant)
+        if (GuildMember != null)
         {
-            adventurerStats.SetActive(false);
-            peasantStats.SetActive(true);
-            Vector2 rectSize = statsPanel.GetComponent<RectTransform>().rect.size;
-            statsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(rectSize.x, 136.0f);
-            income.text = $"{peasant.IncomeResource}: {peasant.Income}";
-        }
-        else if (GuildMember.Vocation is Artisan)
-        {
-            adventurerStats.SetActive(false);
-            peasantStats.SetActive(true);
-            Vector2 rectSize = statsPanel.GetComponent<RectTransform>().rect.size;
-            statsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(rectSize.x, 136.0f);
-            income.text = "None. Artisans will help to build the Adventure Guild.";
-        }
-        else if (GuildMember.Vocation is Adventurer adventurer)
-        {
-            adventurerStats.SetActive(true);
-            peasantStats.SetActive(false);
-            Vector2 rectSize = statsPanel.GetComponent<RectTransform>().rect.size;
-            statsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(rectSize.x, 215.0f);
+            if (GuildMember.Vocation is Peasant peasant)
+            {
+                adventurerStats.SetActive(false);
+                peasantStats.SetActive(true);
+                Vector2 rectSize = statsPanel.GetComponent<RectTransform>().rect.size;
+                statsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(rectSize.x, 136.0f);
+                income.text = $"{peasant.IncomeResource}: {peasant.Income}";
+            }
+            else if (GuildMember.Vocation is Artisan)
+            {
+                adventurerStats.SetActive(false);
+                peasantStats.SetActive(true);
+                Vector2 rectSize = statsPanel.GetComponent<RectTransform>().rect.size;
+                statsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(rectSize.x, 136.0f);
+                income.text = "None. Artisans will help to build the Adventure Guild.";
+            }
+            else if (GuildMember.Vocation is Adventurer adventurer)
+            {
+                adventurerStats.SetActive(true);
+                peasantStats.SetActive(false);
+                Vector2 rectSize = statsPanel.GetComponent<RectTransform>().rect.size;
+                statsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(rectSize.x, 215.0f);
 
-            if (!questManager.CombatUnlocked)
-            {
-                combatExpText.gameObject.SetActive(false);
-                combatSlider.gameObject.SetActive(false);
-                combatLevel.text = "Combat: Locked";
-            }
-            else
-            {
-                combatExpText.gameObject.SetActive(true);
-                combatSlider.gameObject.SetActive(true);
-                combatLevel.text = $"Combat: {adventurer.CombatLevel}";
-                combatExpText.text = $"{adventurer.CombatExp} / {Levelling.SkillLevel[adventurer.CombatLevel]}";
-                combatSlider.minValue = Levelling.SkillLevel[adventurer.CombatLevel - 1];
-                combatSlider.maxValue = Levelling.SkillLevel[adventurer.CombatLevel];
-                combatSlider.value = adventurer.CombatExp;
-            }
+                if (!questManager.CombatUnlocked)
+                {
+                    combatExpText.gameObject.SetActive(false);
+                    combatSlider.gameObject.SetActive(false);
+                    combatLevel.text = "Combat: Locked";
+                }
+                else
+                {
+                    combatExpText.gameObject.SetActive(true);
+                    combatSlider.gameObject.SetActive(true);
+                    combatLevel.text = $"Combat: {adventurer.CombatLevel}";
+                    combatExpText.text = $"{adventurer.CombatExp} / {Levelling.SkillLevel[adventurer.CombatLevel]}";
+                    combatSlider.minValue = Levelling.SkillLevel[adventurer.CombatLevel - 1];
+                    combatSlider.maxValue = Levelling.SkillLevel[adventurer.CombatLevel];
+                    combatSlider.value = adventurer.CombatExp;
+                }
 
-            if (!questManager.EspionageUnlocked)
-            {
-                espionageExpText.gameObject.SetActive(false);
-                espionageSlider.gameObject.SetActive(false);
-                espionageLevel.text = "Espionage: Locked";
-            }
-            else
-            {
-                espionageExpText.gameObject.SetActive(true);
-                espionageSlider.gameObject.SetActive(true);
-                espionageLevel.text = $"Espionage: {adventurer.EspionageLevel}";
-                espionageExpText.text = $"{adventurer.EspionageExp} / {Levelling.SkillLevel[adventurer.EspionageLevel]}";
-                espionageSlider.minValue = Levelling.SkillLevel[adventurer.EspionageLevel - 1];
-                espionageSlider.maxValue = Levelling.SkillLevel[adventurer.EspionageLevel];
-                espionageSlider.value = adventurer.EspionageExp;
-            }
+                if (!questManager.EspionageUnlocked)
+                {
+                    espionageExpText.gameObject.SetActive(false);
+                    espionageSlider.gameObject.SetActive(false);
+                    espionageLevel.text = "Espionage: Locked";
+                }
+                else
+                {
+                    espionageExpText.gameObject.SetActive(true);
+                    espionageSlider.gameObject.SetActive(true);
+                    espionageLevel.text = $"Espionage: {adventurer.EspionageLevel}";
+                    espionageExpText.text = $"{adventurer.EspionageExp} / {Levelling.SkillLevel[adventurer.EspionageLevel]}";
+                    espionageSlider.minValue = Levelling.SkillLevel[adventurer.EspionageLevel - 1];
+                    espionageSlider.maxValue = Levelling.SkillLevel[adventurer.EspionageLevel];
+                    espionageSlider.value = adventurer.EspionageExp;
+                }
             
-            if (!questManager.DiplomacyUnlocked)
-            {
-                diplomacyExpText.gameObject.SetActive(false);
-                diplomacySlider.gameObject.SetActive(false);
-                diplomacyLevel.text = "Diplomacy: Locked";
-            }
-            else
-            {
-                diplomacyExpText.gameObject.SetActive(true);
-                diplomacySlider.gameObject.SetActive(true);
-                diplomacyLevel.text = $"Diplomacy: {adventurer.DiplomacyLevel}";
-                diplomacyExpText.text = $"{adventurer.DiplomacyExp} / {Levelling.SkillLevel[adventurer.DiplomacyLevel]}";
-                diplomacySlider.minValue = Levelling.SkillLevel[adventurer.DiplomacyLevel - 1];
-                diplomacySlider.maxValue = Levelling.SkillLevel[adventurer.DiplomacyLevel];
-                diplomacySlider.value = adventurer.DiplomacyExp;
+                if (!questManager.DiplomacyUnlocked)
+                {
+                    diplomacyExpText.gameObject.SetActive(false);
+                    diplomacySlider.gameObject.SetActive(false);
+                    diplomacyLevel.text = "Diplomacy: Locked";
+                }
+                else
+                {
+                    diplomacyExpText.gameObject.SetActive(true);
+                    diplomacySlider.gameObject.SetActive(true);
+                    diplomacyLevel.text = $"Diplomacy: {adventurer.DiplomacyLevel}";
+                    diplomacyExpText.text = $"{adventurer.DiplomacyExp} / {Levelling.SkillLevel[adventurer.DiplomacyLevel]}";
+                    diplomacySlider.minValue = Levelling.SkillLevel[adventurer.DiplomacyLevel - 1];
+                    diplomacySlider.maxValue = Levelling.SkillLevel[adventurer.DiplomacyLevel];
+                    diplomacySlider.value = adventurer.DiplomacyExp;
+                }
             }
         }
     }
@@ -331,14 +346,14 @@ public class PersonUI : MonoBehaviour
     private void ConfirmPromoteAdventurer()
     {
         popupManager.Popup.GetComponentInChildren<Button>().onClick.RemoveListener(ConfirmPromoteAdventurer);
-        FindObjectOfType<MenuManager>().OpenMenu("Menu_Hub");
+        FindObjectOfType<MenuManager>().OpenMenu(FindObjectOfType<Menu_Hub>());
         GuildMember.PromoteToAdventurer();
     }
 
     private void ConfirmPromoteArtisan()
     {
         popupManager.Popup.GetComponentInChildren<Button>().onClick.RemoveListener(ConfirmPromoteArtisan);
-        FindObjectOfType<MenuManager>().OpenMenu("Menu_Hub");
+        FindObjectOfType<MenuManager>().OpenMenu(FindObjectOfType<Menu_Hub>());
         GuildMember.PromoteToArtisan();
     }
 }

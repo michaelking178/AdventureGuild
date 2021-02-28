@@ -2,8 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Menu_Construction : MonoBehaviour
+public class Menu_Construction : Menu
 {
+    #region Data
+
     [SerializeField]
     private Button buildButton;
 
@@ -35,15 +37,16 @@ public class Menu_Construction : MonoBehaviour
     private TextMeshProUGUI upgradeText;
 
     private Guildhall guildhall;
-    private MenuManager menuManager;
     private ConstructionManager constructionManager;
 
     public Upgrade ConstructionJob;
 
-    private void Start()
+    #endregion
+
+    protected override void Start()
     {
+        base.Start();
         guildhall = FindObjectOfType<Guildhall>();
-        menuManager = FindObjectOfType<MenuManager>();
         constructionManager = FindObjectOfType<ConstructionManager>();
     }
 

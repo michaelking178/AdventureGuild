@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class Menu_Settings : MonoBehaviour
+public class Menu_Settings : Menu
 {
+    #region Data
+
     [SerializeField]
     private Slider musicVolume;
 
@@ -14,21 +16,28 @@ public class Menu_Settings : MonoBehaviour
 
     private AudioSource soundAudioSource;
     private AudioSource musicAudioSource;
-    private MenuManager menuManager;
     private PopulationManager populationManager;
 
-    private void Start()
+    #endregion
+
+    protected override void Start()
     {
+        base.Start();
         soundAudioSource = GameObject.Find("SoundManager").GetComponent<AudioSource>();
         musicAudioSource = GameObject.Find("MusicManager").GetComponent<AudioSource>();
-        menuManager = FindObjectOfType<MenuManager>();
         populationManager = FindObjectOfType<PopulationManager>();
-        LoadMenu();
+        LoadSettingsValues();
+    }
+
+    public override void Open()
+    {
+        base.Open();
+        LoadSettingsValues();
     }
 
     private void FixedUpdate()
     {
-        if (menuManager.CurrentMenu == gameObject)
+        if (menuManager.CurrentMenu == this)
         {
             musicAudioSource.volume = musicVolume.value;
             soundAudioSource.volume = soundVolume.value;
@@ -38,7 +47,7 @@ public class Menu_Settings : MonoBehaviour
         }
     }
 
-    public void LoadMenu()
+    public void LoadSettingsValues()
     {
         musicVolume.value = musicAudioSource.volume;
         soundVolume.value = soundAudioSource.volume;

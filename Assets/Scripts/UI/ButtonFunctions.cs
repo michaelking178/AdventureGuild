@@ -12,11 +12,6 @@ public class ButtonFunctions : MonoBehaviour
         FindObjectOfType<LevelManager>().LoadLevelDirect(level);
     }
 
-    public void OpenMenu(string menu)
-    {
-        FindObjectOfType<MenuManager>().OpenMenu(menu);
-    }
-
     public void SaveGame()
     {
         SaveSystem.SaveGame();

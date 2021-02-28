@@ -2,8 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Menu_Hero : MonoBehaviour
+public class Menu_Hero : Menu
 {
+    #region Data
+
     [SerializeField]
     private Image heroImage;
 
@@ -35,19 +37,8 @@ public class Menu_Hero : MonoBehaviour
     private Button heroBioCancel;
 
     private GuildMember hero;
-    private MenuManager menuManager;
 
-    private void Start()
-    {
-        menuManager = FindObjectOfType<MenuManager>();
-    }
-
-    public void UpdateHeroPanel()
-    {
-        hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>();
-        heroImage.sprite = hero.Avatar;
-        heroName.text = hero.person.name;
-    }
+    #endregion
 
     private void FixedUpdate()
     {
@@ -58,6 +49,12 @@ public class Menu_Hero : MonoBehaviour
             heroHealth.text = string.Format("Health: {0}/{1}", hero.Hitpoints.ToString(), hero.MaxHitpoints.ToString());
             heroBioText.text = hero.Bio;
         }
+    }
+
+    public override void Open()
+    {
+        base.Open();
+        UpdateHeroPanel();
     }
 
     public void OpenBioEditor()
@@ -80,6 +77,13 @@ public class Menu_Hero : MonoBehaviour
     {
         heroBioInput.text = "";
         CloseBioEditor();
+    }
+
+    private void UpdateHeroPanel()
+    {
+        hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>();
+        heroImage.sprite = hero.Avatar;
+        heroName.text = hero.person.name;
     }
 
     private void CloseBioEditor()

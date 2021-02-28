@@ -3,8 +3,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Menu_QuestJournal : MonoBehaviour
+public class Menu_QuestJournal : Menu
 {
+    #region Data
+
     [SerializeField]
     private TextMeshProUGUI questName;
 
@@ -28,6 +30,8 @@ public class Menu_QuestJournal : MonoBehaviour
 
     private Quest quest;
     private int incidentCount;
+
+    #endregion
 
     private void FixedUpdate()
     {

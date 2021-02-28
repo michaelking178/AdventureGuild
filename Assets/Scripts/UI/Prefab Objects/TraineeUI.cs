@@ -17,7 +17,7 @@ public class TraineeUI : MonoBehaviour
     public void StartTraining()
     {
         trainingManager.SetGuildMember(GetComponent<PersonUI>().GuildMember);
-        menuManager.OpenMenu("Menu_Training");
+        menuManager.OpenMenu(FindObjectOfType<Menu_Training>());
         trainingManager.OpenInstructions();
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class QuestUIScrollView : MonoBehaviour
@@ -6,26 +6,24 @@ public class QuestUIScrollView : MonoBehaviour
     [SerializeField]
     private GameObject questUI;
 
-    public string questUiMenu = "";
-
     private QuestManager questManager;
+    private QuestUIPool questUIPool;
+    private List<QuestUI> questUIs = new List<QuestUI>();
 
     private void Start()
     {
         questManager = FindObjectOfType<QuestManager>();
+        questUIPool = FindObjectOfType<QuestUIPool>();
     }
 
     public void UpdateQuestList()
     {
         questManager.SortQuestPoolByLevel();
-        foreach (GameObject child in gameObject.GetChildren())
-        {
-            Destroy(child);
-        }
+        ClearQuestUIs();
+
         foreach (Quest quest in questManager.GetQuestsByStatus(Quest.Status.New))
         {
-            GameObject newQuestUI = Instantiate(questUI, transform);
-            StartCoroutine(SetupQuestUI(quest, newQuestUI));
+            LoadQuestUI(quest);
         }
     }
 
@@ -33,30 +31,36 @@ public class QuestUIScrollView : MonoBehaviour
     {
         questManager.SortQuestPoolByStartTime();
         questManager.SortQuestArchiveByStartTime();
-        foreach (GameObject child in gameObject.GetChildren())
-        {
-            Destroy(child);
-        }
+        ClearQuestUIs();
 
         foreach (Quest quest in questManager.GetQuestsByStatus(Quest.Status.Active))
         {
-            GameObject newQuestUI = Instantiate(questUI, transform);
-            newQuestUI.GetComponent<QuestUI>().SetQuest(quest);
+            LoadQuestUI(quest);
         }
         foreach (Quest quest in questManager.GetQuestArchive())
         {
             if (quest.State == Quest.Status.Completed || quest.State == Quest.Status.Failed)
             {
-                GameObject newQuestUI = Instantiate(questUI, transform);
-                newQuestUI.GetComponent<QuestUI>().SetQuest(quest);
+                LoadQuestUI(quest);
             }
         }
     }
 
-    private IEnumerator SetupQuestUI(Quest quest, GameObject questUI)
+    private void LoadQuestUI(Quest quest)
     {
-        questUI.GetComponent<QuestUI>().SetQuest(quest);
-        yield return new WaitForSeconds(0.5f);
-        questUI.GetComponent<QuestUI>().ToggleExtensionPanel();
-    }    
+        QuestUI questUI = questUIPool.GetNextAvailableQuestUI();
+        questUI.gameObject.SetActive(true);
+        questUI.transform.SetParent(transform);
+        questUI.SetQuest(quest);
+        questUIs.Add(questUI);
+    }
+
+    private void ClearQuestUIs()
+    {
+        foreach (QuestUI questUI in questUIs)
+        {
+            questUI.ClearQuest();
+            questUIs.Remove(questUI);
+        }
+    }
 }

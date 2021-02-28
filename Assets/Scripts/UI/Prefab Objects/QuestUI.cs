@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using System.Collections.Generic;
 
 public class QuestUI : MonoBehaviour
 {
@@ -39,8 +38,8 @@ public class QuestUI : MonoBehaviour
     private Quest quest;
     private QuestManager questManager;
     private MenuManager menuManager;
-    private Menu_Quest menu_Quest;
     private Menu_QuestJournal questJournal;
+    private QuestUIPool questUIPool;
     private Color emptySlotColor = new Color(0,0,0,0.25f);
     private Color combatColor = new Color(1,0,0,1);
     private Color espionageColor = new Color(1,1,0,1);
@@ -51,22 +50,36 @@ public class QuestUI : MonoBehaviour
     {
         questManager = FindObjectOfType<QuestManager>();
         menuManager = FindObjectOfType<MenuManager>();
-        menu_Quest = menuManager.GetMenu("Menu_Quest").GetComponent<Menu_Quest>();
-        questJournal = menuManager.GetMenu("Menu_QuestJournal").GetComponent<Menu_QuestJournal>();
+        questUIPool = FindObjectOfType<QuestUIPool>();
+        questJournal = FindObjectOfType<Menu_QuestJournal>();
     }
 
     private void FixedUpdate()
     {
         if (quest != null)
         {
-            SetQuestUIAttributes();
+            SetQuestUIState();
         }
+    }
+
+    public Quest GetQuest()
+    {
+        return quest;
     }
 
     public void SetQuest(Quest _quest)
     {
         quest = _quest;
-        SetQuestUIAttributes();
+        questName.text = quest.questName;
+        questLevel.text = "Level " + quest.level;
+        SetSkillGem();
+        SetFactionGem();
+        SetRelicGem();
+        if (extensionPanel != null)
+        {
+            SetExtensionPanelContent();
+            ToggleExtensionPanel();
+        }
         if (quest.State == Quest.Status.Completed || quest.State == Quest.Status.Failed)
         {
             foreach (Image image in GetComponentsInChildren<Image>())
@@ -80,42 +93,16 @@ public class QuestUI : MonoBehaviour
         }
     }
 
-    private void SetQuestUIAttributes()
+    public void ClearQuest()
     {
-        questName.text = quest.questName;
-        questLevel.text = "Level " + quest.level;
-        SetQuestUIState();
-        SetSkillGem();
-        SetFactionGem();
-        SetRelicGem();
-        if (extensionPanel != null)
-        {
-            SetExtensionPanelContent();
-        }
+        quest = null;
+        transform.SetParent(questUIPool.transform);
+        gameObject.SetActive(false);
     }
 
     public void SetActiveQuest()
     {
         questManager.CurrentQuest = quest;
-    }
-
-    public void GoTo()
-    {
-        if (GetComponentInParent<QuestUIScrollView>().questUiMenu == "Menu_Quest")
-        {
-            menu_Quest.UpdateQuestMenu();
-            menuManager.OpenMenu("Menu_Quest");
-        }
-        else if (GetComponentInParent<QuestUIScrollView>().questUiMenu == "Menu_QuestJournal")
-        {
-            questJournal.SetQuest(quest);
-            questJournal.UpdateQuestJournal();
-            menuManager.OpenMenu("Menu_QuestJournal");
-        }
-        else
-        {
-            Debug.Log("Cannot navigate from QuestUI to " + GetComponentInParent<QuestUIScrollView>().questUiMenu);
-        }
     }
 
     private void SetQuestUIState()
@@ -192,42 +179,65 @@ public class QuestUI : MonoBehaviour
 
     private void SetExtensionPanelContent()
     {
-        if (quest.faction != "")
+        if (quest.State == Quest.Status.New)
         {
-            contractorText.text = quest.contractor + " of the " + quest.GetFactionString();
-        }
-        else
-        {
-            contractorText.text = quest.contractor;
-        }
-        rewardText.text = Helpers.QuestRewardStr(quest);
-        briefingText.text = quest.description;
-        foreach (TextSizer textSizer in GetComponentsInChildren<TextSizer>())
-        {
-            textSizer.Refresh();
+            if (quest.faction != "")
+            {
+                contractorText.text = quest.contractor + " of the " + quest.GetFactionString();
+            }
+            else
+            {
+                contractorText.text = quest.contractor;
+            }
+            rewardText.text = Helpers.QuestRewardStr(quest);
+            briefingText.text = quest.description;
+            foreach (TextSizer textSizer in GetComponentsInChildren<TextSizer>())
+            {
+                textSizer.Refresh();
+            }
         }
     }
 
     public void ToggleExtensionPanel()
     {
-        if (extensionPanel.activeInHierarchy)
+        if (quest.State == Quest.Status.New)
         {
-            contractorText.text = "";
-            rewardText.text = "";
-            briefingText.text = "";
-            extensionPanel.SetActive(false);
+            if (extensionPanel.activeInHierarchy)
+            {
+                extensionPanel.SetActive(false);
+            }
+            else
+            {
+                extensionPanel.SetActive(true);
+            }
         }
         else
         {
-            SetExtensionPanelContent();
-            extensionPanel.SetActive(true);
+            extensionPanel.SetActive(false);
         }
+        Canvas.ForceUpdateCanvases();
+        LayoutRebuilder.MarkLayoutForRebuild(GetComponent<RectTransform>());
     }
 
     public void AcceptQuest()
     {
+        Menu_SelectAdventurer menu = FindObjectOfType<Menu_SelectAdventurer>();
         SetActiveQuest();
-        GameObject.Find("Menu_SelectAdventurer").GetComponentInChildren<PersonUIScrollView>().GetAvailableAdventurersUI();
-        menuManager.OpenMenu("Menu_SelectAdventurer");
+        menu.GetComponentInChildren<PersonUIScrollView>().GetAvailableAdventurersUI();
+        menuManager.OpenMenu(menu);
+    }
+
+    public void HandleButtonClick()
+    {
+        if (quest.State == Quest.Status.New)
+        {
+            ToggleExtensionPanel();
+        }
+        else
+        {
+            questJournal.SetQuest(quest);
+            questJournal.UpdateQuestJournal();
+            menuManager.OpenMenu(FindObjectOfType<Menu_QuestJournal>());
+        }
     }
 }

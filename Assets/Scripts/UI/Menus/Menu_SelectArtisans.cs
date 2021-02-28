@@ -2,24 +2,34 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Menu_SelectArtisans : MonoBehaviour
+public class Menu_SelectArtisans : Menu
 {
+    #region Data
+
     [SerializeField]
     private TextMeshProUGUI artisanProficiencyText;
 
     [SerializeField]
     private Button beginConstruction;
 
-    private Guildhall guildhall;
-    private MenuManager menuManager;
+    [SerializeField]
+    PersonUIScrollView scrollView;
+
     private ConstructionManager constructionManager;
     private Upgrade upgrade;
 
-    private void Start()
+    #endregion
+
+    protected override void Start()
     {
-        guildhall = FindObjectOfType<Guildhall>();
-        menuManager = FindObjectOfType<MenuManager>();
+        base.Start();
         constructionManager = FindObjectOfType<ConstructionManager>();
+    }
+
+    public override void Open()
+    {
+        base.Open();
+        scrollView.GetAvailableArtisansUI();
     }
 
     private void FixedUpdate()

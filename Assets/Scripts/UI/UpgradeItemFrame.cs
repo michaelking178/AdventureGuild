@@ -117,7 +117,7 @@ public class UpgradeItemFrame : MonoBehaviour
     public void SelectUpgrade()
     {
         FindObjectOfType<Menu_Construction>().ConstructionJob = upgrade;
-        menuManager.OpenMenu(FindObjectOfType<Menu_Construction>().name);
+        menuManager.OpenMenu(FindObjectOfType<Menu_Construction>());
     }
 
     public void DisplayTimer()

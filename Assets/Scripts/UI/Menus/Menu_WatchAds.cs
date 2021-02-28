@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Menu_WatchAds : MonoBehaviour
+public class Menu_WatchAds : Menu
 {
-    private MenuManager menuManager;
+    #region Data
 
     [SerializeField]
     private GameObject contentPanel;
@@ -12,15 +10,17 @@ public class Menu_WatchAds : MonoBehaviour
     [SerializeField]
     private GameObject boostFramePrefab;
 
-    private void Start()
+    #endregion
+
+    protected override void Start()
     {
-        menuManager = FindObjectOfType<MenuManager>();
+        base.Start();
         PopulateBoosts();
     }
 
     private void FixedUpdate()
     {
-        if (menuManager.CurrentMenu == gameObject)
+        if (menuManager.CurrentMenu == this)
         {
             // CheckForActiveBoosts
         }

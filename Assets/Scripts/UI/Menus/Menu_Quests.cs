@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using TMPro;
 
-public class Menu_Quests : MonoBehaviour
+public class Menu_Quests : Menu
 {
-    private MenuManager menuManager;
+    #region Data
+
     private QuestManager questManager;
     private PopulationManager populationManager;
 
@@ -16,9 +17,11 @@ public class Menu_Quests : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI availableAdventurers;
 
-    private void Start()
+    #endregion
+
+    protected override void Start()
     {
-        menuManager = FindObjectOfType<MenuManager>();
+        base.Start();
         questManager = FindObjectOfType<QuestManager>();
         populationManager = FindObjectOfType<PopulationManager>();
     }

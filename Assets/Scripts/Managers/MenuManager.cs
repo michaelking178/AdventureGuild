@@ -8,18 +8,18 @@ public class MenuManager : MonoBehaviour
     private List<GameObject> menus = new List<GameObject>();
 
     [SerializeField]
-    private GameObject startingMenu;
+    private Menu startingMenu;
 
     [SerializeField]
     private GameObject clickBlocker;
 
-    public GameObject CurrentMenu;
+    public Menu CurrentMenu;
 
     private void Start()
     {
         if (SaveSystem.SaveFileExists() && FindObjectOfType<LevelManager>().CurrentLevel() == "Main")
         {
-            OpenMenu("Menu_Hub");
+            OpenMenu(GameObject.Find("Menu_Hub").GetComponent<Menu>());
             return;
         }
         if (startingMenu == null)
@@ -28,13 +28,13 @@ public class MenuManager : MonoBehaviour
         }
         else
         {
-            OpenMenu(startingMenu.name);
+            OpenMenu(startingMenu);
         }
     }
 
-    public void OpenMenu(string menuName)
+    public void OpenMenu(Menu menu)
     {
-        StartCoroutine(MenuTransition(menuName));
+        StartCoroutine(MenuTransition(menu));
     }
 
     public void CloseMenu()
@@ -42,7 +42,7 @@ public class MenuManager : MonoBehaviour
         CurrentMenu.GetComponent<Animator>().SetTrigger("Close");
     }
 
-    private IEnumerator MenuTransition(string menuName)
+    private IEnumerator MenuTransition(Menu menu)
     {
         clickBlocker.SetActive(true);
         if (CurrentMenu != null)
@@ -50,33 +50,32 @@ public class MenuManager : MonoBehaviour
             CloseMenu();
             yield return new WaitForSeconds(0.4f);
         }
-        CurrentMenu = GetMenu(menuName);
+        CurrentMenu = menu;
         CurrentMenu.GetComponent<Animator>().SetTrigger("Open");
         yield return new WaitForSeconds(0.35f);
         clickBlocker.SetActive(false);
     }
 
-    public GameObject GetMenu(string menuName)
-    {
-        foreach (GameObject _menu in menus)
-        {
-            if (_menu.name == menuName)
-                return _menu;
-        }
-        return null;
-    }
+    //public GameObject GetMenu(Menu menu)
+    //{
+    //    foreach (GameObject _menu in menus)
+    //    {
+    //        if (_menu.name == menuName)
+    //            return _menu;
+    //    }
+    //    return null;
+    //}
 
-    public void DisableMenu(string menuName)
+    public void DisableMenu(Menu menu)
     {
         foreach (GameObject _menu in menus)
         {
-            if (_menu.name == menuName)
+            if (_menu == menu)
             {
                 _menu.SetActive(false);
                 return;
             }
         }
-        Debug.Log("MenuManager cannot destroy menu " + menuName);
     }
 
     #region Disable Character Creator after character creation is finished
@@ -90,11 +89,11 @@ public class MenuManager : MonoBehaviour
     private IEnumerator DisableCharacterCreator()
     {
         yield return new WaitForSeconds(3);
-        DisableMenu("Menu_Start");
-        DisableMenu("Menu_Start_2");
-        DisableMenu("Menu_CharacterCreator_1");
-        DisableMenu("Menu_CharacterCreator_2");
-        DisableMenu("Menu_CharacterCreator_3");
+        DisableMenu(GameObject.Find("Menu_Start").GetComponent<Menu>());
+        DisableMenu(GameObject.Find("Menu_Start_2").GetComponent<Menu>());
+        DisableMenu(GameObject.Find("Menu_CharacterCreator_1").GetComponent<Menu>());
+        DisableMenu(GameObject.Find("Menu_CharacterCreator_2").GetComponent<Menu>());
+        DisableMenu(GameObject.Find("Menu_CharacterCreator_3").GetComponent<Menu>());
     }
 
     #endregion

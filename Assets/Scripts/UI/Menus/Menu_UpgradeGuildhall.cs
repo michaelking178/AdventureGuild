@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-public class Menu_UpgradeGuildhall : MonoBehaviour
+public class Menu_UpgradeGuildhall : Menu
 {
-    private MenuManager menuManager;
+    #region Data
 
     [SerializeField]
     private GameObject contentPanel;
@@ -10,9 +10,11 @@ public class Menu_UpgradeGuildhall : MonoBehaviour
     [SerializeField]
     private GameObject upgradePrefab;
 
-    private void Start()
+    #endregion
+
+    protected override void Start()
     {
-        menuManager = FindObjectOfType<MenuManager>();
+        base.Start();
         PopulateUpgrades();
     }
 

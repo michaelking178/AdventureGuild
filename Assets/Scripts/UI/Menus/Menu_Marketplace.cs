@@ -2,8 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Menu_Marketplace : MonoBehaviour
+public class Menu_Marketplace : Menu
 {
+    #region Data
+
     [Header("Economy Values")]
     public int WoodValue = 100;
     public int IronValue = 250;
@@ -35,12 +37,13 @@ public class Menu_Marketplace : MonoBehaviour
     public int Total = 0;
 
     private int woodChange = 0, ironChange = 0;
-    private MenuManager menuManager;
 
-    private void Start()
+    #endregion
+
+    protected override void Start()
     {
+        base.Start();
         guildhall = FindObjectOfType<Guildhall>();
-        menuManager = FindObjectOfType<MenuManager>();
     }
 
     private void FixedUpdate()
