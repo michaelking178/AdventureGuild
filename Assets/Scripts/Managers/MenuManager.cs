@@ -37,17 +37,12 @@ public class MenuManager : MonoBehaviour
         StartCoroutine(MenuTransition(menu));
     }
 
-    public void CloseMenu()
-    {
-        CurrentMenu.GetComponent<Animator>().SetTrigger("Close");
-    }
-
     private IEnumerator MenuTransition(Menu menu)
     {
         clickBlocker.SetActive(true);
         if (CurrentMenu != null)
         {
-            CloseMenu();
+            CurrentMenu.Close();
             yield return new WaitForSeconds(0.4f);
         }
         CurrentMenu = menu;

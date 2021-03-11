@@ -48,7 +48,7 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator LoadLvl(string scene)
     {
-        FindObjectOfType<MenuManager>().CloseMenu();
+        FindObjectOfType<MenuManager>().CurrentMenu.Close();
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(scene);
     }

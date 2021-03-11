@@ -15,18 +15,15 @@ public class Menu_ManagePeople : Menu
     protected override void Start()
     {
         base.Start();
-        scrollView = GetComponent<PersonUIScrollView>();
+        scrollView = GetComponentInChildren<PersonUIScrollView>();
     }
 
     public override void Open()
     {
         base.Open();
-        ResetScrollbarValue();
-        scrollView.GetAllPeopleUI();
-    }
-
-    public void ResetScrollbarValue()
-    {
-        scrollbar.value = 0;
+        scrollView.ClearPersonUIs();
+        scrollView.LoadAllPeopleUI();
+        scrollView.SetPersonUIButtons(false, true, true);
+        scrollbar.value = 1;
     }
 }

@@ -76,10 +76,8 @@ public class QuestUI : MonoBehaviour
         SetFactionGem();
         SetRelicGem();
         if (extensionPanel != null)
-        {
             SetExtensionPanelContent();
-            ToggleExtensionPanel();
-        }
+
         if (quest.State == Quest.Status.Completed || quest.State == Quest.Status.Failed)
         {
             foreach (Image image in GetComponentsInChildren<Image>())
@@ -100,21 +98,12 @@ public class QuestUI : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void SetActiveQuest()
-    {
-        questManager.CurrentQuest = quest;
-    }
-
     private void SetQuestUIState()
     {
         if (quest.State == Quest.Status.Completed || quest.State == Quest.Status.Failed)
-        {
             questTime.text = quest.State.ToString();
-        }
         else if (quest.State == Quest.Status.New)
-        {
             questTime.text = Helpers.FormatTimer(quest.time);
-        }
         else if (quest.State == Quest.Status.Active)
         {
             foreach (GameObject child in Helpers.GetChildren(GameObject.Find("Quest Manager")))
@@ -182,13 +171,10 @@ public class QuestUI : MonoBehaviour
         if (quest.State == Quest.Status.New)
         {
             if (quest.faction != "")
-            {
                 contractorText.text = quest.contractor + " of the " + quest.GetFactionString();
-            }
             else
-            {
                 contractorText.text = quest.contractor;
-            }
+
             rewardText.text = Helpers.QuestRewardStr(quest);
             briefingText.text = quest.description;
             foreach (TextSizer textSizer in GetComponentsInChildren<TextSizer>())
@@ -203,36 +189,25 @@ public class QuestUI : MonoBehaviour
         if (quest.State == Quest.Status.New)
         {
             if (extensionPanel.activeInHierarchy)
-            {
                 extensionPanel.SetActive(false);
-            }
             else
-            {
                 extensionPanel.SetActive(true);
-            }
         }
         else
-        {
             extensionPanel.SetActive(false);
-        }
-        Canvas.ForceUpdateCanvases();
-        LayoutRebuilder.MarkLayoutForRebuild(GetComponent<RectTransform>());
     }
 
     public void AcceptQuest()
     {
         Menu_SelectAdventurer menu = FindObjectOfType<Menu_SelectAdventurer>();
-        SetActiveQuest();
-        menu.GetComponentInChildren<PersonUIScrollView>().GetAvailableAdventurersUI();
+        questManager.CurrentQuest = quest;
         menuManager.OpenMenu(menu);
     }
 
     public void HandleButtonClick()
     {
         if (quest.State == Quest.Status.New)
-        {
             ToggleExtensionPanel();
-        }
         else
         {
             questJournal.SetQuest(quest);

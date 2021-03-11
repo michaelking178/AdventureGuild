@@ -136,6 +136,9 @@ public class PersonUI : MonoBehaviour
     {
         GuildMember = null;
         transform.SetParent(FindObjectOfType<PersonUIPool>().transform);
+        if (extensionPanel.activeSelf == true)
+            ShowExtensionPanel();
+
         gameObject.SetActive(false);
     }
 
@@ -340,7 +343,7 @@ public class PersonUI : MonoBehaviour
     {
         popupManager.Popup.GetComponentInChildren<Button>().onClick.RemoveListener(ConfirmRelease);
         FindObjectOfType<PopulationManager>().RemoveGuildMember(GuildMember);
-        GetComponentInParent<PersonUIScrollView>().GetAllPeopleUI();
+        GetComponentInParent<PersonUIScrollView>().LoadAllPeopleUI();
     }
 
     private void ConfirmPromoteAdventurer()

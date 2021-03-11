@@ -1,19 +1,17 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Menu_SelectTrainee : MonoBehaviour
+public class Menu_SelectTrainee : Menu
 {
     [SerializeField]
     private PersonUIScrollView personUIScrollView;
 
-    private void Start()
+    public override void Open()
     {
-        StartCoroutine(PopulateUI());
-    }
-
-    private IEnumerator PopulateUI()
-    {
-        yield return new WaitForSeconds(0.1f);
-        personUIScrollView.GetCombatTrainingPeopleUI();
+        base.Open();
+        personUIScrollView.ClearPersonUIs();
+        personUIScrollView.LoadAdventurerUIs();
+        personUIScrollView.LoadPeasantUIs();
+        personUIScrollView.SetPersonUIButtons(true, false, false);
     }
 }
