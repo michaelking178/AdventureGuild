@@ -41,11 +41,15 @@ public class PersonUIScrollView : MonoBehaviour
 
     public void LoadAvailablePersonUIs()
     {
+        Debug.Log("Loading Available PersonUIs...");
+
         populationManager.SortGuildMembersByLevel();
         ClearPersonUIs();
 
         if (AdventurerGroup != null)
             LoadAvailableAdventurerUIs();
+        else
+            Debug.Log("Cannot find Adventurer Group!");
         
         if (ArtisanGroup != null)
             LoadAvailableArtisanUIs();

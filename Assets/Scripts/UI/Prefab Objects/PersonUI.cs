@@ -159,6 +159,12 @@ public class PersonUI : MonoBehaviour
         LayoutRebuilder.MarkLayoutForRebuild(GetComponent<RectTransform>());
     }
 
+    // This button needs to be dynamic, based on whether it's pressed for a Quest, Training or Construction job. Are delegates the answer?
+    public void Begin()
+    {
+
+    }
+
     public void ShowBeginButton()
     {
         if (beginBtn.activeSelf)

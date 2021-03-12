@@ -21,7 +21,7 @@ public class MenuManager : MonoBehaviour
         if (startingMenu == null)
             Debug.Log("No starting menu selected!");
         else
-            OpenMenu(startingMenu);
+            startingMenu.Open();
     }
 
     public void OpenMenu(Menu menu)
