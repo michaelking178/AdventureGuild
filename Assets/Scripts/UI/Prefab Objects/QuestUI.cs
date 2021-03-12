@@ -45,6 +45,7 @@ public class QuestUI : MonoBehaviour
     private Color espionageColor = new Color(1,1,0,1);
     private Color diplomacyColor = new Color(0,0,1,1);
     private Color factionColor = new Color(1,1,1,1);
+    private bool isTextGrey = false;
 
     private void Start()
     {
@@ -81,13 +82,36 @@ public class QuestUI : MonoBehaviour
         if (quest.State == Quest.Status.Completed || quest.State == Quest.Status.Failed)
         {
             foreach (Image image in GetComponentsInChildren<Image>())
-            {
                 image.color = new Color(0.5f, 0.5f, 0.5f, 1);
-            }
+
             foreach (TextMeshProUGUI text in GetComponentsInChildren<TextMeshProUGUI>())
             {
-                text.color = new Color(0.5f, 0.5f, 0.5f, 1);
+                if (!isTextGrey)
+                {
+                    float r = text.color.r * 0.5f;
+                    float g = text.color.g * 0.5f;
+                    float b = text.color.b * 0.5f;
+                    text.color = new Color(r, g, b, 1);
+                }
             }
+            isTextGrey = true;
+        }
+        else
+        {
+            foreach (Image image in GetComponentsInChildren<Image>())
+                image.color = Color.white;
+
+            foreach (TextMeshProUGUI text in GetComponentsInChildren<TextMeshProUGUI>())
+            {
+                if (isTextGrey)
+                {
+                    float r = text.color.r * 2f;
+                    float g = text.color.g * 2f;
+                    float b = text.color.b * 2f;
+                    text.color = new Color(r, g, b, 1);
+                }
+            }
+            isTextGrey = false;
         }
     }
 
@@ -96,6 +120,47 @@ public class QuestUI : MonoBehaviour
         quest = null;
         transform.SetParent(questUIPool.transform);
         gameObject.SetActive(false);
+    }
+
+    public void OpenExtensionPanel()
+    {
+        extensionPanel.SetActive(true);
+    }
+
+    public void CloseExtensionPanel()
+    {
+        extensionPanel.SetActive(false);
+    }
+
+    public void ToggleExtensionPanel()
+    {
+        if (quest.State == Quest.Status.New)
+        {
+            if (extensionPanel.activeInHierarchy)
+                CloseExtensionPanel();
+            else
+                OpenExtensionPanel();
+        }
+        else
+            CloseExtensionPanel();
+    }
+
+    public void AcceptQuest()
+    {
+        questManager.CurrentQuest = quest;
+        FindObjectOfType<Menu_SelectAdventurer>().Open();
+    }
+
+    public void HandleButtonClick()
+    {
+        if (quest.State == Quest.Status.New)
+            ToggleExtensionPanel();
+        else
+        {
+            questJournal.SetQuest(quest);
+            questJournal.UpdateQuestJournal();
+            menuManager.OpenMenu(FindObjectOfType<Menu_QuestJournal>());
+        }
     }
 
     private void SetQuestUIState()
@@ -181,38 +246,6 @@ public class QuestUI : MonoBehaviour
             {
                 textSizer.Refresh();
             }
-        }
-    }
-
-    public void ToggleExtensionPanel()
-    {
-        if (quest.State == Quest.Status.New)
-        {
-            if (extensionPanel.activeInHierarchy)
-                extensionPanel.SetActive(false);
-            else
-                extensionPanel.SetActive(true);
-        }
-        else
-            extensionPanel.SetActive(false);
-    }
-
-    public void AcceptQuest()
-    {
-        Menu_SelectAdventurer menu = FindObjectOfType<Menu_SelectAdventurer>();
-        questManager.CurrentQuest = quest;
-        menuManager.OpenMenu(menu);
-    }
-
-    public void HandleButtonClick()
-    {
-        if (quest.State == Quest.Status.New)
-            ToggleExtensionPanel();
-        else
-        {
-            questJournal.SetQuest(quest);
-            questJournal.UpdateQuestJournal();
-            menuManager.OpenMenu(FindObjectOfType<Menu_QuestJournal>());
         }
     }
 }

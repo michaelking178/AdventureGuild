@@ -21,9 +21,14 @@ public class Menu_ManagePeople : Menu
     public override void Open()
     {
         base.Open();
-        scrollView.ClearPersonUIs();
-        scrollView.LoadAllPeopleUI();
+        scrollView.LoadPersonUIs();
         scrollView.SetPersonUIButtons(false, true, true);
         scrollbar.value = 1;
+    }
+
+    public override void Close()
+    {
+        base.Close();
+        scrollView.ClearPersonUIs();
     }
 }

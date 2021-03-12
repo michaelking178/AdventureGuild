@@ -29,8 +29,7 @@ public class Menu_SelectArtisans : Menu
     public override void Open()
     {
         base.Open();
-        scrollView.ClearPersonUIs();
-        scrollView.LoadAvailableArtisanUIs();
+        scrollView.LoadAvailablePersonUIs();
         scrollView.SetPersonUIButtons(true, false, false);
     }
 

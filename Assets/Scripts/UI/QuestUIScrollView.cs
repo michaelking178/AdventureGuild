@@ -1,13 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class QuestUIScrollView : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject questUI;
-
     private QuestManager questManager;
     private QuestUIPool questUIPool;
     private List<QuestUI> questUIs = new List<QuestUI>();
@@ -24,7 +20,7 @@ public class QuestUIScrollView : MonoBehaviour
         foreach (Quest quest in questManager.GetQuestsByStatus(Quest.Status.New))
             LoadQuestUI(quest);
 
-        StartCoroutine(ToggleAllExtensionPanels());
+        StartCoroutine(CloseAllExtensionPanels());
     }
 
     public void UpdateQuestJournalList() {
@@ -33,12 +29,19 @@ public class QuestUIScrollView : MonoBehaviour
         ClearQuestUIs();
 
         foreach (Quest quest in questManager.GetQuestsByStatus(Quest.Status.Active))
+        {
             LoadQuestUI(quest);
+        }
 
         foreach (Quest quest in questManager.GetQuestArchive())
         {
             if (quest.State == Quest.Status.Completed || quest.State == Quest.Status.Failed)
                 LoadQuestUI(quest);
+        }
+
+        foreach (QuestUI questUI in questUIs)
+        {
+            questUI.CloseExtensionPanel();
         }
     }
 
@@ -50,7 +53,7 @@ public class QuestUIScrollView : MonoBehaviour
         questUI.transform.SetParent(transform);
     }
 
-    private void ClearQuestUIs() {
+    public void ClearQuestUIs() {
         foreach (QuestUI questUI in questUIs)
         {
             questUI.ClearQuest();
@@ -58,12 +61,12 @@ public class QuestUIScrollView : MonoBehaviour
         questUIs.Clear();
     }
 
-    private IEnumerator ToggleAllExtensionPanels()
+    private IEnumerator CloseAllExtensionPanels()
     {
         yield return new WaitForSeconds(0.1f);
         foreach (QuestUI questUI in questUIs)
         {
-            questUI.ToggleExtensionPanel();
+            questUI.CloseExtensionPanel();
         }
     }
 }

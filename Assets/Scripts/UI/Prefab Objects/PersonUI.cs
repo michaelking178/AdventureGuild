@@ -343,7 +343,7 @@ public class PersonUI : MonoBehaviour
     {
         popupManager.Popup.GetComponentInChildren<Button>().onClick.RemoveListener(ConfirmRelease);
         FindObjectOfType<PopulationManager>().RemoveGuildMember(GuildMember);
-        GetComponentInParent<PersonUIScrollView>().LoadAllPeopleUI();
+        GetComponentInParent<PersonUIScrollView>().LoadPersonUIs();
     }
 
     private void ConfirmPromoteAdventurer()

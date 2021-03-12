@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Menu_QuestJournals : Menu
@@ -11,5 +10,17 @@ public class Menu_QuestJournals : Menu
     {
         base.Open();
         scrollView.UpdateQuestJournalList();
+    }
+
+    public override void Close()
+    {
+        base.Close();
+        StartCoroutine(ClearQuestUIs());
+    }
+
+    private IEnumerator ClearQuestUIs()
+    {
+        yield return new WaitForSeconds(1);
+        scrollView.ClearQuestUIs();
     }
 }

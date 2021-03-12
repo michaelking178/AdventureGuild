@@ -4,9 +4,7 @@ using UnityEngine;
 public class PersonUIScrollView : MonoBehaviour
 {
     public GameObject AdventurerGroup;
-
     public GameObject ArtisanGroup;
-
     public GameObject PeasantGroup;
 
     private List<PersonUI> adventurerUIs = new List<PersonUI>();
@@ -21,56 +19,39 @@ public class PersonUIScrollView : MonoBehaviour
     {
         populationManager = FindObjectOfType<PopulationManager>();
         personUIPool = FindObjectOfType<PersonUIPool>();
-        LoadAllPeopleUI();
     }
 
-    public void LoadAllPeopleUI()
+    public void LoadPersonUIs()
     {
         populationManager.SortGuildMembersByLevel();
         ClearPersonUIs();
 
         if (AdventurerGroup != null)
+        {
             LoadHeroPersonUI();
             LoadAdventurerUIs();
-        
+        }
+
         if (ArtisanGroup != null)
             LoadArtisanUIs();
-        
+
         if (PeasantGroup != null)
             LoadPeasantUIs();
     }
 
-    public void LoadAdventurerUIs()
+    public void LoadAvailablePersonUIs()
     {
         populationManager.SortGuildMembersByLevel();
-        for (int i = 0; i < populationManager.Adventurers().Count; i++)
-        {
-            if (!populationManager.Adventurers()[i].CompareTag("Hero"))
-            {
-                LoadAdventurerUI();
-                personUI.SetPerson(populationManager.Adventurers()[i]);
-            }
-        }
-    }
+        ClearPersonUIs();
 
-    public void LoadArtisanUIs()
-    {
-        populationManager.SortGuildMembersByLevel();
-        for (int i = 0; i < populationManager.Artisans().Count; i++)
-        {
-            LoadArtisanUI();
-            personUI.SetPerson(populationManager.Artisans()[i]);
-        }
-    }
-
-    public void LoadPeasantUIs()
-    {
-        populationManager.SortGuildMembersByLevel();
-        for (int i = 0; i < populationManager.Peasants().Count; i++)
-        {
-            LoadPeasantUI();
-            personUI.SetPerson(populationManager.Peasants()[i]);
-        }
+        if (AdventurerGroup != null)
+            LoadAvailableAdventurerUIs();
+        
+        if (ArtisanGroup != null)
+            LoadAvailableArtisanUIs();
+        
+        if (PeasantGroup != null)
+            LoadAvailablePeasantUIs();
     }
 
     public void ClearPersonUIs()
@@ -92,57 +73,14 @@ public class PersonUIScrollView : MonoBehaviour
         peasantUIs.Clear();
     }
 
-    public void LoadAvailableAdventurerUIs()
-    {
-        populationManager.SortGuildMembersByLevel();
-        if (GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>().IsAvailable)
-        {
-            LoadHeroPersonUI();
-        }
-        for (int i = 0; i < populationManager.Adventurers().Count; i++)
-        {
-            if (populationManager.Adventurers()[i].IsAvailable)
-            {
-                LoadAdventurerUI();
-                personUI.SetPerson(populationManager.Adventurers()[i]);
-            }
-        }
-    }
-
-    public void LoadAvailableArtisanUIs()
-    {
-        populationManager.SortGuildMembersByLevel();
-        for (int i = 0; i < populationManager.Artisans().Count; i++)
-        {
-            if (populationManager.Artisans()[i].IsAvailable)
-            {
-                LoadArtisanUI();
-                personUI.SetPerson(populationManager.Artisans()[i]);
-            }
-        }
-    }
-
-    public void LoadAvailablePeasantUIs()
-    {
-        populationManager.SortGuildMembersByLevel();
-        for (int i = 0; i < populationManager.Peasants().Count; i++)
-        {
-            if (populationManager.Peasants()[i].IsAvailable)
-            {
-                LoadPeasantUI();
-                personUI.SetPerson(populationManager.Peasants()[i]);
-            }
-        }
-    }
-
     public void SetPersonUIButtons(bool showBeginButton, bool showReleaseButton, bool showPromoteButtons)
     {
-        List<PersonUI> personUIs = new List<PersonUI>();
-        personUIs.AddRange(adventurerUIs);
-        personUIs.AddRange(artisanUIs);
-        personUIs.AddRange(peasantUIs);
+        List<PersonUI> personUIList = new List<PersonUI>();
+        personUIList.AddRange(adventurerUIs);
+        personUIList.AddRange(artisanUIs);
+        personUIList.AddRange(peasantUIs);
 
-        foreach (PersonUI person in personUIs)
+        foreach (PersonUI person in personUIList)
         {
             if (showBeginButton && !person.GetComponent<PersonUI>().beginBtn.activeSelf)
                 person.GetComponent<PersonUI>().ShowBeginButton();
@@ -160,6 +98,7 @@ public class PersonUIScrollView : MonoBehaviour
         GuildMember hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>();
         LoadAdventurerUI();
         personUI.SetPerson(hero);
+        adventurerUIs.Add(personUI);
     }
 
     private void LoadAdventurerUI()
@@ -184,5 +123,77 @@ public class PersonUIScrollView : MonoBehaviour
         personUI.gameObject.SetActive(true);
         personUI.transform.SetParent(PeasantGroup.GetComponent<GuildmemberGroup>().ContentPanel.transform);
         peasantUIs.Add(personUI);
+    }
+
+    private void LoadAdventurerUIs()
+    {
+        populationManager.SortGuildMembersByLevel();
+        for (int i = 0; i < populationManager.Adventurers().Count; i++)
+        {
+            if (!populationManager.Adventurers()[i].CompareTag("Hero"))
+            {
+                LoadAdventurerUI();
+                personUI.SetPerson(populationManager.Adventurers()[i]);
+            }
+        }
+    }
+
+    private void LoadArtisanUIs()
+    {
+        populationManager.SortGuildMembersByLevel();
+        for (int i = 0; i < populationManager.Artisans().Count; i++)
+        {
+            LoadArtisanUI();
+            personUI.SetPerson(populationManager.Artisans()[i]);
+        }
+    }
+
+    private void LoadPeasantUIs()
+    {
+        populationManager.SortGuildMembersByLevel();
+        for (int i = 0; i < populationManager.Peasants().Count; i++)
+        {
+            LoadPeasantUI();
+            personUI.SetPerson(populationManager.Peasants()[i]);
+        }
+    }
+
+    private void LoadAvailableAdventurerUIs()
+    {
+        populationManager.SortGuildMembersByLevel();
+        for (int i = 0; i < populationManager.Adventurers().Count; i++)
+        {
+            if (populationManager.Adventurers()[i].IsAvailable)
+            {
+                LoadAdventurerUI();
+                personUI.SetPerson(populationManager.Adventurers()[i]);
+            }
+        }
+    }
+
+    private void LoadAvailableArtisanUIs()
+    {
+        populationManager.SortGuildMembersByLevel();
+        for (int i = 0; i < populationManager.Artisans().Count; i++)
+        {
+            if (populationManager.Artisans()[i].IsAvailable)
+            {
+                LoadArtisanUI();
+                personUI.SetPerson(populationManager.Artisans()[i]);
+            }
+        }
+    }
+
+    private void LoadAvailablePeasantUIs()
+    {
+        populationManager.SortGuildMembersByLevel();
+        for (int i = 0; i < populationManager.Peasants().Count; i++)
+        {
+            if (populationManager.Peasants()[i].IsAvailable)
+            {
+                LoadPeasantUI();
+                personUI.SetPerson(populationManager.Peasants()[i]);
+            }
+        }
     }
 }

@@ -77,7 +77,7 @@ public class BarracksUpgrade : Upgrade
     {
         if (levelManager.CurrentLevel() == "Title") return;
 
-        if (FindObjectOfType<MenuManager>().CurrentMenu.name == "Menu_UpgradeGuildhall")
+        if (FindObjectOfType<MenuManager>().CurrentMenu == FindObjectOfType<Menu_UpgradeGuildhall>())
         {
             CheckForUpgrade();
         }

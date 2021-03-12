@@ -1,17 +1,14 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Menu_SelectTrainee : Menu
 {
     [SerializeField]
-    private PersonUIScrollView personUIScrollView;
+    private PersonUIScrollView scrollView;
 
     public override void Open()
     {
         base.Open();
-        personUIScrollView.ClearPersonUIs();
-        personUIScrollView.LoadAdventurerUIs();
-        personUIScrollView.LoadPeasantUIs();
-        personUIScrollView.SetPersonUIButtons(true, false, false);
+        scrollView.LoadAvailablePersonUIs();
+        scrollView.SetPersonUIButtons(true, false, false);
     }
 }

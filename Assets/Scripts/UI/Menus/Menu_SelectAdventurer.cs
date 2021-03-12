@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Menu_SelectAdventurer : Menu
+﻿public class Menu_SelectAdventurer : Menu
 {
     private PersonUIScrollView scrollView;
 
@@ -16,7 +12,7 @@ public class Menu_SelectAdventurer : Menu
     {
         base.Open();
         scrollView.ClearPersonUIs();
-        scrollView.LoadAvailableAdventurerUIs();
+        scrollView.LoadAvailablePersonUIs();
         scrollView.SetPersonUIButtons(true, false, false);
     }
 }

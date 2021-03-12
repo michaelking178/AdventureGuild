@@ -26,9 +26,9 @@ public class Menu_Quests : Menu
         populationManager = FindObjectOfType<PopulationManager>();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        if (menuManager.CurrentMenu == gameObject)
+        if (menuManager.CurrentMenu == this)
         {
             activeQuests.text = questManager.GetQuestsByStatus(Quest.Status.Active).Count.ToString();
             availableQuests.text = questManager.GetQuestsByStatus(Quest.Status.New).Count.ToString();

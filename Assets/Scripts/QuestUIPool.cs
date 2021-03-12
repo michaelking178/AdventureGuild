@@ -2,14 +2,15 @@
 
 public class QuestUIPool : MonoBehaviour
 {
-    public QuestUI[] QuestUIs = new QuestUI[100];
+    [SerializeField]
+    private QuestUI[] questUIs = new QuestUI[100];
 
     public QuestUI GetNextAvailableQuestUI()
     {
-        for (int i = 0; i < QuestUIs.Length; i++)
+        for (int i = 0; i < questUIs.Length; i++)
         {
-            if (QuestUIs[i].GetQuest() == null)
-                return QuestUIs[i];
+            if (questUIs[i].GetQuest() == null)
+                return questUIs[i];
         }
         return null;
     }
