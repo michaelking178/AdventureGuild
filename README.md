@@ -18,21 +18,20 @@ Adventure Guild places the player in the role of managing a guild of adventurers
 **Design Pillar**: Play at work, little time commitment.<br>
 **Remarkability**: Engaging quests and addictive loop.
 
-Anticipated Launch date: **Holiday 2020**
+Anticipated Launch date: **Spring 2021**
 
 ## Screenshots
 
-<image src="https://imgur.com/3UfjCI5.png" width="250"> <image src="https://imgur.com/Fr8P60a.png" width="250"> <image src="https://imgur.com/PidVn65.png" width="250">
+<image src="https://imgur.com/upAUjmU.png" width="225"> <image src="https://imgur.com/cIC9cfz.png" width="225"> <image src="https://imgur.com/sU82dtj.png" width="225"> <image src="https://imgur.com/FyRZM6b.png" width="225"> <image src="https://imgur.com/DoauLgn.png" width="225"> <image src="https://imgur.com/T07Ouoj.png" width="225"> <image src="https://imgur.com/BhF7Uz0.png" width="225"> <image src="https://imgur.com/SuWYurX.png" width="225"> <image src="https://imgur.com/63L6VyL.png" width="225"> <image src="https://imgur.com/Drn7NQv.png" width="225">
 
 ## Ongoing Development
 
 Feature Development Priorities (To-Do):
 
- - Sort quests by level
- - Add Combat, Espionage and Diplomacy quests
- - Add icons on QuestUI to indicate skill quests and faction quests
+ - Implement rewarded advertising -- receive time-limited bonus experience or resources for watching ads.
+ - Add an Artisan minigame allowing Artisans to gain experience outside of construction jobs.
 
-Additional/Ongoing Tasks:
+Ongoing Tasks:
 
  - Create more quests and incidents
  - Create more adventurer names
