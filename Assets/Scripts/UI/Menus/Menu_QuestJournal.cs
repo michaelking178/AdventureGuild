@@ -41,6 +41,12 @@ public class Menu_QuestJournal : Menu
         }
     }
 
+    public override void Open()
+    {
+        base.Open();
+        UpdateQuestJournal();
+    }
+
     public void SetQuest(Quest _quest)
     {
         quest = _quest;

@@ -114,10 +114,13 @@ public class UpgradeItemFrame : MonoBehaviour
         tintPanel.gameObject.SetActive(true);
     }
 
-    public void SelectUpgrade()
+    public void AssignConstructionJob()
     {
+        if (!constructionManager.UnderConstruction)
+            constructionManager.SetConstructionJob(upgrade);
+
         FindObjectOfType<Menu_Construction>().ConstructionJob = upgrade;
-        menuManager.OpenMenu(FindObjectOfType<Menu_Construction>());
+        FindObjectOfType<Menu_Construction>().Open();
     }
 
     public void DisplayTimer()
@@ -130,12 +133,6 @@ public class UpgradeItemFrame : MonoBehaviour
     {
         timerPanel.SetActive(false);
         timerText.text = "";
-    }
-
-    public void AssignConstructionJob()
-    {
-        if (!constructionManager.UnderConstruction)
-            constructionManager.SetConstructionJob(upgrade);
     }
 
     private IEnumerator DelayedCheckForPurchase()

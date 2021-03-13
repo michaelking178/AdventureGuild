@@ -162,7 +162,19 @@ public class PersonUI : MonoBehaviour
     // This button needs to be dynamic, based on whether it's pressed for a Quest, Training or Construction job. Are delegates the answer?
     public void Begin()
     {
-
+        MenuManager menuManager = FindObjectOfType<MenuManager>();
+        if (menuManager.CurrentMenu == FindObjectOfType<Menu_SelectAdventurer>())
+        {
+            BeginQuest();
+        }
+        else if (menuManager.CurrentMenu == FindObjectOfType < Menu_SelectArtisans>())
+        {
+            AssignArtisan();
+        }
+        else if (menuManager.CurrentMenu == FindObjectOfType < Menu_SelectTrainee>())
+        {
+            BeginTraining();
+        }
     }
 
     public void ShowBeginButton()
@@ -355,14 +367,37 @@ public class PersonUI : MonoBehaviour
     private void ConfirmPromoteAdventurer()
     {
         popupManager.Popup.GetComponentInChildren<Button>().onClick.RemoveListener(ConfirmPromoteAdventurer);
-        FindObjectOfType<MenuManager>().OpenMenu(FindObjectOfType<Menu_Hub>());
         GuildMember.PromoteToAdventurer();
+        FindObjectOfType<Menu_Hub>().Open();
     }
 
     private void ConfirmPromoteArtisan()
     {
         popupManager.Popup.GetComponentInChildren<Button>().onClick.RemoveListener(ConfirmPromoteArtisan);
-        FindObjectOfType<MenuManager>().OpenMenu(FindObjectOfType<Menu_Hub>());
         GuildMember.PromoteToArtisan();
+        FindObjectOfType<Menu_Hub>().Open();
+    }
+
+    private void BeginQuest()
+    {
+        questManager.SetAdventurer(GetComponent<PersonUI>().GuildMember);
+        questManager.StartQuest();
+        Menu_QuestJournal questJournal = FindObjectOfType<Menu_QuestJournal>();
+        questJournal.SetQuest(questManager.CurrentQuest);
+        questJournal.Open();
+    }
+
+    private void BeginTraining()
+    {
+        TrainingManager trainingManager = FindObjectOfType<TrainingManager>();
+        trainingManager.SetGuildMember(GetComponent<PersonUI>().GuildMember);
+        FindObjectOfType<Menu_Training>().Open();
+        trainingManager.OpenInstructions();
+    }
+
+    private void AssignArtisan()
+    {
+        // TODO: Migrate ArtisanUI functionality, or include it as a different component?
+        Debug.Log("PersonUI's AssignArtisan() method has not been defined for Menu_SelectArtisans!");
     }
 }

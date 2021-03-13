@@ -52,7 +52,7 @@ public class Menu_Construction : Menu
 
     private void FixedUpdate()
     {
-        if (menuManager.CurrentMenu == gameObject)
+        if (menuManager.CurrentMenu == this)
         {
             Populate();
         }

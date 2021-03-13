@@ -41,15 +41,11 @@ public class PersonUIScrollView : MonoBehaviour
 
     public void LoadAvailablePersonUIs()
     {
-        Debug.Log("Loading Available PersonUIs...");
-
         populationManager.SortGuildMembersByLevel();
         ClearPersonUIs();
 
         if (AdventurerGroup != null)
             LoadAvailableAdventurerUIs();
-        else
-            Debug.Log("Cannot find Adventurer Group!");
         
         if (ArtisanGroup != null)
             LoadAvailableArtisanUIs();
@@ -93,7 +89,9 @@ public class PersonUIScrollView : MonoBehaviour
                 person.GetComponent<PersonUI>().ShowReleaseButton();
 
             if (showPromoteButtons && !person.GetComponent<PersonUI>().promoteToAdventurerBtn.activeSelf && !person.GetComponent<PersonUI>().promoteToArtisanBtn.activeSelf)
+            {
                 person.GetComponent<PersonUI>().ShowPromoteButtons();
+            }
         }
     }
 
