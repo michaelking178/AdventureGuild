@@ -55,11 +55,21 @@ public class QuestManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        CullQuestArchive();
         if (levelManager.CurrentLevel() == "Title") return;
 
         if (GetQuestsByStatus(Quest.Status.New).Count <= 3)
         {
             PopulateQuestPool(UnityEngine.Random.Range(3,6));
+        }
+    }
+
+    private void CullQuestArchive()
+    {
+        if (questArchive.Count > 50)
+        {
+            SortQuestArchiveByStartTime();
+            questArchive.RemoveRange(50, questArchive.Count - 50);
         }
     }
 

@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class PersonUI : MonoBehaviour
 {
+    #region Data
+
     public GuildMember GuildMember { get; private set; }
 
     [SerializeField]
@@ -83,6 +85,8 @@ public class PersonUI : MonoBehaviour
     private Color defaultArtisanColor = new Color(0.3f, 0.7f, 1f);
     private Color selectedArtisanColor = new Color(0.25f, 0.4f, 0.73f);
 
+    #endregion
+
     private void Start()
     {
         popupManager = FindObjectOfType<PopupManager>();
@@ -153,6 +157,11 @@ public class PersonUI : MonoBehaviour
         LayoutRebuilder.MarkLayoutForRebuild(GetComponent<RectTransform>());
     }
 
+    public void HideExtensionPanel()
+    {
+        extensionPanel.SetActive(false);
+    }
+
     public void Begin()
     {
         MenuManager menuManager = FindObjectOfType<MenuManager>();
@@ -166,21 +175,23 @@ public class PersonUI : MonoBehaviour
 
     public void ShowBeginButton()
     {
-        if (beginBtn.activeSelf)
-            beginBtn.SetActive(false);
-        else
-            beginBtn.SetActive(true);
+        beginBtn.SetActive(true);
+    }
+
+    public void HideBeginButton()
+    {
+        beginBtn.SetActive(false);
     }
 
     public void ShowReleaseButton()
     {
         if (!GuildMember.gameObject.CompareTag("Hero") && GuildMember.IsAvailable)
-        {
-            if (releaseBtn.activeSelf)
-                releaseBtn.SetActive(false);
-            else
-                releaseBtn.SetActive(true);
-        }
+            releaseBtn.SetActive(true);
+    }
+
+    public void HideReleaseButton()
+    {
+        releaseBtn.SetActive(false);
     }
 
     public void ShowPromoteButtons()
@@ -188,20 +199,17 @@ public class PersonUI : MonoBehaviour
         if (GuildMember.Vocation is Peasant && GuildMember.Level >= 5)
         {
             if (FindObjectOfType<PopulationManager>().AdventurersEnabled)
-            {
-                if (promoteToAdventurerBtn.activeSelf)
-                    promoteToAdventurerBtn.SetActive(false);
-                else
-                    promoteToAdventurerBtn.SetActive(true);
-            }
+                promoteToAdventurerBtn.SetActive(true);
+
             if (FindObjectOfType<PopulationManager>().ArtisansEnabled)
-            {
-                if (promoteToArtisanBtn.activeSelf)
-                    promoteToArtisanBtn.SetActive(false);
-                else
-                    promoteToArtisanBtn.SetActive(true);
-            }
+                promoteToArtisanBtn.SetActive(true);
         }
+    }
+
+    public void HidePromoteButtons()
+    {
+        promoteToAdventurerBtn.SetActive(false);
+        promoteToArtisanBtn.SetActive(false);
     }
 
     private void AdjustStatsPanel()

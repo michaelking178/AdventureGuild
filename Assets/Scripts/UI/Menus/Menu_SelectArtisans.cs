@@ -31,7 +31,7 @@ public class Menu_SelectArtisans : Menu
 
     private void FixedUpdate()
     {
-        if (menuManager.CurrentMenu == gameObject)
+        if (menuManager.CurrentMenu == this)
         {
             artisanProficiencyText.text = $"{constructionManager.SelectedArtisansProficiency()} / {upgrade.ArtisanCost}";
             SetTextColor();

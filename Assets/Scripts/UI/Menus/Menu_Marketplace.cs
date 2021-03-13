@@ -48,7 +48,7 @@ public class Menu_Marketplace : Menu
 
     private void FixedUpdate()
     {
-        if (menuManager.CurrentMenu == gameObject)
+        if (menuManager.CurrentMenu == this)
         {
             UpdateMarketplace();
             CalculateTotal();

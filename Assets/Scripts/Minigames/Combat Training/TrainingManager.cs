@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class TrainingManager : MonoBehaviour
 {
+    #region Data
+
     [Header("Scoreboard")]
     [SerializeField]
     private TextMeshProUGUI timeText;
@@ -55,6 +57,8 @@ public class TrainingManager : MonoBehaviour
     private float defaultCountdown = 4.0f;
     private float countdown;
     private bool countingDown = false;
+
+    #endregion
 
     private void Start()
     {

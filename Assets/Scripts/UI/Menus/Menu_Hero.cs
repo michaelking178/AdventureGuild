@@ -42,7 +42,7 @@ public class Menu_Hero : Menu
 
     private void FixedUpdate()
     {
-        if (menuManager.CurrentMenu == gameObject && hero != null)
+        if (menuManager.CurrentMenu == this && hero != null)
         {
             heroVocation.text = string.Format("Level {0} {1}", hero.Level, hero.Vocation.Title());
             heroExperience.text = string.Format("Experience: {0} / {1}", hero.Experience, Levelling.GuildMemberLevel[hero.Level]);

@@ -35,9 +35,12 @@ public class Menu_QuestJournal : Menu
 
     private void FixedUpdate()
     {
-        if (quest != null && incidentCount != quest.Incidents.Count)
+        if (menuManager.CurrentMenu == this)
         {
-            UpdateIncidents();
+            if (quest != null && incidentCount != quest.Incidents.Count)
+            {
+                UpdateIncidents();
+            }
         }
     }
 
@@ -73,7 +76,8 @@ public class Menu_QuestJournal : Menu
         List<GameObject> incidentChildren = incidentContainer.GetChildren();
         foreach (GameObject child in incidentChildren)
         {
-            Destroy(child);
+            if (child != incidentContainer)
+                Destroy(child);
         }
         foreach (Incident incident in quest.Incidents)
         {

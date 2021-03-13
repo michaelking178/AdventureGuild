@@ -1708,8 +1708,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da0bc9b5d6b9ef4fb0866e96fb5e92f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questTimerPrefab: {fileID: 0}
-  questsJson: {fileID: 0}
+  questTimerPrefab: {fileID: 136844273770943149, guid: 78174bc0f60290646a2b4eb87dab091e,
+    type: 3}
+  questsJson: {fileID: 4900000, guid: fec74be7ab3148747ae055e56b6c8af8, type: 3}
   questPool: []
   questArchive: []
 --- !u!1 &1903243724685726067
@@ -1802,7 +1803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 974fe61c5b4aaf34f86d3c432c2a3b0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BoostName: +20% Quest Gold
+  Name: +20% Quest Gold
   Description: Earn more gold for every quest started while this boost is active!
     Stacks up to 6 hours.
   Duration: 7200
@@ -1852,7 +1853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae36cd8afa5129a40aade14857f68e36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BoostName: +20% Quest Iron
+  Name: +20% Quest Iron
   Description: Earn more iron for every quest started while this boost is active!
     Stacks up to 6 hours.
   Duration: 7200
@@ -1902,7 +1903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f439ad28cabbf34489208732033427e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BoostName: +20% Quest Experience
+  Name: +20% Quest Experience
   Description: Gain more experience for every quest started while this boost is active!
     Stacks up to 6 hours.
   Duration: 7200
@@ -1952,7 +1953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 091fafeac058440469fc05fa48d8bec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BoostName: +20% Quest Wood
+  Name: +20% Quest Wood
   Description: Earn more wood for every quest started while this boost is active!
     Stacks up to 6 hours.
   Duration: 7200

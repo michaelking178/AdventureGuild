@@ -19,16 +19,6 @@ public class LevelManager : MonoBehaviour
         {
             SaveSystem.LoadGame();
         }
-        if (CurrentLevel() == "Title")
-        {
-            StartCoroutine(TitleTransition());
-        }
-    }
-
-    private IEnumerator TitleTransition()
-    {
-        yield return new WaitForSeconds(1.5f);
-        LoadLevelDirect("Main");
     }
 
     public void LoadLevel(string scene)

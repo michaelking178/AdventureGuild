@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 
 public class QuestUI : MonoBehaviour
 {
+    #region Data
+
     [SerializeField]
     private TextMeshProUGUI questName;
 
@@ -37,8 +40,6 @@ public class QuestUI : MonoBehaviour
 
     private Quest quest;
     private QuestManager questManager;
-    private MenuManager menuManager;
-    private Menu_QuestJournal questJournal;
     private QuestUIPool questUIPool;
     private Color emptySlotColor = new Color(0,0,0,0.25f);
     private Color combatColor = new Color(1,0,0,1);
@@ -47,12 +48,12 @@ public class QuestUI : MonoBehaviour
     private Color factionColor = new Color(1,1,1,1);
     private bool isTextGrey = false;
 
+    #endregion
+
     private void Start()
     {
         questManager = FindObjectOfType<QuestManager>();
-        menuManager = FindObjectOfType<MenuManager>();
         questUIPool = FindObjectOfType<QuestUIPool>();
-        questJournal = FindObjectOfType<Menu_QuestJournal>();
     }
 
     private void FixedUpdate()
@@ -77,45 +78,8 @@ public class QuestUI : MonoBehaviour
         SetFactionGem();
         SetRelicGem();
         if (extensionPanel != null)
-            SetExtensionPanelContent();
-
-        if (quest.State == Quest.Status.Completed || quest.State == Quest.Status.Failed)
         {
-            foreach (Image image in GetComponentsInChildren<Image>())
-            {
-                image.color = new Color(0.5f, 0.5f, 0.5f, 1);
-            }
-
-            foreach (TextMeshProUGUI text in GetComponentsInChildren<TextMeshProUGUI>())
-            {
-                if (!isTextGrey)
-                {
-                    float r = text.color.r * 0.5f;
-                    float g = text.color.g * 0.5f;
-                    float b = text.color.b * 0.5f;
-                    text.color = new Color(r, g, b, 1);
-                }
-            }
-            isTextGrey = true;
-        }
-        else
-        {
-            foreach (Image image in GetComponentsInChildren<Image>())
-            {
-                image.color = Color.white;
-            }
-
-            foreach (TextMeshProUGUI text in GetComponentsInChildren<TextMeshProUGUI>())
-            {
-                if (isTextGrey)
-                {
-                    float r = text.color.r * 2f;
-                    float g = text.color.g * 2f;
-                    float b = text.color.b * 2f;
-                    text.color = new Color(r, g, b, 1);
-                }
-            }
-            isTextGrey = false;
+            StartCoroutine(PrepareExtensionPanel());
         }
     }
 
@@ -161,10 +125,18 @@ public class QuestUI : MonoBehaviour
             ToggleExtensionPanel();
         else
         {
-            questJournal.SetQuest(quest);
-            questJournal.UpdateQuestJournal();
+            FindObjectOfType<Menu_QuestJournal>().SetQuest(quest);
             FindObjectOfType<Menu_QuestJournal>().Open();
         }
+    }
+
+    private IEnumerator PrepareExtensionPanel()
+    {
+        OpenExtensionPanel();
+        SetExtensionPanelContent();
+        SetExtensionPanelColors();
+        yield return new WaitForSeconds(0.25f);
+        CloseExtensionPanel();
     }
 
     private void SetQuestUIState()
@@ -250,6 +222,48 @@ public class QuestUI : MonoBehaviour
             {
                 textSizer.Refresh();
             }
+        }
+    }
+
+    private void SetExtensionPanelColors()
+    {
+        if (quest.State == Quest.Status.Completed || quest.State == Quest.Status.Failed)
+        {
+            foreach (Image image in GetComponentsInChildren<Image>())
+            {
+                image.color = new Color(0.5f, 0.5f, 0.5f, 1);
+            }
+
+            foreach (TextMeshProUGUI text in GetComponentsInChildren<TextMeshProUGUI>())
+            {
+                if (!isTextGrey)
+                {
+                    float r = text.color.r * 0.5f;
+                    float g = text.color.g * 0.5f;
+                    float b = text.color.b * 0.5f;
+                    text.color = new Color(r, g, b, 1);
+                }
+            }
+            isTextGrey = true;
+        }
+        else
+        {
+            foreach (Image image in GetComponentsInChildren<Image>())
+            {
+                image.color = Color.white;
+            }
+
+            foreach (TextMeshProUGUI text in GetComponentsInChildren<TextMeshProUGUI>())
+            {
+                if (isTextGrey)
+                {
+                    float r = text.color.r * 2f;
+                    float g = text.color.g * 2f;
+                    float b = text.color.b * 2f;
+                    text.color = new Color(r, g, b, 1);
+                }
+            }
+            isTextGrey = false;
         }
     }
 }

@@ -57,6 +57,15 @@ public class GuildmemberGroup : MonoBehaviour
     {
         if (isExpanded)
         {
+            foreach (GameObject child in ContentPanel.GetChildren())
+            {
+                if (child.GetComponent<PersonUI>() != null)
+                {
+                    child.GetComponent<PersonUI>().HideExtensionPanel();
+                    Canvas.ForceUpdateCanvases();
+                    LayoutRebuilder.MarkLayoutForRebuild(GetComponent<RectTransform>());
+                }
+            }
             isExpanded = false;
             anim.SetTrigger("Collapse");
             ContentPanel.SetActive(false);

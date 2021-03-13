@@ -35,13 +35,19 @@ public class Menu_SelectTrainee : Menu
 
     public void CompleteTraining()
     {
+        StartCoroutine(CompleteTrainingCR());
+    }
+
+    private IEnumerator CompleteTrainingCR()
+    {
         FindObjectOfType<TrainingManager>().ApplyResults();
+        yield return new WaitForSeconds(0.5f);
         Open();
     }
 
     private IEnumerator ClearPersonUIs()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         scrollView.ClearPersonUIs();
         foreach (GuildmemberGroup gmGroup in GetComponentsInChildren<GuildmemberGroup>())
         {

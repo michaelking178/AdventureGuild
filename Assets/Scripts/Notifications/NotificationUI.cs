@@ -12,11 +12,13 @@ public class NotificationUI : MonoBehaviour
     private Button closeButton;
 
     public Notification Notification { get; set; }
+    public float CloseTimer = 8.0f;
+
     private NotificationManager notificationManager;
     private SoundManager soundManager;
     private AudioSource audioSource;
     private AudioSource sMAudioSource;
-    private float closeTimer = 8.0f;
+    
 
     private void Start()
     {
@@ -30,9 +32,9 @@ public class NotificationUI : MonoBehaviour
     private void FixedUpdate()
     {
         audioSource.volume = sMAudioSource.volume;
-        if (closeTimer > 0)
+        if (CloseTimer > 0)
         {
-            closeTimer -= Time.fixedDeltaTime;
+            CloseTimer -= Time.fixedDeltaTime;
         }
         else
         {

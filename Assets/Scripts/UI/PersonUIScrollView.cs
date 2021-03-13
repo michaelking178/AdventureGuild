@@ -82,14 +82,20 @@ public class PersonUIScrollView : MonoBehaviour
 
         foreach (PersonUI person in personUIList)
         {
-            if (showBeginButton && !person.GetComponent<PersonUI>().beginBtn.activeSelf)
+            if (showBeginButton)
                 person.GetComponent<PersonUI>().ShowBeginButton();
+            else
+                person.GetComponent<PersonUI>().HideBeginButton();
 
-            if (showReleaseButton && !person.GetComponent<PersonUI>().releaseBtn.activeSelf)
+            if (showReleaseButton)
                 person.GetComponent<PersonUI>().ShowReleaseButton();
+            else
+                person.GetComponent<PersonUI>().HideReleaseButton();
 
-            if (showPromoteButtons && !person.GetComponent<PersonUI>().promoteToAdventurerBtn.activeSelf && !person.GetComponent<PersonUI>().promoteToArtisanBtn.activeSelf)
+            if (showPromoteButtons)
                 person.GetComponent<PersonUI>().ShowPromoteButtons();
+            else
+                person.GetComponent<PersonUI>().HidePromoteButtons();
         }
     }
 

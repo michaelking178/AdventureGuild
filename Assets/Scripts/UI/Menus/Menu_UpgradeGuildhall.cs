@@ -20,7 +20,7 @@ public class Menu_UpgradeGuildhall : Menu
 
     private void FixedUpdate()
     {
-        if (menuManager.CurrentMenu == gameObject)
+        if (menuManager.CurrentMenu == this)
         {
             CheckForPurchases();
         }

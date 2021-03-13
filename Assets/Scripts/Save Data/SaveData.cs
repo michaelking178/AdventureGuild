@@ -250,9 +250,9 @@ public class SaveData
 
     private void GuildhallCompat(Guildhall guildhall)
     {
-        guildhall.MaxGold = 2500;
-        guildhall.MaxIron = 1000;
-        guildhall.MaxWood = 1000;
+        guildhall.MaxGold = 25000;
+        guildhall.MaxIron = 10000;
+        guildhall.MaxWood = 10000;
         guildhall.MaxGoldIncome = 250;
         guildhall.MaxIronIncome = 100;
         guildhall.MaxWoodIncome = 100;
