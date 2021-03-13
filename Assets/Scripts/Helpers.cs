@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public static class Helpers
@@ -21,7 +19,6 @@ public static class Helpers
         }
         return children;
     }
-
 
     /// <summary>
     /// Produces an easy-to-use string representing the provided quest's rewards (experience not included)

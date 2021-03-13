@@ -9,7 +9,7 @@ public class BoostManager : MonoBehaviour
 
     public Boost GetBoost(string _name)
     {
-        foreach(GameObject child in Helpers.GetChildren(gameObject))
+        foreach(GameObject child in gameObject.GetChildren())
         {
             if (child.GetComponent<Boost>().Name == _name)
             {

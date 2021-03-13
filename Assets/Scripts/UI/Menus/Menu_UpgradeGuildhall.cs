@@ -36,7 +36,7 @@ public class Menu_UpgradeGuildhall : Menu
 
     private void PopulateUpgrades()
     {
-        foreach (GameObject child in Helpers.GetChildren(FindObjectOfType<ConstructionManager>().gameObject))
+        foreach (GameObject child in FindObjectOfType<ConstructionManager>().gameObject.GetChildren())
         {
             GameObject upgrade = Instantiate(upgradePrefab, contentPanel.transform);
             upgrade.GetComponent<UpgradeItemFrame>().UpgradeName = child.name;

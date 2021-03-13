@@ -46,7 +46,7 @@ public class PopupManager : MonoBehaviour
 
     private void ClearContent()
     {
-        List<GameObject> children = Helpers.GetChildren(ContentPanel);
+        List<GameObject> children = ContentPanel.GetChildren();
         foreach(GameObject obj in children)
         {
             Destroy(obj);

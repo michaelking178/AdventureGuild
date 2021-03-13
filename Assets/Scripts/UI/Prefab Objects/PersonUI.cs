@@ -78,6 +78,10 @@ public class PersonUI : MonoBehaviour
 
     private PopupManager popupManager;
     private QuestManager questManager;
+    private bool isSelected;
+    private Color defaultAdventurerColor = new Color(0.6f, 1, 0.7f);
+    private Color defaultArtisanColor = new Color(0.3f, 0.7f, 1f);
+    private Color selectedArtisanColor = new Color(0.25f, 0.4f, 0.73f);
 
     private void Start()
     {
@@ -100,29 +104,20 @@ public class PersonUI : MonoBehaviour
                 expSlider.value = expSlider.maxValue;
             }
             else
-            {
                 exp.text = $"{GuildMember.Experience} / {Levelling.GuildMemberLevel[GuildMember.Level]}";
-            }
+
             personVocation.text = $"{GuildMember.Vocation.Title()} - Level {GuildMember.Level}";
             health.text = $"Health: {GuildMember.Hitpoints} / {GuildMember.MaxHitpoints}";
 
             if (GuildMember.IsAvailable && !GuildMember.IsIncapacitated)
-            {
                 availability.text = "Available";
-            }
             else if (GuildMember.IsAvailable && GuildMember.IsIncapacitated)
-            {
                 availability.text = "Incapacitated";
-            }
             else
-            {
                 availability.text = "Unavailable";
-            }
 
             if (extensionPanel.activeInHierarchy)
-            {
                 AdjustStatsPanel();
-            }
         }
     }
 
@@ -132,10 +127,11 @@ public class PersonUI : MonoBehaviour
         SetColor();
     }
 
-    public void ClearPerson()
+    public void ClearPersonUI()
     {
         GuildMember = null;
         transform.SetParent(FindObjectOfType<PersonUIPool>().transform);
+        beginBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Begin";
         if (extensionPanel.activeSelf == true)
             ShowExtensionPanel();
 
@@ -145,9 +141,7 @@ public class PersonUI : MonoBehaviour
     public void ShowExtensionPanel()
     {
         if (extensionPanel.activeSelf)
-        {
             extensionPanel.SetActive(false);
-        }
         else
         {
             extensionPanel.SetActive(true);
@@ -159,34 +153,23 @@ public class PersonUI : MonoBehaviour
         LayoutRebuilder.MarkLayoutForRebuild(GetComponent<RectTransform>());
     }
 
-    // This button needs to be dynamic, based on whether it's pressed for a Quest, Training or Construction job. Are delegates the answer?
     public void Begin()
     {
         MenuManager menuManager = FindObjectOfType<MenuManager>();
         if (menuManager.CurrentMenu == FindObjectOfType<Menu_SelectAdventurer>())
-        {
             BeginQuest();
-        }
-        else if (menuManager.CurrentMenu == FindObjectOfType < Menu_SelectArtisans>())
-        {
-            AssignArtisan();
-        }
-        else if (menuManager.CurrentMenu == FindObjectOfType < Menu_SelectTrainee>())
-        {
+        else if (menuManager.CurrentMenu == FindObjectOfType <Menu_SelectArtisans>())
+            SelectArtisan();
+        else if (menuManager.CurrentMenu == FindObjectOfType <Menu_SelectTrainee>())
             BeginTraining();
-        }
     }
 
     public void ShowBeginButton()
     {
         if (beginBtn.activeSelf)
-        {
             beginBtn.SetActive(false);
-        }
         else
-        {
             beginBtn.SetActive(true);
-        }
     }
 
     public void ShowReleaseButton()
@@ -194,13 +177,9 @@ public class PersonUI : MonoBehaviour
         if (!GuildMember.gameObject.CompareTag("Hero") && GuildMember.IsAvailable)
         {
             if (releaseBtn.activeSelf)
-            {
                 releaseBtn.SetActive(false);
-            }
             else
-            {
                 releaseBtn.SetActive(true);
-            }
         }
     }
 
@@ -211,24 +190,16 @@ public class PersonUI : MonoBehaviour
             if (FindObjectOfType<PopulationManager>().AdventurersEnabled)
             {
                 if (promoteToAdventurerBtn.activeSelf)
-                {
                     promoteToAdventurerBtn.SetActive(false);
-                }
                 else
-                {
                     promoteToAdventurerBtn.SetActive(true);
-                }
             }
             if (FindObjectOfType<PopulationManager>().ArtisansEnabled)
             {
                 if (promoteToArtisanBtn.activeSelf)
-                {
                     promoteToArtisanBtn.SetActive(false);
-                }
                 else
-                {
                     promoteToArtisanBtn.SetActive(true);
-                }
             }
         }
     }
@@ -316,12 +287,13 @@ public class PersonUI : MonoBehaviour
 
     public void SetColor()
     {
-        foreach(GameObject obj in Helpers.GetChildren(gameObject))
+        foreach(GameObject obj in gameObject.GetChildren())
         {
             if (obj.name == "PersonUIPanel")
             {
-                if (GuildMember.Vocation is Adventurer) obj.GetComponent<Image>().color = new Color(0.6f, 1, 0.7f);
-                else if (GuildMember.Vocation is Artisan) obj.GetComponent<Image>().color = new Color(0.3f, 0.7f, 1f);
+                if (isSelected) obj.GetComponent<Image>().color = selectedArtisanColor;
+                else if (GuildMember.Vocation is Artisan) obj.GetComponent<Image>().color = defaultArtisanColor;
+                else if (GuildMember.Vocation is Adventurer) obj.GetComponent<Image>().color = defaultAdventurerColor;
                 else obj.GetComponent<Image>().color = new Color(1, 1, 1);
             }
         }
@@ -350,8 +322,11 @@ public class PersonUI : MonoBehaviour
         string description = $"Are you sure you wish to promote {GuildMember.person.name} to {_vocation}?";
         popupManager.CreateDefaultContent(description);
         popupManager.SetDoubleButton("Promote", "Cancel");
-        if (_vocation == "Adventurer") popupManager.Popup.GetComponentInChildren<Button>().onClick.AddListener(ConfirmPromoteAdventurer);
-        else popupManager.Popup.GetComponentInChildren<Button>().onClick.AddListener(ConfirmPromoteArtisan);
+
+        if (_vocation == "Adventurer")
+            popupManager.Popup.GetComponentInChildren<Button>().onClick.AddListener(ConfirmPromoteAdventurer);
+        else
+            popupManager.Popup.GetComponentInChildren<Button>().onClick.AddListener(ConfirmPromoteArtisan);
 
         popupManager.Populate("Promote", GuildMember.Avatar);
         popupManager.CallPopup();
@@ -395,9 +370,21 @@ public class PersonUI : MonoBehaviour
         trainingManager.OpenInstructions();
     }
 
-    private void AssignArtisan()
+    private void SelectArtisan()
     {
-        // TODO: Migrate ArtisanUI functionality, or include it as a different component?
-        Debug.Log("PersonUI's AssignArtisan() method has not been defined for Menu_SelectArtisans!");
+        if (!isSelected)
+        {
+            isSelected = true;
+            FindObjectOfType<ConstructionManager>().AddArtisan(GuildMember);
+            beginBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Deselect Artisan";
+        }
+        else
+        {
+            isSelected = false;
+            FindObjectOfType<ConstructionManager>().RemoveArtisan(GuildMember);
+            beginBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Select Artisan";
+        }
+        SetColor();
+        extensionPanel.SetActive(false);
     }
 }

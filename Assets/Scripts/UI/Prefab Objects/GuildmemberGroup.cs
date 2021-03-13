@@ -43,7 +43,7 @@ public class GuildmemberGroup : MonoBehaviour
         }
     }
 
-    private void Expand()
+    public void Expand()
     {
         if (!isExpanded)
         {
@@ -53,7 +53,7 @@ public class GuildmemberGroup : MonoBehaviour
         }
     }
 
-    private void Collapse()
+    public void Collapse()
     {
         if (isExpanded)
         {

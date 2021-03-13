@@ -10,7 +10,7 @@ public class Singleton : MonoBehaviour
         {
             instance = gameObject;
             DontDestroyOnLoad(instance);
-            foreach(GameObject child in Helpers.GetChildren(gameObject))
+            foreach(GameObject child in gameObject.GetChildren())
             {
                 child.SetActive(true);
             }

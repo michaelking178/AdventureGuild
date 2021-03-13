@@ -42,7 +42,7 @@ public static class SaveSystem
         }
 
         List<QuestTimerData> questTimerDatas = new List<QuestTimerData>();
-        foreach (GameObject questTimerObj in Helpers.GetChildren(Object.FindObjectOfType<QuestManager>().gameObject))
+        foreach (GameObject questTimerObj in Object.FindObjectOfType<QuestManager>().gameObject.GetChildren())
         {
             QuestTimer questTimer = questTimerObj.GetComponent<QuestTimer>();
             if (questTimer != null)

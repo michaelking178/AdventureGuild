@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Menu_ManagePeople : Menu
@@ -24,11 +25,25 @@ public class Menu_ManagePeople : Menu
         scrollView.LoadPersonUIs();
         scrollView.SetPersonUIButtons(false, true, true);
         scrollbar.value = 1;
+        foreach(GuildmemberGroup gmGroup in GetComponentsInChildren<GuildmemberGroup>())
+        {
+            gmGroup.Expand();
+        }
     }
 
     public override void Close()
     {
         base.Close();
+        StartCoroutine(ClearPersonUIs());
+    }
+
+    private IEnumerator ClearPersonUIs()
+    {
+        yield return new WaitForSeconds(1);
         scrollView.ClearPersonUIs();
+        foreach (GuildmemberGroup gmGroup in GetComponentsInChildren<GuildmemberGroup>())
+        {
+            gmGroup.Collapse();
+        }
     }
 }

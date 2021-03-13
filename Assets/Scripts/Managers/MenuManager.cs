@@ -15,7 +15,7 @@ public class MenuManager : MonoBehaviour
     {
         if (SaveSystem.SaveFileExists() && FindObjectOfType<LevelManager>().CurrentLevel() == "Main")
         {
-            OpenMenu(FindObjectOfType<Menu_Hub>());
+            FindObjectOfType<Menu_Hub>().Open();
             return;
         }
         if (startingMenu == null)

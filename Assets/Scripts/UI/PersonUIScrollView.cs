@@ -58,15 +58,15 @@ public class PersonUIScrollView : MonoBehaviour
     {
         foreach(PersonUI personUI in adventurerUIs)
         {
-            personUI.ClearPerson();
+            personUI.ClearPersonUI();
         }
         foreach (PersonUI personUI in artisanUIs)
         {
-            personUI.ClearPerson();
+            personUI.ClearPersonUI();
         }
         foreach (PersonUI personUI in peasantUIs)
         {
-            personUI.ClearPerson();
+            personUI.ClearPersonUI();
         }
         adventurerUIs.Clear();
         artisanUIs.Clear();
@@ -89,9 +89,7 @@ public class PersonUIScrollView : MonoBehaviour
                 person.GetComponent<PersonUI>().ShowReleaseButton();
 
             if (showPromoteButtons && !person.GetComponent<PersonUI>().promoteToAdventurerBtn.activeSelf && !person.GetComponent<PersonUI>().promoteToArtisanBtn.activeSelf)
-            {
                 person.GetComponent<PersonUI>().ShowPromoteButtons();
-            }
         }
     }
 
@@ -100,7 +98,6 @@ public class PersonUIScrollView : MonoBehaviour
         GuildMember hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>();
         LoadAdventurerUI();
         personUI.SetPerson(hero);
-        adventurerUIs.Add(personUI);
     }
 
     private void LoadAdventurerUI()

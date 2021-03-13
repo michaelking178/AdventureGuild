@@ -58,8 +58,6 @@ public class SaveData
         LoadQuestArchive();
         LoadQuestTimers();
         LoadConstructionManager();
-
-        Debug.Log("Game loaded successfully!");
     }
 
     private void LoadSettings()

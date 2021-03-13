@@ -82,7 +82,9 @@ public class QuestUI : MonoBehaviour
         if (quest.State == Quest.Status.Completed || quest.State == Quest.Status.Failed)
         {
             foreach (Image image in GetComponentsInChildren<Image>())
+            {
                 image.color = new Color(0.5f, 0.5f, 0.5f, 1);
+            }
 
             foreach (TextMeshProUGUI text in GetComponentsInChildren<TextMeshProUGUI>())
             {
@@ -99,7 +101,9 @@ public class QuestUI : MonoBehaviour
         else
         {
             foreach (Image image in GetComponentsInChildren<Image>())
+            {
                 image.color = Color.white;
+            }
 
             foreach (TextMeshProUGUI text in GetComponentsInChildren<TextMeshProUGUI>())
             {
@@ -159,7 +163,7 @@ public class QuestUI : MonoBehaviour
         {
             questJournal.SetQuest(quest);
             questJournal.UpdateQuestJournal();
-            menuManager.OpenMenu(FindObjectOfType<Menu_QuestJournal>());
+            FindObjectOfType<Menu_QuestJournal>().Open();
         }
     }
 
@@ -171,7 +175,7 @@ public class QuestUI : MonoBehaviour
             questTime.text = Helpers.FormatTimer(quest.time);
         else if (quest.State == Quest.Status.Active)
         {
-            foreach (GameObject child in Helpers.GetChildren(GameObject.Find("Quest Manager")))
+            foreach (GameObject child in FindObjectOfType<QuestManager>().gameObject.GetChildren())
             {
                 if (child.GetComponent<QuestTimer>().GetQuest() == quest)
                 {

@@ -4,9 +4,14 @@ public class Menu : MonoBehaviour
 {
     protected MenuManager menuManager;
 
-    protected virtual void Start()
+    private void Awake()
     {
         menuManager = FindObjectOfType<MenuManager>();
+    }
+
+    protected virtual void Start()
+    {
+        
     }
 
     // Issues all commands necessary for the menu to load successfully. This intended to clean up the OnClick() button events

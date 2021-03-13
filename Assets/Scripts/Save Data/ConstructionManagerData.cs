@@ -25,7 +25,6 @@ public class ConstructionManagerData
         foreach (GuildMember artisan in constructionManager.Artisans)
         {
             ArtisanIDs.Add(artisan.Id);
-            UnityEngine.Debug.Log($"Artisan IDs: {ArtisanIDs.Count}");
         }
     }
 }

@@ -104,7 +104,7 @@ public class ConstructionManager : MonoBehaviour
 
     public Upgrade GetUpgrade(string upgradeName)
     {
-        foreach(GameObject upgradeObj in Helpers.GetChildren(gameObject))
+        foreach(GameObject upgradeObj in gameObject.GetChildren())
         {
             if (upgradeObj.GetComponent<Upgrade>().name == upgradeName)
             {

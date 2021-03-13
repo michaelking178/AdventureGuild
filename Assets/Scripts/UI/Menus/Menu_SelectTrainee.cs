@@ -1,20 +1,51 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class Menu_SelectTrainee : Menu
 {
     [SerializeField]
+    private Scrollbar scrollbar;
+
     private PersonUIScrollView scrollView;
+
+    protected override void Start()
+    {
+        base.Start();
+        scrollView = GetComponentInChildren<PersonUIScrollView>();
+    }
 
     public override void Open()
     {
         base.Open();
         scrollView.LoadAvailablePersonUIs();
         scrollView.SetPersonUIButtons(true, false, false);
+        scrollbar.value = 1;
+        foreach (GuildmemberGroup gmGroup in GetComponentsInChildren<GuildmemberGroup>())
+        {
+            gmGroup.Expand();
+        }
+    }
+
+    public override void Close()
+    {
+        base.Close();
+        StartCoroutine(ClearPersonUIs());
     }
 
     public void CompleteTraining()
     {
         FindObjectOfType<TrainingManager>().ApplyResults();
         Open();
+    }
+
+    private IEnumerator ClearPersonUIs()
+    {
+        yield return new WaitForSeconds(1);
+        scrollView.ClearPersonUIs();
+        foreach (GuildmemberGroup gmGroup in GetComponentsInChildren<GuildmemberGroup>())
+        {
+            gmGroup.Collapse();
+        }
     }
 }

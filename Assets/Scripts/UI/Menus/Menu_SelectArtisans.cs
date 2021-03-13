@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,8 +14,9 @@ public class Menu_SelectArtisans : Menu
     private Button beginConstruction;
 
     [SerializeField]
-    PersonUIScrollView scrollView;
+    private Scrollbar scrollbar;
 
+    private PersonUIScrollView scrollView;
     private ConstructionManager constructionManager;
     private Upgrade upgrade;
 
@@ -24,13 +26,7 @@ public class Menu_SelectArtisans : Menu
     {
         base.Start();
         constructionManager = FindObjectOfType<ConstructionManager>();
-    }
-
-    public override void Open()
-    {
-        base.Open();
-        scrollView.LoadAvailablePersonUIs();
-        scrollView.SetPersonUIButtons(true, false, false);
+        scrollView = GetComponentInChildren<PersonUIScrollView>();
     }
 
     private void FixedUpdate()
@@ -53,6 +49,24 @@ public class Menu_SelectArtisans : Menu
         }    
     }
 
+    public override void Open()
+    {
+        base.Open();
+        scrollView.LoadAvailablePersonUIs();
+        scrollView.SetPersonUIButtons(true, false, false);
+        scrollbar.value = 1;
+        foreach (GuildmemberGroup gmGroup in GetComponentsInChildren<GuildmemberGroup>())
+        {
+            gmGroup.Expand();
+        }
+    }
+
+    public override void Close()
+    {
+        base.Close();
+        StartCoroutine(ClearPersonUIs());
+    }
+
     public void SetUpgrade(Upgrade _upgrade)
     {
         upgrade = _upgrade;
@@ -67,12 +81,18 @@ public class Menu_SelectArtisans : Menu
     private void SetTextColor()
     {
         if (constructionManager.SelectedArtisansProficiency() < upgrade.ArtisanCost)
-        {
             artisanProficiencyText.color = Color.red;
-        }
         else
-        {
             artisanProficiencyText.color = Color.green;
+    }
+
+    private IEnumerator ClearPersonUIs()
+    {
+        yield return new WaitForSeconds(1);
+        scrollView.ClearPersonUIs();
+        foreach (GuildmemberGroup gmGroup in GetComponentsInChildren<GuildmemberGroup>())
+        {
+            gmGroup.Collapse();
         }
     }
 }
