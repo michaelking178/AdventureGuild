@@ -10,11 +10,11 @@ public class SkillQuestUpgrade : Upgrade
         base.Start();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (levelManager.CurrentLevel() == "Title") return;
 
-        if (FindObjectOfType<MenuManager>().CurrentMenu.name == "Menu_UpgradeGuildhall")
+        if (FindObjectOfType<MenuManager>() != null && FindObjectOfType<MenuManager>().CurrentMenu == FindObjectOfType<Menu_UpgradeGuildhall>())
         {
             CheckForUpgrade();
         }

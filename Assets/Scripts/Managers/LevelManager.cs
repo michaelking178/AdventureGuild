@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     private string[] compatibleVersions = { 
-        "0.0.8.6"
+        "0.1.0.0"
     };
 
     private void Awake()
