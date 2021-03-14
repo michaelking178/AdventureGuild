@@ -46,9 +46,8 @@ public class SaveData
     public void Load()
     {
         if (settingsData != null)
-        {
             LoadSettings();
-        }
+
         LoadHero();
         LoadGuildhall();
         LoadPopulationManager();
@@ -104,9 +103,7 @@ public class SaveData
         guildhall.MaxWoodIncome = guildhallData.maxWoodIncome;
 
         if (guildhall.MaxGold == 0)
-        {
             GuildhallCompat(guildhall);
-        }
     }
 
     private void LoadPopulationManager()
@@ -118,13 +115,9 @@ public class SaveData
         populationManager.ArtisansEnabled = populationManagerData.artisansEnabled;
 
         if (populationManagerData.recruitStartTime != null)
-        {
             populationManager.RecruitStartTime = populationManagerData.recruitStartTime;
-        }
         else
-        {
             populationManager.RecruitStartTime = DateTime.MinValue;
-        }
     }
 
     private void LoadQuestManager()
@@ -179,37 +172,26 @@ public class SaveData
     {
         ConstructionManager constructionManager = GameObject.FindObjectOfType<ConstructionManager>();
         if (constructionManagerData == null)
-        {
             Debug.Log("SAVEDATA.CS: No ConstructionManagerData found!");
-        }
         else
         {
             if (!constructionManagerData.UnderConstruction)
-            {
                 constructionManager.ConstructionJob = null;
-            }
             else
             {
                 Upgrade[] upgrades = GameObject.FindObjectsOfType<Upgrade>();
                 foreach (Upgrade upgrade in upgrades)
                 {
                     if (upgrade.name == constructionManagerData.ConstructionJobName)
-                    {
                         constructionManager.ConstructionJob = upgrade;
-                    }
                 }
                 foreach (int id in constructionManagerData.ArtisanIDs)
                 {
                     GuildMember artisan = GameObject.FindObjectOfType<PopulationManager>().FindGuildMemberById(id);
-                    Debug.Log($"Artisan ID: {artisan.Id}");
                     if (artisan == null)
-                    {
                         Debug.Log($"SAVEDATA.CS: Cannot find Artisan with ID #{id}");
-                    }
                     else
-                    {
                         constructionManager.Artisans.Add(artisan);
-                    }
                 }
                 constructionManager.StartTime = constructionManagerData.StartTime;
             }
@@ -236,10 +218,10 @@ public class SaveData
         questToLoad.nextQuestID = _questData.nextQuestID;
         questToLoad.questInstanceId = _questData.questInstanceId;
         questToLoad.Reward = _questData.Reward;
+
         if (_questData.guildMemberId != 0)
-        {
             questToLoad.GuildMember = GameObject.FindObjectOfType<PopulationManager>().FindGuildMemberById(_questData.guildMemberId);
-        }
+
         questToLoad.State = _questData.State;
         questToLoad.Incidents = _questData.Incidents;
         questToLoad.startTime = _questData.startTime;

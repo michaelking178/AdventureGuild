@@ -1246,6 +1246,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1552165662791084519, guid: b2f96042f55d1414a8b22fad0671dfe7,
+        type: 3}
+      propertyPath: m_Name
+      value: UnityAdvertisement
+      objectReference: {fileID: 0}
     - target: {fileID: 1903243723826136778, guid: b2f96042f55d1414a8b22fad0671dfe7,
         type: 3}
       propertyPath: m_RootOrder

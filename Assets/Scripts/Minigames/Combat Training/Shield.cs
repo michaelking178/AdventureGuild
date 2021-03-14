@@ -46,10 +46,9 @@ public class Shield : MonoBehaviour
                 repositionDelay = defaultRepositionDelay * 0.5f;
             else
                 repositionDelay = defaultRepositionDelay;
+
             if (currentTime < repositionDelay)
-            {
                 currentTime = Time.time - startTime;
-            }
             else
             {
                 ChangePosition();
@@ -106,9 +105,7 @@ public class Shield : MonoBehaviour
         spriteRenderer.color = GetRandomColor();
         repositionDelay *= 0.98f;
         if (repositionDelay < 0.6f)
-        {
             repositionDelay = 0.6f;
-        }
     }
     
     private IEnumerator StrikeShield(Vector2 clickPos)
@@ -125,9 +122,7 @@ public class Shield : MonoBehaviour
                 else StrikeRedShield();
             }
             else
-            {
                 FindObjectOfType<TrainingSword>().WooshSound();
-            }
             striking = false;
         }
     }
