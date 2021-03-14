@@ -78,7 +78,6 @@ public class PersonUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI income;
 
-    private PopupManager popupManager;
     private QuestManager questManager;
     private bool isSelected;
     private Color defaultAdventurerColor = new Color(0.6f, 1, 0.7f);
@@ -89,7 +88,6 @@ public class PersonUI : MonoBehaviour
 
     private void Start()
     {
-        popupManager = FindObjectOfType<PopupManager>();
         questManager = FindObjectOfType<QuestManager>();
         ShowExtensionPanel();
         ShowExtensionPanel();
@@ -134,6 +132,7 @@ public class PersonUI : MonoBehaviour
     public void ClearPersonUI()
     {
         GuildMember = null;
+        isSelected = false;
         SetColor();
         transform.SetParent(FindObjectOfType<PersonUIPool>().transform);
         beginBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Begin";
@@ -300,9 +299,10 @@ public class PersonUI : MonoBehaviour
         {
             if (obj.name == "PersonUIPanel")
             {
-                if (isSelected) obj.GetComponent<Image>().color = selectedArtisanColor;
-                else if (GuildMember != null && GuildMember.Vocation is Artisan) obj.GetComponent<Image>().color = defaultArtisanColor;
-                else if (GuildMember != null && GuildMember.Vocation is Adventurer) obj.GetComponent<Image>().color = defaultAdventurerColor;
+                if (GuildMember == null) obj.GetComponent<Image>().color = new Color(1, 1, 1);
+                else if (isSelected) obj.GetComponent<Image>().color = selectedArtisanColor;
+                else if (GuildMember.Vocation is Artisan) obj.GetComponent<Image>().color = defaultArtisanColor;
+                else if (GuildMember.Vocation is Adventurer) obj.GetComponent<Image>().color = defaultAdventurerColor;
                 else obj.GetComponent<Image>().color = new Color(1, 1, 1);
             }
         }
@@ -317,6 +317,7 @@ public class PersonUI : MonoBehaviour
 
     public void CallReleasePopup()
     {
+        PopupManager popupManager = FindObjectOfType<PopupManager>();
         string description = $"Are you sure you wish to release {GuildMember.person.name} from the Adventure Guild? This cannot be undone.";
         popupManager.CreateDefaultContent(description);
         popupManager.SetDoubleButton("Release", "Cancel");
@@ -328,6 +329,7 @@ public class PersonUI : MonoBehaviour
 
     public void CallPromoteToPopup(string _vocation)
     {
+        PopupManager popupManager = FindObjectOfType<PopupManager>();
         string description = $"Are you sure you wish to promote {GuildMember.person.name} to {_vocation}?";
         popupManager.CreateDefaultContent(description);
         popupManager.SetDoubleButton("Promote", "Cancel");
@@ -343,21 +345,21 @@ public class PersonUI : MonoBehaviour
 
     private void ConfirmRelease()
     {
-        popupManager.Popup.GetComponentInChildren<Button>().onClick.RemoveListener(ConfirmRelease);
+        FindObjectOfType<PopupManager>().Popup.GetComponentInChildren<Button>().onClick.RemoveListener(ConfirmRelease);
         FindObjectOfType<PopulationManager>().RemoveGuildMember(GuildMember);
         GetComponentInParent<PersonUIScrollView>().LoadPersonUIs();
     }
 
     private void ConfirmPromoteAdventurer()
     {
-        popupManager.Popup.GetComponentInChildren<Button>().onClick.RemoveListener(ConfirmPromoteAdventurer);
+        FindObjectOfType<PopupManager>().Popup.GetComponentInChildren<Button>().onClick.RemoveListener(ConfirmPromoteAdventurer);
         GuildMember.PromoteToAdventurer();
         FindObjectOfType<Menu_Hub>().Open();
     }
 
     private void ConfirmPromoteArtisan()
     {
-        popupManager.Popup.GetComponentInChildren<Button>().onClick.RemoveListener(ConfirmPromoteArtisan);
+        FindObjectOfType<PopupManager>().Popup.GetComponentInChildren<Button>().onClick.RemoveListener(ConfirmPromoteArtisan);
         GuildMember.PromoteToArtisan();
         FindObjectOfType<Menu_Hub>().Open();
     }

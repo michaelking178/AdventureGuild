@@ -42,6 +42,10 @@ public class Shield : MonoBehaviour
 
         if (!trainingManager.GameOver)
         {
+            if (spriteRenderer.color == red)
+                repositionDelay = defaultRepositionDelay * 0.5f;
+            else
+                repositionDelay = defaultRepositionDelay;
             if (currentTime < repositionDelay)
             {
                 currentTime = Time.time - startTime;
