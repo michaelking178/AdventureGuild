@@ -30,6 +30,7 @@ public class QuestManager : MonoBehaviour
     private BoostManager boostManager;
     private readonly string failureMessage = "The challenges were too great, and I was defeated before completing my quest. I have returned to the Adventure Guild so that I may recover.";
     private string rewardMessage = "";
+    private int questArchiveCap = 20;
 
     private void Start()
     {
@@ -66,10 +67,10 @@ public class QuestManager : MonoBehaviour
 
     private void CullQuestArchive()
     {
-        if (questArchive.Count > 50)
+        if (questArchive.Count > questArchiveCap)
         {
             SortQuestArchiveByStartTime();
-            questArchive.RemoveRange(50, questArchive.Count - 50);
+            questArchive.RemoveRange(questArchiveCap, questArchive.Count - questArchiveCap);
         }
     }
 

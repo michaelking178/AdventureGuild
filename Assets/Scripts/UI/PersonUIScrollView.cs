@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PersonUIScrollView : MonoBehaviour
@@ -73,7 +74,7 @@ public class PersonUIScrollView : MonoBehaviour
         peasantUIs.Clear();
     }
 
-    public void SetPersonUIButtons(bool showBeginButton, bool showReleaseButton, bool showPromoteButtons)
+    public void SetPersonUIButtons(bool showBeginButton, bool showReleaseButton, bool showPromoteButtons, string beginButtonText = "")
     {
         List<PersonUI> personUIList = new List<PersonUI>();
         personUIList.AddRange(adventurerUIs);
@@ -83,7 +84,13 @@ public class PersonUIScrollView : MonoBehaviour
         foreach (PersonUI person in personUIList)
         {
             if (showBeginButton)
+            {
                 person.GetComponent<PersonUI>().ShowBeginButton();
+                if (beginButtonText != "")
+                {
+                    person.GetComponent<PersonUI>().beginBtn.GetComponentInChildren<TextMeshProUGUI>().text = beginButtonText;
+                }
+            }
             else
                 person.GetComponent<PersonUI>().HideBeginButton();
 

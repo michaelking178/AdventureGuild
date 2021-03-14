@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Menu_UpgradeGuildhall : Menu
 {
@@ -9,6 +10,9 @@ public class Menu_UpgradeGuildhall : Menu
 
     [SerializeField]
     private GameObject upgradePrefab;
+
+    [SerializeField]
+    private Scrollbar scrollbar;
 
     #endregion
 
@@ -24,6 +28,12 @@ public class Menu_UpgradeGuildhall : Menu
         {
             CheckForPurchases();
         }
+    }
+
+    public override void Open()
+    {
+        base.Open();
+        scrollbar.value = 1;
     }
 
     private void CheckForPurchases()

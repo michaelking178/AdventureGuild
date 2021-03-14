@@ -53,7 +53,7 @@ public class Menu_SelectArtisans : Menu
     {
         base.Open();
         scrollView.LoadAvailablePersonUIs();
-        scrollView.SetPersonUIButtons(true, false, false);
+        scrollView.SetPersonUIButtons(true, false, false, "Select Artisan");
         scrollbar.value = 1;
         foreach (GuildmemberGroup gmGroup in GetComponentsInChildren<GuildmemberGroup>())
         {

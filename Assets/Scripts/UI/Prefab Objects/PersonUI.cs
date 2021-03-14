@@ -134,6 +134,7 @@ public class PersonUI : MonoBehaviour
     public void ClearPersonUI()
     {
         GuildMember = null;
+        SetColor();
         transform.SetParent(FindObjectOfType<PersonUIPool>().transform);
         beginBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Begin";
         if (extensionPanel.activeSelf == true)
@@ -300,8 +301,8 @@ public class PersonUI : MonoBehaviour
             if (obj.name == "PersonUIPanel")
             {
                 if (isSelected) obj.GetComponent<Image>().color = selectedArtisanColor;
-                else if (GuildMember.Vocation is Artisan) obj.GetComponent<Image>().color = defaultArtisanColor;
-                else if (GuildMember.Vocation is Adventurer) obj.GetComponent<Image>().color = defaultAdventurerColor;
+                else if (GuildMember != null && GuildMember.Vocation is Artisan) obj.GetComponent<Image>().color = defaultArtisanColor;
+                else if (GuildMember != null && GuildMember.Vocation is Adventurer) obj.GetComponent<Image>().color = defaultAdventurerColor;
                 else obj.GetComponent<Image>().color = new Color(1, 1, 1);
             }
         }
