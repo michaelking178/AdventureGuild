@@ -62,6 +62,8 @@ public static class SaveSystem
 
         ConstructionManagerData constructionManagerData = new ConstructionManagerData(Object.FindObjectOfType<ConstructionManager>());
 
+        BoostData boostData = new BoostData();
+
         SaveData saveData = new SaveData(
             heroData, 
             guildhallData, 
@@ -72,7 +74,8 @@ public static class SaveSystem
             settingsData, 
             populationManagerData, 
             questManagerData,
-            constructionManagerData
+            constructionManagerData,
+            boostData
             );
 
         formatter.Serialize(stream, saveData);

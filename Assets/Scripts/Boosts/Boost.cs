@@ -8,7 +8,7 @@ public class Boost : MonoBehaviour
     public float Duration = 7200;
     public float MaxDuration = 21600;
     public float BoostRemaining = 0;
-    public float BoostValue = 1.2f;
+    public float BoostValue = 0.2f;
     
     protected void Start()
     {
@@ -19,8 +19,8 @@ public class Boost : MonoBehaviour
     {
         if (BoostRemaining > 0)
         {
-            BoostRemaining -= Time.deltaTime;
             SetBoostBool(true);
+            BoostRemaining -= Time.deltaTime;
         }
         else
         {
@@ -34,8 +34,16 @@ public class Boost : MonoBehaviour
         Debug.LogWarning(gameObject.name + " has not implemented SetBoostBool() and is inheriting it from the Boost superclass!");
     }
 
+    protected virtual bool GetBoostBool()
+    {
+        Debug.LogWarning(gameObject.name + " has not implemented GetBoostBool() and is inheriting it from the Boost superclass!");
+        return false;
+    }
+
     public void Apply()
     {
+        boostManager.SetBoosts();
+        SetBoostBool(true);
         BoostRemaining += Duration;
         if (BoostRemaining > MaxDuration)
         {

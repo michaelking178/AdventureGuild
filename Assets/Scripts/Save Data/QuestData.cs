@@ -15,6 +15,10 @@ public class QuestData
     public DateTime startTime;
     public Quest.Skill questSkill;
     public Quest.Faction questFaction;
+    public bool goldBoosted;
+    public bool woodBoosted;
+    public bool ironBoosted;
+    public bool expBoosted;
 
     public QuestData(Quest quest)
     {
@@ -42,5 +46,9 @@ public class QuestData
         startTime = quest.startTime;
         questSkill = quest.QuestSkill;
         questFaction = quest.QuestFaction;
+        goldBoosted = quest.GoldBoosted;
+        woodBoosted = quest.WoodBoosted;
+        ironBoosted = quest.IronBoosted;
+        expBoosted = quest.ExpBoosted;
     }
 }

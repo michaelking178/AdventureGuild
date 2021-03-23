@@ -473,6 +473,7 @@ GameObject:
   - component: {fileID: 5243194596452395236}
   - component: {fileID: 5243194596452395238}
   - component: {fileID: 5243194596452395237}
+  - component: {fileID: 3288733827078909344}
   - component: {fileID: 4375719727943601946}
   - component: {fileID: 7634063244029358875}
   m_Layer: 5
@@ -538,6 +539,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3288733827078909344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5243194596452395243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de5a922140031994494722a7cd2f1b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myPlacementId: rewardedVideo
 --- !u!114 &4375719727943601946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,8 +606,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectUpgrade
+      - m_Target: {fileID: 3288733827078909344}
+        m_MethodName: ShowRewardedVideo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

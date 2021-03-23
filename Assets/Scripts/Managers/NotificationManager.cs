@@ -33,7 +33,7 @@ public class NotificationManager : MonoBehaviour
 
     private IEnumerator DisplayNotifications()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         while(true)
         {
             if (notifications.Count > 0)

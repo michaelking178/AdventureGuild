@@ -2,6 +2,11 @@
 {
     protected override void SetBoostBool(bool value)
     {
-        boostManager.IsQuestIronBoosted = value;
+        boostManager.IsQuestExpBoosted = value;
+    }
+
+    protected override bool GetBoostBool()
+    {
+        return boostManager.IsQuestExpBoosted;
     }
 }

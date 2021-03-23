@@ -4,4 +4,9 @@
     {
         boostManager.IsQuestIronBoosted = value;
     }
+
+    protected override bool GetBoostBool()
+    {
+        return boostManager.IsQuestIronBoosted;
+    }
 }

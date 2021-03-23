@@ -27,28 +27,41 @@ public static class Helpers
     /// <returns></returns>
     public static string QuestRewardStr(Quest quest)
     {
+        BoostManager boostManager = GameObject.FindObjectOfType<BoostManager>();
         string reward = "";
-        reward += quest.Reward.Exp.ToString() + " Experience\n";
+
+        if (quest.Reward.Exp != 0)
+        {
+            if (boostManager.IsQuestExpBoosted || quest.ExpBoosted)
+                reward += $"{quest.Reward.Exp} Experience (+{quest.Reward.BoostExp} bonus)\n";
+            else
+                reward += quest.Reward.Exp.ToString() + " Experience\n";
+        }
         if (quest.Reward.Gold != 0)
         {
-            reward += quest.Reward.Gold.ToString() + " Gold\n";
+            if (boostManager.IsQuestGoldBoosted || quest.GoldBoosted)
+                reward += $"{quest.Reward.Gold} Gold (+{quest.Reward.BoostGold} bonus)\n";
+            else
+                reward += quest.Reward.Gold.ToString() + " Gold\n";
         }
         if (quest.Reward.Wood != 0)
         {
-            reward += quest.Reward.Wood.ToString() + " Wood\n";
+            if (boostManager.IsQuestWoodBoosted || quest.WoodBoosted)
+                reward += $"{quest.Reward.Wood} Wood (+{quest.Reward.BoostWood} bonus)\n";
+            else
+                reward += quest.Reward.Wood.ToString() + " Wood\n";
         }
         if (quest.Reward.Iron != 0)
         {
-            reward += quest.Reward.Iron.ToString() + " Iron\n";
+            if (boostManager.IsQuestIronBoosted || quest.IronBoosted)
+                reward += $"{quest.Reward.Iron} Iron (+{quest.Reward.BoostIron} bonus)\n";
+            else
+                reward += quest.Reward.Iron.ToString() + " Iron\n";
         }
         if (quest.Reward.Renown != 0)
-        {
             reward += quest.Reward.Renown.ToString() + " Renown\n";
-        }
         if (quest.Reward.SkillExp != 0)
-        {
             reward += quest.Reward.SkillExp.ToString() + " " + quest.QuestSkill.ToString() + " Experience\n";
-        }
         return reward;
     }
 
@@ -127,7 +140,7 @@ public static class Helpers
             secStr = timeRemaining.ToString();
         }
 
-        return string.Format("{0}:{1}:{2}", hoursStr, minStr, secStr);
+        return $"{hoursStr}:{minStr}:{secStr}";
     }
 
     /// <summary>

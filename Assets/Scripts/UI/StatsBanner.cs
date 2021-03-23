@@ -29,7 +29,7 @@ public class StatsBanner : MonoBehaviour
         adventurers.text = populationManager.Adventurers().Count.ToString();
         artisans.text = populationManager.Artisans().Count.ToString();
         peasants.text = populationManager.Peasants().Count.ToString();
-        renown.text = guildhall.Renown.ToString() + "/" + guildhall.RenownThreshold.ToString();
+        renown.text = guildhall.Renown.ToString();
 
         artisanProficiency.text = guildhall.ArtisanProficiency.ToString();
         maxGold.text = string.Format("{0:n0}", guildhall.MaxGold);

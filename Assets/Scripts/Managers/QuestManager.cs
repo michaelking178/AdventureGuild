@@ -11,8 +11,9 @@ public class QuestManager : MonoBehaviour
     [SerializeField]
     private TextAsset questsJson;
 
+    // questPool is the actual list of quests that are in use.
     [SerializeField]
-    private List<Quest> questPool;          // questPool is the actual list of quests that are in use.
+    private List<Quest> questPool;          
 
     [SerializeField]
     private List<Quest> questArchive;
@@ -22,7 +23,8 @@ public class QuestManager : MonoBehaviour
     public bool DiplomacyUnlocked { get; set; }
     public Quest CurrentQuest { get; set; }
 
-    private Quests quests;                  // quests is just a reference to the entire Quest JSON list. It shouldn't be used directly.
+    // quests is just a reference to the entire Quest JSON list. It shouldn't be used directly.
+    private Quests quests;                  
     private IncidentManager incidentManager;
     private LevelManager levelManager;
     private Guildhall guildhall;
@@ -41,17 +43,11 @@ public class QuestManager : MonoBehaviour
         boostManager = FindObjectOfType<BoostManager>();
         quests = JsonUtility.FromJson<Quests>(questsJson.text);
         if (questPool == null)
-        {
             questPool = new List<Quest>();
-        }
         if (questArchive == null)
-        {
             questArchive = new List<Quest>();
-        }
         if (!SaveSystem.SaveFileExists() && questPool.Count == 0)
-        {
             PopulateQuestPool(4);
-        }
     }
 
     private void FixedUpdate()
@@ -60,9 +56,7 @@ public class QuestManager : MonoBehaviour
         if (levelManager.CurrentLevel() == "Title") return;
 
         if (GetQuestsByStatus(Quest.Status.New).Count <= 3)
-        {
             PopulateQuestPool(UnityEngine.Random.Range(3,6));
-        }
     }
 
     private void CullQuestArchive()
@@ -81,9 +75,7 @@ public class QuestManager : MonoBehaviour
 
         // Protect against infinite loop caused by trying to add more quests than exist in the JSON file.
         if (numOfQuests > 5)
-        {
             numOfQuests = 5;
-        }
         if (questPool.Count + numOfQuests < 15)
         {
             List<Quest> questsToGet = new List<Quest>();
@@ -116,9 +108,7 @@ public class QuestManager : MonoBehaviour
         foreach (Quest quest in questPool)
         {
             if (quest.questInstanceId == _id)
-            {
                 return quest;
-            }
         }
         Debug.Log("QuestManager.cs GetQuestById() could not find the requested Quest: " + _id);
         return null;
@@ -130,9 +120,7 @@ public class QuestManager : MonoBehaviour
         foreach (Quest quest in questPool)
         {
             if (quest.State == _status)
-            {
                 questList.Add(quest);
-            }
         }
         return questList;
     }
@@ -144,13 +132,13 @@ public class QuestManager : MonoBehaviour
 
     public void StartQuest()
     {
-        CheckForBoosts();
         QuestTimer questTimer = Instantiate(questTimerPrefab, transform);
         questTimer.SetQuest(CurrentQuest);
         questTimer.StartTimer();
         CurrentQuest.GuildMember.IsAvailable = false;
         CurrentQuest.startTime = DateTime.Now;
         CurrentQuest.State = Quest.Status.Active;
+        SetBoostBools();
     }
 
     public void CompleteQuest(Quest quest)
@@ -164,9 +152,8 @@ public class QuestManager : MonoBehaviour
         questArchive.Add(quest);
         questPool.Remove(quest);
         if (quest.questChain)
-        {
             AddQuestToPool(quest);
-        }
+
         SortQuestPoolByStartTime();
         SortQuestArchiveByStartTime();
     }
@@ -201,6 +188,7 @@ public class QuestManager : MonoBehaviour
         guildhall.AdjustRenown(quest.Reward.Renown);
         quest.GuildMember.AddExp(quest.Reward.Exp);
         quest.GuildMember.AddExp(quest.QuestSkill, quest.Reward.SkillExp);
+        ApplyBoostReward(quest);
     }
 
     public List<Quest> GetQuestPool()
@@ -335,16 +323,12 @@ public class QuestManager : MonoBehaviour
         foreach (Quest quest in questPool)
         {
             if (quest.questInstanceId == _id)
-            {
                 return quest;
-            }
         }
         foreach (Quest quest in questArchive)
         {
             if (quest.questInstanceId == _id)
-            {
                 return quest;
-            }
         }
         Debug.Log("FindQuestById() did not return a Quest!");
         return null;
@@ -357,27 +341,27 @@ public class QuestManager : MonoBehaviour
         SortQuestPoolByStartTime();
     }
 
-    private void CheckForBoosts()
+    private void SetBoostBools()
     {
         if (boostManager.IsQuestExpBoosted)
-        {
-            float boostedExp = CurrentQuest.Reward.Exp * FindObjectOfType<QuestExpBoost>().BoostValue;
-            CurrentQuest.Reward.Exp = Convert.ToInt32(boostedExp);
-        }
+            CurrentQuest.ExpBoosted = true;
         if (boostManager.IsQuestGoldBoosted)
-        {
-            float boostedGold = CurrentQuest.Reward.Gold * FindObjectOfType<QuestGoldBoost>().BoostValue;
-            CurrentQuest.Reward.Gold = Convert.ToInt32(boostedGold);
-        }
+            CurrentQuest.GoldBoosted = true;
         if (boostManager.IsQuestWoodBoosted)
-        {
-            float boostedWood = CurrentQuest.Reward.Wood * FindObjectOfType<QuestWoodBoost>().BoostValue;
-            CurrentQuest.Reward.Wood = Convert.ToInt32(boostedWood);
-        }
+            CurrentQuest.WoodBoosted = true;
         if (boostManager.IsQuestIronBoosted)
-        {
-            float boostedIron = CurrentQuest.Reward.Iron * FindObjectOfType<QuestIronBoost>().BoostValue;
-            CurrentQuest.Reward.Iron = Convert.ToInt32(boostedIron);
-        }
+            CurrentQuest.IronBoosted = true;
+    }
+
+    private void ApplyBoostReward(Quest quest)
+    {
+        if (quest.ExpBoosted)
+            quest.GuildMember.AddExp(quest.Reward.BoostExp);
+        if (quest.GoldBoosted)
+            guildhall.AdjustGold(quest.Reward.BoostGold);
+        if (quest.WoodBoosted)
+            guildhall.AdjustWood(quest.Reward.BoostWood);
+        if (quest.IronBoosted)
+            guildhall.AdjustIron(quest.Reward.BoostIron);
     }
 }

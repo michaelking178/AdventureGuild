@@ -39,7 +39,6 @@ public class QuestUI : MonoBehaviour
     private TextMeshProUGUI briefingText;
 
     private Quest quest;
-    private QuestManager questManager;
     private QuestUIPool questUIPool;
     private Color emptySlotColor = new Color(0,0,0,0.25f);
     private Color combatColor = new Color(1,0,0,1);
@@ -47,12 +46,12 @@ public class QuestUI : MonoBehaviour
     private Color diplomacyColor = new Color(0,0,1,1);
     private Color factionColor = new Color(1,1,1,1);
     private bool isTextGrey = false;
+    private QuestTimer questTimer;
 
     #endregion
 
     private void Start()
     {
-        questManager = FindObjectOfType<QuestManager>();
         questUIPool = FindObjectOfType<QuestUIPool>();
     }
 
@@ -115,7 +114,7 @@ public class QuestUI : MonoBehaviour
 
     public void AcceptQuest()
     {
-        questManager.CurrentQuest = quest;
+        FindObjectOfType<QuestManager>().CurrentQuest = quest;
         FindObjectOfType<Menu_SelectAdventurer>().Open();
     }
 
@@ -147,13 +146,20 @@ public class QuestUI : MonoBehaviour
             questTime.text = Helpers.FormatTimer(quest.time);
         else if (quest.State == Quest.Status.Active)
         {
-            foreach (GameObject child in FindObjectOfType<QuestManager>().gameObject.GetChildren())
+            if (questTimer == null)
             {
-                if (child.GetComponent<QuestTimer>().GetQuest() == quest)
+                foreach (GameObject child in FindObjectOfType<QuestManager>().gameObject.GetChildren())
                 {
-                    float timeRemaining = child.GetComponent<QuestTimer>().TimeLimit - child.GetComponent<QuestTimer>().CurrentTime;
-                    questTime.text = Helpers.FormatTimer((int)timeRemaining);
+                    if (child.GetComponent<QuestTimer>().GetQuest() == quest)
+                    {
+                        questTimer = child.GetComponent<QuestTimer>();
+                    }
                 }
+            }
+            else
+            {
+                float timeRemaining = questTimer.TimeLimit - questTimer.CurrentTime;
+                questTime.text = Helpers.FormatTimer((int)timeRemaining);
             }
         }
     }

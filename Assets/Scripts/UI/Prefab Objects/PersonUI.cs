@@ -204,6 +204,10 @@ public class PersonUI : MonoBehaviour
             if (FindObjectOfType<PopulationManager>().ArtisansEnabled)
                 promoteToArtisanBtn.SetActive(true);
         }
+        else
+        {
+            HidePromoteButtons();
+        }
     }
 
     public void HidePromoteButtons()

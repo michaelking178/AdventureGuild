@@ -31,7 +31,7 @@ public class Menu_WatchAds : Menu
         foreach (GameObject child in FindObjectOfType<BoostManager>().gameObject.GetChildren())
         {
             GameObject boostFrame = Instantiate(boostFramePrefab, contentPanel.transform);
-            boostFrame.GetComponent<BoostItemFrame>().boost = child.GetComponent<Boost>();
+            boostFrame.GetComponent<BoostItemFrame>().Boost = child.GetComponent<Boost>();
             boostFrame.name = "BoostFrame_" + child.name;
         }
     }

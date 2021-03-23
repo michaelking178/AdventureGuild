@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class BoostItemFrame : MonoBehaviour
 {
-    public Boost boost;
+    public Boost Boost;
 
     [SerializeField]
     private string BoostName;
@@ -34,15 +34,15 @@ public class BoostItemFrame : MonoBehaviour
     {
         menuManager = FindObjectOfType<MenuManager>();
         boostManager = FindObjectOfType<BoostManager>();
-        boostNameText.text = boost.Name;
-        descriptionText.text = boost.Description;
+        boostNameText.text = Boost.Name;
+        descriptionText.text = Boost.Description;
     }
 
     private void FixedUpdate()
     {
         if (menuManager.CurrentMenu.name == "Menu_WatchAds")
         {
-            if (/* boost is active */ true)
+            if (Boost.BoostRemaining > 0)
             {
                 DisplayTimer();
             }
@@ -56,7 +56,7 @@ public class BoostItemFrame : MonoBehaviour
     private void DisplayTimer()
     {
         timerPanel.SetActive(true);
-        timerText.text = Helpers.FormatTimer(Convert.ToInt32(boost.BoostRemaining));
+        timerText.text = Helpers.FormatTimer(Convert.ToInt32(Boost.BoostRemaining));
     }
 
     private void HideTimer()

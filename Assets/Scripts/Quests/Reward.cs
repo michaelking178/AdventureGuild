@@ -10,6 +10,8 @@ public class Reward
     public int Renown { get; set; } = 0;
     public int SkillExp { get; set; } = 0;
 
+    public int BoostGold, BoostWood, BoostIron, BoostExp;
+
     public Reward(int questLevel, Quest.Skill skill)
     {
         Gold = Random.Range(200 * (questLevel + 1), 200 * (questLevel + 2 + Mathf.FloorToInt(questLevel / 5)));
@@ -21,5 +23,14 @@ public class Reward
         {
             SkillExp = Random.Range(25 * (questLevel + 1), 200 * (questLevel + 1 + Mathf.FloorToInt(questLevel / 5)));
         }
+        SetBoosts();
+    }
+
+    public void SetBoosts()
+    {
+        BoostGold = Mathf.CeilToInt(Gold * GameObject.FindObjectOfType<QuestGoldBoost>().BoostValue);
+        BoostWood = Mathf.CeilToInt(Wood * GameObject.FindObjectOfType<QuestWoodBoost>().BoostValue);
+        BoostIron = Mathf.CeilToInt(Iron * GameObject.FindObjectOfType<QuestIronBoost>().BoostValue);
+        BoostExp = Mathf.CeilToInt(Exp * GameObject.FindObjectOfType<QuestExpBoost>().BoostValue);
     }
 }

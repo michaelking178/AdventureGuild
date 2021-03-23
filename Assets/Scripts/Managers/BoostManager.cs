@@ -9,7 +9,7 @@ public class BoostManager : MonoBehaviour
 
     public Boost GetBoost(string _name)
     {
-        foreach(GameObject child in gameObject.GetChildren())
+        foreach (GameObject child in gameObject.GetChildren())
         {
             if (child.GetComponent<Boost>().Name == _name)
             {
@@ -18,5 +18,13 @@ public class BoostManager : MonoBehaviour
         }
         Debug.LogWarning("Boost Manager could not find Boost: " + _name);
         return null;
+    }
+
+    public void SetBoosts()
+    {
+        foreach(Quest quest in FindObjectOfType<QuestManager>().GetQuestPool())
+        {
+            quest.Reward.SetBoosts();
+        }
     }
 }

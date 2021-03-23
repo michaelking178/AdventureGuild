@@ -1854,7 +1854,7 @@ MonoBehaviour:
   Duration: 7200
   MaxDuration: 21600
   BoostRemaining: 0
-  BoostValue: 1.2
+  BoostValue: 0.2
 --- !u!1 &2587541046119115404
 GameObject:
   m_ObjectHideFlags: 0
@@ -1904,7 +1904,7 @@ MonoBehaviour:
   Duration: 7200
   MaxDuration: 21600
   BoostRemaining: 0
-  BoostValue: 1.2
+  BoostValue: 0.2
 --- !u!1 &4692442515268396333
 GameObject:
   m_ObjectHideFlags: 0
@@ -1997,7 +1997,7 @@ MonoBehaviour:
   Duration: 7200
   MaxDuration: 21600
   BoostRemaining: 0
-  BoostValue: 1.2
+  BoostValue: 0.2
 --- !u!1 &8602495108362277061
 GameObject:
   m_ObjectHideFlags: 0
@@ -2047,4 +2047,4 @@ MonoBehaviour:
   Duration: 7200
   MaxDuration: 21600
   BoostRemaining: 0
-  BoostValue: 1.2
+  BoostValue: 0.2
