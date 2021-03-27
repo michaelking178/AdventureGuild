@@ -138,6 +138,7 @@ public class QuestManager : MonoBehaviour
         CurrentQuest.GuildMember.IsAvailable = false;
         CurrentQuest.startTime = DateTime.Now;
         CurrentQuest.State = Quest.Status.Active;
+        CurrentQuest.Timer = questTimer;
         SetBoostBools();
     }
 
@@ -227,6 +228,7 @@ public class QuestManager : MonoBehaviour
             questTimer.StartTime = questTimerData.startTime;
             questTimer.IsTiming = questTimerData.isTiming;
             questTimer.IncidentTimer = questTimerData.incidentTimer;
+            questTimer.GetQuest().Timer = questTimer;
         }
     }
 

@@ -46,19 +46,23 @@ public class QuestUI : MonoBehaviour
     private Color diplomacyColor = new Color(0,0,1,1);
     private Color factionColor = new Color(1,1,1,1);
     private bool isTextGrey = false;
-    private QuestTimer questTimer;
+    private float refreshTimer = 0.0f;
+    private float defaultRefreshTimer;
 
     #endregion
 
     private void Start()
     {
         questUIPool = FindObjectOfType<QuestUIPool>();
+        defaultRefreshTimer = Random.Range(1.0f, 2.0f);
     }
 
     private void FixedUpdate()
     {
-        if (quest != null)
+        refreshTimer -= Time.fixedDeltaTime;
+        if (quest != null && refreshTimer <= 0)
         {
+            refreshTimer = defaultRefreshTimer;
             SetQuestUIState();
         }
     }
@@ -146,21 +150,8 @@ public class QuestUI : MonoBehaviour
             questTime.text = Helpers.FormatTimer(quest.time);
         else if (quest.State == Quest.Status.Active)
         {
-            if (questTimer == null)
-            {
-                foreach (GameObject child in FindObjectOfType<QuestManager>().gameObject.GetChildren())
-                {
-                    if (child.GetComponent<QuestTimer>().GetQuest() == quest)
-                    {
-                        questTimer = child.GetComponent<QuestTimer>();
-                    }
-                }
-            }
-            else
-            {
-                float timeRemaining = questTimer.TimeLimit - questTimer.CurrentTime;
-                questTime.text = Helpers.FormatTimer((int)timeRemaining);
-            }
+            float timeRemaining = quest.Timer.TimeLimit - quest.Timer.CurrentTime;
+            questTime.text = Helpers.FormatTimer((int)timeRemaining);
         }
     }
 

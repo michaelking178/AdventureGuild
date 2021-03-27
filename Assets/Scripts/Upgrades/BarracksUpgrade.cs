@@ -73,11 +73,12 @@ public class BarracksUpgrade : Upgrade
         base.Start();
     }
 
-    private void FixedUpdate()
+    private new void FixedUpdate()
     {
         if (levelManager.CurrentLevel() == "Title") return;
 
-        if (FindObjectOfType<MenuManager>() != null && FindObjectOfType<MenuManager>().CurrentMenu == FindObjectOfType<Menu_UpgradeGuildhall>())
+        base.FixedUpdate();
+        if (menuManager.CurrentMenu == upgradeGuildhall)
         {
             CheckForUpgrade();
         }

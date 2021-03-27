@@ -35,8 +35,7 @@ public class QuestUIScrollView : MonoBehaviour
 
         foreach (Quest quest in questManager.GetQuestArchive())
         {
-            if (quest.State == Quest.Status.Completed || quest.State == Quest.Status.Failed)
-                LoadQuestUI(quest);
+            LoadQuestUI(quest);
         }
 
         foreach (QuestUI questUI in questUIs)

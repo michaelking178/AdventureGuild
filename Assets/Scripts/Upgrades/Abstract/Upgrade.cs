@@ -17,6 +17,8 @@ public abstract class Upgrade : MonoBehaviour
     protected Guildhall guildhall;
     protected PopulationManager populationManager;
     protected QuestManager questManager;
+    protected MenuManager menuManager;
+    protected Menu_UpgradeGuildhall upgradeGuildhall;
 
     protected void Start()
     {
@@ -25,6 +27,12 @@ public abstract class Upgrade : MonoBehaviour
         populationManager = FindObjectOfType<PopulationManager>();
         questManager = FindObjectOfType<QuestManager>();
         StartCoroutine(DelayedCheckForUpgrade());
+    }
+
+    protected void FixedUpdate()
+    {
+        if (menuManager == null) menuManager = FindObjectOfType<MenuManager>();
+        if (upgradeGuildhall == null) upgradeGuildhall = FindObjectOfType<Menu_UpgradeGuildhall>();
     }
 
     protected virtual IEnumerator DelayedCheckForUpgrade()

@@ -97,7 +97,6 @@ public class PersonUI : MonoBehaviour
     {
         if (GuildMember != null)
         {
-            personName.text = GuildMember.person.name;
             UpdateExpSlider();
 
             if (GuildMember.Vocation is Peasant && GuildMember.Level == 10)
@@ -126,6 +125,7 @@ public class PersonUI : MonoBehaviour
     public void SetPerson(GuildMember _person)
     {
         GuildMember = _person;
+        personName.text = GuildMember.person.name;
         SetColor();
     }
 

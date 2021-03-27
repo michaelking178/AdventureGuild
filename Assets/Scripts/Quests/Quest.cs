@@ -16,6 +16,7 @@ public class Quest
     public GuildMember GuildMember;
     public List<Incident> Incidents;
     public DateTime startTime;
+    public QuestTimer Timer;
     public Status State;
     public Skill QuestSkill;
     public Faction QuestFaction;
@@ -24,8 +25,6 @@ public class Quest
     public bool WoodBoosted { get; set; } = false;
     public bool IronBoosted { get; set; } = false;
     public bool ExpBoosted { get; set; } = false;
-
-    public QuestTimer timer;
 
     public void Init()
     {

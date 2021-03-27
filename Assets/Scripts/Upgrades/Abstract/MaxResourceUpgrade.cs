@@ -132,6 +132,11 @@ public class MaxResourceUpgrade : Upgrade
         base.Start();
     }
 
+    protected new void FixedUpdate()
+    {
+        base.FixedUpdate();
+    }
+
     public override void Apply()
     {
         base.Apply();

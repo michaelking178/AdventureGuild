@@ -117,7 +117,7 @@ public static class Helpers
         string secStr;
         if (hours < 10)
         {
-            hoursStr = string.Format("0{0}", hours);
+            hoursStr = $"0{hours}";
         }
         else
         {
@@ -125,7 +125,7 @@ public static class Helpers
         }
         if (minutes < 10)
         {
-            minStr = string.Format("0{0}", minutes);
+            minStr = $"0{minutes}";
         }
         else
         {
@@ -133,7 +133,7 @@ public static class Helpers
         }
         if (timeRemaining < 10)
         {
-            secStr = string.Format("0{0}", timeRemaining);
+            secStr = $"0{timeRemaining}";
         }
         else
         {
