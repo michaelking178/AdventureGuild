@@ -22,6 +22,7 @@ public class QuestManager : MonoBehaviour
     public bool EspionageUnlocked { get; set; }
     public bool DiplomacyUnlocked { get; set; }
     public Quest CurrentQuest { get; set; }
+    public int QuestsCompleted { get; private set; }
 
     // quests is just a reference to the entire Quest JSON list. It shouldn't be used directly.
     private Quests quests;                  
@@ -32,7 +33,7 @@ public class QuestManager : MonoBehaviour
     private BoostManager boostManager;
     private readonly string failureMessage = "The challenges were too great, and I was defeated before completing my quest. I have returned to the Adventure Guild so that I may recover.";
     private string rewardMessage = "";
-    private int questArchiveCap = 20;
+    private int questArchiveCap = 100;
 
     private void Start()
     {
@@ -157,6 +158,7 @@ public class QuestManager : MonoBehaviour
 
         SortQuestPoolByStartTime();
         SortQuestArchiveByStartTime();
+        QuestsCompleted++;
     }
 
     public void FailQuest(Quest quest)
@@ -170,6 +172,7 @@ public class QuestManager : MonoBehaviour
         questPool.Remove(quest);
         SortQuestPoolByStartTime();
         SortQuestArchiveByStartTime();
+        QuestsCompleted++;
     }
 
     public void ApplyQuestReward(Quest quest)

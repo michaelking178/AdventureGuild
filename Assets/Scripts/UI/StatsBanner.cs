@@ -35,9 +35,9 @@ public class StatsBanner : MonoBehaviour
         maxGold.text = string.Format("{0:n0}", guildhall.MaxGold);
         maxIron.text = string.Format("{0:n0}", guildhall.MaxIron);
         maxWood.text = string.Format("{0:n0}", guildhall.MaxWood);
-        currentGoldIncome.text = string.Format("{0:n0}", guildhall.GoldIncome) + "/hr";
-        currentIronIncome.text = string.Format("{0:n0}", guildhall.IronIncome) + "/hr";
-        currentWoodIncome.text = string.Format("{0:n0}", guildhall.WoodIncome) + "/hr";
+        currentGoldIncome.text = string.Format("{0:n0}/hr", guildhall.GoldIncome);
+        currentIronIncome.text = string.Format("{0:n0}/hr", guildhall.IronIncome);
+        currentWoodIncome.text = string.Format("{0:n0}/hr", guildhall.WoodIncome);
         maxGoldIncome.text = string.Format("{0:n0}", guildhall.MaxGoldIncome);
         maxIronIncome.text = string.Format("{0:n0}", guildhall.MaxIronIncome);
         maxWoodIncome.text = string.Format("{0:n0}", guildhall.MaxWoodIncome);

@@ -46,10 +46,10 @@ public class QuestUIScrollView : MonoBehaviour
 
     private void LoadQuestUI(Quest quest) {
         QuestUI questUI = questUIPool.GetNextAvailableQuestUI();
-        questUI.gameObject.SetActive(true);
         questUIs.Add(questUI);
-        questUI.SetQuest(quest);
         questUI.transform.SetParent(transform);
+        questUI.gameObject.SetActive(true);
+        questUI.SetQuest(quest);
     }
 
     public void ClearQuestUIs() {

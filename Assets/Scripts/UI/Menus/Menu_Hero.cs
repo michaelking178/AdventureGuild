@@ -44,9 +44,9 @@ public class Menu_Hero : Menu
     {
         if (menuManager.CurrentMenu == this && hero != null)
         {
-            heroVocation.text = string.Format("Level {0} {1}", hero.Level, hero.Vocation.Title());
-            heroExperience.text = string.Format("Experience: {0} / {1}", hero.Experience, Levelling.GuildMemberLevel[hero.Level]);
-            heroHealth.text = string.Format("Health: {0}/{1}", hero.Hitpoints.ToString(), hero.MaxHitpoints.ToString());
+            heroVocation.text = $"Level {hero.Level} {hero.Vocation.Title()}";
+            heroExperience.text = $"Experience: {hero.Experience} / {Levelling.GuildMemberLevel[hero.Level]}";
+            heroHealth.text = $"Health: {hero.Hitpoints}/{hero.MaxHitpoints}";
             heroBioText.text = hero.Bio;
         }
     }

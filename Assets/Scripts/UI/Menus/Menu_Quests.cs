@@ -17,6 +17,9 @@ public class Menu_Quests : Menu
     [SerializeField]
     private TextMeshProUGUI availableAdventurers;
 
+    [SerializeField]
+    private TextMeshProUGUI completedQuests;
+
     #endregion
 
     protected override void Start()
@@ -33,6 +36,7 @@ public class Menu_Quests : Menu
             activeQuests.text = questManager.GetQuestsByStatus(Quest.Status.Active).Count.ToString();
             availableQuests.text = questManager.GetQuestsByStatus(Quest.Status.New).Count.ToString();
             availableAdventurers.text = populationManager.GetAvailableAdventurers().Count.ToString();
+            completedQuests.text = questManager.QuestsCompleted.ToString();
         }
     }
 }

@@ -1,0 +1,608 @@
+fileFormatVersion: 2
+guid: fdaaac52027702c47a31a72ff6f9037a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4622757769787208031
+    second: Atlas_04_Chests_0
+  - first:
+      213: 6850924541527319396
+    second: Atlas_04_Chests_1
+  - first:
+      213: -4099924526281620725
+    second: Atlas_04_Chests_2
+  - first:
+      213: -8589337334200675136
+    second: Atlas_04_Chests_3
+  - first:
+      213: -1142868922664457478
+    second: Atlas_04_Chests_4
+  - first:
+      213: 6161683761483300999
+    second: Atlas_04_Chests_5
+  - first:
+      213: 8943531705538176727
+    second: Atlas_04_Chests_6
+  - first:
+      213: -535707646764121480
+    second: Atlas_04_Chests_7
+  - first:
+      213: -6888600896236078693
+    second: Atlas_04_Chests_8
+  - first:
+      213: 2710382801329892840
+    second: Atlas_04_Chests_9
+  - first:
+      213: 2458235234504301200
+    second: Atlas_04_Chests_10
+  - first:
+      213: 208490895597950548
+    second: Atlas_04_Chests_11
+  - first:
+      213: 1969080406607186551
+    second: Atlas_04_Chests_12
+  - first:
+      213: 2834841183917580451
+    second: Atlas_04_Chests_13
+  - first:
+      213: 5382895721810232160
+    second: Atlas_04_Chests_14
+  - first:
+      213: -6434467961495661941
+    second: Atlas_04_Chests_15
+  - first:
+      213: -6570065931274758604
+    second: Atlas_04_Chests_16
+  - first:
+      213: -2580084807572869889
+    second: Atlas_04_Chests_17
+  - first:
+      213: -2832372203945269076
+    second: Atlas_04_Chests_18
+  - first:
+      213: 5037754574917177305
+    second: Atlas_04_Chests_19
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Atlas_04_Chests_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 1394
+        width: 665
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ae08210d4aa8dfb0800000000000000
+      internalID: -4622757769787208031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_04_Chests_1
+      rect:
+        serializedVersion: 2
+        x: 698
+        y: 1442
+        width: 742
+        height: 598
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 463edb0a29f531f50800000000000000
+      internalID: 6850924541527319396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_04_Chests_2
+      rect:
+        serializedVersion: 2
+        x: 1469
+        y: 1515
+        width: 571
+        height: 525
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b03821d9d542a17c0800000000000000
+      internalID: -4099924526281620725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_04_Chests_3
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 763
+        width: 697
+        height: 601
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c4d7fae33b8cc880800000000000000
+      internalID: -8589337334200675136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_04_Chests_4
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 992
+        width: 388
+        height: 415
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afa60cf15c6b320f0800000000000000
+      internalID: -1142868922664457478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_04_Chests_5
+      rect:
+        serializedVersion: 2
+        x: 1129
+        y: 1191
+        width: 298
+        height: 223
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 780418d2cb2b28550800000000000000
+      internalID: 6161683761483300999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_04_Chests_6
+      rect:
+        serializedVersion: 2
+        x: 1446
+        y: 944
+        width: 593
+        height: 561
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d6eb0a83becd1c70800000000000000
+      internalID: 8943531705538176727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_04_Chests_7
+      rect:
+        serializedVersion: 2
+        x: 721
+        y: 664
+        width: 339
+        height: 318
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8720a2bcbb8c098f0800000000000000
+      internalID: -535707646764121480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_04_Chests_8
+      rect:
+        serializedVersion: 2
+        x: 1122
+        y: 976
+        width: 306
+        height: 205
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9939647bf5c660a0800000000000000
+      internalID: -6888600896236078693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_04_Chests_9
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 319
+        width: 393
+        height: 430
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8eda89e2cc63d9520800000000000000
+      internalID: 2710382801329892840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_04_Chests_10
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 493
+        width: 301
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09a5af6ebe76d1220800000000000000
+      internalID: 2458235234504301200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_04_Chests_11
+      rect:
+        serializedVersion: 2
+        x: 1086
+        y: 552
+        width: 376
+        height: 419
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 456d40b6d55b4e200800000000000000
+      internalID: 208490895597950548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_04_Chests_12
+      rect:
+        serializedVersion: 2
+        x: 1478
+        y: 540
+        width: 564
+        height: 389
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77ac00a7234935b10800000000000000
+      internalID: 1969080406607186551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_04_Chests_13
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 440
+        width: 177
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a02e028901675720800000000000000
+      internalID: 2834841183917580451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_04_Chests_14
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 284
+        width: 163
+        height: 203
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0630871a323e3ba40800000000000000
+      internalID: 5382895721810232160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_04_Chests_15
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 2
+        width: 572
+        height: 546
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b825b64fa7d24b6a0800000000000000
+      internalID: -6434467961495661941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_04_Chests_16
+      rect:
+        serializedVersion: 2
+        x: 1380
+        y: 11
+        width: 656
+        height: 485
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 436d87f58df62d4a0800000000000000
+      internalID: -6570065931274758604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_04_Chests_17
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 7
+        width: 220
+        height: 311
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffcac329982b13cd0800000000000000
+      internalID: -2580084807572869889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_04_Chests_18
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 7
+        width: 220
+        height: 311
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca8e620bc7461b8d0800000000000000
+      internalID: -2832372203945269076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_04_Chests_19
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 11
+        width: 274
+        height: 265
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9df898f3813b9e540800000000000000
+      internalID: 5037754574917177305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 404ef7b9e0debfd479ce3dcdea119cea
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

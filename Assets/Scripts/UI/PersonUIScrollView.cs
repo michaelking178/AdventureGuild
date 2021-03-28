@@ -116,25 +116,25 @@ public class PersonUIScrollView : MonoBehaviour
     private void LoadAdventurerUI()
     {
         personUI = personUIPool.GetNextAvailablePersonUI();
-        personUI.gameObject.SetActive(true);
         personUI.transform.SetParent(AdventurerGroup.GetComponent<GuildmemberGroup>().ContentPanel.transform);
         adventurerUIs.Add(personUI);
+        personUI.gameObject.SetActive(true);
     }
 
     private void LoadArtisanUI()
     {
         personUI = personUIPool.GetNextAvailablePersonUI();
-        personUI.gameObject.SetActive(true);
         personUI.transform.SetParent(ArtisanGroup.GetComponent<GuildmemberGroup>().ContentPanel.transform);
         artisanUIs.Add(personUI);
+        personUI.gameObject.SetActive(true);
     }
 
     private void LoadPeasantUI()
     {
         personUI = personUIPool.GetNextAvailablePersonUI();
-        personUI.gameObject.SetActive(true);
         personUI.transform.SetParent(PeasantGroup.GetComponent<GuildmemberGroup>().ContentPanel.transform);
         peasantUIs.Add(personUI);
+        personUI.gameObject.SetActive(true);
     }
 
     private void LoadAdventurerUIs()

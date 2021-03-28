@@ -37,6 +37,7 @@ public class Menu_Marketplace : Menu
     public int Total = 0;
 
     private int woodChange = 0, ironChange = 0;
+    private Color green = new Color(0, 0.4f, 0, 1);
 
     #endregion
 
@@ -139,8 +140,8 @@ public class Menu_Marketplace : Menu
 
         playerGoldText.text = guildhall.Gold.ToString();
         totalText.text = Total.ToString();
-        if (Total == 0) totalText.color = Color.white;
-        else if (Total > 0) totalText.color = Color.green;
+        if (Total == 0) totalText.color = Color.black;
+        else if (Total > 0) totalText.color = green;
         else totalText.color = Color.red;
     }
 
