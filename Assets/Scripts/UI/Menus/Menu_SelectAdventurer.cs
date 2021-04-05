@@ -13,9 +13,8 @@ public class Menu_SelectAdventurer : Menu
 
     #endregion
 
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
         scrollView = GetComponentInChildren<PersonUIScrollView>();
     }
 

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class ResetBtn : MonoBehaviour
 {
@@ -9,12 +8,8 @@ public class ResetBtn : MonoBehaviour
     {
         string description = "Are you sure you want to reset your game? All progress will be lost and this cannot be undone.";
         PopupManager popupManager = FindObjectOfType<PopupManager>();
-        popupManager.CreateDefaultContent(description);
-        popupManager.SetDoubleButton("Reset", "Cancel");
-        popupManager.Popup.GetComponentInChildren<Button>().onClick.AddListener(Confirm);
-
-        popupManager.Populate("Reset Game", popupSprite);
-        popupManager.CallPopup();
+        popupManager.CallGenericPopup("Reset Game", description, popupSprite);
+        popupManager.GenericPopup.ConfirmBtn.onClick.AddListener(Confirm);
     }
 
     public void ResetGame()

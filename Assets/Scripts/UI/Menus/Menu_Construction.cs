@@ -43,9 +43,8 @@ public class Menu_Construction : Menu
 
     #endregion
 
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
         guildhall = FindObjectOfType<Guildhall>();
         constructionManager = FindObjectOfType<ConstructionManager>();
     }

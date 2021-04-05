@@ -9,9 +9,8 @@ public class Menu_SelectTrainee : Menu
 
     private PersonUIScrollView scrollView;
 
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
         scrollView = GetComponentInChildren<PersonUIScrollView>();
     }
 

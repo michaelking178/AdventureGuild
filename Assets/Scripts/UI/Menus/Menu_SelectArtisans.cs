@@ -22,9 +22,8 @@ public class Menu_SelectArtisans : Menu
 
     #endregion
 
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
         constructionManager = FindObjectOfType<ConstructionManager>();
         scrollView = GetComponentInChildren<PersonUIScrollView>();
     }

@@ -22,9 +22,8 @@ public class Menu_Quests : Menu
 
     #endregion
 
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
         questManager = FindObjectOfType<QuestManager>();
         populationManager = FindObjectOfType<PopulationManager>();
     }

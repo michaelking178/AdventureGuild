@@ -20,9 +20,8 @@ public class Menu_Settings : Menu
 
     #endregion
 
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
         soundAudioSource = GameObject.Find("SoundManager").GetComponent<AudioSource>();
         musicAudioSource = GameObject.Find("MusicManager").GetComponent<AudioSource>();
         populationManager = FindObjectOfType<PopulationManager>();

@@ -323,47 +323,40 @@ public class PersonUI : MonoBehaviour
     {
         PopupManager popupManager = FindObjectOfType<PopupManager>();
         string description = $"Are you sure you wish to release {GuildMember.person.name} from the Adventure Guild? This cannot be undone.";
-        popupManager.CreateDefaultContent(description);
-        popupManager.SetDoubleButton("Release", "Cancel");
-        popupManager.Popup.GetComponentInChildren<Button>().onClick.AddListener(ConfirmRelease);
-
-        popupManager.Populate("Release Guild Member", GuildMember.Avatar);
-        popupManager.CallPopup();
+        popupManager.CallGenericPopup("Release Guild Member", description, GuildMember.Avatar);
+        popupManager.SetPopupButtonText("Release", "Cancel");
+        popupManager.GenericPopup.ConfirmBtn.onClick.AddListener(ConfirmRelease);
     }
 
     public void CallPromoteToPopup(string _vocation)
     {
         PopupManager popupManager = FindObjectOfType<PopupManager>();
         string description = $"Are you sure you wish to promote {GuildMember.person.name} to {_vocation}?";
-        popupManager.CreateDefaultContent(description);
-        popupManager.SetDoubleButton("Promote", "Cancel");
-
+        popupManager.CallGenericPopup("Promote", description, GuildMember.Avatar);
+        popupManager.SetPopupButtonText("Promote", "Cancel");
         if (_vocation == "Adventurer")
-            popupManager.Popup.GetComponentInChildren<Button>().onClick.AddListener(ConfirmPromoteAdventurer);
+            popupManager.GenericPopup.ConfirmBtn.onClick.AddListener(ConfirmPromoteAdventurer);
         else
-            popupManager.Popup.GetComponentInChildren<Button>().onClick.AddListener(ConfirmPromoteArtisan);
-
-        popupManager.Populate("Promote", GuildMember.Avatar);
-        popupManager.CallPopup();
+            popupManager.GenericPopup.ConfirmBtn.onClick.AddListener(ConfirmPromoteArtisan);
     }
 
     private void ConfirmRelease()
     {
-        FindObjectOfType<PopupManager>().Popup.GetComponentInChildren<Button>().onClick.RemoveListener(ConfirmRelease);
+        FindObjectOfType<PopupManager>().GenericPopup.ConfirmBtn.onClick.RemoveListener(ConfirmRelease);
         FindObjectOfType<PopulationManager>().RemoveGuildMember(GuildMember);
         GetComponentInParent<PersonUIScrollView>().LoadPersonUIs();
     }
 
     private void ConfirmPromoteAdventurer()
     {
-        FindObjectOfType<PopupManager>().Popup.GetComponentInChildren<Button>().onClick.RemoveListener(ConfirmPromoteAdventurer);
+        FindObjectOfType<PopupManager>().GenericPopup.ConfirmBtn.onClick.RemoveListener(ConfirmPromoteAdventurer);
         GuildMember.PromoteToAdventurer();
         FindObjectOfType<Menu_Hub>().Open();
     }
 
     private void ConfirmPromoteArtisan()
     {
-        FindObjectOfType<PopupManager>().Popup.GetComponentInChildren<Button>().onClick.RemoveListener(ConfirmPromoteArtisan);
+        FindObjectOfType<PopupManager>().GenericPopup.ConfirmBtn.onClick.RemoveListener(ConfirmPromoteArtisan);
         GuildMember.PromoteToArtisan();
         FindObjectOfType<Menu_Hub>().Open();
     }

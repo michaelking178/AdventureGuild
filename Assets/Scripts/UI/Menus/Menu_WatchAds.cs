@@ -12,18 +12,9 @@ public class Menu_WatchAds : Menu
 
     #endregion
 
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
         PopulateBoosts();
-    }
-
-    private void FixedUpdate()
-    {
-        if (menuManager.CurrentMenu == this)
-        {
-            // CheckForActiveBoosts
-        }
     }
 
     private void PopulateBoosts()

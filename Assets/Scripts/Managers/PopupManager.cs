@@ -1,55 +1,33 @@
-﻿using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class PopupManager : MonoBehaviour
 {
-    public GameObject Popup;
-    public GameObject ContentPanel;
-    public GameObject DefaultContent;
-    public GameObject UpgradeContent;
+    public GenericPopup GenericPopup;
+    public QuestPopup QuestPopup;
 
-    public void CallPopup()
+    private PopupMenu popup;
+
+    public void CallQuestPopup(Quest quest)
     {
-        Popup.gameObject.SetActive(true);
+        popup = QuestPopup;
+        QuestPopup.Populate(quest);
+        QuestPopup.SetButtonText("Accept", "Cancel");
     }
 
-    public void CreateUpgradeContent(string _description, int _goldCost, int _woodCost, int _ironCost, int _artisanCost)
+    public void CallGenericPopup(string _title, string _description, Sprite _sprite)
     {
-        ClearContent();
-        GameObject popupContent = Instantiate(UpgradeContent, ContentPanel.transform);
-        popupContent.GetComponent<PopupContentUpgrades>().Init(_description, _goldCost, _woodCost, _ironCost, _artisanCost);
+        popup = GenericPopup;
+        GenericPopup.Populate(_title, _description, _sprite);
+        GenericPopup.SetButtonText("Confirm", "Cancel");
     }
 
-    public void CreateDefaultContent(string _description)
+    public void SetPopupButtonText(string confirm)
     {
-        ClearContent();
-        GameObject popupContent = Instantiate(DefaultContent, ContentPanel.transform);
-        popupContent.GetComponentInChildren<TextMeshProUGUI>().text = _description;
+        popup.SetButtonText(confirm);
     }
 
-    public void SetSingleButton(string btnText)
+    public void SetPopupButtonText(string confirm, string cancel)
     {
-        Popup.GetComponent<PopupMenu>().SetSingleButton(btnText);
-    }
-
-    public void SetDoubleButton(string btnText1, string btnText2)
-    {
-        Popup.GetComponent<PopupMenu>().SetDoubleButton(btnText1, btnText2);
-    }
-
-    public void Populate(string _title, Sprite _sprite)
-    {
-        Popup.GetComponent<PopupMenu>().Populate(_title, _sprite);
-    }
-
-    private void ClearContent()
-    {
-        List<GameObject> children = ContentPanel.GetChildren();
-        foreach(GameObject obj in children)
-        {
-            Destroy(obj);
-        }
+        popup.SetButtonText(confirm, cancel);
     }
 }

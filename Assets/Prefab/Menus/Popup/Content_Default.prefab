@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.5599365, y: -81.97955}
-  m_SizeDelta: {x: -21.30896, y: 149.87152}
+  m_AnchoredPosition: {x: 0, y: -369.01}
+  m_SizeDelta: {x: -0.000061035156, y: 737.95667}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5962859393187404844
 CanvasRenderer:
@@ -96,12 +96,12 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 19.8
+  m_fontSize: 44.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 10
-  m_fontSizeMax: 20
+  m_fontSizeMax: 150
   m_fontStyle: 32
   m_textAlignment: 258
   m_characterSpacing: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 6.1902847, y: 0, z: -0.68074834, w: 0}
+  m_margin: {x: -0.18301392, y: 0, z: -0.68074834, w: 0}
   m_textInfo:
     textComponent: {fileID: 901820357153314930}
     characterCount: 262
@@ -142,7 +142,7 @@ MonoBehaviour:
     spaceCount: 44
     wordCount: 45
     linkCount: 0
-    lineCount: 6
+    lineCount: 14
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -195,8 +195,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.007751465}
+  m_SizeDelta: {x: 0, y: -0.015686035}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3882490175367368527
 CanvasRenderer:

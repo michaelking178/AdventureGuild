@@ -41,9 +41,8 @@ public class Menu_Marketplace : Menu
 
     #endregion
 
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
         guildhall = FindObjectOfType<Guildhall>();
     }
 

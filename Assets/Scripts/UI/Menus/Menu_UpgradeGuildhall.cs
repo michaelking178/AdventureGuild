@@ -16,9 +16,8 @@ public class Menu_UpgradeGuildhall : Menu
 
     #endregion
 
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
         PopulateUpgrades();
     }
 
