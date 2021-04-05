@@ -87,7 +87,7 @@ public class Menu_QuestJournal : Menu
             switch (incident.result)
             {
                 case Incident.Result.Good:
-                    incidentRewardText.color = new Color(0.5254902f, 0.8313726f, 0.4666667f);
+                    incidentRewardText.color = new Color(0.08977485f, 0.5566038f, 0);
                     break;
                 case Incident.Result.Bad:
                     incidentRewardText.color = new Color(1.0f, 0.3383238f, 0.2028302f);

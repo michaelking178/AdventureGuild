@@ -33,9 +33,6 @@ public class UpgradeItemFrame : MonoBehaviour
 
     private Color availableColor = new Color(1, 1, 1, 1);
     private Color unavailableColor = new Color(1, 1, 1, 0.25f);
-    private Color purchasedColor = new Color(1, 1, 1, 0.25f);
-    private Color fontAvailableColor = new Color(0.196f, 0.196f, 0.196f, 1);
-    private Color fontUnavailableColor = new Color(0.196f, 0.196f, 0.196f, 0.5f);
     private MenuManager menuManager;
     private ConstructionManager constructionManager;
     private bool isAvailable = true;
@@ -95,23 +92,21 @@ public class UpgradeItemFrame : MonoBehaviour
     {
         isAvailable = true;
         itemImage.color = availableColor;
-        //itemNameText.color = fontAvailableColor;
     }
 
     public void SetUnavailable()
     {
         isAvailable = false;
         itemImage.color = unavailableColor;
-        //itemNameText.color = fontUnavailableColor;
     }
 
     public void SetPurchased()
     {
         isAvailable = false;
         itemImage.color = unavailableColor;
-        //itemNameText.color = fontUnavailableColor;
         checkmarkImage.gameObject.SetActive(true);
         tintPanel.gameObject.SetActive(true);
+        GetComponent<Button>().interactable = false;
     }
 
     public void AssignConstructionJob()

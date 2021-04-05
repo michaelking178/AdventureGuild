@@ -26,7 +26,6 @@ public class QuestPopup : PopupMenu
         briefing.text = quest.description;
         level.text = $"Level {quest.level}";
         time.text = Helpers.FormatTimer(quest.time);
-        clickBlocker.SetActive(true);
-        anim.SetTrigger("Open");
+        base.Populate();
     }
 }

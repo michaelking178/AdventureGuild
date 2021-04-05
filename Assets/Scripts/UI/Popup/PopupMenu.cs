@@ -14,6 +14,9 @@ public class PopupMenu : MonoBehaviour
     [SerializeField]
     protected GameObject clickBlocker;
 
+    [SerializeField]
+    protected Dimmer dimmerPanel;
+
     protected Animator anim;
 
     private void Start()
@@ -32,14 +35,23 @@ public class PopupMenu : MonoBehaviour
         CancelBtn.GetComponentInChildren<TextMeshProUGUI>().text = cancel;
     }
 
+    public virtual void Populate()
+    {
+        clickBlocker.SetActive(true);
+        dimmerPanel.EnableDim();
+        anim.SetTrigger("Open");
+    }    
+
     public void Confirm()
     {
+        dimmerPanel.DisableDim();
         anim.SetTrigger("Close");
         clickBlocker.SetActive(false);
     }
 
     public void Cancel()
     {
+        dimmerPanel.DisableDim();
         ClearListeners();
         anim.SetTrigger("Close");
         clickBlocker.SetActive(false);

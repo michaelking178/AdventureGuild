@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,7 +16,6 @@ public class GenericPopup : PopupMenu
         description.text = _description;
         image.gameObject.SetActive(true);
         image.sprite = _sprite;
-        clickBlocker.SetActive(true);
-        anim.SetTrigger("Open");
+        base.Populate();
     }
 }

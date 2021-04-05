@@ -6,6 +6,8 @@ public class Menu_Construction : Menu
 {
     #region Data
 
+    public Upgrade ConstructionJob;
+
     [SerializeField]
     private Button buildButton;
 
@@ -38,8 +40,7 @@ public class Menu_Construction : Menu
 
     private Guildhall guildhall;
     private ConstructionManager constructionManager;
-
-    public Upgrade ConstructionJob;
+    private Color green = new Color(0.08977485f, 0.5566038f, 0);
 
     #endregion
 
@@ -102,17 +103,19 @@ public class Menu_Construction : Menu
     {
         constructionManager.SetConstructionJob(ConstructionJob);
         constructionManager.BeginConstruction();
+        menuManager.OpenMenu(FindObjectOfType<Menu_UpgradeGuildhall>());
     }
 
     public void PassUpgradeToSelectArtisans()
     {
         FindObjectOfType<Menu_SelectArtisans>().SetUpgrade(ConstructionJob);
+        menuManager.OpenMenu(FindObjectOfType<Menu_SelectArtisans>());
     }
 
     private void SetColor(TextMeshProUGUI text, int have, int need)
     {
         if (have < need) text.color = Color.red;
-        else text.color = Color.green;
+        else text.color = green;
     }
 
     private void SetButtons()
@@ -121,15 +124,15 @@ public class Menu_Construction : Menu
         {
             selectArtisansButton.interactable = false;
             buildButton.interactable = false;
-            selectArtisansButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color(0.196f, 0.196f, 0.196f, 0.5f);
-            buildButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color(0.196f, 0.196f, 0.196f, 0.5f);
+            selectArtisansButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.75f);
+            buildButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.75f);
         }
         else
         {
             selectArtisansButton.interactable = true;
             buildButton.interactable = true;
-            selectArtisansButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color(0.196f, 0.196f, 0.196f, 1);
-            buildButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color(0.196f, 0.196f, 0.196f, 1);
+            selectArtisansButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color(1, 1, 1, 1);
+            buildButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color(1, 1, 1, 1);
         }
 
         if (ConstructionJob.ArtisanCost == 0)
