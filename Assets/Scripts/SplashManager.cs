@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class SplashManager : MonoBehaviour
 {
     public float splashTime = 1.5f;
-    public float fadeOutTime = 0.5f;
 
     [SerializeField]
     private Slider slider;
@@ -35,8 +34,10 @@ public class SplashManager : MonoBehaviour
     {
         isTiming = false;
         slider.value = slider.maxValue;
-        FindObjectOfType<Fade>().FadeOut(fadeOutTime);
-        yield return new WaitForSeconds(fadeOutTime);
+        yield return new WaitForSeconds(0.5f);
+        Fade fader = FindObjectOfType<Fade>();
+        fader.FadeOut();
+        yield return new WaitForSeconds(fader.defaultFadeTime);
         FindObjectOfType<LevelManager>().LoadLevelDirect("Main");
     }
 }

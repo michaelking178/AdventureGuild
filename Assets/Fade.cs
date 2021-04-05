@@ -3,36 +3,64 @@ using UnityEngine.UI;
 
 public class Fade : MonoBehaviour
 {
-    public enum FadeType { FadeIn, FadeOut }
-    public FadeType Fader;
-    public float fadeTime = 1.0f;
+    public float defaultFadeTime = 1.0f;
 
-    private Image image;
+    [SerializeField]
+    private bool isFadingIn = false;
+
     private bool isFadingOut = false;
+    private float fadeTime;
+    private Image image;
 
     void Start()
     {
+        fadeTime = defaultFadeTime;
         image = GetComponent<Image>();
-        if (Fader == FadeType.FadeIn) image.color = Color.white;
-        else image.color = new Color(1, 1, 1, 0);
+        if (isFadingIn) image.color = Color.black;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if (Fader == FadeType.FadeIn)
+        if (isFadingIn)
         {
             float alpha = image.color.a;
-            alpha -= Time.deltaTime / fadeTime;
-            image.color = new Color(1, 1, 1, alpha);
-            if (image.color.a <= 0) Destroy(gameObject);
+            alpha -= Time.fixedDeltaTime / fadeTime;
+            if (alpha < 0)
+            {
+                alpha = 0;
+                isFadingIn = false;
+            }
+            image.color = new Color(0, 0, 0, alpha);
         }
         else if (isFadingOut)
         {
             float alpha = image.color.a;
-            alpha += Time.deltaTime / fadeTime;
-            if (alpha > 1) alpha = 1;
-            image.color = new Color(1, 1, 1, alpha);
+            alpha += Time.fixedDeltaTime / fadeTime;
+            if (alpha > 1)
+            {
+                alpha = 1;
+                isFadingOut = false;
+            }
+            image.color = new Color(0, 0, 0, alpha);
         }
+    }
+
+    public void FadeIn()
+    {
+        fadeTime = defaultFadeTime;
+        isFadingIn = true;
+    }
+
+    public void FadeIn(float _fadeTime)
+    {
+        fadeTime = _fadeTime;
+        isFadingIn = true;
+    }
+
+    public void FadeOut()
+    {
+        fadeTime = defaultFadeTime;
+        isFadingOut = true;
     }
 
     public void FadeOut(float _fadeTime)

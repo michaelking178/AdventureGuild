@@ -39,8 +39,14 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator LoadLvl(string scene)
     {
+        Fade fader = FindObjectOfType<Fade>();
         FindObjectOfType<MenuManager>().CurrentMenu.Close();
         yield return new WaitForSeconds(1);
+        if (fader != null)
+        {
+            fader.FadeOut();
+            yield return new WaitForSeconds(fader.defaultFadeTime);
+        }
         SceneManager.LoadScene(scene);
     }
 
