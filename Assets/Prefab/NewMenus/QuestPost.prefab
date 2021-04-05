@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3540024994465225367}
   - component: {fileID: 3540024994465225366}
   - component: {fileID: 1441466777188346311}
+  - component: {fileID: 4926621351781358813}
   m_Layer: 5
   m_Name: QuestPost
   m_TagString: Untagged
@@ -93,6 +94,18 @@ MonoBehaviour:
   questName: {fileID: 3540024995127732597}
   questLevel: {fileID: 3540024995203936658}
   questTime: {fileID: 3540024994765345440}
+--- !u!114 &4926621351781358813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3540024994465225368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e34b5e36b4b12d34dbf6db649171fb6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3540024994621173006
 GameObject:
   m_ObjectHideFlags: 0

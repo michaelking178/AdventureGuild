@@ -57,6 +57,13 @@ public class Menu_Hero : Menu
         UpdateHeroPanel();
     }
 
+    public override void Close()
+    {
+        if (heroBioInput.gameObject.activeInHierarchy == true)
+            CancelUpdateBio();
+        base.Close();
+    }
+
     public void OpenBioEditor()
     {
         editBioBtn.gameObject.SetActive(false);
