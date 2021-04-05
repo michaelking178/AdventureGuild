@@ -39,6 +39,8 @@ public class QuestPost : MonoBehaviour, IPointerClickHandler
 
     private void StartQuest()
     {
-        Debug.Log(quest.questName + " has started!");
+        FindObjectOfType<QuestManager>().CurrentQuest = quest;
+        FindObjectOfType<Menu_SelectAdventurer>().Open();
+        Debug.Log($"Choosing an adventurer for {quest.questName}...");
     }
 }
