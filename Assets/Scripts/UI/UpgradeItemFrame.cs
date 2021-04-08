@@ -35,6 +35,7 @@ public class UpgradeItemFrame : MonoBehaviour
     private Color unavailableColor = new Color(1, 1, 1, 0.25f);
     private MenuManager menuManager;
     private ConstructionManager constructionManager;
+    private Button panelBtn;
     private bool isAvailable = true;
 
     private void Start()
@@ -43,6 +44,7 @@ public class UpgradeItemFrame : MonoBehaviour
         constructionManager = FindObjectOfType<ConstructionManager>();
         upgrade = constructionManager.GetUpgrade(UpgradeName);
         itemNameText.text = upgrade.Name;
+        panelBtn = GetComponent<Button>();
         StartCoroutine(DelayedCheckForPurchase());
     }
 
@@ -59,6 +61,7 @@ public class UpgradeItemFrame : MonoBehaviour
             if (constructionManager.ConstructionJob != null && constructionManager.ConstructionJob.name == upgrade.name && constructionManager.UnderConstruction)
             {
                 DisplayTimer();
+                panelBtn.interactable = false;
             }
             else
             {
@@ -106,7 +109,7 @@ public class UpgradeItemFrame : MonoBehaviour
         itemImage.color = unavailableColor;
         checkmarkImage.gameObject.SetActive(true);
         tintPanel.gameObject.SetActive(true);
-        GetComponent<Button>().interactable = false;
+        panelBtn.interactable = false;
     }
 
     public void AssignConstructionJob()

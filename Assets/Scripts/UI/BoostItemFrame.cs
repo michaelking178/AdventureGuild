@@ -27,13 +27,11 @@ public class BoostItemFrame : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI descriptionText;
 
-    private BoostManager boostManager;
     private MenuManager menuManager;
 
     private void Start()
     {
         menuManager = FindObjectOfType<MenuManager>();
-        boostManager = FindObjectOfType<BoostManager>();
         boostNameText.text = Boost.Name;
         descriptionText.text = Boost.Description;
     }

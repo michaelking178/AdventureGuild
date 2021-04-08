@@ -9,6 +9,18 @@ public class PersonUI : MonoBehaviour
     public GuildMember GuildMember { get; private set; }
 
     [SerializeField]
+    private Sprite adventurerSprite;
+
+    [SerializeField]
+    private Sprite selectedArtisanSprite;
+
+    [SerializeField]
+    private Sprite artisanSprite;
+
+    [SerializeField]
+    private Sprite peasantSprite;
+
+    [SerializeField]
     private HeroAvatarFrame avatarFrame;
 
     [SerializeField]
@@ -108,7 +120,7 @@ public class PersonUI : MonoBehaviour
                 exp.text = $"{GuildMember.Experience} / {Levelling.GuildMemberLevel[GuildMember.Level]}";
 
             personVocation.text = $"{GuildMember.Vocation.Title()} - Level {GuildMember.Level}";
-            health.text = $"Health: {GuildMember.Hitpoints} / {GuildMember.MaxHitpoints}";
+            health.text = $"HP: {GuildMember.Hitpoints} / {GuildMember.MaxHitpoints}";
 
             if (GuildMember.IsAvailable && !GuildMember.IsIncapacitated)
                 availability.text = "Available";
@@ -167,9 +179,9 @@ public class PersonUI : MonoBehaviour
         MenuManager menuManager = FindObjectOfType<MenuManager>();
         if (menuManager.CurrentMenu == FindObjectOfType<Menu_SelectAdventurer>())
             BeginQuest();
-        else if (menuManager.CurrentMenu == FindObjectOfType <Menu_SelectArtisans>())
+        else if (menuManager.CurrentMenu == FindObjectOfType<Menu_SelectArtisans>())
             SelectArtisan();
-        else if (menuManager.CurrentMenu == FindObjectOfType <Menu_SelectTrainee>())
+        else if (menuManager.CurrentMenu == FindObjectOfType<Menu_SelectTrainee>())
             BeginTraining();
     }
 
@@ -303,11 +315,11 @@ public class PersonUI : MonoBehaviour
         {
             if (obj.name == "PersonUIPanel")
             {
-                if (GuildMember == null) obj.GetComponent<Image>().color = new Color(1, 1, 1);
-                else if (isSelected) obj.GetComponent<Image>().color = selectedArtisanColor;
-                else if (GuildMember.Vocation is Artisan) obj.GetComponent<Image>().color = defaultArtisanColor;
-                else if (GuildMember.Vocation is Adventurer) obj.GetComponent<Image>().color = defaultAdventurerColor;
-                else obj.GetComponent<Image>().color = new Color(1, 1, 1);
+                if (GuildMember == null) obj.GetComponent<Image>().sprite = peasantSprite;
+                else if (isSelected) obj.GetComponent<Image>().sprite = selectedArtisanSprite;
+                else if (GuildMember.Vocation is Artisan) obj.GetComponent<Image>().sprite = artisanSprite;
+                else if (GuildMember.Vocation is Adventurer) obj.GetComponent<Image>().sprite = adventurerSprite;
+                else obj.GetComponent<Image>().sprite = peasantSprite;
             }
         }
     }

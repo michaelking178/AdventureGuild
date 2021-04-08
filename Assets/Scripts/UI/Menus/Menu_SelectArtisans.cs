@@ -32,19 +32,13 @@ public class Menu_SelectArtisans : Menu
     {
         if (menuManager.CurrentMenu == this)
         {
-            artisanProficiencyText.text = $"{constructionManager.SelectedArtisansProficiency()} / {upgrade.ArtisanCost}";
+            artisanProficiencyText.text = $"Artisan Proficiency: {constructionManager.SelectedArtisansProficiency()} / {upgrade.ArtisanCost}";
             SetTextColor();
 
-            if (constructionManager.UnderConstruction || !upgrade.CanAfford())
-            {
+            if (constructionManager.UnderConstruction || !upgrade.CanAfford() || constructionManager.Artisans.Count < upgrade.ArtisanCost)
                 beginConstruction.interactable = false;
-                beginConstruction.GetComponentInChildren<TextMeshProUGUI>().color = new Color(0.196f, 0.196f, 0.196f, 0.5f);
-            }
             else
-            {
                 beginConstruction.interactable = true;
-                beginConstruction.GetComponentInChildren<TextMeshProUGUI>().color = new Color(0.196f, 0.196f, 0.196f, 1);
-            }
         }    
     }
 
@@ -75,6 +69,7 @@ public class Menu_SelectArtisans : Menu
     {
         constructionManager.SetConstructionJob(upgrade);
         constructionManager.BeginConstruction();
+        FindObjectOfType<Menu_UpgradeGuildhall>().Open();
     }
 
     private void SetTextColor()

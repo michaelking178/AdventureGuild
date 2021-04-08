@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class QuestPopup : PopupMenu
 {
@@ -26,6 +27,12 @@ public class QuestPopup : PopupMenu
         briefing.text = quest.description;
         level.text = $"Level {quest.level}";
         time.text = Helpers.FormatTimer(quest.time);
+        foreach (TextSizer textSizer in GetComponentsInChildren<TextSizer>())
+        {
+            textSizer.Refresh();
+        }
+        if (GetComponentInChildren<Scrollbar>() != null)
+            GetComponentInChildren<Scrollbar>().value = 1;
         base.Populate();
     }
 }

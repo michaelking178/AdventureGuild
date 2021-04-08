@@ -139,7 +139,7 @@ public class TrainingManager : MonoBehaviour
         scoreText.text = "";
 
         float accuracy = (float)sword.Hits / sword.Swings;
-        int accuracyPercent = Mathf.RoundToInt(accuracy * 100);
+        int accuracyPercent = Mathf.FloorToInt(accuracy * 100);
 
         resultsScore.text = $"Score: {score}";
         score = Mathf.RoundToInt(score * accuracy);

@@ -108,8 +108,9 @@ public class Menu_Construction : Menu
 
     public void PassUpgradeToSelectArtisans()
     {
-        FindObjectOfType<Menu_SelectArtisans>().SetUpgrade(ConstructionJob);
-        menuManager.OpenMenu(FindObjectOfType<Menu_SelectArtisans>());
+        Menu_SelectArtisans menu_SelectArtisans = FindObjectOfType<Menu_SelectArtisans>();
+        menu_SelectArtisans.SetUpgrade(ConstructionJob);
+        menu_SelectArtisans.Open();
     }
 
     private void SetColor(TextMeshProUGUI text, int have, int need)

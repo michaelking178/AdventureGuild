@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Menu_WatchAds : Menu
 {
@@ -9,6 +10,9 @@ public class Menu_WatchAds : Menu
 
     [SerializeField]
     private GameObject boostFramePrefab;
+
+    [SerializeField]
+    private Scrollbar scrollbar;
 
     #endregion
 
@@ -25,5 +29,11 @@ public class Menu_WatchAds : Menu
             boostFrame.GetComponent<BoostItemFrame>().Boost = child.GetComponent<Boost>();
             boostFrame.name = "BoostFrame_" + child.name;
         }
+    }
+
+    public override void Open()
+    {
+        scrollbar.value = 1;
+        base.Open();
     }
 }

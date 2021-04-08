@@ -33,35 +33,35 @@ public static class Helpers
         if (quest.Reward.Exp != 0)
         {
             if (boostManager.IsQuestExpBoosted || quest.ExpBoosted)
-                reward += $"{quest.Reward.Exp} Experience (+{quest.Reward.BoostExp} bonus)\n";
+                reward += $"{quest.Reward.Exp} XP (+{quest.Reward.BoostExp})\n";
             else
-                reward += quest.Reward.Exp.ToString() + " Experience\n";
+                reward += quest.Reward.Exp.ToString() + " XP\n";
         }
         if (quest.Reward.Gold != 0)
         {
             if (boostManager.IsQuestGoldBoosted || quest.GoldBoosted)
-                reward += $"{quest.Reward.Gold} Gold (+{quest.Reward.BoostGold} bonus)\n";
+                reward += $"{quest.Reward.Gold} Gold (+{quest.Reward.BoostGold})\n";
             else
                 reward += quest.Reward.Gold.ToString() + " Gold\n";
         }
         if (quest.Reward.Wood != 0)
         {
             if (boostManager.IsQuestWoodBoosted || quest.WoodBoosted)
-                reward += $"{quest.Reward.Wood} Wood (+{quest.Reward.BoostWood} bonus)\n";
+                reward += $"{quest.Reward.Wood} Wood (+{quest.Reward.BoostWood})\n";
             else
                 reward += quest.Reward.Wood.ToString() + " Wood\n";
         }
         if (quest.Reward.Iron != 0)
         {
             if (boostManager.IsQuestIronBoosted || quest.IronBoosted)
-                reward += $"{quest.Reward.Iron} Iron (+{quest.Reward.BoostIron} bonus)\n";
+                reward += $"{quest.Reward.Iron} Iron (+{quest.Reward.BoostIron})\n";
             else
                 reward += quest.Reward.Iron.ToString() + " Iron\n";
         }
         if (quest.Reward.Renown != 0)
             reward += quest.Reward.Renown.ToString() + " Renown\n";
         if (quest.Reward.SkillExp != 0)
-            reward += quest.Reward.SkillExp.ToString() + " " + quest.QuestSkill.ToString() + " Experience\n";
+            reward += quest.Reward.SkillExp.ToString() + " " + quest.QuestSkill.ToString() + " XP\n";
         return reward;
     }
 
@@ -73,7 +73,7 @@ public static class Helpers
             {
                 if (incident.reward.Experience != 0)
                 {
-                    reward += incident.reward.Experience.ToString() + " Experience\n";
+                    reward += incident.reward.Experience.ToString() + " XP\n";
                 }
                 if (incident.reward.Gold != 0)
                 {

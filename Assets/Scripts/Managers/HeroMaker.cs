@@ -6,9 +6,6 @@ public class HeroMaker : MonoBehaviour
     [SerializeField]
     private Sprite defaultHeroSprite;
 
-    [SerializeField]
-    TextMeshProUGUI nameTextBox;
-
     private GuildMember hero;
     private PopulationManager populationManager;
 
@@ -43,9 +40,9 @@ public class HeroMaker : MonoBehaviour
         hero.person.gender = _gender;
     }
 
-    public void SetHeroName()
+    public void SetHeroName(string name)
     {
-        hero.person.name = nameTextBox.text;
+        hero.person.name = name;
         hero.Created = true;
     }
 }

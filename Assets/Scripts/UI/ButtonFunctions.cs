@@ -24,6 +24,7 @@ public class ButtonFunctions : MonoBehaviour
 
     public void PlaySound()
     {
-        FindObjectOfType<SoundManager>().PlaySound("Button");
+        if (FindObjectOfType<SoundManager>() != null)
+            FindObjectOfType<SoundManager>().PlaySound("Button");
     }
 }

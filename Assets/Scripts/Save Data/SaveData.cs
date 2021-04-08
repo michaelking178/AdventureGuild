@@ -132,6 +132,7 @@ public class SaveData
         questManager.CombatUnlocked = questManagerData.CombatUnlocked;
         questManager.EspionageUnlocked = questManagerData.EspionageUnlocked;
         questManager.DiplomacyUnlocked = questManagerData.DiplomacyUnlocked;
+        questManager.QuestsCompleted = questManagerData.QuestsCompleted;
     }
 
     private void LoadGuildMembers()

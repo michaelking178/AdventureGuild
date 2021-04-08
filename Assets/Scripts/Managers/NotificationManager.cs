@@ -8,6 +8,12 @@ public class NotificationManager : MonoBehaviour
     [SerializeField]
     private GameObject notificationPrefab;
 
+    [SerializeField]
+    private Sprite positiveNotification;
+
+    [SerializeField]
+    private Sprite negativeNotification;
+
     [HideInInspector]
     public List<GameObject> notificationUIs;
 
@@ -46,13 +52,13 @@ public class NotificationManager : MonoBehaviour
                 switch (notifications[0].NotificationSpirit)
                 {
                     case (Notification.Spirit.Good):
-                        notificationUI.GetComponent<Image>().color = new Color(0, 1, 0.08719444f);
+                        notificationUI.GetComponent<Image>().sprite = positiveNotification;
                         break;
                     case (Notification.Spirit.Bad):
-                        notificationUI.GetComponent<Image>().color = new Color(1, 0.1407514f, 0);
+                        notificationUI.GetComponent<Image>().sprite = negativeNotification;
                         break;
                     case (Notification.Spirit.Neutral):
-                        notificationUI.GetComponent<Image>().color = new Color(1, 1, 0);
+                        notificationUI.GetComponent<Image>().sprite = positiveNotification;
                         break;
                     default:
                         break;

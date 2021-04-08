@@ -1,5 +1,78 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7263775581812283830
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5242154245555310734}
+  - component: {fileID: 3787576486421237234}
+  - component: {fileID: 1060332378363824854}
+  m_Layer: 5
+  m_Name: TMP SubMeshUI [ChristopherDone-mAWm SDF Material + LiberationSans SDF Atlas]
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5242154245555310734
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7263775581812283830}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9054479891117925280}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &3787576486421237234
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7263775581812283830}
+  m_CullTransparentMesh: 0
+--- !u!114 &1060332378363824854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7263775581812283830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058cba836c1846c3aa1c5fd2e28aea77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_spriteAsset: {fileID: 0}
+  m_material: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
+  m_isDefaultMaterial: 0
+  m_padding: 4.90625
+  m_canvasRenderer: {fileID: 3787576486421237234}
+  m_TextComponent: {fileID: 9054479891117925281}
+  m_materialReferenceIndex: 1
 --- !u!1 &8890183867306284762
 GameObject:
   m_ObjectHideFlags: 0
@@ -34,10 +107,10 @@ RectTransform:
   m_Father: {fileID: 9054479892892241341}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.87073797, y: 0.35000002}
-  m_AnchorMax: {x: 0.933, y: 0.638}
-  m_AnchoredPosition: {x: -0.099975586, y: 0.5}
-  m_SizeDelta: {x: 0.6017151, y: -0.014505386}
+  m_AnchorMin: {x: 0.86414456, y: 0.289}
+  m_AnchorMax: {x: 0.9616044, y: 0.7111952}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0.21176147, y: 0.6616688}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6168164481080910149
 CanvasRenderer:
@@ -66,7 +139,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 19cc14cd18983844293c7b8e2993ab39, type: 3}
+  m_Sprite: {fileID: -5238444073454426044, guid: 334c4e040a2d8134fbaaf987987e3652,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -192,14 +266,15 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 5242154245555310734}
   m_Father: {fileID: 9054479892892241341}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.053278692, y: 0}
-  m_AnchorMax: {x: 0.81978714, y: 1}
-  m_AnchoredPosition: {x: -0.17001343, y: 1.1799927}
-  m_SizeDelta: {x: -0.093048096, y: -31.857475}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.851, y: 1}
+  m_AnchoredPosition: {x: 8.89, y: 0.80000305}
+  m_SizeDelta: {x: -18.660095, y: -12.848808}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9054479891117925286
 CanvasRenderer:
@@ -228,10 +303,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Notification
+  m_text: Peasants earned 999 Gold, 999 Wood and 999 Iron while you were away!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 66ca03310849d5643b81fa09ed2cd405, type: 2}
-  m_sharedMaterial: {fileID: 8847002362934079468, guid: 66ca03310849d5643b81fa09ed2cd405,
+  m_fontAsset: {fileID: 11400000, guid: b36b245070871ed49979a8ff8669a116, type: 2}
+  m_sharedMaterial: {fileID: -4958742473532628732, guid: b36b245070871ed49979a8ff8669a116,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -257,15 +332,15 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 20
-  m_fontSizeBase: 18
+  m_fontSize: 21
+  m_fontSizeBase: 21
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 20
-  m_fontStyle: 1
+  m_fontStyle: 32
   m_textAlignment: 513
-  m_characterSpacing: 0
+  m_characterSpacing: 2
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -298,21 +373,21 @@ MonoBehaviour:
   m_margin: {x: 0, y: -0.2942505, z: 0, w: -0.16931152}
   m_textInfo:
     textComponent: {fileID: 9054479891117925281}
-    characterCount: 12
+    characterCount: 68
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
+    spaceCount: 12
+    wordCount: 13
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
-    materialCount: 1
+    materialCount: 2
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1060332378363824854}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -392,8 +467,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b7f751f75990a684594fbe8bcad273d8, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: c7752707f372cce49bc834895c9c8d4a, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -401,7 +476,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 3
 --- !u!95 &6748819885787817268
 Animator:
   serializedVersion: 3
@@ -435,6 +510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   notificationText: {fileID: 9054479891117925281}
   closeButton: {fileID: 1222374415540909461}
+  CloseTimer: 8
 --- !u!114 &5417735706625446603
 MonoBehaviour:
   m_ObjectHideFlags: 0

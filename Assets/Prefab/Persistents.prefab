@@ -1803,6 +1803,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   notificationPrefab: {fileID: 9054479892892241340, guid: 93455ff4ba7e6a94ebe1dda9fa59f9f5,
     type: 3}
+  positiveNotification: {fileID: 21300000, guid: c7752707f372cce49bc834895c9c8d4a,
+    type: 3}
+  negativeNotification: {fileID: 21300000, guid: 26ec1f090ff98cd40a51f4cc0c3bdfdf,
+    type: 3}
   notificationUIs: []
   notifications: []
 --- !u!1 &1986790632943964638

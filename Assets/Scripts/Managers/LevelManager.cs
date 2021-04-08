@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     private string[] compatibleVersions = {
-        "0.1.0.1",
-        "0.1.0.2"
+        "0.2.0.0"
     };
 
     private void Awake()
@@ -70,7 +69,7 @@ public class LevelManager : MonoBehaviour
                     if (SaveSystem.GetSaveVersion() == version) isCompatible = true;
                 }
             }
-            if (isCompatible == false) SaveSystem.DeleteGame();
+            if (!isCompatible) SaveSystem.DeleteGame();
         }
     }
 }

@@ -16,14 +16,7 @@ public class Menu_SelectTrainee : Menu
 
     public override void Open()
     {
-        base.Open();
-        scrollView.LoadAvailablePersonUIs();
-        scrollView.SetPersonUIButtons(true, false, false);
-        scrollbar.value = 1;
-        foreach (GuildmemberGroup gmGroup in GetComponentsInChildren<GuildmemberGroup>())
-        {
-            gmGroup.Expand();
-        }
+        StartCoroutine(LoadMenu());
     }
 
     public override void Close()
@@ -51,6 +44,20 @@ public class Menu_SelectTrainee : Menu
         foreach (GuildmemberGroup gmGroup in GetComponentsInChildren<GuildmemberGroup>())
         {
             gmGroup.Collapse();
+        }
+    }
+
+    private IEnumerator LoadMenu()
+    {
+        yield return new WaitForSeconds(0.25f);
+        base.Open();
+        if (scrollView == null) scrollView = GetComponent<PersonUIScrollView>();
+        scrollView.LoadAvailablePersonUIs();
+        scrollView.SetPersonUIButtons(true, false, false);
+        scrollbar.value = 1;
+        foreach (GuildmemberGroup gmGroup in GetComponentsInChildren<GuildmemberGroup>())
+        {
+            gmGroup.Expand();
         }
     }
 }

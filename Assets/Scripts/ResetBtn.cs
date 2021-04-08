@@ -3,6 +3,7 @@
 public class ResetBtn : MonoBehaviour
 {
     public Sprite popupSprite;
+    public GameObject levelManagerPrefab;
 
     public void CallPopup()
     {
@@ -23,8 +24,9 @@ public class ResetBtn : MonoBehaviour
         {
             Destroy(GameObject.Find("PersistentCanvas"));
         }
-        LevelManager levelManager = new LevelManager();
-        levelManager.LoadLevelDirect("Main");
+        GameObject levelManagerObj = Instantiate(levelManagerPrefab);
+        LevelManager levelManager = levelManagerObj.GetComponent<LevelManager>();
+        levelManager.LoadLevelDirect("Title");
     }
 
     public void Confirm()

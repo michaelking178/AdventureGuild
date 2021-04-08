@@ -46,23 +46,18 @@ public class QuestUI : MonoBehaviour
     private Color diplomacyColor = new Color(0,0,1,1);
     private Color factionColor = new Color(1,1,1,1);
     private bool isTextGrey = false;
-    private float refreshTimer = 0.0f;
-    private float defaultRefreshTimer;
 
     #endregion
 
     private void Start()
     {
         questUIPool = FindObjectOfType<QuestUIPool>();
-        defaultRefreshTimer = Random.Range(1.0f, 2.0f);
     }
 
     private void FixedUpdate()
     {
-        refreshTimer -= Time.fixedDeltaTime;
-        if (quest != null && refreshTimer <= 0)
+        if (quest != null)
         {
-            refreshTimer = defaultRefreshTimer;
             SetQuestUIState();
         }
     }

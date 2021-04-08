@@ -22,7 +22,7 @@ public class QuestManager : MonoBehaviour
     public bool EspionageUnlocked { get; set; }
     public bool DiplomacyUnlocked { get; set; }
     public Quest CurrentQuest { get; set; }
-    public int QuestsCompleted { get; private set; }
+    public int QuestsCompleted { get; set; }
 
     // quests is just a reference to the entire Quest JSON list. It shouldn't be used directly.
     private Quests quests;                  

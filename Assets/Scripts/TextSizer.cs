@@ -2,7 +2,7 @@
 using TMPro;
 using System;
 
-[ExecuteInEditMode]
+[ExecuteAlways]
 public class TextSizer : MonoBehaviour
 {
     public TMP_Text Text;
