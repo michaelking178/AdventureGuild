@@ -115,15 +115,11 @@ public class SaveData
     private void LoadPopulationManager()
     {
         PopulationManager populationManager = GameObject.FindObjectOfType<PopulationManager>();
-        populationManager.RecoveryStartTime = populationManagerData.recoveryStartTime;
         populationManager.PopulationCap = populationManagerData.populationCap;
         populationManager.AdventurersEnabled = populationManagerData.adventurersEnabled;
         populationManager.ArtisansEnabled = populationManagerData.artisansEnabled;
-
-        if (populationManagerData.recruitStartTime != null)
-            populationManager.RecruitStartTime = populationManagerData.recruitStartTime;
-        else
-            populationManager.RecruitStartTime = DateTime.MinValue;
+        populationManager.RecoveryStartTime = populationManagerData.recoveryStartTime;
+        populationManager.RecruitStartTime = populationManagerData.recruitStartTime;
     }
 
     private void LoadQuestManager()

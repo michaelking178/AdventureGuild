@@ -25,6 +25,11 @@ public class Menu_Hero : Menu
     private TextMeshProUGUI heroBioText;
 
     [SerializeField]
+    private Slider expSlider;
+    [SerializeField]
+    private Slider healthSlider;
+
+    [SerializeField]
     private Button editBioBtn;
 
     [SerializeField]
@@ -45,9 +50,11 @@ public class Menu_Hero : Menu
         if (menuManager.CurrentMenu == this && hero != null)
         {
             heroVocation.text = $"Level {hero.Level} {hero.Vocation.Title()}";
-            heroExperience.text = $"Experience: {hero.Experience} / {Levelling.GuildMemberLevel[hero.Level]}";
-            heroHealth.text = $"Health: {hero.Hitpoints}/{hero.MaxHitpoints}";
+            heroExperience.text = $"{hero.Experience} / {Levelling.GuildMemberLevel[hero.Level]}";
+            heroHealth.text = $"{hero.Hitpoints}/{hero.MaxHitpoints}";
             heroBioText.text = hero.Bio;
+            UpdateExpSlider();
+            UpdateHealthSlider();
         }
     }
 
@@ -100,5 +107,19 @@ public class Menu_Hero : Menu
         heroBioInput.gameObject.SetActive(false);
         heroBioDone.gameObject.SetActive(false);
         heroBioCancel.gameObject.SetActive(false);
+    }
+
+    private void UpdateExpSlider()
+    {
+        expSlider.minValue = Levelling.GuildMemberLevel[hero.Level - 1];
+        expSlider.maxValue = Levelling.GuildMemberLevel[hero.Level];
+        expSlider.value = hero.Experience;
+    }
+
+    private void UpdateHealthSlider()
+    {
+        healthSlider.minValue = 0;
+        healthSlider.maxValue = hero.MaxHitpoints;
+        healthSlider.value = hero.Hitpoints;
     }
 }

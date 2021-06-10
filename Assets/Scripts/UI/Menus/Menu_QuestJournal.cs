@@ -82,7 +82,11 @@ public class Menu_QuestJournal : Menu
         foreach (Incident incident in quest.Incidents)
         {
             TextMeshProUGUI incidentText = Instantiate(incidentTextPrefab, incidentContainer.transform);
-            incidentText.text = $"Day {quest.Incidents.IndexOf(incident) + 1}\n{incident.description} {incident.finalResult}";
+            if (incident.description != "")
+                incidentText.text = $"Day {quest.Incidents.IndexOf(incident) + 1}\n{incident.description} {incident.finalResult}";
+            else
+                incidentText.text = $"Day {quest.Incidents.IndexOf(incident) + 1}\n{incident.finalResult}";
+
             TextMeshProUGUI incidentRewardText = Instantiate(incidentRewardTextPrefab, incidentContainer.transform);
             switch (incident.result)
             {

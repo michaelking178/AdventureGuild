@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     private void Awake()
     {
         ClearOldSave();
+        Application.targetFrameRate = 60;
     }
 
     private void Start()

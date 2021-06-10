@@ -1,8 +1,10 @@
-﻿[System.Serializable]
+﻿using System;
+
+[Serializable]
 public class PopulationManagerData
 {
-    public System.DateTime recoveryStartTime;
-    public System.DateTime recruitStartTime;
+    public DateTime recoveryStartTime;
+    public DateTime recruitStartTime;
     public int populationCap;
     public bool adventurersEnabled;
     public bool artisansEnabled;

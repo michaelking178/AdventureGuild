@@ -246,7 +246,7 @@ public class PersonUI : MonoBehaviour
                 peasantStats.SetActive(true);
                 Vector2 rectSize = statsPanel.GetComponent<RectTransform>().rect.size;
                 statsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(rectSize.x, 136.0f);
-                income.text = "None. Artisans will help to build the Adventure Guild.";
+                income.text = "Artisans will help to build the Adventure Guild.";
             }
             else if (GuildMember.Vocation is Adventurer adventurer)
             {

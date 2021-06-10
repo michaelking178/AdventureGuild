@@ -14,7 +14,6 @@ public class AdvertisementInitializer : MonoBehaviour
     void Start()
     {
         Advertisement.Initialize(gameId, testMode);
-        Debug.Log($"Advertisement.Initialize: {Advertisement.IsReady()}");
     }
 
     public bool IsReady()

@@ -76,6 +76,34 @@
       "goodResult": "At the bottom I found a small treasure hidden in the earth. The lock was rusted beyond repair; the box was old. I found within some unremarkable trinkets which I traded to a nearby merchant.",
       "badResult": "I landed hard upon a jagged rock and injured myself. I sat for a few hours, tending the wound and sipping a health potion. Slowly my strength returned and I was able to continue.",
       "neutralResult": "At the bottom was a friendly farmer who laughed and helped me find my way back to the main road. I carried on, grateful for my new friend's aid."
+    },
+	{
+      "id": "012",
+      "description": "A dog scampered out of the woods onto the road ahead of me, barking as though trying to get my attention.",
+      "goodResult": "I decided to follow it into the woods and found a traveller, beaten and robbed. I helped him to the nearby town where his family lived and they paid me a small reward for my aid.",
+      "badResult": "I decided to follow it into the woods and found a pack of bandits. They jumped me and robbed me of some valuables then departed, the dog trotting away happily by their side.",
+      "neutralResult": "I decided to follow it into the woods. As quickly as it had appeared, the dog vanished in the underbrush. I looked around for a moment to no avail, then returned to my journey."
+    },
+    {
+      "id": "013",
+      "description": "",
+      "goodResult": "",
+      "badResult": "",
+      "neutralResult": "The air is figid today."
+    },
+    {
+      "id": "014",
+      "description": "",
+      "goodResult": "",
+      "badResult": "",
+      "neutralResult": "I heard a lark in the trees. Did not see it. Maybe next time."
+    },
+    {
+      "id": "015",
+      "description": "",
+      "goodResult": "",
+      "badResult": "",
+      "neutralResult": "Thinking about the Guild today. I am glad to have a place to hone my skills."
     }
   ]
 }

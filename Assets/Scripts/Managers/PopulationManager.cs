@@ -23,10 +23,10 @@ public class PopulationManager : MonoBehaviour
     public bool ArtisansEnabled = false;
 
     private int hitpointRecovery = 5;
-    private float recoveryTimer = 30.0f;
+    private float recoveryTimer = 3600.0f;
     private float recoveryTime;
     private int recoveryQueue;
-    private float recruitTimer = 3600.0f;
+    private float recruitTimer = 5.0f;
     private float recruitTime;
     private int recruitQueue = 0;
 
@@ -45,9 +45,6 @@ public class PopulationManager : MonoBehaviour
         notificationManager = FindObjectOfType<NotificationManager>();
         guildhall = FindObjectOfType<Guildhall>();
         nameGenerator = FindObjectOfType<NameGenerator>();
-
-        if (RecoveryStartTime == System.DateTime.MinValue) RecoveryStartTime = System.DateTime.Now;
-        if (RecruitStartTime == System.DateTime.MinValue) RecruitStartTime = System.DateTime.Now;
     }
 
     private void FixedUpdate()
@@ -99,14 +96,12 @@ public class PopulationManager : MonoBehaviour
         newMember.Hitpoints = guildMemberData.hitpoints;
         newMember.MaxHitpoints = guildMemberData.maxHitpoints;
         newMember.Level = guildMemberData.level;
+
         if (guildMemberData.adventurer != null)
-        {
             newMember.Vocation = guildMemberData.adventurer;
-        }
         else
-        {
             newMember.Vocation = guildMemberData.vocation;
-        }
+
         newMember.IsAvailable = guildMemberData.isAvailable;
         newMember.Bio = guildMemberData.bio;
         GuildMembers.Add(newMember);
@@ -118,9 +113,7 @@ public class PopulationManager : MonoBehaviour
         foreach (GuildMember guildMember in GuildMembers)
         {
             if (guildMember.Vocation is Adventurer && guildMember.IsAvailable && !guildMember.IsIncapacitated)
-            {
                 adventurers.Add(guildMember);
-            }
         }
         return adventurers;
     }
@@ -131,9 +124,7 @@ public class PopulationManager : MonoBehaviour
         foreach (GuildMember guildMember in GuildMembers)
         {
             if (guildMember.Vocation is Artisan && guildMember.IsAvailable)
-            {
                 artisans.Add(guildMember);
-            }
         }
         return artisans;
     }
@@ -144,9 +135,7 @@ public class PopulationManager : MonoBehaviour
         foreach (GuildMember guildMember in GuildMembers)
         {
             if (guildMember.Vocation is Adventurer)
-            {
                 adventurers.Add(guildMember);
-            }
         }
         return adventurers;
     }
@@ -157,9 +146,7 @@ public class PopulationManager : MonoBehaviour
         foreach (GuildMember guildMember in GuildMembers)
         {
             if (guildMember.Vocation is Artisan)
-            {
                 artisans.Add(guildMember);
-            }
         }
         return artisans;
     }
@@ -170,9 +157,7 @@ public class PopulationManager : MonoBehaviour
         foreach (GuildMember guildMember in GuildMembers)
         {
             if (guildMember.Vocation is Peasant)
-            {
                 peasants.Add(guildMember);
-            }
         }
         return peasants;
     }
@@ -194,6 +179,9 @@ public class PopulationManager : MonoBehaviour
 
     public void RemoveGuildMember(GuildMember _guildMember)
     {
+        if (_guildMember.Vocation is Peasant peasant)
+            guildhall.AdjustIncome(peasant.IncomeResource, -peasant.Income);
+
         GuildMembers.Remove(_guildMember);
     }
 
@@ -215,6 +203,8 @@ public class PopulationManager : MonoBehaviour
 
     private void RecoverHitpoints()
     {
+        if (RecoveryStartTime == DateTime.MinValue) return;
+
         TimeSpan difference = DateTime.Now - RecoveryStartTime;
         recoveryTime = (float)difference.TotalSeconds;
         recoveryQueue = Mathf.FloorToInt(recoveryTime / recoveryTimer);
@@ -223,30 +213,26 @@ public class PopulationManager : MonoBehaviour
             foreach (GuildMember guildMember in GuildMembers)
             {
                 if (guildMember.Hitpoints != guildMember.MaxHitpoints && guildMember.IsAvailable)
-                {
                     guildMember.AdjustHitpoints(hitpointRecovery);
-                }
             }
         }
         if (DateTime.Now > RecoveryStartTime.AddSeconds(recoveryTimer))
-        {
             RecoveryStartTime = DateTime.Now;
-        }
     }
 
     private void PassiveRecruitment()
     {
+        if (RecruitStartTime == DateTime.MinValue) return;
+
         TimeSpan difference = DateTime.Now - RecruitStartTime;
         recruitTime = (float)difference.TotalSeconds;
         recruitQueue = Mathf.FloorToInt(recruitTime / recruitTimer);
+
         for (int i = 0; i < recruitQueue; i++)
-        {
             CheckForRecruit();
-        }
+
         if (DateTime.Now > RecruitStartTime.AddSeconds(recruitTimer))
-        {
             RecruitStartTime = DateTime.Now;
-        }
     }
 
     private void CheckForRecruit()
@@ -255,8 +241,10 @@ public class PopulationManager : MonoBehaviour
         if (PopulationCap == 0)
             odds = 0;
         else
-            odds = ((PopulationCap - GuildMembers.Count) * guildhall.Renown) / (Levelling.RenownLevel[guildhall.RenownLevel] * PopulationCap) * 0.5f;
+            odds = ((PopulationCap - GuildMembers.Count) * guildhall.Renown) / (float)(Levelling.RenownLevel[guildhall.RenownLevel] * PopulationCap);
+
         float roll = UnityEngine.Random.Range(0.01f, 1.0f);
-        if (roll <= odds) CreateGuildMember();
+        if (roll <= odds)
+            CreateGuildMember();
     }
 }

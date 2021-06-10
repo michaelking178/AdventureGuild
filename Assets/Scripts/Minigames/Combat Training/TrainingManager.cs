@@ -138,14 +138,27 @@ public class TrainingManager : MonoBehaviour
         timeText.text = "";
         scoreText.text = "";
 
-        float accuracy = (float)sword.Hits / sword.Swings;
+        float accuracy;
+        if (sword.Swings == 0 || sword.Hits == 0)
+            accuracy = 0;
+        else
+            accuracy = (float)sword.Hits / sword.Swings;
+
         int accuracyPercent = Mathf.FloorToInt(accuracy * 100);
 
         resultsScore.text = $"Score: {score}";
         score = Mathf.RoundToInt(score * accuracy);
 
-        exp = Mathf.CeilToInt(score / 10);
-        combatExp = Mathf.CeilToInt(score / 20);
+        if (score == 0)
+        {
+            exp = 0;
+            combatExp = 0;
+        }
+        else
+        {
+            exp = Mathf.CeilToInt(score / 10);
+            combatExp = Mathf.CeilToInt(score / 20);
+        }
 
         resultsImage.GetComponent<Animator>().SetTrigger("Open");
         resultsAccuracy.text = $"Accuracy: {accuracyPercent}%";

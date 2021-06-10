@@ -27,24 +27,32 @@ public class Incident
 
     private void CalculateResult()
     {
-        int roll = UnityEngine.Random.Range(1, 101) - adventurerLevel + questLevel;
-        int good = 40;
-        int neutral = 20;
-
-        if (roll <= good)
-        {
-            result = Result.Good;
-            finalResult = goodResult;
-        }
-        else if (roll <= good + neutral)
+        if (description == "")
         {
             result = Result.Neutral;
             finalResult = neutralResult;
         }
         else
         {
-            result = Result.Bad;
-            finalResult = badResult;
+            int roll = UnityEngine.Random.Range(1, 101) - adventurerLevel + questLevel;
+            int good = 40;
+            int neutral = 20;
+
+            if (roll <= good)
+            {
+                result = Result.Good;
+                finalResult = goodResult;
+            }
+            else if (roll <= good + neutral)
+            {
+                result = Result.Neutral;
+                finalResult = neutralResult;
+            }
+            else
+            {
+                result = Result.Bad;
+                finalResult = badResult;
+            }
         }
     }
 }
