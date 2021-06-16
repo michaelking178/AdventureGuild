@@ -26,9 +26,10 @@ public class PopulationManager : MonoBehaviour
     private float recoveryTimer = 3600.0f;
     private float recoveryTime;
     private int recoveryQueue;
-    private float recruitTimer = 5.0f;
+    private float recruitTimer = 3600.0f;
     private float recruitTime;
     private int recruitQueue = 0;
+    private int recruitQueueLimit = 25;
 
     private LevelManager levelManager;
     private NotificationManager notificationManager;
@@ -227,6 +228,8 @@ public class PopulationManager : MonoBehaviour
         TimeSpan difference = DateTime.Now - RecruitStartTime;
         recruitTime = (float)difference.TotalSeconds;
         recruitQueue = Mathf.FloorToInt(recruitTime / recruitTimer);
+        if (recruitQueue > recruitQueueLimit)
+            recruitQueue = recruitQueueLimit;
 
         for (int i = 0; i < recruitQueue; i++)
             CheckForRecruit();

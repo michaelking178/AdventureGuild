@@ -90,6 +90,10 @@ public class PersonUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI income;
 
+    [Header("Artisan Stats")]
+    [SerializeField]
+    private GameObject artisanStats;
+
     private QuestManager questManager;
     private bool isSelected;
     private Color defaultAdventurerColor = new Color(0.6f, 1, 0.7f);
@@ -235,6 +239,7 @@ public class PersonUI : MonoBehaviour
             if (GuildMember.Vocation is Peasant peasant)
             {
                 adventurerStats.SetActive(false);
+                artisanStats.SetActive(false);
                 peasantStats.SetActive(true);
                 Vector2 rectSize = statsPanel.GetComponent<RectTransform>().rect.size;
                 statsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(rectSize.x, 136.0f);
@@ -243,15 +248,16 @@ public class PersonUI : MonoBehaviour
             else if (GuildMember.Vocation is Artisan)
             {
                 adventurerStats.SetActive(false);
-                peasantStats.SetActive(true);
+                peasantStats.SetActive(false);
+                artisanStats.SetActive(true);
                 Vector2 rectSize = statsPanel.GetComponent<RectTransform>().rect.size;
                 statsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(rectSize.x, 136.0f);
-                income.text = "Artisans will help to build the Adventure Guild.";
             }
             else if (GuildMember.Vocation is Adventurer adventurer)
             {
                 adventurerStats.SetActive(true);
                 peasantStats.SetActive(false);
+                artisanStats.SetActive(false);
                 Vector2 rectSize = statsPanel.GetComponent<RectTransform>().rect.size;
                 statsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(rectSize.x, 215.0f);
 
