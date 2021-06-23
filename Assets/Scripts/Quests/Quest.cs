@@ -8,7 +8,7 @@ public class Quest
     public enum Skill { None, Combat, Espionage, Diplomacy }
     public enum Faction { None, MagesGuild, MerchantsGuild, RoyalPalace }
 
-    public string questName, contractor, skill, faction, description, commencement, completion;
+    public string questName, contractor, skill, faction, description, commencement, completion, trophyDescription;
     public int id, level, time, nextQuestID;
     public bool continuingQuest, questChain;
     public int questInstanceId;

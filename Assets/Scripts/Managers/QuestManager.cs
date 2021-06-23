@@ -43,6 +43,10 @@ public class QuestManager : MonoBehaviour
         notificationManager = FindObjectOfType<NotificationManager>();
         boostManager = FindObjectOfType<BoostManager>();
         quests = JsonUtility.FromJson<Quests>(questsJson.text);
+        foreach(Quest quest in quests.quests)
+        {
+            FindObjectOfType<TrophyManager>().AddTrophy(quest);
+        }
         if (questPool == null)
             questPool = new List<Quest>();
         if (questArchive == null)
@@ -150,6 +154,7 @@ public class QuestManager : MonoBehaviour
         rewardMessage = "Quest Completed!";
         quest.Incidents.Add(incidentManager.CreateCustomIncident(quest.completion, Incident.Result.Good, rewardMessage, DateTime.Now));
         ApplyQuestReward(quest);
+        FindObjectOfType<TrophyManager>().UnlockTrophy(quest);
         quest.GuildMember.IsAvailable= true;
         questArchive.Add(quest);
         questPool.Remove(quest);

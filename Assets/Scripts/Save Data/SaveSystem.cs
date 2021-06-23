@@ -64,6 +64,8 @@ public static class SaveSystem
 
         BoostData boostData = new BoostData();
 
+        TrophyManagerData trophyManagerData = new TrophyManagerData(Object.FindObjectOfType<TrophyManager>());
+
         SaveData saveData = new SaveData(
             heroData, 
             guildhallData, 
@@ -75,7 +77,8 @@ public static class SaveSystem
             populationManagerData, 
             questManagerData,
             constructionManagerData,
-            boostData
+            boostData,
+            trophyManagerData
             );
 
         formatter.Serialize(stream, saveData);

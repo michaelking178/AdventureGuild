@@ -18,6 +18,7 @@ public class SaveData
     private QuestManagerData questManagerData;
     private ConstructionManagerData constructionManagerData;
     private BoostData boostData;
+    private TrophyManagerData trophyManagerData;
 
     public SaveData(
         GuildMemberData _heroData, 
@@ -30,7 +31,8 @@ public class SaveData
         PopulationManagerData _populationManagerData, 
         QuestManagerData _questManagerData,
         ConstructionManagerData _constructionManagerData,
-        BoostData _boostData
+        BoostData _boostData,
+        TrophyManagerData _trophyManagerData
         )
     {
         ApplicationVersion = Application.version;
@@ -46,6 +48,7 @@ public class SaveData
         questManagerData = _questManagerData;
         constructionManagerData = _constructionManagerData;
         boostData = _boostData;
+        trophyManagerData = _trophyManagerData;
     }
 
     public void Load()
@@ -63,6 +66,7 @@ public class SaveData
         LoadQuestTimers();
         LoadConstructionManager();
         LoadBoostData();
+        LoadTrophyManager();
     }
 
     private void LoadSettings()
@@ -221,6 +225,12 @@ public class SaveData
         GameObject.FindObjectOfType<QuestGoldBoost>().BoostRemaining = boostData.goldBoostRemaining;
         GameObject.FindObjectOfType<QuestWoodBoost>().BoostRemaining = boostData.woodBoostRemaining;
         GameObject.FindObjectOfType<QuestIronBoost>().BoostRemaining = boostData.ironBoostRemaining;
+    }
+
+    private void LoadTrophyManager()
+    {
+        if (trophyManagerData != null)
+            GameObject.FindObjectOfType<TrophyManager>().Trophies = trophyManagerData.Trophies;
     }
 
     private Quest LoadQuest(QuestData _questData)
