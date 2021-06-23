@@ -22,7 +22,7 @@ public class TrophyManager : MonoBehaviour
             if (trophy.Id == quest.id)
             {
                 trophy.Unlock();
-                trophy.Description = string.Format("{0} {1}", quest.GuildMember.person.name, trophy.Description);
+                trophy.Description = $"{quest.GuildMember.person.name} {trophy.Description}";
             }
         }
     }

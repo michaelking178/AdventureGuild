@@ -43,7 +43,7 @@ public class BoostItemFrame : MonoBehaviour
     {
         if (menuManager.CurrentMenu.name == "Menu_WatchAds")
         {
-            if (Boost.BoostRemaining > 0)
+            if (Boost != null && Boost.BoostRemaining > 0)
             {
                 DisplayTimer();
             }

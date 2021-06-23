@@ -50,6 +50,8 @@ public class GuildmemberGroup : MonoBehaviour
             isExpanded = true;
             anim.SetTrigger("Expand");
             ContentPanel.SetActive(true);
+            Canvas.ForceUpdateCanvases();
+            LayoutRebuilder.MarkLayoutForRebuild(GetComponent<RectTransform>());
         }
     }
 
