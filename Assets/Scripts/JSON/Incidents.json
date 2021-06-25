@@ -104,6 +104,34 @@
       "goodResult": "",
       "badResult": "",
       "neutralResult": "Thinking about the Guild today. I am glad to have a place to hone my skills."
+    },
+    {
+      "id": "016",
+      "description": "A wandering minstrel offered to sing a song about my adventure.",
+      "goodResult": "It was beautiful and uplifting, drawing a small crowd who offered payment for the entertainment. The minstrel generously split the goods with me.",
+      "badResult": "It was painful to hear, out of tune and without a moment of poetry. When I shared this with him, he hit me with his lute. After a quick stop at the nearby healer, I am back on the road.",
+      "neutralResult": "The song was a lovely distraction, but I soon had to return to my journey."
+    },
+    {
+      "id": "017",
+      "description": "I rested in the shade of a tall oak tree.",
+      "goodResult": "Leaning on the trunk, I noticed a glimmer within a hollow knot. I reached in and discovered a small treasure.",
+      "badResult": "After a few minutes I noticed a burning sting in my drawers. I leapt up, discovering that I had seated myself on a fire ant hill! The sting ever growing, I ran to the nearest healer for immediate aid.",
+      "neutralResult": "The break was a welcome one and I returned to the road, rejuvenated."
+    },
+    {
+      "id": "018",
+      "description": "",
+      "goodResult": "",
+      "badResult": "",
+      "neutralResult": "Do manticores hatch out of eggs? Reminder: ask someone at the library."
+    },
+    {
+      "id": "019",
+      "description": "",
+      "goodResult": "",
+      "badResult": "",
+      "neutralResult": ""
     }
   ]
 }
