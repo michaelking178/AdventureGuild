@@ -327,7 +327,7 @@
       "level": 5,
       "trophyDescription": "beguiled the bandits and retrieved Abernathy's shipment.",
       "continuingQuest": true,
-      "questChain": false,
+      "questChain": true,
       "nextQuestID": ""
     },
     {
@@ -732,7 +732,7 @@
       "level": 15,
       "trophyDescription": "learned more about the strange amulet in the town of Dendrey.",
       "continuingQuest": true,
-      "questChain": false,
+      "questChain": true,
       "nextQuestID": ""
     },
     {
@@ -746,8 +746,8 @@
       "completion": "The townspeople of Belmere fought bravely against the bandits. Once I arrived they were emboldened and followed me into the fray. The bandits were many, numbering near a hundred, but the townspeople were resolute in their intent to be rid of the miscreants. After several hours of skirmishes in the streets wielding pitchfork, shovel, spear and bow, the townspeople finally pressed the bandits into submission. The remaining foes were arrested and escorted immediately to the deepest, darkest cells in the land. The town of Belmere is saved. I have received my reward from the grateful townspeople, and now return to the Adventure Guild.",
       "level": 15,
       "trophyDescription": "led the fight against the bandit onslaught.",
-      "continuingQuest": false,
-      "questChain": false,
+      "continuingQuest": true,
+      "questChain": true,
       "nextQuestID": ""
     },
     {

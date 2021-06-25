@@ -26,8 +26,16 @@ public class TrophyManager : MonoBehaviour
             {
                 trophy.Unlock();
                 trophy.Description = $"{quest.GuildMember.person.name} {trophy.Description}";
-                FindObjectOfType<PopupManager>().CallInfoPopup("Trophy Unlocked", trophy.Name, trophy.Description, trophySprite);
+                PopupManager popupManager = FindObjectOfType<PopupManager>();
+                popupManager.CallGenericPopup("Trophy Unlocked", trophy.Name, trophy.Description, trophySprite);
+                popupManager.SetPopupButtonText("Trophies", "Close");
+                popupManager.GenericPopup.ConfirmBtn.onClick.AddListener(GoToTrophyRoom);
             }
         }
+    }
+
+    private void GoToTrophyRoom()
+    {
+        FindObjectOfType<MenuManager>().OpenMenu(FindObjectOfType<Menu_TrophyRoom>());
     }
 }

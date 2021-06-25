@@ -15,10 +15,17 @@ public class PopupManager : MonoBehaviour
         QuestPopup.SetButtonText("Accept", "Cancel");
     }
 
-    public void CallGenericPopup(string _title, string _description, Sprite _sprite)
+    /// <summary>
+    /// Call a Generic Popup (if no subtitle is needed, use "")
+    /// </summary>
+    /// <param name="_title"></param>
+    /// <param name="_subtitle"></param>
+    /// <param name="_description"></param>
+    /// <param name="_sprite"></param>
+    public void CallGenericPopup(string _title, string _subtitle, string _description, Sprite _sprite)
     {
         popup = GenericPopup;
-        GenericPopup.Populate(_title, _description, _sprite);
+        GenericPopup.Populate(_title, _subtitle, _description, _sprite);
         GenericPopup.SetButtonText("Confirm", "Cancel");
     }
 

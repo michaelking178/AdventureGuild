@@ -155,11 +155,11 @@ public class QuestManager : MonoBehaviour
         quest.Incidents.Add(incidentManager.CreateCustomIncident(quest.completion, Incident.Result.Good, rewardMessage, DateTime.Now));
         ApplyQuestReward(quest);
         FindObjectOfType<TrophyManager>().UnlockTrophy(quest);
-        quest.GuildMember.IsAvailable= true;
+        quest.GuildMember.IsAvailable = true;
         questArchive.Add(quest);
         questPool.Remove(quest);
         if (quest.questChain)
-            AddQuestToPool(quest);
+            AddNextQuestInChainToPool(quest);
 
         SortQuestPoolByStartTime();
         SortQuestArchiveByStartTime();
@@ -344,7 +344,7 @@ public class QuestManager : MonoBehaviour
         return null;
     }
 
-    private void AddQuestToPool(Quest previousQuest)
+    private void AddNextQuestInChainToPool(Quest previousQuest)
     {
         Quest quest = CloneQuest(quests.GetQuestById(previousQuest.nextQuestID));
         questPool.Add(quest);
