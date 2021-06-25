@@ -22,7 +22,7 @@ Anticipated Launch date: **Summer 2021**
 
 ## Key Features
 
-- 60+ handcrafted quests and many handcrafted instances that may occur during the adventurer's journey, all written by Michael King.
+- 60+ handcrafted quests and many handcrafted incidents that may occur during the adventurer's journey, all written by Michael King.
 - Rewarded advertising with Unity Ads.
 - Procedurally generated guildmembers who join the Guild as the player progresses.
 - Custom transitional animations between UI elements.
