@@ -29,7 +29,7 @@ public class PopulationManager : MonoBehaviour
     private float recruitTimer = 3600.0f;
     private float recruitTime;
     private int recruitQueue = 0;
-    private int recruitQueueLimit = 25;
+    private int recruitQueueLimit = 10;
 
     private LevelManager levelManager;
     private NotificationManager notificationManager;
@@ -236,6 +236,8 @@ public class PopulationManager : MonoBehaviour
 
         if (DateTime.Now > RecruitStartTime.AddSeconds(recruitTimer))
             RecruitStartTime = DateTime.Now;
+
+        recruitQueue = 0;
     }
 
     private void CheckForRecruit()

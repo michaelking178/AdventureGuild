@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a17c843284097241bb623da08885e2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trophySprite: {fileID: 21300000, guid: 167b0850f2a894142b83f5d281a07510, type: 3}
 --- !u!1 &1552165662791084519
 GameObject:
   m_ObjectHideFlags: 0

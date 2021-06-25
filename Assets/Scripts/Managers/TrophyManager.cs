@@ -5,6 +5,9 @@ public class TrophyManager : MonoBehaviour
 {
     public List<Trophy> Trophies { get; set; } = new List<Trophy>();
 
+    [SerializeField]
+    private Sprite trophySprite;
+
     public void AddTrophy(Quest quest)
     {
         foreach(Trophy trophy in Trophies)
@@ -23,6 +26,7 @@ public class TrophyManager : MonoBehaviour
             {
                 trophy.Unlock();
                 trophy.Description = $"{quest.GuildMember.person.name} {trophy.Description}";
+                FindObjectOfType<PopupManager>().CallInfoPopup("Trophy Unlocked", trophy.Name, trophy.Description, trophySprite);
             }
         }
     }
