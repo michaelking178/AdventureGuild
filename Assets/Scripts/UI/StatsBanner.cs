@@ -8,15 +8,24 @@ public class StatsBanner : MonoBehaviour
         artisanProficiency, maxGold, maxIron, maxWood, currentGoldIncome, currentIronIncome, currentWoodIncome,
         maxGoldIncome, maxIronIncome, maxWoodIncome, timeToMaxGold, timeToMaxIron, timeToMaxWood;
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioClip openSwoosh;
+
+    [SerializeField]
+    private AudioClip closeSwoosh;
+
     private Guildhall guildhall;
     private PopulationManager populationManager;
     private Animator anim;
+    private AudioSource audioSource;
 
     private void Start()
     {
         guildhall = FindObjectOfType<Guildhall>();
         populationManager = FindObjectOfType<PopulationManager>();
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
@@ -54,8 +63,18 @@ public class StatsBanner : MonoBehaviour
 
     public void Extend()
     {
-        if (anim.GetBool("IsExtended")) anim.SetBool("IsExtended", false);
-        else anim.SetBool("IsExtended", true);
+        if (anim.GetBool("IsExtended"))
+        {
+            anim.SetBool("IsExtended", false);
+            audioSource.clip = closeSwoosh;
+            audioSource.Play();
+        }
+        else
+        {
+            anim.SetBool("IsExtended", true);
+            audioSource.clip = openSwoosh;
+            audioSource.Play();
+        }
     }
 
     private int CalculateTimeToMax(int incomePerHour, int maxResources)
