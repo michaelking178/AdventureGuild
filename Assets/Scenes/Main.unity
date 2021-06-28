@@ -14839,7 +14839,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1676774463}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.999999
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -16517,7 +16517,7 @@ PrefabInstance:
     - target: {fileID: 4241308223847686940, guid: 14ab5936380d52e418498709a5164b7c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7945381710166317240, guid: 14ab5936380d52e418498709a5164b7c,
         type: 3}
@@ -16538,6 +16538,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 9.007
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095615670419273116, guid: 14ab5936380d52e418498709a5164b7c,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14ab5936380d52e418498709a5164b7c, type: 3}
@@ -17889,6 +17894,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: QuestPopup
       objectReference: {fileID: 0}
+    - target: {fileID: 1759974565951368542, guid: 5fb5ffaaa33a4ce4394b2f6c8941b180,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1759974565951368543, guid: 5fb5ffaaa33a4ce4394b2f6c8941b180,
         type: 3}
       propertyPath: m_Enabled
@@ -17903,6 +17913,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_sharedMaterial
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759974566031507649, guid: 5fb5ffaaa33a4ce4394b2f6c8941b180,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1759974566031507650, guid: 5fb5ffaaa33a4ce4394b2f6c8941b180,
         type: 3}
@@ -44944,7 +44959,7 @@ PrefabInstance:
     - target: {fileID: 4390268691112111995, guid: 4297c37a372686f40b5791c65a6ff716,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7945381710166317241, guid: 4297c37a372686f40b5791c65a6ff716,
         type: 3}
@@ -54137,7 +54152,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -56192,7 +56207,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1868137982}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.83807707
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

@@ -27,6 +27,8 @@ public class GenericPopup : PopupMenu
         description.text = _description;
         image.gameObject.SetActive(true);
         image.sprite = _sprite;
+        anim.SetTrigger("Open");
+        audioSource.Play();
         base.Populate();
     }
 }
