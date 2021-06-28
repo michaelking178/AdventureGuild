@@ -19,12 +19,9 @@ public class PopupMenu : MonoBehaviour
 
     protected Animator anim;
 
-    protected AudioSource audioSource;
-
     private void Start()
     {
         anim = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     public void SetButtonText(string confirm)

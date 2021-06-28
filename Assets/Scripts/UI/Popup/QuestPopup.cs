@@ -34,5 +34,7 @@ public class QuestPopup : PopupMenu
         if (GetComponentInChildren<Scrollbar>() != null)
             GetComponentInChildren<Scrollbar>().value = 1;
         base.Populate();
+        anim.SetTrigger("Open");
+        GetComponent<AudioSource>().Play();
     }
 }
