@@ -12,10 +12,12 @@ public class Dimmer : MonoBehaviour
     private float alpha;
     private bool isDimming = false;
     private bool isLighting = false;
+    private LevelManager levelManager;
 
     void Start()
     {
         image = GetComponent<Image>();
+        levelManager = FindObjectOfType<LevelManager>();
     }
 
     void FixedUpdate()
@@ -45,11 +47,28 @@ public class Dimmer : MonoBehaviour
     {
         isLighting = false;
         isDimming = true;
+        PauseMinigame();
     }
 
     public void DisableDim()
     {
         isDimming = false;
         isLighting = true;
+        ResumeMinigame();
+    }
+
+    private void PauseMinigame()
+    {
+        if (levelManager.CurrentLevel() == "CombatTraining" && !FindObjectOfType<TrainingManager>().GameOver)
+        {
+            FindObjectOfType<TrainingManager>().PauseGame();
+        }
+    }
+    private void ResumeMinigame()
+    {
+        if (levelManager.CurrentLevel() == "CombatTraining" && FindObjectOfType<TrainingManager>().GamePaused)
+        {
+            FindObjectOfType<TrainingManager>().ResumeGame();
+        }
     }
 }

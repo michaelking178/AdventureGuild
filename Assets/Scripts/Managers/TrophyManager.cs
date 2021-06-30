@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class TrophyManager : MonoBehaviour
@@ -36,6 +37,24 @@ public class TrophyManager : MonoBehaviour
 
     private void GoToTrophyRoom()
     {
-        FindObjectOfType<MenuManager>().OpenMenu(FindObjectOfType<Menu_TrophyRoom>());
+        if (FindObjectOfType<LevelManager>().CurrentLevel() != "Main")
+            StartCoroutine(LoadTrophyScene());
+        else
+            LoadTrophyRoom();
+    }
+
+    private IEnumerator LoadTrophyScene()
+    {
+        FindObjectOfType<LevelManager>().LoadLevel("Main");
+        yield return new WaitForSeconds(1.5f);
+        LoadTrophyRoom();
+    }
+
+    private void LoadTrophyRoom()
+    {
+        MenuManager menuManager = FindObjectOfType<MenuManager>();
+        Menu_TrophyRoom trophyRoom = FindObjectOfType<Menu_TrophyRoom>();
+        if (menuManager.CurrentMenu != trophyRoom)
+            menuManager.OpenMenu(trophyRoom);
     }
 }

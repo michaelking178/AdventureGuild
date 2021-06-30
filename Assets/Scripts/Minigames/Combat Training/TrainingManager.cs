@@ -47,6 +47,7 @@ public class TrainingManager : MonoBehaviour
     public float TimeLimit = 15f;
     public float TimeRemaining = 0;
     public bool GameOver;
+    public bool GamePaused { get; private set; } = false;
 
     private GuildMember guildMember;
     private TrainingSword sword;
@@ -129,6 +130,31 @@ public class TrainingManager : MonoBehaviour
         ResetGame();
     }
 
+    public void BeginTraining()
+    {
+        StartCoroutine(Countdown());
+    }
+
+    public void PauseGame()
+    {
+        if (!GamePaused)
+        {
+            GamePaused = true;
+            GameOver = true;
+            countingDown = false;
+        }
+    }
+
+    public void ResumeGame()
+    {
+        if(GamePaused)
+        {
+            GamePaused = false;
+            GameOver = false;
+            countingDown = true;
+        }
+    }
+
     private void StopGame()
     {
         GameOver = true;
@@ -172,11 +198,6 @@ public class TrainingManager : MonoBehaviour
         {
             resultsCombatExp.text = $"An Adventurer would have gained {combatExp} Combat Exp!";
         }
-    }
-
-    public void BeginTraining()
-    {
-        StartCoroutine(Countdown());
     }
 
     private IEnumerator Countdown()
