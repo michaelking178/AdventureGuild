@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class BoostManager : MonoBehaviour
 {
@@ -6,6 +7,13 @@ public class BoostManager : MonoBehaviour
     public bool IsQuestGoldBoosted = false;
     public bool IsQuestWoodBoosted = false;
     public bool IsQuestIronBoosted = false;
+
+    private QuestManager questManager;
+
+    private void Start()
+    {
+        questManager = FindObjectOfType<QuestManager>();
+    }
 
     public Boost GetBoost(string _name)
     {
@@ -22,9 +30,16 @@ public class BoostManager : MonoBehaviour
 
     public void SetBoosts()
     {
-        foreach(Quest quest in FindObjectOfType<QuestManager>().GetQuestPool())
+        foreach(Quest quest in questManager.GetQuestPool())
         {
-            quest.Reward.SetBoosts();
+            if (quest.State == Quest.Status.New)
+            {
+                quest.ExpBoosted = IsQuestExpBoosted;
+                quest.GoldBoosted = IsQuestGoldBoosted;
+                quest.IronBoosted = IsQuestIronBoosted;
+                quest.WoodBoosted = IsQuestWoodBoosted;
+                quest.Reward.SetBoosts();
+            }
         }
     }
 }

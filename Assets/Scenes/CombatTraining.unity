@@ -699,6 +699,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a4145c8615e914a9a92cd70d148619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  openSound: {fileID: 0}
+  closeSound: {fileID: 0}
   timeText: {fileID: 286152886}
   scoreText: {fileID: 1563509216}
 --- !u!1 &93134386
@@ -3846,7 +3848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8de034258f3a422478bf7f07ed9aee23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swordWoosh: {fileID: 8300000, guid: 5b238043b627858438903834748fbad6, type: 3}
+  swordWoosh: {fileID: 8300000, guid: e4ca541f3689c48458c60135da65bdef, type: 3}
   swordClangs:
   - {fileID: 8300000, guid: 79d99233dfe3a1c4d865c51b87237505, type: 3}
   - {fileID: 8300000, guid: 113db96aad2b9cf4f895e2ea7eeb2110, type: 3}
@@ -7501,6 +7503,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d36bd0602067cab41b411ac47bf3ced2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  openSound: {fileID: 0}
+  closeSound: {fileID: 0}
   scrollbar: {fileID: 6029294494444008197}
 --- !u!222 &6029294493669156195
 CanvasRenderer:

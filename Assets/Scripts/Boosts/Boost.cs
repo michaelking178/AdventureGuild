@@ -2,13 +2,16 @@
 
 public class Boost : MonoBehaviour
 {
-    protected BoostManager boostManager;
     public string Name;
     public string Description;
     public float Duration = 7200;
     public float MaxDuration = 21600;
     public float BoostRemaining = 0;
     public float BoostValue = 0.2f;
+
+    protected BoostManager boostManager;
+
+    private bool boostEnded = false;
     
     protected void Start()
     {
@@ -21,11 +24,12 @@ public class Boost : MonoBehaviour
         {
             SetBoostBool(true);
             BoostRemaining -= Time.deltaTime;
+            boostEnded = false;
         }
         else
         {
             BoostRemaining = 0;
-            SetBoostBool(false);
+            EndBoost();
         }
     }
 
@@ -42,12 +46,22 @@ public class Boost : MonoBehaviour
 
     public void Apply()
     {
-        boostManager.SetBoosts();
         SetBoostBool(true);
         BoostRemaining += Duration;
         if (BoostRemaining > MaxDuration)
         {
             BoostRemaining = MaxDuration;
+        }
+        boostManager.SetBoosts();
+    }
+
+    private void EndBoost()
+    {
+        if(!boostEnded)
+        {
+            SetBoostBool(false);
+            boostManager.SetBoosts();
+            boostEnded = true;
         }
     }
 }

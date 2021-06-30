@@ -45,7 +45,7 @@ public class MenuManager : MonoBehaviour
         if (CurrentMenu != null)
         {
             CurrentMenu.Close();
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(0.5f);
         }
         CurrentMenu = menu;
         CurrentMenu.GetComponent<Animator>().SetTrigger("Open");

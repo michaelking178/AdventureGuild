@@ -144,7 +144,6 @@ public class QuestManager : MonoBehaviour
         CurrentQuest.startTime = DateTime.Now;
         CurrentQuest.State = Quest.Status.Active;
         CurrentQuest.Timer = questTimer;
-        SetBoostBools();
     }
 
     public void CompleteQuest(Quest quest)
@@ -349,18 +348,6 @@ public class QuestManager : MonoBehaviour
         Quest quest = CloneQuest(quests.GetQuestById(previousQuest.nextQuestID));
         questPool.Add(quest);
         SortQuestPoolByStartTime();
-    }
-
-    private void SetBoostBools()
-    {
-        if (boostManager.IsQuestExpBoosted)
-            CurrentQuest.ExpBoosted = true;
-        if (boostManager.IsQuestGoldBoosted)
-            CurrentQuest.GoldBoosted = true;
-        if (boostManager.IsQuestWoodBoosted)
-            CurrentQuest.WoodBoosted = true;
-        if (boostManager.IsQuestIronBoosted)
-            CurrentQuest.IronBoosted = true;
     }
 
     private void ApplyBoostReward(Quest quest)

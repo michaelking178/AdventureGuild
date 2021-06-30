@@ -27,33 +27,32 @@ public static class Helpers
     /// <returns></returns>
     public static string QuestRewardStr(Quest quest)
     {
-        BoostManager boostManager = GameObject.FindObjectOfType<BoostManager>();
         string reward = "";
 
         if (quest.Reward.Exp != 0)
         {
-            if (boostManager.IsQuestExpBoosted || quest.ExpBoosted)
+            if (quest.ExpBoosted)
                 reward += $"{quest.Reward.Exp} XP (+{quest.Reward.BoostExp})\n";
             else
                 reward += quest.Reward.Exp.ToString() + " XP\n";
         }
         if (quest.Reward.Gold != 0)
         {
-            if (boostManager.IsQuestGoldBoosted || quest.GoldBoosted)
+            if (quest.GoldBoosted)
                 reward += $"{quest.Reward.Gold} Gold (+{quest.Reward.BoostGold})\n";
             else
                 reward += quest.Reward.Gold.ToString() + " Gold\n";
         }
         if (quest.Reward.Wood != 0)
         {
-            if (boostManager.IsQuestWoodBoosted || quest.WoodBoosted)
+            if (quest.WoodBoosted)
                 reward += $"{quest.Reward.Wood} Wood (+{quest.Reward.BoostWood})\n";
             else
                 reward += quest.Reward.Wood.ToString() + " Wood\n";
         }
         if (quest.Reward.Iron != 0)
         {
-            if (boostManager.IsQuestIronBoosted || quest.IronBoosted)
+            if (quest.IronBoosted)
                 reward += $"{quest.Reward.Iron} Iron (+{quest.Reward.BoostIron})\n";
             else
                 reward += quest.Reward.Iron.ToString() + " Iron\n";
