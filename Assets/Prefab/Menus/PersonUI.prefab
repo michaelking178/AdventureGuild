@@ -497,7 +497,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 216.35907, y: -311.4178}
+  m_AnchoredPosition: {x: 216.35907, y: -386.4178}
   m_SizeDelta: {x: 368.71814, y: 61.986324}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &250966036777967136
@@ -1994,7 +1994,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 216.35907, y: -249.43146}
+  m_AnchoredPosition: {x: 216.35907, y: -299.43146}
   m_SizeDelta: {x: 368.71814, y: 61.986324}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7295594477116286278
@@ -3907,7 +3907,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 216.35907, y: -215.72598}
+  m_AnchoredPosition: {x: 216.35907, y: -212.44513}
   m_SizeDelta: {x: 368.71814, y: 61.986324}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7787940502210197694
@@ -4332,7 +4332,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Artisans complete construction projects for the Guild which provide permantent
+  m_text: Artisans complete construction projects for the Guild which provide permanent
     upgrades.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 66ca03310849d5643b81fa09ed2cd405, type: 2}

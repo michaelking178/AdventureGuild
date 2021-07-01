@@ -32,10 +32,10 @@ public class TrophyItemRow : MonoBehaviour
         if (Trophy != null)
         {
             trophyNameTxt.text = Trophy.Name;
-            descriptionTxt.text = Trophy.Description;
 
             if (Trophy.IsUnlocked)
             {
+                descriptionTxt.text = $"{Trophy.Unlocker} {Trophy.Description}";
                 unlockDate.gameObject.SetActive(true);
                 unlockDateTxt.text = Trophy.UnlockDate.ToString("G");
                 trophyImage.color = Color.white;
@@ -43,6 +43,7 @@ public class TrophyItemRow : MonoBehaviour
             }
             else
             {
+                descriptionTxt.text = Trophy.Description;
                 unlockDate.gameObject.SetActive(false);
                 unlockDateTxt.text = "";
                 trophyImage.color = lockedColor;

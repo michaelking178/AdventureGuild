@@ -114,6 +114,12 @@ public class TrainingManager : MonoBehaviour
 
     public void OpenInstructions()
     {
+        StartCoroutine(OpenInstructionsCRTN());
+    }
+
+    private IEnumerator OpenInstructionsCRTN()
+    {
+        yield return new WaitForSeconds(0.5f);
         instructionsImage.GetComponent<Animator>().SetTrigger("Open");
     }
 

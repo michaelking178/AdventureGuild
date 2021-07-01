@@ -13,6 +13,7 @@ public class BoostManager : MonoBehaviour
     private void Start()
     {
         questManager = FindObjectOfType<QuestManager>();
+        SetBoosts();
     }
 
     public Boost GetBoost(string _name)

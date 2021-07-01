@@ -26,9 +26,10 @@ public class TrophyManager : MonoBehaviour
             if (trophy.Id == quest.id)
             {
                 trophy.Unlock();
-                trophy.Description = $"{quest.GuildMember.person.name} {trophy.Description}";
+                trophy.Unlocker = quest.GuildMember.person.name;
                 PopupManager popupManager = FindObjectOfType<PopupManager>();
-                popupManager.CallGenericPopup("Trophy Unlocked", trophy.Name, trophy.Description, trophySprite);
+                string unlockString = $"{trophy.Unlocker} {trophy.Description}";
+                popupManager.CallGenericPopup("Trophy Unlocked", trophy.Name, unlockString, trophySprite);
                 popupManager.SetPopupButtonText("Trophies", "Close");
                 popupManager.GenericPopup.ConfirmBtn.onClick.AddListener(GoToTrophyRoom);
             }
@@ -46,7 +47,7 @@ public class TrophyManager : MonoBehaviour
     private IEnumerator LoadTrophyScene()
     {
         FindObjectOfType<LevelManager>().LoadLevel("Main");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         LoadTrophyRoom();
     }
 

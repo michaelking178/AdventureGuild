@@ -44,7 +44,7 @@ public abstract class Upgrade : MonoBehaviour
 
     protected virtual void CheckForUpgrade() 
     {
-        Debug.Log($"{gameObject.name} has not defined CheckForUpgrade() and is using the empty base class method!");
+        Debug.LogWarning($"{gameObject.name} has not defined CheckForUpgrade() and is using the empty base class method!");
     }
 
     public void PayForUpgrade()
