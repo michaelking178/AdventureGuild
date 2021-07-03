@@ -29,6 +29,7 @@ public class ConstructionManager : MonoBehaviour
 
             if (TimeElapsed >= ConstructionJob.constructionTime)
             {
+                UnderConstruction = false;
                 StartCoroutine(CompleteConstruction());
             }
         }
@@ -54,7 +55,7 @@ public class ConstructionManager : MonoBehaviour
     {
         UnderConstruction = true;
         ConstructionJob.PayForUpgrade();
-        StartTime = DateTime.Now;
+        StartTime = DateTime.Now.AddSeconds(-0.25);
         foreach(GuildMember artisan in Artisans)
         {
             artisan.IsAvailable = false;
@@ -63,7 +64,6 @@ public class ConstructionManager : MonoBehaviour
 
     public IEnumerator CompleteConstruction()
     {
-        UnderConstruction = false;
         yield return new WaitForSeconds(0.5f);
         ConstructionJob.Apply();
 

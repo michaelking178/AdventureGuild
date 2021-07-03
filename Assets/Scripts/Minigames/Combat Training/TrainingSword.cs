@@ -19,10 +19,12 @@ public class TrainingSword : MonoBehaviour
     private int speed = 25;
     private float startTime = 0f;
     private float swingResistance = 0.1f;
+    private TrainingManager trainingManager;
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        trainingManager = FindObjectOfType<TrainingManager>();
         startPos = transform.position;
         movementPos = startPos;
         audioSource.volume = FindObjectOfType<SoundManager>().GetComponent<AudioSource>().volume;
@@ -30,18 +32,21 @@ public class TrainingSword : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float distCovered = (Time.time - startTime) * speed;
-        float fraction = 0;
-        if (distCovered > 0)
+        if (!trainingManager.GamePaused)
         {
-            fraction = distCovered / distance;
+            float distCovered = (Time.time - startTime) * speed;
+            float fraction = 0;
+            if (distCovered > 0)
+            {
+                fraction = distCovered / distance;
+            }
+            transform.position = Vector2.Lerp(startPos, movementPos, fraction);
         }
-        transform.position = Vector2.Lerp(startPos, movementPos, fraction);
     }
 
     public void Swing(Vector2 position)
     {
-        if (!FindObjectOfType<TrainingManager>().GameOver)
+        if (!trainingManager.GameOver)
         {
             Swings++;
             StartCoroutine(SwingMovement(position));

@@ -1426,5 +1426,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Persistents
       objectReference: {fileID: 0}
+    - target: {fileID: 2269828456872333608, guid: b2f96042f55d1414a8b22fad0671dfe7,
+        type: 3}
+      propertyPath: Description
+      value: Gain more experience for every quest started while this boost is active!
+        Stacks up to 6 hours.
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2f96042f55d1414a8b22fad0671dfe7, type: 3}

@@ -14,7 +14,7 @@ public class Reward
 
     public Reward(int questLevel, Quest.Skill skill)
     {
-        Gold = Random.Range(200 * (questLevel + 1), 200 * (questLevel + 2 + Mathf.FloorToInt(questLevel / 5)));
+        Gold = Random.Range(150 * (questLevel + 1), 150 * (questLevel + 2 + Mathf.FloorToInt(questLevel / 5)));
         Iron = Random.Range(30 * (questLevel + 1), 30 * (questLevel + 2 + Mathf.FloorToInt(questLevel / 5)));
         Wood = Random.Range(50 * (questLevel + 1), 50 * (questLevel + 2 + Mathf.FloorToInt(questLevel / 5)));
         Exp = Random.Range(100 * (questLevel + 1), 100 * (questLevel + 2 + Mathf.FloorToInt(questLevel / 5)));

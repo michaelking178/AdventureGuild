@@ -58,6 +58,7 @@ public class TrainingManager : MonoBehaviour
     private float defaultCountdown = 4.0f;
     private float countdown;
     private bool countingDown = false;
+    private bool pausedDuringCountdown = false;
 
     #endregion
 
@@ -75,34 +76,37 @@ public class TrainingManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (countingDown && countdown > 0f)
+        if (!GamePaused)
         {
-            countdownText.gameObject.SetActive(true);
-            countdown -= (Time.deltaTime * 1.25f);
-            if ((int)countdown == 0)
+            if (countingDown && countdown > 0f)
             {
-                countdownText.text = "GO!";
+                countdownText.gameObject.SetActive(true);
+                countdown -= (Time.deltaTime * 1.25f);
+                if ((int)countdown == 0)
+                {
+                    countdownText.text = "GO!";
+                }
+                else
+                {
+                    countdownText.text = ((int)countdown).ToString();
+                }
             }
             else
             {
-                countdownText.text = ((int)countdown).ToString();
+                countingDown = false;
+                countdownText.gameObject.SetActive(false);
             }
-        }
-        else
-        {
-            countingDown = false;
-            countdownText.gameObject.SetActive(false);
-        }
 
-        if (!GameOver)
-        {
-            timeText.text = Helpers.FormatTimer((int)TimeRemaining);
-            scoreText.text = score.ToString();
-            TimeRemaining -= Time.deltaTime;
-            if (TimeRemaining < 0.125f)
+            if (!GameOver)
             {
-                TimeRemaining = 0;
-                StopGame();
+                timeText.text = Helpers.FormatTimer((int)TimeRemaining);
+                scoreText.text = score.ToString();
+                TimeRemaining -= Time.deltaTime;
+                if (TimeRemaining < 0.125f)
+                {
+                    TimeRemaining = 0;
+                    StopGame();
+                }
             }
         }
     }
@@ -146,18 +150,27 @@ public class TrainingManager : MonoBehaviour
         if (!GamePaused)
         {
             GamePaused = true;
-            GameOver = true;
-            countingDown = false;
+            //GameOver = true;
+            //if (countingDown)
+            //{
+            //    countingDown = false;
+            //    pausedDuringCountdown = true;
+            //}
+            //else pausedDuringCountdown = false;
         }
     }
 
     public void ResumeGame()
     {
-        if(GamePaused)
+        if (GamePaused)
         {
             GamePaused = false;
-            GameOver = false;
-            countingDown = true;
+            //GameOver = false;
+            //if (pausedDuringCountdown)
+            //{
+            //    countingDown = true;
+            //    pausedDuringCountdown = false;
+            //}
         }
     }
 

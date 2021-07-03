@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections;
 using UnityEngine;
 
 public class BoostManager : MonoBehaviour
@@ -13,7 +13,7 @@ public class BoostManager : MonoBehaviour
     private void Start()
     {
         questManager = FindObjectOfType<QuestManager>();
-        SetBoosts();
+        StartCoroutine(DelayedSetBoosts());
     }
 
     public Boost GetBoost(string _name)
@@ -42,5 +42,11 @@ public class BoostManager : MonoBehaviour
                 quest.Reward.SetBoosts();
             }
         }
+    }
+
+    private IEnumerator DelayedSetBoosts()
+    {
+        yield return new WaitForSeconds(1);
+        SetBoosts();
     }
 }

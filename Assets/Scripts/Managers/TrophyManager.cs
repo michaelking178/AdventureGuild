@@ -9,6 +9,8 @@ public class TrophyManager : MonoBehaviour
     [SerializeField]
     private Sprite trophySprite;
 
+    private int renownMultiplier = 5;
+
     public void AddTrophy(Quest quest)
     {
         foreach(Trophy trophy in Trophies)
@@ -26,18 +28,21 @@ public class TrophyManager : MonoBehaviour
             if (trophy.Id == quest.id)
             {
                 trophy.Unlock();
+                int renown = quest.level * renownMultiplier;
                 trophy.Unlocker = quest.GuildMember.person.name;
+                string unlockString = $"{trophy.Unlocker} {trophy.Description}\n\nYou earned +{renown} Renown!";
                 PopupManager popupManager = FindObjectOfType<PopupManager>();
-                string unlockString = $"{trophy.Unlocker} {trophy.Description}";
                 popupManager.CallGenericPopup("Trophy Unlocked", trophy.Name, unlockString, trophySprite);
                 popupManager.SetPopupButtonText("Trophies", "Close");
                 popupManager.GenericPopup.ConfirmBtn.onClick.AddListener(GoToTrophyRoom);
+                FindObjectOfType<Guildhall>().AdjustRenown(renown);
             }
         }
     }
 
     private void GoToTrophyRoom()
     {
+        FindObjectOfType<PopupManager>().GenericPopup.ConfirmBtn.onClick.RemoveListener(GoToTrophyRoom);
         if (FindObjectOfType<LevelManager>().CurrentLevel() != "Main")
             StartCoroutine(LoadTrophyScene());
         else

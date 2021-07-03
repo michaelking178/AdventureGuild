@@ -127,11 +127,11 @@ public class PersonUI : MonoBehaviour
             health.text = $"HP: {GuildMember.Hitpoints} / {GuildMember.MaxHitpoints}";
 
             if (GuildMember.IsAvailable && !GuildMember.IsIncapacitated)
-                availability.text = "Available";
+                availability.text = "Idle";
             else if (GuildMember.IsAvailable && GuildMember.IsIncapacitated)
                 availability.text = "Incapacitated";
             else
-                availability.text = "Unavailable";
+                availability.text = "Working";
 
             if (extensionPanel.activeInHierarchy)
                 AdjustStatsPanel();

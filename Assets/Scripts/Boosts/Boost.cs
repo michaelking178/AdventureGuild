@@ -44,7 +44,7 @@ public class Boost : MonoBehaviour
         return false;
     }
 
-    public void Apply()
+    public virtual void Apply()
     {
         SetBoostBool(true);
         BoostRemaining += Duration;

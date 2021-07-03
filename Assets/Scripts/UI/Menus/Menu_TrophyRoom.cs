@@ -48,6 +48,7 @@ public class Menu_TrophyRoom : Menu
     public override void Open()
     {
         base.Open();
+        FilterAll();
         scrollbar.value = 1;
     }
 

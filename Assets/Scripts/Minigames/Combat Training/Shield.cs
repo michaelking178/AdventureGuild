@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
+    #region Data
+
     [SerializeField]
     private Vector2[] quadrants = new Vector2[4];
 
@@ -24,6 +26,9 @@ public class Shield : MonoBehaviour
     private TrainingSword sword;
     private SpriteRenderer spriteRenderer;
     private int pointsModifier = 2;
+    private bool clickedRed = false;
+
+    #endregion
 
     void Start()
     {
@@ -37,36 +42,47 @@ public class Shield : MonoBehaviour
 
     private void FixedUpdate()
     {
-        shieldCenter.x = transform.position.x + shieldCenterXOffset;
-        shieldCenter.y = transform.position.y + shieldCenterYOffset;
-
-        if (!trainingManager.GameOver)
+        if (!trainingManager.GamePaused)
         {
-            if (spriteRenderer.color == red)
-                repositionDelay = defaultRepositionDelay * 0.5f;
-            else
-                repositionDelay = defaultRepositionDelay;
+            shieldCenter.x = transform.position.x + shieldCenterXOffset;
+            shieldCenter.y = transform.position.y + shieldCenterYOffset;
 
-            if (currentTime < repositionDelay)
-                currentTime = Time.time - startTime;
-            else
+            if (!trainingManager.GameOver)
             {
-                ChangePosition();
-                startTime = Time.time;
-                currentTime = 0;
+                if (spriteRenderer.color == red)
+                    repositionDelay = defaultRepositionDelay * 0.5f;
+                else
+                    repositionDelay = defaultRepositionDelay;
+
+                if (currentTime < repositionDelay)
+                    currentTime = Time.time - startTime;
+                else
+                {
+                    if (spriteRenderer.color == red && !clickedRed)
+                    {
+                        trainingManager.AddPoints(125);
+                    }
+                    ChangePosition();
+                    startTime = Time.time;
+                    currentTime = 0;
+                    clickedRed = false;
+                }
             }
         }
     }
 
     public void OnMouseDown()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-        if (!trainingManager.GameOver && hit.collider != null)
+        if (!trainingManager.GamePaused)
         {
-            sword.Hits++;
-            sword.Swing(hit.point);
-            StartCoroutine(StrikeShield(hit.point));
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+            if (!trainingManager.GameOver && hit.collider != null)
+            {
+                sword.Hits++;
+                sword.Swing(hit.point);
+                StartCoroutine(StrikeShield(hit.point));
+            }
         }
     }
 
@@ -143,6 +159,7 @@ public class Shield : MonoBehaviour
 
     private void StrikeRedShield()
     {
+        clickedRed = true;
         sword.Hits--;
         trainingManager.TimeRemaining -= 3.0f;
         currentTime = repositionDelay;

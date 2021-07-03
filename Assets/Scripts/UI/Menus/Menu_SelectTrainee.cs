@@ -39,7 +39,7 @@ public class Menu_SelectTrainee : Menu
 
     private IEnumerator ClearPersonUIs()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         scrollView.ClearPersonUIs();
         foreach (GuildmemberGroup gmGroup in GetComponentsInChildren<GuildmemberGroup>())
         {

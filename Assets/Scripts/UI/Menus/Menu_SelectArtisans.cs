@@ -57,7 +57,8 @@ public class Menu_SelectArtisans : Menu
     public override void Close()
     {
         base.Close();
-        constructionManager.Artisans.Clear();
+        if (!constructionManager.UnderConstruction)
+            constructionManager.Artisans.Clear();
         StartCoroutine(ClearPersonUIs());
     }
 
