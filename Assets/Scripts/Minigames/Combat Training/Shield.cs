@@ -8,6 +8,9 @@ public class Shield : MonoBehaviour
     [SerializeField]
     private Vector2[] quadrants = new Vector2[4];
 
+    [SerializeField]
+    ParticleSystem sparksPrefab;
+
     public float defaultRepositionDelay = 2.0f;
     public Color blue;
     public Color green;
@@ -131,6 +134,16 @@ public class Shield : MonoBehaviour
             striking = true;
             int quadrant = currentQuadrant;
             yield return new WaitForSeconds(0.15f);
+
+            Quaternion sparkRotation = new Quaternion();
+            float xRot = 0;
+            if (currentQuadrant == 0) xRot = -135.0f;
+            else if (currentQuadrant == 1) xRot = -45.0f;
+            else if (currentQuadrant == 2) xRot = 135.0f;
+            else if (currentQuadrant == 3) xRot = 45.0f;
+            sparkRotation.eulerAngles = new Vector3(xRot, 90, 90);
+
+            Instantiate(sparksPrefab, clickPos, sparkRotation);
             if (quadrant == currentQuadrant)
             {
                 FindObjectOfType<TrainingSword>().ClangSound();

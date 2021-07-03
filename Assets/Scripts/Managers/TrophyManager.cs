@@ -25,7 +25,7 @@ public class TrophyManager : MonoBehaviour
     {
         foreach(Trophy trophy in Trophies)
         {
-            if (trophy.Id == quest.id)
+            if (trophy.Id == quest.id && !trophy.IsUnlocked)
             {
                 trophy.Unlock();
                 int renown = quest.level * renownMultiplier;

@@ -23,7 +23,7 @@ public class PopulationManager : MonoBehaviour
     public bool ArtisansEnabled = false;
 
     private int hitpointRecovery = 5;
-    private float recoveryTimer = 30.0f;
+    private float recoveryTimer = 60.0f;
     private float recoveryTime;
     private int recoveryQueue;
     private float recruitTimer = 3600.0f;
