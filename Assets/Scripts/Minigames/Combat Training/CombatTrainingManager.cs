@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class CombatTrainingManager : MonoBehaviour
+public class CombatTrainingManager : TrainingManager
 {
     #region Data
 
@@ -15,16 +14,11 @@ public class CombatTrainingManager : MonoBehaviour
     private TextMeshProUGUI scoreText;
 
     [Header("Instructions Panel")]
-    [SerializeField]
-    private Image instructionsImage;
 
     [SerializeField]
     private TextMeshProUGUI countdownText;
 
     [Header("Results Panel")]
-    [SerializeField]
-    private Image resultsImage;
-
     [SerializeField]
     private TextMeshProUGUI resultsScore;
 
@@ -47,18 +41,14 @@ public class CombatTrainingManager : MonoBehaviour
     public float TimeLimit = 15f;
     public float TimeRemaining = 0;
     public bool GameOver;
-    public bool GamePaused { get; private set; } = false;
 
-    private GuildMember guildMember;
     private TrainingSword sword;
     private Shield shield;
-    private int score = 0;
-    private int exp = 0;
     private int combatExp = 0;
     private float defaultCountdown = 4.0f;
     private float countdown;
     private bool countingDown = false;
-    private bool pausedDuringCountdown = false;
+    // private bool pausedDuringCountdown = false;
 
     #endregion
 
@@ -111,28 +101,7 @@ public class CombatTrainingManager : MonoBehaviour
         }
     }
 
-    public void SetGuildMember(GuildMember _guildMember)
-    {
-        guildMember = _guildMember;
-    }
-
-    public void OpenInstructions()
-    {
-        StartCoroutine(OpenInstructionsCRTN());
-    }
-
-    private IEnumerator OpenInstructionsCRTN()
-    {
-        yield return new WaitForSeconds(0.5f);
-        instructionsImage.GetComponent<Animator>().SetTrigger("Open");
-    }
-
-    public void AddPoints(int points)
-    {
-        score += points;
-    }
-
-    public void ApplyResults()
+    public override void ApplyResults()
     {
         resultsImage.GetComponent<Animator>().SetTrigger("Close");
         guildMember.AddExp(exp);

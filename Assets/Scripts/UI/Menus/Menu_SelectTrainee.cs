@@ -32,7 +32,7 @@ public class Menu_SelectTrainee : Menu
 
     private IEnumerator CompleteTrainingCR()
     {
-        FindObjectOfType<CombatTrainingManager>().ApplyResults();
+        FindObjectOfType<TrainingManager>().ApplyResults();
         yield return new WaitForSeconds(0.5f);
         Open();
     }

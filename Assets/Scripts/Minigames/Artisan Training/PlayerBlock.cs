@@ -3,9 +3,6 @@
 public class PlayerBlock : MonoBehaviour
 {
     [SerializeField]
-    private float translateSpeed = 0.5f;
-
-    [SerializeField]
     private float rigidBodySpeed = 350.0f;
 
     [SerializeField]

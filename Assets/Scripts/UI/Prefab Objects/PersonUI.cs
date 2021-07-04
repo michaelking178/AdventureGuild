@@ -390,7 +390,7 @@ public class PersonUI : MonoBehaviour
 
     private void BeginTraining()
     {
-        CombatTrainingManager trainingManager = FindObjectOfType<CombatTrainingManager>();
+        TrainingManager trainingManager = FindObjectOfType<TrainingManager>();
         trainingManager.SetGuildMember(GetComponent<PersonUI>().GuildMember);
         FindObjectOfType<Menu_Training>().Open();
         trainingManager.OpenInstructions();
