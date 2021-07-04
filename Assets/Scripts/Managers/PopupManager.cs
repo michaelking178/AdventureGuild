@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class PopupManager : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class PopupManager : MonoBehaviour
     public QuestPopup QuestPopup;
 
     private PopupMenu popup;
+
+    private List<PopupData> popupQueue = new List<PopupData>();
 
     public void CallQuestPopup(Quest quest)
     {
@@ -51,5 +54,16 @@ public class PopupManager : MonoBehaviour
     public void SetPopupButtonText(string confirm, string cancel)
     {
         popup.SetButtonText(confirm, cancel);
+    }
+
+    public bool IsGenericPopupOpen()
+    {
+        return GenericPopup.IsOpen;
+    }
+
+    public void CreatePopup(PopupData.PopupType popupType, string title, string subtitle, string description, Sprite sprite)
+    {
+        PopupData newPopup = new PopupData(popupType, title, subtitle, description, sprite);
+        popupQueue.Add(newPopup);
     }
 }

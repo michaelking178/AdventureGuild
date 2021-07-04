@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class TrophyManager : MonoBehaviour
 {
+    #region Data
+
     public List<Trophy> Trophies { get; set; } = new List<Trophy>();
 
     [SerializeField]
     private Sprite trophySprite;
 
     private int renownMultiplier = 5;
+
+    #endregion
 
     public void AddTrophy(Quest quest)
     {
@@ -28,14 +32,14 @@ public class TrophyManager : MonoBehaviour
             if (trophy.Id == quest.id && !trophy.IsUnlocked)
             {
                 trophy.Unlock();
-                int renown = quest.level * renownMultiplier;
+                trophy.Renown = quest.level * renownMultiplier;
+                FindObjectOfType<Guildhall>().AdjustRenown(trophy.Renown);
                 trophy.Unlocker = quest.GuildMember.person.name;
-                string unlockString = $"{trophy.Unlocker} {trophy.Description}\n\nYou earned +{renown} Renown!";
+                string unlockString = $"{trophy.Unlocker} {trophy.Description}\n\nYou earned +{trophy.Renown} Renown!";
                 PopupManager popupManager = FindObjectOfType<PopupManager>();
                 popupManager.CallGenericPopup("Trophy Unlocked", trophy.Name, unlockString, trophySprite);
                 popupManager.SetPopupButtonText("Trophies", "Close");
                 popupManager.GenericPopup.ConfirmBtn.onClick.AddListener(GoToTrophyRoom);
-                FindObjectOfType<Guildhall>().AdjustRenown(renown);
             }
         }
     }

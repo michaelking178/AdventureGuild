@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,9 @@ public class PopupMenu : MonoBehaviour
 
     [SerializeField]
     protected Dimmer dimmerPanel;
+
+    public float popupCloseDelay = 1.0f;
+    public bool IsOpen { get; set; } = false;
 
     protected Animator anim;
 
@@ -39,6 +43,7 @@ public class PopupMenu : MonoBehaviour
     {
         clickBlocker.SetActive(true);
         dimmerPanel.EnableDim();
+        IsOpen = true;
     }    
 
     public void Confirm()
@@ -46,6 +51,7 @@ public class PopupMenu : MonoBehaviour
         dimmerPanel.DisableDim();
         anim.SetTrigger("Close");
         clickBlocker.SetActive(false);
+        StartCoroutine(ToggleIsOpenBool());
     }
 
     public void Cancel()
@@ -54,6 +60,13 @@ public class PopupMenu : MonoBehaviour
         ClearListeners();
         anim.SetTrigger("Close");
         clickBlocker.SetActive(false);
+        StartCoroutine(ToggleIsOpenBool());
+    }
+
+    private IEnumerator ToggleIsOpenBool()
+    {
+        yield return new WaitForSeconds(popupCloseDelay);
+        IsOpen = false;
     }
 
     private void ClearListeners()

@@ -697,7 +697,7 @@ GameObject:
   - component: {fileID: 1168714269}
   - component: {fileID: 1168714268}
   m_Layer: 5
-  m_Name: txt_MichaelKing
+  m_Name: txt_HalfPintGames
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -741,9 +741,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'a game by
+  m_text: 'a
 
-    Michael King'
+    Half Pint Games
+
+    production'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1ea075dbccef9674da6504d92f6320a5, type: 2}
   m_sharedMaterial: {fileID: -4958742473532628732, guid: 1ea075dbccef9674da6504d92f6320a5,

@@ -19,12 +19,12 @@ public class TrainingSword : MonoBehaviour
     private int speed = 25;
     private float startTime = 0f;
     private float swingResistance = 0.1f;
-    private TrainingManager trainingManager;
+    private CombatTrainingManager trainingManager;
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        trainingManager = FindObjectOfType<TrainingManager>();
+        trainingManager = FindObjectOfType<CombatTrainingManager>();
         startPos = transform.position;
         movementPos = startPos;
         audioSource.volume = FindObjectOfType<SoundManager>().GetComponent<AudioSource>().volume;

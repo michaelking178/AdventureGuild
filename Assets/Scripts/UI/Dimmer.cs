@@ -59,16 +59,16 @@ public class Dimmer : MonoBehaviour
 
     private void PauseMinigame()
     {
-        if (levelManager.CurrentLevel() == "CombatTraining" && !FindObjectOfType<TrainingManager>().GameOver)
+        if (levelManager.CurrentLevel() == "CombatTraining" && !FindObjectOfType<CombatTrainingManager>().GameOver)
         {
-            FindObjectOfType<TrainingManager>().PauseGame();
+            FindObjectOfType<CombatTrainingManager>().PauseGame();
         }
     }
     private void ResumeMinigame()
     {
-        if (levelManager.CurrentLevel() == "CombatTraining" && FindObjectOfType<TrainingManager>().GamePaused)
+        if (levelManager.CurrentLevel() == "CombatTraining" && FindObjectOfType<CombatTrainingManager>().GamePaused)
         {
-            FindObjectOfType<TrainingManager>().ResumeGame();
+            FindObjectOfType<CombatTrainingManager>().ResumeGame();
         }
     }
 }

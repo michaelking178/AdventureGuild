@@ -3,12 +3,12 @@
 public class BackgroundPanel : MonoBehaviour
 {
     private TrainingSword trainingSword;
-    private TrainingManager trainingManager;
+    private CombatTrainingManager trainingManager;
 
     private void Start()
     {
         trainingSword = FindObjectOfType<TrainingSword>();
-        trainingManager = FindObjectOfType<TrainingManager>();
+        trainingManager = FindObjectOfType<CombatTrainingManager>();
     }
     public void OnMouseDown()
     {
@@ -16,7 +16,7 @@ public class BackgroundPanel : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-            if (!FindObjectOfType<TrainingManager>().GameOver && hit.collider != null)
+            if (!FindObjectOfType<CombatTrainingManager>().GameOver && hit.collider != null)
             {
                 trainingSword.Swing(hit.point);
                 trainingSword.WooshSound();

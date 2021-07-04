@@ -25,7 +25,7 @@ public class Shield : MonoBehaviour
     private int currentQuadrant;
     private int newQuadrant;
     private bool striking = false;
-    private TrainingManager trainingManager;
+    private CombatTrainingManager trainingManager;
     private TrainingSword sword;
     private SpriteRenderer spriteRenderer;
     private int pointsModifier = 2;
@@ -36,7 +36,7 @@ public class Shield : MonoBehaviour
     void Start()
     {
         sword = FindObjectOfType<TrainingSword>();
-        trainingManager = FindObjectOfType<TrainingManager>();
+        trainingManager = FindObjectOfType<CombatTrainingManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         startTime = Time.time;
         repositionDelay = defaultRepositionDelay;
