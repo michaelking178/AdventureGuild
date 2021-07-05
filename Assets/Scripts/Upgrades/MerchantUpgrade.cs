@@ -10,7 +10,7 @@ public class MerchantUpgrade : MaxResourceUpgrade
 
     private new void FixedUpdate()
     {
-        if (levelManager.CurrentLevel() == "Title") return;
+        if (levelManager.CurrentLevel() != "Main") return;
 
         base.FixedUpdate();
         if (menuManager.CurrentMenu == upgradeGuildhall)

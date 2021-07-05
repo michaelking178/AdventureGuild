@@ -13,11 +13,6 @@ public class CombatTrainingManager : TrainingManager
     [SerializeField]
     private TextMeshProUGUI scoreText;
 
-    [Header("Instructions Panel")]
-
-    [SerializeField]
-    private TextMeshProUGUI countdownText;
-
     [Header("Results Panel")]
     [SerializeField]
     private TextMeshProUGUI resultsScore;
@@ -40,23 +35,19 @@ public class CombatTrainingManager : TrainingManager
     [Header("Game Stats")]
     public float TimeLimit = 15f;
     public float TimeRemaining = 0;
-    public bool GameOver;
 
     private TrainingSword sword;
     private Shield shield;
     private int combatExp = 0;
-    private float defaultCountdown = 4.0f;
-    private float countdown;
-    private bool countingDown = false;
-    // private bool pausedDuringCountdown = false;
 
     #endregion
 
-    private void Start()
+    protected override void Start()
     {
         // Todo: ExpBoost debug stuff can be removed later.
         if (FindObjectOfType<PopulationManager>().DebugBoostEnabled == true) TimeLimit = 10f;
 
+        base.Start();
         countdown = defaultCountdown;
         sword = FindObjectOfType<TrainingSword>();
         shield = FindObjectOfType<Shield>();
@@ -64,29 +55,12 @@ public class CombatTrainingManager : TrainingManager
         TimeRemaining = TimeLimit;
     }
 
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
+        base.FixedUpdate();
         if (!GamePaused)
         {
-            if (countingDown && countdown > 0f)
-            {
-                countdownText.gameObject.SetActive(true);
-                countdown -= (Time.deltaTime * 1.25f);
-                if ((int)countdown == 0)
-                {
-                    countdownText.text = "GO!";
-                }
-                else
-                {
-                    countdownText.text = ((int)countdown).ToString();
-                }
-            }
-            else
-            {
-                countingDown = false;
-                countdownText.gameObject.SetActive(false);
-            }
-
+            CountDown();
             if (!GameOver)
             {
                 timeText.text = Helpers.FormatTimer((int)TimeRemaining);
@@ -103,43 +77,20 @@ public class CombatTrainingManager : TrainingManager
 
     public override void ApplyResults()
     {
-        resultsImage.GetComponent<Animator>().SetTrigger("Close");
-        guildMember.AddExp(exp);
+        base.ApplyResults();
         guildMember.AddExp(Quest.Skill.Combat, combatExp);
         ResetGame();
     }
 
-    public void BeginTraining()
-    {
-        StartCoroutine(Countdown());
-    }
-
-    public void PauseGame()
-    {
-        if (!GamePaused)
-        {
-            GamePaused = true;
-            //GameOver = true;
-            //if (countingDown)
-            //{
-            //    countingDown = false;
-            //    pausedDuringCountdown = true;
-            //}
-            //else pausedDuringCountdown = false;
-        }
-    }
-
-    public void ResumeGame()
+    public override void ResumeGame()
     {
         if (GamePaused)
         {
             GamePaused = false;
-            //GameOver = false;
-            //if (pausedDuringCountdown)
-            //{
-            //    countingDown = true;
-            //    pausedDuringCountdown = false;
-            //}
+            if (countingDown)
+            {
+                shield.StartTime = Time.time;
+            }
         }
     }
 
@@ -186,15 +137,6 @@ public class CombatTrainingManager : TrainingManager
         {
             resultsCombatExp.text = $"An Adventurer would have gained {combatExp} Combat Exp!";
         }
-    }
-
-    private IEnumerator Countdown()
-    {
-        instructionsImage.GetComponent<Animator>().SetTrigger("Close");
-        yield return new WaitForSeconds(0.5f);
-        countingDown = true;
-        yield return new WaitForSeconds(3.25f);
-        GameOver = false;
     }
 
     private IEnumerator ResetShield()

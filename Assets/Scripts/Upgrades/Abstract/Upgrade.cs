@@ -32,7 +32,7 @@ public abstract class Upgrade : MonoBehaviour
     protected void FixedUpdate()
     {
         if (menuManager == null) menuManager = FindObjectOfType<MenuManager>();
-        if (upgradeGuildhall == null) upgradeGuildhall = FindObjectOfType<Menu_UpgradeGuildhall>();
+        if (upgradeGuildhall == null) upgradeGuildhall = FindObjectOfType<Menu_UpgradeGuildhall>();        
     }
 
     protected virtual IEnumerator DelayedCheckForUpgrade()

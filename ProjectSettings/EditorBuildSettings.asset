@@ -12,8 +12,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/CombatTraining.unity
+    path: Assets/Scenes/AdventurerTraining.unity
     guid: 19e54014a4244e540bf7bb1bdc8be9e6
+  - enabled: 1
+    path: Assets/Scenes/ArtisanTraining.unity
+    guid: 2a563854dcfa0244288d3d5c50e6e330
   - enabled: 1
     path: Assets/Scenes/ChangeLog.unity
     guid: e3ab9e07ace613646b1941d35f93799b

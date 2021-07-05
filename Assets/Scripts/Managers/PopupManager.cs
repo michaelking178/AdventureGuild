@@ -7,7 +7,7 @@ public class PopupManager : MonoBehaviour
     public InfoPopup InfoPopup;
     public QuestPopup QuestPopup;
 
-    private bool isPopupOpen = false;
+    public bool IsPopupOpen { get; private set; } = false;
     private List<PopupData> popupQueue = new List<PopupData>();
     private LevelManager levelManager;
 
@@ -20,9 +20,9 @@ public class PopupManager : MonoBehaviour
     {
         if (levelManager.CurrentLevel() == "Title") return;
 
-        if (popupQueue.Count > 0 && !isPopupOpen)
+        if (popupQueue.Count > 0 && !IsPopupOpen)
         {
-            isPopupOpen = true;
+            IsPopupOpen = true;
             if (popupQueue[0] is GenericPopupData genericPopupData)
             {
                 CallGenericPopup(genericPopupData);
@@ -107,7 +107,7 @@ public class PopupManager : MonoBehaviour
 
     public void SetIsOpen(bool _isOpen)
     {
-        isPopupOpen = _isOpen;
+        IsPopupOpen = _isOpen;
     }
 
     private void CallQuestPopup(QuestPopupData popupData)

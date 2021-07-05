@@ -15,12 +15,12 @@ public class Shield : MonoBehaviour
     public Color blue;
     public Color green;
     public Color red;
+    public float StartTime { get; set; }
 
     private Vector2 shieldCenter = new Vector2();
     private float shieldCenterXOffset = 442/1024; // These are based on the sprite's size vs. what appears to be the center of the shield
     private float shieldCenterYOffset = 488/1024;
     private float repositionDelay;
-    private float startTime;
     private float currentTime;
     private int currentQuadrant;
     private int newQuadrant;
@@ -38,7 +38,7 @@ public class Shield : MonoBehaviour
         sword = FindObjectOfType<TrainingSword>();
         trainingManager = FindObjectOfType<CombatTrainingManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        startTime = Time.time;
+        StartTime = Time.time;
         repositionDelay = defaultRepositionDelay;
         currentTime = repositionDelay;
     }
@@ -58,7 +58,7 @@ public class Shield : MonoBehaviour
                     repositionDelay = defaultRepositionDelay;
 
                 if (currentTime < repositionDelay)
-                    currentTime = Time.time - startTime;
+                    currentTime = Time.time - StartTime;
                 else
                 {
                     if (spriteRenderer.color == red && !clickedRed)
@@ -66,7 +66,7 @@ public class Shield : MonoBehaviour
                         trainingManager.AddPoints(125);
                     }
                     ChangePosition();
-                    startTime = Time.time;
+                    StartTime = Time.time;
                     currentTime = 0;
                     clickedRed = false;
                 }
