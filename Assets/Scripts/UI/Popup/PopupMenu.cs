@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +6,8 @@ using UnityEngine.UI;
 
 public class PopupMenu : MonoBehaviour
 {
+    #region Data
+
     [SerializeField]
     protected TextMeshProUGUI title;
 
@@ -19,31 +20,22 @@ public class PopupMenu : MonoBehaviour
     protected Dimmer dimmerPanel;
 
     public float popupCloseDelay = 1.0f;
-    public bool IsOpen { get; set; } = false;
 
     protected Animator anim;
+
+    #endregion
 
     private void Start()
     {
         anim = GetComponent<Animator>();
     }
 
-    public void SetButtonText(string confirm)
-    {
-        ConfirmBtn.GetComponentInChildren<TextMeshProUGUI>().text = confirm;
-    }
-
-    public void SetButtonText(string confirm, string cancel)
-    {
-        SetButtonText(confirm);
-        CancelBtn.GetComponentInChildren<TextMeshProUGUI>().text = cancel;
-    }
-
     public virtual void Populate()
     {
         clickBlocker.SetActive(true);
         dimmerPanel.EnableDim();
-        IsOpen = true;
+        anim.SetTrigger("Open");
+        GetComponent<AudioSource>().Play();
     }    
 
     public void Confirm()
@@ -51,7 +43,6 @@ public class PopupMenu : MonoBehaviour
         dimmerPanel.DisableDim();
         anim.SetTrigger("Close");
         clickBlocker.SetActive(false);
-        StartCoroutine(ToggleIsOpenBool());
     }
 
     public void Cancel()
@@ -60,13 +51,11 @@ public class PopupMenu : MonoBehaviour
         ClearListeners();
         anim.SetTrigger("Close");
         clickBlocker.SetActive(false);
-        StartCoroutine(ToggleIsOpenBool());
     }
 
-    private IEnumerator ToggleIsOpenBool()
+    public void SetIsOpenBool()
     {
-        yield return new WaitForSeconds(popupCloseDelay);
-        IsOpen = false;
+        FindObjectOfType<PopupManager>().SetIsOpen(false);
     }
 
     private void ClearListeners()

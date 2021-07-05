@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class GenericPopup : PopupMenu
 {
+    #region Data
+
     [SerializeField]
     private TextMeshProUGUI subtitle;
 
@@ -13,22 +15,22 @@ public class GenericPopup : PopupMenu
     [SerializeField]
     private Image image;
 
-    /// <summary>
-    /// Populate the Generic Popup (if no subtitle is needed, use "")
-    /// </summary>
-    /// <param name="_title"></param>
-    /// <param name="_subtitle"></param>
-    /// <param name="_description"></param>
-    /// <param name="_sprite"></param>
-    public void Populate(string _title, string _subtitle, string _description, Sprite _sprite)
+    #endregion
+
+    public void Populate(GenericPopupData popupData)
     {
-        title.text = _title;
-        subtitle.text = _subtitle;
-        description.text = _description;
+        title.text = popupData.Title;
+        subtitle.text = popupData.Subtitle;
+        description.text = popupData.Description;
         image.gameObject.SetActive(true);
-        image.sprite = _sprite;
-        anim.SetTrigger("Open");
-        GetComponent<AudioSource>().Play();
+        image.sprite = popupData.Sprite;
+        SetButtonText(popupData.ConfirmText, popupData.CancelText);
         base.Populate();
+    }
+
+    private void SetButtonText(string confirm, string cancel)
+    {
+        ConfirmBtn.GetComponentInChildren<TextMeshProUGUI>().text = confirm;
+        CancelBtn.GetComponentInChildren<TextMeshProUGUI>().text = cancel;
     }
 }

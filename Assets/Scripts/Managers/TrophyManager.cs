@@ -37,8 +37,7 @@ public class TrophyManager : MonoBehaviour
                 trophy.Unlocker = quest.GuildMember.person.name;
                 string unlockString = $"{trophy.Unlocker} {trophy.Description}\n\nYou earned +{trophy.Renown} Renown!";
                 PopupManager popupManager = FindObjectOfType<PopupManager>();
-                popupManager.CallGenericPopup("Trophy Unlocked", trophy.Name, unlockString, trophySprite);
-                popupManager.SetPopupButtonText("Trophies", "Close");
+                popupManager.RequestGenericPopup("Trophy Unlocked", trophy.Name, unlockString, trophySprite, "Trophies", "Close");
                 popupManager.GenericPopup.ConfirmBtn.onClick.AddListener(GoToTrophyRoom);
             }
         }

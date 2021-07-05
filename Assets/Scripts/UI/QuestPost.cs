@@ -31,8 +31,7 @@ public class QuestPost : MonoBehaviour
     {
         GetComponent<ButtonFunctions>().PlaySound();
         PopupManager popupManager = FindObjectOfType<PopupManager>();
-        popupManager.CallQuestPopup(quest);
-        popupManager.SetPopupButtonText("Accept", "Cancel");
+        popupManager.RequestQuestPopup(quest);
         popupManager.QuestPopup.ConfirmBtn.onClick.AddListener(StartQuest);
     }
 

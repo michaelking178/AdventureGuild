@@ -341,8 +341,7 @@ public class PersonUI : MonoBehaviour
     {
         PopupManager popupManager = FindObjectOfType<PopupManager>();
         string description = $"Are you sure you wish to release {GuildMember.person.name} from the Adventure Guild? This cannot be undone.";
-        popupManager.CallGenericPopup("Release Guild Member", "", description, GuildMember.Avatar);
-        popupManager.SetPopupButtonText("Release", "Cancel");
+        popupManager.RequestGenericPopup("Release Guild Member", "", description, GuildMember.Avatar, "Release", "Cancel");
         popupManager.GenericPopup.ConfirmBtn.onClick.AddListener(ConfirmRelease);
     }
 
@@ -350,8 +349,7 @@ public class PersonUI : MonoBehaviour
     {
         PopupManager popupManager = FindObjectOfType<PopupManager>();
         string description = $"Are you sure you wish to promote {GuildMember.person.name} to {_vocation}?";
-        popupManager.CallGenericPopup("Promote", "", description, GuildMember.Avatar);
-        popupManager.SetPopupButtonText("Promote", "Cancel");
+        popupManager.RequestGenericPopup("Promote", "", description, GuildMember.Avatar, "Promote", "Cancel");
         if (_vocation == "Adventurer")
             popupManager.GenericPopup.ConfirmBtn.onClick.AddListener(ConfirmPromoteAdventurer);
         else

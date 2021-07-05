@@ -7,63 +7,121 @@ public class PopupManager : MonoBehaviour
     public InfoPopup InfoPopup;
     public QuestPopup QuestPopup;
 
-    private PopupMenu popup;
-
+    private bool isPopupOpen = false;
     private List<PopupData> popupQueue = new List<PopupData>();
+    private LevelManager levelManager;
 
-    public void CallQuestPopup(Quest quest)
+    private void Start()
     {
-        popup = QuestPopup;
-        QuestPopup.Populate(quest);
-        QuestPopup.SetButtonText("Accept", "Cancel");
+        levelManager = FindObjectOfType<LevelManager>();
+    }
+
+    private void FixedUpdate()
+    {
+        if (levelManager.CurrentLevel() == "Title") return;
+
+        if (popupQueue.Count > 0 && !isPopupOpen)
+        {
+            isPopupOpen = true;
+            if (popupQueue[0] is GenericPopupData genericPopupData)
+            {
+                CallGenericPopup(genericPopupData);
+            }
+            else if (popupQueue[0] is QuestPopupData questPopupData)
+            {
+                CallQuestPopup(questPopupData);
+            }
+            else if (popupQueue[0] is InfoPopupData infoPopupData)
+            {
+                CallInfoPopup(infoPopupData);
+            }
+            popupQueue.RemoveAt(0);
+        }
     }
 
     /// <summary>
-    /// Call a Generic Popup (if no subtitle is needed, use "")
+    /// Generic Popup is the basic informational popup with a "Confirm" and "Cancel" button
     /// </summary>
-    /// <param name="_title"></param>
-    /// <param name="_subtitle"></param>
-    /// <param name="_description"></param>
-    /// <param name="_sprite"></param>
-    public void CallGenericPopup(string _title, string _subtitle, string _description, Sprite _sprite)
+    /// <param name="title"></param>
+    /// <param name="subtitle"></param>
+    /// <param name="description"></param>
+    /// <param name="sprite"></param>
+    public void RequestGenericPopup(string title, string subtitle, string description, Sprite sprite)
     {
-        popup = GenericPopup;
-        GenericPopup.Populate(_title, _subtitle, _description, _sprite);
-        GenericPopup.SetButtonText("Confirm", "Cancel");
-    }
-
-    /// <summary>
-    /// Call an Info Popup including a subtitle (use "" to exclude the subtitle)
-    /// </summary>
-    /// <param name="_title"></param>
-    /// <param name="_subtitle"></param>
-    /// <param name="_description"></param>
-    /// <param name="_sprite"></param>
-    public void CallInfoPopup(string _title, string _subtitle, string _description, Sprite _sprite)
-    {
-        popup = InfoPopup;
-        InfoPopup.Populate(_title, _subtitle, _description, _sprite);
-        InfoPopup.SetButtonText("Okay");
-    }
-
-    public void SetPopupButtonText(string confirm)
-    {
-        popup.SetButtonText(confirm);
-    }
-
-    public void SetPopupButtonText(string confirm, string cancel)
-    {
-        popup.SetButtonText(confirm, cancel);
-    }
-
-    public bool IsGenericPopupOpen()
-    {
-        return GenericPopup.IsOpen;
-    }
-
-    public void CreatePopup(PopupData.PopupType popupType, string title, string subtitle, string description, Sprite sprite)
-    {
-        PopupData newPopup = new PopupData(popupType, title, subtitle, description, sprite);
+        PopupData newPopup = new GenericPopupData(title, subtitle, description, sprite);
         popupQueue.Add(newPopup);
+    }
+
+    /// <summary>
+    /// Generic Popup overload that includes customizable button text
+    /// </summary>
+    /// <param name="title"></param>
+    /// <param name="subtitle"></param>
+    /// <param name="description"></param>
+    /// <param name="sprite"></param>
+    /// <param name="confirmText"></param>
+    /// <param name="cancelText"></param>
+    public void RequestGenericPopup(string title, string subtitle, string description, Sprite sprite, string confirmText, string cancelText)
+    {
+        PopupData newPopup = new GenericPopupData(title, subtitle, description, sprite, confirmText, cancelText);
+        popupQueue.Add(newPopup);
+    }
+
+    /// <summary>
+    /// Quest Popup only appears when viewing a quest on the Questboard
+    /// </summary>
+    /// <param name="quest"></param>
+    public void RequestQuestPopup(Quest quest)
+    {
+        PopupData newPopup = new QuestPopupData(quest);
+        popupQueue.Add(newPopup);
+    }
+
+    /// <summary>
+    /// Info Popup is the basic informational popup with only a "Confirm" button
+    /// </summary>
+    /// <param name="title"></param>
+    /// <param name="subtitle"></param>
+    /// <param name="description"></param>
+    /// <param name="sprite"></param>
+    public void RequestInfoPopup(string title, string subtitle, string description, Sprite sprite)
+    {
+        PopupData newPopup = new InfoPopupData(title, subtitle, description, sprite);
+        popupQueue.Add(newPopup);
+    }
+
+    /// <summary>
+    /// Info Popup overload that includes customizable Confirm button text
+    /// </summary>
+    /// <param name="title"></param>
+    /// <param name="subtitle"></param>
+    /// <param name="description"></param>
+    /// <param name="sprite"></param>
+    /// <param name="confirmText"></param>
+    /// <param name="cancelText"></param>
+    public void RequestInfoPopup(string title, string subtitle, string description, Sprite sprite, string confirmText, string cancelText)
+    {
+        PopupData newPopup = new InfoPopupData(title, subtitle, description, sprite, confirmText);
+        popupQueue.Add(newPopup);
+    }
+
+    public void SetIsOpen(bool _isOpen)
+    {
+        isPopupOpen = _isOpen;
+    }
+
+    private void CallQuestPopup(QuestPopupData popupData)
+    {
+        QuestPopup.Populate(popupData);
+    }
+
+    private void CallGenericPopup(GenericPopupData popupData)
+    {
+        GenericPopup.Populate(popupData);
+    }
+
+    private void CallInfoPopup(InfoPopupData popupData)
+    {
+        InfoPopup.Populate(popupData);
     }
 }

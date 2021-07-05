@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class InfoPopup : PopupMenu
 {
+    #region Data
+
     [SerializeField]
     private TextMeshProUGUI subtitle;
 
@@ -13,20 +15,21 @@ public class InfoPopup : PopupMenu
     [SerializeField]
     private Image image;
 
-    /// <summary>
-    /// Populate an Info Popup with a subtitle (use "" to exclude the subtitle)
-    /// </summary>
-    /// <param name="_title"></param>
-    /// <param name="_subtitle"></param>
-    /// <param name="_description"></param>
-    /// <param name="_sprite"></param>
-    public void Populate(string _title, string _subtitle, string _description, Sprite _sprite)
+    #endregion
+
+    public void Populate(InfoPopupData popupData)
     {
-        title.text = _title;
-        subtitle.text = _subtitle;
-        description.text = _description;
+        title.text = popupData.Title;
+        subtitle.text = popupData.Subtitle;
+        description.text = popupData.Description;
         image.gameObject.SetActive(true);
-        image.sprite = _sprite;
+        image.sprite = popupData.Sprite;
+        SetButtonText(popupData.ConfirmText);
         base.Populate();
+    }
+
+    protected void SetButtonText(string confirm)
+    {
+        ConfirmBtn.GetComponentInChildren<TextMeshProUGUI>().text = confirm;
     }
 }

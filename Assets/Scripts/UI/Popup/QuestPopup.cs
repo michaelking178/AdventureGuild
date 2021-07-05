@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class QuestPopup : PopupMenu
 {
+    #region Data
+
     [SerializeField]
     private TextMeshProUGUI contractor;
 
@@ -19,14 +21,16 @@ public class QuestPopup : PopupMenu
     [SerializeField]
     private TextMeshProUGUI time;
 
-    public void Populate(Quest quest)
+    #endregion
+
+    public void Populate(QuestPopupData popupData)
     {
-        title.text = quest.questName;
-        contractor.text = quest.contractor;
-        reward.text = Helpers.QuestRewardStr(quest);
-        briefing.text = quest.description;
-        level.text = $"Level {quest.level}";
-        time.text = Helpers.FormatTimer(quest.time);
+        title.text = popupData.Title;
+        contractor.text = popupData.Contractor;
+        reward.text = popupData.Reward;
+        briefing.text = popupData.Briefing;
+        level.text = $"Level {popupData.Level}";
+        time.text = popupData.Time;
         foreach (TextSizer textSizer in GetComponentsInChildren<TextSizer>())
         {
             textSizer.Refresh();
@@ -34,7 +38,5 @@ public class QuestPopup : PopupMenu
         if (GetComponentInChildren<Scrollbar>() != null)
             GetComponentInChildren<Scrollbar>().value = 1;
         base.Populate();
-        anim.SetTrigger("Open");
-        GetComponent<AudioSource>().Play();
     }
 }
