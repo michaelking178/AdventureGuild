@@ -128,10 +128,31 @@
     },
     {
       "id": "019",
+      "description": "The bridge was out along the road, so I had to find a way to traverse the river.",
+      "goodResult": "I deftly threw a weighted rope from one tree to another across the river. With it tightly secured, I was able to make my way across. Several merchants followed on my line, and paid me a small reward for helping them cross.",
+      "badResult": "It appeared shallow and calm, so I attempted to ford. Unfortunately, it was deceptively deep and swift. I was swept away and washed up on the bank a mile down river, some coin having been dumped from my pockets along the way.",
+      "neutralResult": "Nearby I found a boy offering free rides across the river on his homemade raft. It was little more than driftwood stitched together with weeds, but it crossed the river deftly. I offered the boy a reward but he kindly refused. "
+    },
+    {
+      "id": "020",
+      "description": "A harpy swept down from the sky and stole my bag while I sat at camp. I keenly watched her fly away, seeing her land in a nest high up on the cliffside. Scaling the cliff, I",
+      "goodResult": "waited in silence until the harpy departed again. Then I seized my opportunity and took back my bag, along with some trinkets also left in the nest. I sold them at the nearby village for a small profit.",
+      "badResult": "lunged at the harpy using the element of surprise. Unfortunately, she was faster than me. She landed a swipe with her talons before I grabbed my bag and toppled back down the cliff. Battered, bruised and bleeding, I made my way to a healer who patched me up.",
+      "neutralResult": "watched as she rummaged through my bag. Finding little of interest, she tossed it aside and turned to other trinkets in her nest. I quietly grabbed my bag. It was only when I was already descending the cliffside that I realized the harpy was watching me intently. Fortunately, she let me go without incident."
+    },
+    {
+      "id": "021",
+      "description": "I came upon a tavern filled with raucous music and the sounds of laughter and dance. I entered and found that",
+      "goodResult": "a troupe was playing music while the townspeople played games and feasted. I celebrated with them by entering a pie eating competition, and won! I left the tavern very full, with a nice little reward in hand.",
+      "badResult": "the sordid townspeople were celebrating the death of a despised ealdorman. When they saw me enter uninvited they were upon me instantly, beating and biting. I staggered out of the tavern and the music and laughter resumed. I noticed I had dropped some supplies in the scuffle, but decided not to return for them.",
+      "neutralResult": "the tavern was full of patrons, drinking and eating together. I sat and requested a meal, and a jovial townsperson paid for my food. Talking and laughing well into the night, I finally departed with a full heart and stomach."
+    },
+    {
+      "id": "022",
       "description": "",
       "goodResult": "",
       "badResult": "",
-      "neutralResult": ""
+      "neutralResult": "Did I hear a dragon on the wind today? No... I think likely not."
     }
   ]
 }
