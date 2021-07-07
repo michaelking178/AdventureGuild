@@ -2144,7 +2144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Instant HP Recovery
-  Description: Recover the health of all Adventurers, instantly!
+  Description: Recover the health of all idle Adventurers, instantly!
   Duration: 0
   MaxDuration: 0
   BoostRemaining: 0

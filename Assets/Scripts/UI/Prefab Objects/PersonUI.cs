@@ -203,6 +203,10 @@ public class PersonUI : MonoBehaviour
     {
         if (!GuildMember.gameObject.CompareTag("Hero") && GuildMember.IsAvailable)
             releaseBtn.SetActive(true);
+        else
+        {
+            releaseBtn.SetActive(false);
+        }
     }
 
     public void HideReleaseButton()
