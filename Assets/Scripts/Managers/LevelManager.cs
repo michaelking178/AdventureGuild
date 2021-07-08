@@ -8,6 +8,8 @@ public class LevelManager : MonoBehaviour
         "0.2.0.0"
     };
 
+    private ClickBlocker clickBlocker;
+
     private void Awake()
     {
         ClearOldSave();

@@ -1,16 +1,13 @@
-﻿using System.Collections;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Boost))]
+
 public class BoostItemFrame : MonoBehaviour
 {
     public Boost Boost;
-
-    [SerializeField]
-    private string BoostName;
 
     [SerializeField]
     private Image boostImage;

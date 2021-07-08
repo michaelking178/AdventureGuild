@@ -17,6 +17,9 @@ public class PopupMenu : MonoBehaviour
     protected GameObject clickBlocker;
 
     [SerializeField]
+    protected GameObject popupClickBlocker;
+
+    [SerializeField]
     protected Dimmer dimmerPanel;
 
     public float popupCloseDelay = 1.0f;
@@ -32,6 +35,7 @@ public class PopupMenu : MonoBehaviour
 
     public virtual void Populate()
     {
+        popupClickBlocker.SetActive(false);
         clickBlocker.SetActive(true);
         dimmerPanel.EnableDim();
         anim.SetTrigger("Open");
@@ -40,6 +44,7 @@ public class PopupMenu : MonoBehaviour
 
     public void Confirm()
     {
+        popupClickBlocker.SetActive(true);
         dimmerPanel.DisableDim();
         anim.SetTrigger("Close");
         clickBlocker.SetActive(false);
@@ -47,6 +52,7 @@ public class PopupMenu : MonoBehaviour
 
     public void Cancel()
     {
+        popupClickBlocker.SetActive(true);
         dimmerPanel.DisableDim();
         ClearListeners();
         anim.SetTrigger("Close");

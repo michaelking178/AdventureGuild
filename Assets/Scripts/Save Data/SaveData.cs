@@ -65,6 +65,7 @@ public class SaveData
         LoadQuestArchive();
         LoadQuestTimers();
         LoadConstructionManager();
+        LoadPopulationManagerQueueTimes();
         LoadBoostData();
         LoadTrophyManager();
     }
@@ -122,6 +123,11 @@ public class SaveData
         populationManager.PopulationCap = populationManagerData.populationCap;
         populationManager.AdventurersEnabled = populationManagerData.adventurersEnabled;
         populationManager.ArtisansEnabled = populationManagerData.artisansEnabled;
+    }
+
+    private void LoadPopulationManagerQueueTimes()
+    {
+        PopulationManager populationManager = GameObject.FindObjectOfType<PopulationManager>();
         populationManager.RecoveryStartTime = populationManagerData.recoveryStartTime;
         populationManager.RecruitStartTime = populationManagerData.recruitStartTime;
     }

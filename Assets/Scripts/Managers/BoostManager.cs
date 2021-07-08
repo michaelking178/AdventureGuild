@@ -7,13 +7,14 @@ public class BoostManager : MonoBehaviour
     public bool IsQuestGoldBoosted = false;
     public bool IsQuestWoodBoosted = false;
     public bool IsQuestIronBoosted = false;
+    public bool IsTrainingExpBoosted = false;
 
     private QuestManager questManager;
 
     private void Start()
     {
         questManager = FindObjectOfType<QuestManager>();
-        StartCoroutine(DelayedSetBoosts());
+        StartCoroutine(DelayedQuestSetBoosts());
     }
 
     public Boost GetBoost(string _name)
@@ -29,7 +30,7 @@ public class BoostManager : MonoBehaviour
         return null;
     }
 
-    public void SetBoosts()
+    public void SetQuestBoosts()
     {
         foreach(Quest quest in questManager.GetQuestPool())
         {
@@ -44,9 +45,9 @@ public class BoostManager : MonoBehaviour
         }
     }
 
-    private IEnumerator DelayedSetBoosts()
+    private IEnumerator DelayedQuestSetBoosts()
     {
         yield return new WaitForSeconds(1);
-        SetBoosts();
+        SetQuestBoosts();
     }
 }

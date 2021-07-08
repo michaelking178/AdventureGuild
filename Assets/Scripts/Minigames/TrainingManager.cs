@@ -14,12 +14,27 @@ public class TrainingManager : MonoBehaviour
     [SerializeField]
     protected TextMeshProUGUI countdownText;
 
+    [SerializeField]
+    protected TextMeshProUGUI adText;
+
+    [SerializeField]
+    protected GameObject clickBlockerPanel;
+
+    [SerializeField]
+    protected GameObject popupClickBlocker;
+
+    [SerializeField]
+    protected Boost xPBoost;
+
     public bool GameOver;
     public bool GamePaused { get; protected set; } = false;
+    public int TotalExp { get; set; } = 0;
 
+    protected BoostManager boostManager;
     protected GuildMember guildMember;
     protected int score = 0;
     protected int exp = 0;
+    protected int boostExp = 0;
     protected bool countingDown = false;
     protected float countdown;
     protected float defaultCountdown = 5.0f;
@@ -27,6 +42,7 @@ public class TrainingManager : MonoBehaviour
 
     protected virtual void Start()
     {
+        boostManager = FindObjectOfType<BoostManager>();
         popupManager = FindObjectOfType<PopupManager>();
     }
 
@@ -55,12 +71,14 @@ public class TrainingManager : MonoBehaviour
     private IEnumerator OpenInstructionsCRTN()
     {
         yield return new WaitForSeconds(0.5f);
-        instructionsImage.GetComponent<Animator>().SetTrigger("Open");
+        if (!instructionsImage.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Open"))
+            instructionsImage.GetComponent<Animator>().SetTrigger("Open");
+        popupClickBlocker.SetActive(false);
     }
 
     public void BeginTraining()
     {
-        StartCoroutine(Countdown());
+        StartCoroutine(StartCountdown());
     }
 
     public void AddPoints(int points)
@@ -70,8 +88,15 @@ public class TrainingManager : MonoBehaviour
 
     public virtual void ApplyResults()
     {
-        resultsImage.GetComponent<Animator>().SetTrigger("Close");
-        guildMember.AddExp(exp);
+        popupClickBlocker.SetActive(true);
+        if (!resultsImage.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Close"))
+            resultsImage.GetComponent<Animator>().SetTrigger("Close");
+        if (boostManager.IsTrainingExpBoosted)
+            guildMember.AddExp(TotalExp + boostExp);
+        else
+            guildMember.AddExp(TotalExp);
+        FindObjectOfType<TrainingXPBoost>().EndBoost();
+        boostExp = 0;
     }
 
     public virtual void PauseGame()
@@ -90,11 +115,13 @@ public class TrainingManager : MonoBehaviour
         }
     }
 
-    protected IEnumerator Countdown()
+    protected virtual IEnumerator StartCountdown()
     {
-        instructionsImage.GetComponent<Animator>().SetTrigger("Close");
+        popupClickBlocker.SetActive(true);
+        if (!instructionsImage.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Close"))
+            instructionsImage.GetComponent<Animator>().SetTrigger("Close");
         yield return new WaitForSeconds(0.5f);
-        countingDown = true;       
+        countingDown = true;
     }
 
     protected void CountDown()
@@ -122,5 +149,10 @@ public class TrainingManager : MonoBehaviour
             countingDown = false;
             countdownText.gameObject.SetActive(false);
         }
+    }
+
+    public void DisablePopupClickBlocker()
+    {
+        popupClickBlocker.SetActive(false);
     }
 }

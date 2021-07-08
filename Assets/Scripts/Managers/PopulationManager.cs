@@ -16,7 +16,7 @@ public class PopulationManager : MonoBehaviour
     [Header("Guild Members")]
     public List<GuildMember> GuildMembers = new List<GuildMember>();
     public int PopulationCap { get; set; } = 10;
-    public DateTime RecoveryStartTime;
+    public DateTime RecoveryStartTime = DateTime.MinValue;
     public DateTime RecruitStartTime;
 
     public bool AdventurersEnabled = false;
@@ -46,6 +46,8 @@ public class PopulationManager : MonoBehaviour
         notificationManager = FindObjectOfType<NotificationManager>();
         guildhall = FindObjectOfType<Guildhall>();
         nameGenerator = FindObjectOfType<NameGenerator>();
+        if (RecoveryStartTime == DateTime.MinValue)
+            RecoveryStartTime = DateTime.Now;
     }
 
     private void FixedUpdate()

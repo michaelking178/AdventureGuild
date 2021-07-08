@@ -315,7 +315,7 @@ MonoBehaviour:
   GoldCost: 18000
   IronCost: 4000
   WoodCost: 6000
-  ArtisanCost: 1
+  ArtisanCost: 3
   constructionTime: 3600
   Experience: 400
   LevelOneUpgrade: 250
@@ -546,7 +546,7 @@ MonoBehaviour:
   GoldCost: 15000
   IronCost: 2500
   WoodCost: 5000
-  ArtisanCost: 1
+  ArtisanCost: 3
   constructionTime: 1800
   Experience: 200
   LevelOneUpgrade: 100000
@@ -1091,7 +1091,7 @@ MonoBehaviour:
   GoldCost: 15000
   IronCost: 2500
   WoodCost: 5000
-  ArtisanCost: 1
+  ArtisanCost: 3
   constructionTime: 1800
   Experience: 200
   LevelOneUpgrade: 50000
@@ -1237,7 +1237,7 @@ MonoBehaviour:
   GoldCost: 18000
   IronCost: 4000
   WoodCost: 6000
-  ArtisanCost: 1
+  ArtisanCost: 3
   constructionTime: 3600
   Experience: 400
   LevelOneUpgrade: 250
@@ -1452,7 +1452,7 @@ MonoBehaviour:
   GoldCost: 18000
   IronCost: 4000
   WoodCost: 6000
-  ArtisanCost: 1
+  ArtisanCost: 3
   constructionTime: 3600
   Experience: 400
   LevelOneUpgrade: 500
@@ -1591,7 +1591,7 @@ MonoBehaviour:
   GoldCost: 15000
   IronCost: 2500
   WoodCost: 5000
-  ArtisanCost: 1
+  ArtisanCost: 3
   constructionTime: 1800
   Experience: 200
   LevelOneUpgrade: 50000

@@ -53,14 +53,12 @@ public class QuestTimer : MonoBehaviour
                     if (quest.GuildMember.Hitpoints == 0)
                     {
                         i = 1;
-                        FindObjectOfType<PopulationManager>().RecoveryStartTime = DateTime.Now.AddSeconds(-CurrentTime);
                     }
                 }
             }
         }
         else if (quest.GuildMember != null)
         {
-            FindObjectOfType<PopulationManager>().RecoveryStartTime = DateTime.Now.AddSeconds(-CurrentTime);
             CompleteQuest();
         }
         else

@@ -35,7 +35,7 @@ public class Menu_SelectArtisans : Menu
             artisanProficiencyText.text = $"Artisan Proficiency: {constructionManager.SelectedArtisansProficiency()} / {upgrade.ArtisanCost}";
             SetTextColor();
 
-            if (constructionManager.UnderConstruction || !upgrade.CanAfford() || constructionManager.Artisans.Count < upgrade.ArtisanCost)
+            if (constructionManager.UnderConstruction || !upgrade.CanAfford() || constructionManager.SelectedArtisansProficiency() < upgrade.ArtisanCost)
                 beginConstruction.interactable = false;
             else
                 beginConstruction.interactable = true;

@@ -13,23 +13,26 @@ public class Boost : MonoBehaviour
 
     private bool boostEnded = false;
     
-    protected void Start()
+    protected virtual void Start()
     {
         boostManager = FindObjectOfType<BoostManager>();
     }
 
     protected void FixedUpdate()
     {
-        if (BoostRemaining > 0)
+        if (MaxDuration > 0)
         {
-            SetBoostBool(true);
-            BoostRemaining -= Time.deltaTime;
-            boostEnded = false;
-        }
-        else
-        {
-            BoostRemaining = 0;
-            EndBoost();
+            if (BoostRemaining > 0)
+            {
+                SetBoostBool(true);
+                BoostRemaining -= Time.deltaTime;
+                boostEnded = false;
+            }
+            else
+            {
+                BoostRemaining = 0;
+                EndBoost();
+            }
         }
     }
 
@@ -52,7 +55,7 @@ public class Boost : MonoBehaviour
         {
             BoostRemaining = MaxDuration;
         }
-        boostManager.SetBoosts();
+        boostManager.SetQuestBoosts();
     }
 
     private void EndBoost()
@@ -60,7 +63,7 @@ public class Boost : MonoBehaviour
         if(!boostEnded)
         {
             SetBoostBool(false);
-            boostManager.SetBoosts();
+            boostManager.SetQuestBoosts();
             boostEnded = true;
         }
     }

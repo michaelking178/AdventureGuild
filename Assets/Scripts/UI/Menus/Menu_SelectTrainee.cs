@@ -32,7 +32,8 @@ public class Menu_SelectTrainee : Menu
 
     private IEnumerator CompleteTrainingCR()
     {
-        FindObjectOfType<TrainingManager>().ApplyResults();
+        TrainingManager trainingManager = FindObjectOfType<TrainingManager>();
+        trainingManager.ApplyResults();
         yield return new WaitForSeconds(0.5f);
         Open();
     }
@@ -49,6 +50,7 @@ public class Menu_SelectTrainee : Menu
 
     private IEnumerator LoadMenu()
     {
+        FindObjectOfType<TrainingManager>().DisablePopupClickBlocker();
         yield return new WaitForSeconds(0.25f);
         base.Open();
         if (scrollView == null) scrollView = GetComponent<PersonUIScrollView>();
