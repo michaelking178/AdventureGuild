@@ -10,10 +10,12 @@
 
     protected override void SetBoostBool(bool value)
     {
+        // This boost doesn't need to do anything here.
     }
 
     protected override bool GetBoostBool()
     {
+        // This boost doesn't need to do anything here.
         return false;
     }
 }

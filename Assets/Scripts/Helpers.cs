@@ -29,34 +29,29 @@ public static class Helpers
     {
         string reward = "";
 
-        if (quest.Reward.Exp != 0)
+        if (quest.RewardBoosted)
         {
-            if (quest.ExpBoosted)
+            if (quest.Reward.Exp != 0)
                 reward += $"{quest.Reward.Exp} XP (+{quest.Reward.BoostExp})\n";
-            else
-                reward += quest.Reward.Exp.ToString() + " XP\n";
-        }
-        if (quest.Reward.Gold != 0)
-        {
-            if (quest.GoldBoosted)
+            if (quest.Reward.Gold != 0)
                 reward += $"{quest.Reward.Gold} Gold (+{quest.Reward.BoostGold})\n";
-            else
-                reward += quest.Reward.Gold.ToString() + " Gold\n";
-        }
-        if (quest.Reward.Wood != 0)
-        {
-            if (quest.WoodBoosted)
+            if (quest.Reward.Wood != 0)
                 reward += $"{quest.Reward.Wood} Wood (+{quest.Reward.BoostWood})\n";
-            else
-                reward += quest.Reward.Wood.ToString() + " Wood\n";
-        }
-        if (quest.Reward.Iron != 0)
-        {
-            if (quest.IronBoosted)
+            if (quest.Reward.Iron != 0)
                 reward += $"{quest.Reward.Iron} Iron (+{quest.Reward.BoostIron})\n";
-            else
+        }
+        else
+        {
+            if (quest.Reward.Exp != 0)
+                reward += quest.Reward.Exp.ToString() + " XP\n";
+            if (quest.Reward.Gold != 0)
+                reward += quest.Reward.Gold.ToString() + " Gold\n";
+            if (quest.Reward.Wood != 0)
+                reward += quest.Reward.Wood.ToString() + " Wood\n";
+            if (quest.Reward.Iron != 0)
                 reward += quest.Reward.Iron.ToString() + " Iron\n";
         }
+
         if (quest.Reward.Renown != 0)
             reward += quest.Reward.Renown.ToString() + " Renown\n";
         if (quest.Reward.SkillExp != 0)

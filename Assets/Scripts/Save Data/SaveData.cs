@@ -217,20 +217,11 @@ public class SaveData
     {
         float timePassed = (float)(DateTime.Now - quitTime).TotalSeconds;
 
-        boostData.expBoostRemaining -= timePassed;
-        boostData.goldBoostRemaining -= timePassed;
-        boostData.woodBoostRemaining -= timePassed;
-        boostData.ironBoostRemaining -= timePassed;
+        boostData.BoostRemaining -= timePassed;
 
-        if (boostData.expBoostRemaining < 0) boostData.expBoostRemaining = 0;
-        if (boostData.goldBoostRemaining < 0) boostData.goldBoostRemaining = 0;
-        if (boostData.woodBoostRemaining < 0) boostData.woodBoostRemaining = 0;
-        if (boostData.ironBoostRemaining < 0) boostData.ironBoostRemaining = 0;
+        if (boostData.BoostRemaining < 0) boostData.BoostRemaining = 0;
 
-        GameObject.FindObjectOfType<QuestExpBoost>().BoostRemaining = boostData.expBoostRemaining;
-        GameObject.FindObjectOfType<QuestGoldBoost>().BoostRemaining = boostData.goldBoostRemaining;
-        GameObject.FindObjectOfType<QuestWoodBoost>().BoostRemaining = boostData.woodBoostRemaining;
-        GameObject.FindObjectOfType<QuestIronBoost>().BoostRemaining = boostData.ironBoostRemaining;
+        GameObject.FindObjectOfType<QuestRewardBoost>().BoostRemaining = boostData.BoostRemaining;
     }
 
     private void LoadTrophyManager()
@@ -266,10 +257,7 @@ public class SaveData
         questToLoad.startTime = _questData.startTime;
         questToLoad.QuestSkill = _questData.questSkill;
         questToLoad.QuestFaction = _questData.questFaction;
-        questToLoad.ExpBoosted = _questData.expBoosted;
-        questToLoad.GoldBoosted = _questData.goldBoosted;
-        questToLoad.WoodBoosted = _questData.woodBoosted;
-        questToLoad.IronBoosted = _questData.ironBoosted;
+        questToLoad.RewardBoosted = _questData.rewardBoosted;
         return questToLoad;
     }
 

@@ -45,10 +45,8 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsListener
         if (showResult == ShowResult.Finished)
         {
             // Reward the user for watching the ad to completion.
-            if (GetComponentInParent<BoostItemFrame>() != null)
-                GetComponentInParent<BoostItemFrame>().Boost.Apply();
-            else
-                GetComponent<Boost>().Apply();
+            GetComponent<BoostObject>().Boost.Apply();
+            SaveSystem.SaveGame();
         }
         else if (showResult == ShowResult.Skipped)
         {

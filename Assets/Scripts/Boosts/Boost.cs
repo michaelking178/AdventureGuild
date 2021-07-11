@@ -2,8 +2,6 @@
 
 public class Boost : MonoBehaviour
 {
-    public string Name;
-    public string Description;
     public float Duration = 7200;
     public float MaxDuration = 21600;
     public float BoostRemaining = 0;

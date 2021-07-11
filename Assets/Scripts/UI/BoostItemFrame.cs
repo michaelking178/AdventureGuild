@@ -31,8 +31,8 @@ public class BoostItemFrame : MonoBehaviour
         menuManager = FindObjectOfType<MenuManager>();
         if (Boost != null)
         {
-            boostNameText.text = Boost.Name;
-            descriptionText.text = Boost.Description;
+            //boostNameText.text = Boost.Name;
+            //descriptionText.text = Boost.Description;
         }
     }
 

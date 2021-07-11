@@ -21,10 +21,7 @@ public class Quest
     public Skill QuestSkill;
     public Faction QuestFaction;
 
-    public bool GoldBoosted { get; set; } = false;
-    public bool WoodBoosted { get; set; } = false;
-    public bool IronBoosted { get; set; } = false;
-    public bool ExpBoosted { get; set; } = false;
+    public bool RewardBoosted { get; set; } = false;
 
     public void Init()
     {

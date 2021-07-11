@@ -23,14 +23,14 @@ public class Reward
         {
             SkillExp = Random.Range(25 * (questLevel + 1), 200 * (questLevel + 1 + Mathf.FloorToInt(questLevel / 5)));
         }
-        SetBoosts();
+        SetBoost();
     }
 
-    public void SetBoosts()
+    public void SetBoost()
     {
-        BoostGold = Mathf.CeilToInt(Gold * GameObject.FindObjectOfType<QuestGoldBoost>().BoostValue);
-        BoostWood = Mathf.CeilToInt(Wood * GameObject.FindObjectOfType<QuestWoodBoost>().BoostValue);
-        BoostIron = Mathf.CeilToInt(Iron * GameObject.FindObjectOfType<QuestIronBoost>().BoostValue);
-        BoostExp = Mathf.CeilToInt(Exp * GameObject.FindObjectOfType<QuestExpBoost>().BoostValue);
+        BoostGold = Mathf.CeilToInt(Gold * GameObject.FindObjectOfType<QuestRewardBoost>().BoostValue);
+        BoostWood = Mathf.CeilToInt(Wood * GameObject.FindObjectOfType<QuestRewardBoost>().BoostValue);
+        BoostIron = Mathf.CeilToInt(Iron * GameObject.FindObjectOfType<QuestRewardBoost>().BoostValue);
+        BoostExp = Mathf.CeilToInt(Exp * GameObject.FindObjectOfType<QuestRewardBoost>().BoostValue);
     }
 }

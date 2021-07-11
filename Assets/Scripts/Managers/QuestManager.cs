@@ -352,13 +352,12 @@ public class QuestManager : MonoBehaviour
 
     private void ApplyBoostReward(Quest quest)
     {
-        if (quest.ExpBoosted)
+        if (quest.RewardBoosted)
+        {
             quest.GuildMember.AddExp(quest.Reward.BoostExp);
-        if (quest.GoldBoosted)
             guildhall.AdjustGold(quest.Reward.BoostGold);
-        if (quest.WoodBoosted)
             guildhall.AdjustWood(quest.Reward.BoostWood);
-        if (quest.IronBoosted)
             guildhall.AdjustIron(quest.Reward.BoostIron);
+        }
     }
 }

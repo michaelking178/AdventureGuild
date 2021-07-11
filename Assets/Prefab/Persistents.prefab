@@ -949,6 +949,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1903243723699559183}
   - component: {fileID: 1903243723699559180}
+  - component: {fileID: 6589219843354147335}
+  - component: {fileID: 580384496969838938}
+  - component: {fileID: 4547748544133117690}
   m_Layer: 0
   m_Name: BoostManager
   m_TagString: Untagged
@@ -966,12 +969,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1547631643066629133}
-  - {fileID: 2011353353228853086}
-  - {fileID: 7931198598139788256}
-  - {fileID: 3570905166643422292}
-  - {fileID: 5534741318620171072}
+  m_Children: []
   m_Father: {fileID: 1903243723826136778}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -987,10 +985,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4997880e2bbcc444eb33d9c3c3bd4582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsQuestExpBoosted: 0
-  IsQuestGoldBoosted: 0
-  IsQuestWoodBoosted: 0
-  IsQuestIronBoosted: 0
+  IsQuestRewardBoosted: 0
+  IsTrainingExpBoosted: 0
+--- !u!114 &6589219843354147335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903243723699559182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9f04334f8a8a7e45865d60ae04e2ed3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Duration: 7200
+  MaxDuration: 21600
+  BoostRemaining: 0
+  BoostValue: 0.2
+--- !u!114 &580384496969838938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903243723699559182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3683c5dea7e46624d9465ecdfcaf93a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Duration: 0
+  MaxDuration: 0
+  BoostRemaining: 0
+  BoostValue: 0.2
+--- !u!114 &4547748544133117690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903243723699559182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7abd1a2adbd81cc4bb165b361802c36b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Duration: 0
+  MaxDuration: 0
+  BoostRemaining: 0
+  BoostValue: 0
 --- !u!1 &1903243723704464794
 GameObject:
   m_ObjectHideFlags: 0
@@ -1856,106 +1900,6 @@ MonoBehaviour:
     type: 3}
   notificationUIs: []
   notifications: []
---- !u!1 &1986790632943964638
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2011353353228853086}
-  - component: {fileID: 5771782777429846567}
-  m_Layer: 0
-  m_Name: QuestGoldBoost
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2011353353228853086
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1986790632943964638}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1903243723699559183}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5771782777429846567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1986790632943964638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 974fe61c5b4aaf34f86d3c432c2a3b0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: +20% Quest Gold
-  Description: Earn more gold for every quest started while this boost is active!
-    Stacks up to 6 hours.
-  Duration: 7200
-  MaxDuration: 21600
-  BoostRemaining: 0
-  BoostValue: 0.2
---- !u!1 &2587541046119115404
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3570905166643422292}
-  - component: {fileID: 376302038610233044}
-  m_Layer: 0
-  m_Name: QuestIronBoost
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3570905166643422292
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2587541046119115404}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1903243723699559183}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &376302038610233044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2587541046119115404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae36cd8afa5129a40aade14857f68e36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: +20% Quest Iron
-  Description: Earn more iron for every quest started while this boost is active!
-    Stacks up to 6 hours.
-  Duration: 7200
-  MaxDuration: 21600
-  BoostRemaining: 0
-  BoostValue: 0.2
 --- !u!1 &4692442515268396333
 GameObject:
   m_ObjectHideFlags: 0
@@ -2050,152 +1994,3 @@ MonoBehaviour:
   ArtisanCost: 500
   constructionTime: 604800
   Experience: 24000
---- !u!1 &5411523253714355095
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1547631643066629133}
-  - component: {fileID: 2269828456872333608}
-  m_Layer: 0
-  m_Name: QuestExpBoost
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1547631643066629133
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5411523253714355095}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1903243723699559183}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2269828456872333608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5411523253714355095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f439ad28cabbf34489208732033427e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: +20% Quest Experience
-  Description: Gain more experience for every quest started while this boost is active!
-    Stacks up to 6 hours.
-  Duration: 7200
-  MaxDuration: 21600
-  BoostRemaining: 0
-  BoostValue: 0.2
---- !u!1 &7173840481168392848
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5534741318620171072}
-  - component: {fileID: 8040385942568894692}
-  m_Layer: 0
-  m_Name: AdventurerRecoveryBoost
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5534741318620171072
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7173840481168392848}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1903243723699559183}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8040385942568894692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7173840481168392848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7abd1a2adbd81cc4bb165b361802c36b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Instant HP Recovery
-  Description: Recover the health of all idle Adventurers, instantly!
-  Duration: 0
-  MaxDuration: 0
-  BoostRemaining: 0
-  BoostValue: 0
---- !u!1 &8602495108362277061
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7931198598139788256}
-  - component: {fileID: 7722457321222104476}
-  m_Layer: 0
-  m_Name: QuestWoodBoost
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7931198598139788256
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8602495108362277061}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1903243723699559183}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7722457321222104476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8602495108362277061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 091fafeac058440469fc05fa48d8bec1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: +20% Quest Wood
-  Description: Earn more wood for every quest started while this boost is active!
-    Stacks up to 6 hours.
-  Duration: 7200
-  MaxDuration: 21600
-  BoostRemaining: 0
-  BoostValue: 0.2

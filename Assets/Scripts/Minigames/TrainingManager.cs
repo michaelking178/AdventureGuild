@@ -23,7 +23,6 @@ public class TrainingManager : MonoBehaviour
     [SerializeField]
     protected GameObject popupClickBlocker;
 
-    [SerializeField]
     protected Boost xPBoost;
 
     public bool GameOver;
@@ -44,6 +43,7 @@ public class TrainingManager : MonoBehaviour
     {
         boostManager = FindObjectOfType<BoostManager>();
         popupManager = FindObjectOfType<PopupManager>();
+        xPBoost = boostManager.GetComponent<TrainingXPBoost>();
     }
 
     protected virtual void FixedUpdate()
