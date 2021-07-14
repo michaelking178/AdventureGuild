@@ -17,7 +17,7 @@ public class LevelExit : MonoBehaviour
         if (col.gameObject == player.gameObject)
         {
             playerRb = col.GetComponent<Rigidbody2D>();
-            trainingManager.CompleteLevel();
+            trainingManager.StopGame();
         }
     }
 

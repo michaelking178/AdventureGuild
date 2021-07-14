@@ -12,18 +12,19 @@ public class PlayerBlock : MonoBehaviour
     private Vector2 startPos;
     private bool isTouching = false;
     private bool isMoving = false;
+    private bool pointAdded = false;
     private Rigidbody2D rigidBody;
     private Touch touch;
+    private TrainingManager trainingManager;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
+        trainingManager = FindObjectOfType<TrainingManager>();
         touch = new Touch();
         rigidBody = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         TouchControl();
     }
@@ -66,6 +67,7 @@ public class PlayerBlock : MonoBehaviour
             {
                 // Touch ended
                 startPos = Vector2.zero;
+                pointAdded = false;
             }
         }
         if (rigidBody.velocity.magnitude == 0)
@@ -77,6 +79,7 @@ public class PlayerBlock : MonoBehaviour
         if (!isMoving)
         {
             isMoving = true;
+            AddPoint();
             if (moveDir == Direction.RIGHT)
             {
                 rigidBody.AddForce(Vector2.right * rigidBodySpeed);
@@ -93,6 +96,15 @@ public class PlayerBlock : MonoBehaviour
             {
                 rigidBody.AddForce(Vector2.down * rigidBodySpeed);
             }
+        }
+    }
+
+    private void AddPoint()
+    {
+        if(!pointAdded)
+        {
+            pointAdded = true;
+            trainingManager.AddPoints(1);
         }
     }
 }

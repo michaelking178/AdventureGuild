@@ -1,15 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ArtisanTrainingManager : TrainingManager
 {
-    private GameObject currentLevel = null;
-    private int previousLevelIndex = -1;
-    private bool levelIsActive = false;
+    [Header("Artisan Training")]
+    [SerializeField]
+    private TextMeshProUGUI resultsTime;
 
     [SerializeField]
     private List<GameObject> artisanLevels = new List<GameObject>();
+
+    private GameObject currentLevel = null;
+    private int previousLevelIndex = -1;
+    private float timer = 0.0f;
 
     protected override void Start()
     {
@@ -28,55 +33,80 @@ public class ArtisanTrainingManager : TrainingManager
             CountDown();
             if(!GameOver)
             {
-                StartLevel();
+                timer += Time.deltaTime;
+                timeText.text = Helpers.FormatTimer((int)timer);
+                scoreText.text = score.ToString();
             }
         }
+        UpdateBoostText();
+    }
+
+    public override void BeginTraining()
+    {
+        base.BeginTraining();
+        StartCoroutine(StartNewLevel());
     }
 
     public void StartLevel()
     {
-        if (!levelIsActive)
+        int nextLevelIndex;
+        do
         {
-            levelIsActive = true;
-            int nextLevelIndex;
-            do
-            {
-                nextLevelIndex = Random.Range(0, artisanLevels.Count);
-            } while (nextLevelIndex == previousLevelIndex);
+            nextLevelIndex = Random.Range(0, artisanLevels.Count);
+        } while (nextLevelIndex == previousLevelIndex);
 
-            if (currentLevel != null)
-                Destroy(currentLevel);
+        if (currentLevel != null)
+            Destroy(currentLevel);
 
-            int xFlip = Random.Range(0, 99);
-            int yFlip = Random.Range(100, 199);
+        int xFlip = Random.Range(0, 99);
+        int yFlip = Random.Range(100, 199);
 
-            currentLevel = Instantiate(artisanLevels[nextLevelIndex], Vector3.zero, Quaternion.identity);
+        currentLevel = Instantiate(artisanLevels[nextLevelIndex], Vector3.zero, Quaternion.identity);
 
-            if (xFlip < 50)
-                currentLevel.transform.rotation = Quaternion.Euler(currentLevel.transform.rotation.x, 180, 0);
-            if (yFlip < 150)
-                currentLevel.transform.rotation = Quaternion.Euler(180, currentLevel.transform.rotation.y, 0);
+        if (xFlip < 50)
+            currentLevel.transform.rotation = Quaternion.Euler(currentLevel.transform.rotation.x, 180, 0);
+        if (yFlip < 150)
+            currentLevel.transform.rotation = Quaternion.Euler(180, currentLevel.transform.rotation.y, 0);
 
-            previousLevelIndex = nextLevelIndex;
+        previousLevelIndex = nextLevelIndex;
+    }
+
+    public override void StopGame()
+    {
+        base.StopGame();
+        resultsTime.text = Helpers.FormatTimer((int)timer);
+
+        if (timer != 0)
+        {
+            score = (currentLevel.GetComponent<ArtisanLevel>().MinMoves * 10000) / (Mathf.CeilToInt(timer) * score);
+            exp = score / 10;
         }
+        else
+        {
+            score = 0;
+            exp = 0;
+        }
+        resultsFinalScore.text = score.ToString();
+        resultsExp.text = exp.ToString();
+
+        TotalExp += exp;
+        boostExp = Mathf.CeilToInt(TotalExp * xPBoost.BoostValue);
+
+        resultsTotalExp.text = TotalExp.ToString();
+        UpdateBoostText();
     }
 
-    public void CompleteLevel()
+    protected override void ResetSession()
     {
-        // Call popup
-        // Offer to play another level or end training
-        Debug.Log("Level Complete!");
-        StartCoroutine(StartNewLevel());
-    }
-
-    public override void ApplyResults()
-    {
-        base.ApplyResults();
+        base.ResetSession();
+        timer = 0.0f;
+        timeText.text = Helpers.FormatTimer((int)timer);
+        Destroy(currentLevel);
     }
 
     private IEnumerator StartNewLevel()
     {
-        yield return new WaitForSeconds(3);
-        levelIsActive = false;
+        yield return new WaitForSeconds(defaultCountdown-1);
+        StartLevel();
     }
 }

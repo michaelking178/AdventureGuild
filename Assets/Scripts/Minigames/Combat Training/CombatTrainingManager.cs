@@ -6,28 +6,9 @@ public class CombatTrainingManager : TrainingManager
 {
     #region Data
 
-    [Header("Scoreboard")]
-    [SerializeField]
-    private TextMeshProUGUI timeText;
-
-    [SerializeField]
-    private TextMeshProUGUI scoreText;
-
-    [Header("Results Panel")]
-    [SerializeField]
-    private TextMeshProUGUI resultsScore;
-
+    [Header("Adventurer Training")]
     [SerializeField]
     private TextMeshProUGUI resultsAccuracy;
-
-    [SerializeField]
-    private TextMeshProUGUI resultsFinalScore;
-
-    [SerializeField]
-    private TextMeshProUGUI resultsExp;
-
-    [SerializeField]
-    private TextMeshProUGUI resultsTotalExp;
 
     [Header("Game Stats")]
     public float TimeLimit = 15f;
@@ -72,12 +53,6 @@ public class CombatTrainingManager : TrainingManager
         UpdateBoostText();
     }
 
-    public override void ApplyResults()
-    {
-        base.ApplyResults();
-        ResetGame();
-    }
-
     public override void ResumeGame()
     {
         if (GamePaused)
@@ -90,29 +65,10 @@ public class CombatTrainingManager : TrainingManager
         }
     }
 
-    public void UpdateBoostText()
+    public override void StopGame()
     {
-        if (boostManager.IsTrainingExpBoosted)
-        {
-            resultsTotalExp.text = $"{TotalExp} (+{boostExp})";
-            adText.text = "You're gaining a bonus 20% XP!";
-        }
-        else
-        {
-            resultsTotalExp.text = $"{TotalExp}";
-            adText.text = $"Watch an ad to gain a bonus 20% XP (that's {boostExp} XP)!";
-        }
-    }
-
-    private void StopGame()
-    {
-        GameOver = true;
-        clickBlockerPanel.SetActive(true);
-        popupClickBlocker.SetActive(false);
+        base.StopGame();
         StartCoroutine(ResetShield());
-
-        timeText.text = "";
-        scoreText.text = "";
 
         float accuracy;
         if (sword.Swings == 0 || sword.Hits == 0)
@@ -122,22 +78,16 @@ public class CombatTrainingManager : TrainingManager
 
         int accuracyPercent = Mathf.FloorToInt(accuracy * 100);
 
-        resultsScore.text = $"{score}";
         score = Mathf.RoundToInt(score * accuracy);
 
         if (score == 0)
-        {
             exp = 0;
-        }
         else
-        {
             exp = Mathf.CeilToInt(score / 10);
-        }
+
         TotalExp += exp;
         boostExp = Mathf.CeilToInt(TotalExp * xPBoost.BoostValue);
 
-        if (!resultsImage.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Open"))
-            resultsImage.GetComponent<Animator>().SetTrigger("Open");
         resultsAccuracy.text = $"{accuracyPercent}%";
         resultsFinalScore.text = $"{score}";
         resultsExp.text = $"{exp}";
@@ -149,30 +99,11 @@ public class CombatTrainingManager : TrainingManager
         yield return new WaitForSeconds(1.0f);
         shield.ResetPositionAndColor();
     }
-
-    private void ResetGame()
+    protected override void ResetSession()
     {
-        ResetSession();
-        TotalExp = 0;
-        guildMember = null;
-
-    }
-
-    private void ResetSession()
-    {
-        score = 0;
-        exp = 0;
+        base.ResetSession();
         TimeRemaining = TimeLimit;
-        countdown = defaultCountdown;
-        shield.ResetShieldSpeed();
         timeText.text = Helpers.FormatTimer((int)TimeRemaining);
-        scoreText.text = score.ToString();
-        countdownText.text = "";
-    }
-
-    protected override IEnumerator StartCountdown()
-    {
-        ResetSession();
-        return base.StartCountdown();
+        shield.ResetShieldSpeed();
     }
 }

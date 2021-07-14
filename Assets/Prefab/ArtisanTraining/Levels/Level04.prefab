@@ -2288,6 +2288,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4336062505693372809, guid: b46c54b89b08ea44eb0c4f88c893d543,
         type: 3}
+      propertyPath: MinMoves
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4336062505693372809, guid: b46c54b89b08ea44eb0c4f88c893d543,
+        type: 3}
       propertyPath: difficulty
       value: 1
       objectReference: {fileID: 0}

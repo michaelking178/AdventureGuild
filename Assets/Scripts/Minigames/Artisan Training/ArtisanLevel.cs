@@ -2,6 +2,5 @@
 
 public class ArtisanLevel : MonoBehaviour
 {
-    [SerializeField]
-    private int minMoves = 0;
+    public int MinMoves = 0;
 }

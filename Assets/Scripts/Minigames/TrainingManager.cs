@@ -5,17 +5,38 @@ using UnityEngine.UI;
 
 public class TrainingManager : MonoBehaviour
 {
+    [Header("Scoreboard")]
     [SerializeField]
-    protected Image instructionsImage;
+    protected TextMeshProUGUI timeText;
 
+    [SerializeField]
+    protected TextMeshProUGUI scoreText;
+
+    [Header("Results Panel")]
     [SerializeField]
     protected Image resultsImage;
 
     [SerializeField]
-    protected TextMeshProUGUI countdownText;
+    protected TextMeshProUGUI resultsScore;
+
+    [SerializeField]
+    protected TextMeshProUGUI resultsFinalScore;
+
+    [SerializeField]
+    protected TextMeshProUGUI resultsExp;
+
+    [SerializeField]
+    protected TextMeshProUGUI resultsTotalExp;
 
     [SerializeField]
     protected TextMeshProUGUI adText;
+
+    [Header("Other UI")]
+    [SerializeField]
+    protected Image instructionsImage;
+
+    [SerializeField]
+    protected TextMeshProUGUI countdownText;
 
     [SerializeField]
     protected GameObject clickBlockerPanel;
@@ -49,15 +70,10 @@ public class TrainingManager : MonoBehaviour
     protected virtual void FixedUpdate()
     {
         if (popupManager.IsPopupOpen)
-        {
             PauseGame();
-        }
         else
-        {
             ResumeGame();
-        }
     }
-
     public void SetGuildMember(GuildMember _guildMember)
     {
         guildMember = _guildMember;
@@ -76,7 +92,7 @@ public class TrainingManager : MonoBehaviour
         popupClickBlocker.SetActive(false);
     }
 
-    public void BeginTraining()
+    public virtual void BeginTraining()
     {
         StartCoroutine(StartCountdown());
     }
@@ -84,6 +100,31 @@ public class TrainingManager : MonoBehaviour
     public void AddPoints(int points)
     {
         score += points;
+    }
+    public virtual void StopGame()
+    {
+        GameOver = true;
+        clickBlockerPanel.SetActive(true);
+        popupClickBlocker.SetActive(false);
+        timeText.text = "";
+        scoreText.text = "";
+        resultsScore.text = $"{score}";
+        if (!resultsImage.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Open"))
+            resultsImage.GetComponent<Animator>().SetTrigger("Open");
+    }
+
+    public void UpdateBoostText()
+    {
+        if (boostManager.IsTrainingExpBoosted)
+        {
+            resultsTotalExp.text = $"{TotalExp} (+{boostExp})";
+            adText.text = "You're gaining a bonus 20% XP!";
+        }
+        else
+        {
+            resultsTotalExp.text = $"{TotalExp}";
+            adText.text = $"Watch an ad to gain a bonus 20% XP (that's {boostExp} XP)!";
+        }
     }
 
     public virtual void ApplyResults()
@@ -97,6 +138,7 @@ public class TrainingManager : MonoBehaviour
             guildMember.AddExp(TotalExp);
         FindObjectOfType<TrainingXPBoost>().EndBoost();
         boostExp = 0;
+        ResetGame();
     }
 
     public virtual void PauseGame()
@@ -115,8 +157,14 @@ public class TrainingManager : MonoBehaviour
         }
     }
 
+    public void DisablePopupClickBlocker()
+    {
+        popupClickBlocker.SetActive(false);
+    }
+
     protected virtual IEnumerator StartCountdown()
     {
+        ResetSession();
         popupClickBlocker.SetActive(true);
         if (!instructionsImage.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Close"))
             instructionsImage.GetComponent<Animator>().SetTrigger("Close");
@@ -151,8 +199,19 @@ public class TrainingManager : MonoBehaviour
         }
     }
 
-    public void DisablePopupClickBlocker()
+    protected virtual void ResetGame()
     {
-        popupClickBlocker.SetActive(false);
+        ResetSession();
+        TotalExp = 0;
+        guildMember = null;
+    }
+
+    protected virtual void ResetSession()
+    {
+        score = 0;
+        exp = 0;
+        countdown = defaultCountdown;
+        scoreText.text = score.ToString();
+        countdownText.text = "";
     }
 }
