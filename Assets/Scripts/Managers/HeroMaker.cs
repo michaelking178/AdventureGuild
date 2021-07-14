@@ -32,6 +32,7 @@ public class HeroMaker : MonoBehaviour
         hero.Vocation = new Adventurer();
         hero.IsAvailable = true;
         hero.Bio = "";
+        hero.Quip = "Adventure awaits!";
         populationManager.GuildMembers.Add(hero);
     }
 

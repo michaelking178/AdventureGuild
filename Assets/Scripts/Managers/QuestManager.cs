@@ -155,6 +155,8 @@ public class QuestManager : MonoBehaviour
         ApplyQuestReward(quest);
         FindObjectOfType<TrophyManager>().UnlockTrophy(quest);
         quest.GuildMember.IsAvailable = true;
+        Adventurer adventurer = (Adventurer)quest.GuildMember.Vocation;
+        adventurer.QuestsCompleted++;
         questArchive.Add(quest);
         questPool.Remove(quest);
         if (quest.questChain)
