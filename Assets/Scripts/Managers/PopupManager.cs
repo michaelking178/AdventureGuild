@@ -18,7 +18,7 @@ public class PopupManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (levelManager.CurrentLevel() == "Title") return;
+        if (levelManager != null && levelManager.CurrentLevel() == "Title") return;
 
         if (popupQueue.Count > 0 && !IsPopupOpen)
         {

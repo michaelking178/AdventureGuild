@@ -47,7 +47,16 @@ public class ArtisanTrainingManager : TrainingManager
             if (currentLevel != null)
                 Destroy(currentLevel);
 
+            int xFlip = Random.Range(0, 99);
+            int yFlip = Random.Range(100, 199);
+
             currentLevel = Instantiate(artisanLevels[nextLevelIndex], Vector3.zero, Quaternion.identity);
+
+            if (xFlip < 50)
+                currentLevel.transform.rotation = Quaternion.Euler(currentLevel.transform.rotation.x, 180, 0);
+            if (yFlip < 150)
+                currentLevel.transform.rotation = Quaternion.Euler(180, currentLevel.transform.rotation.y, 0);
+
             previousLevelIndex = nextLevelIndex;
         }
     }
