@@ -33,6 +33,7 @@ public class GuildMember : MonoBehaviour
     public bool IsIncapacitated { get; set; }
     public string Bio { get; set; }
     public bool Created { get; set; } = false;
+    public string Quip { get; set; } = "";
 
     private NotificationManager notificationManager;
 

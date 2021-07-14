@@ -1561,6 +1561,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guildMemberPrefab: {fileID: 2554587963055608667, guid: 6419e1954edc7b24fb8199dcdf978a8a,
     type: 3}
+  quipsJson: {fileID: 4900000, guid: e38692801bc1e9940806ac621caab4bc, type: 3}
   maleAvatars:
   - {fileID: 21300000, guid: 6a0cfe1bd1ac0864587661ea6b770948, type: 3}
   - {fileID: 21300000, guid: a58966bdf79dd354dab36ae1c4df638d, type: 3}

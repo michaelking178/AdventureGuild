@@ -3,6 +3,7 @@
 [Serializable]
 public class Adventurer : Vocation
 {
+    public int QuestsCompleted { get; set; } = 0;
     public int CombatExp { get; set; } = 0;
     public int EspionageExp { get; set; } = 0;
     public int DiplomacyExp { get; set; } = 0;

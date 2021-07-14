@@ -1371,7 +1371,7 @@ GameObject:
   - component: {fileID: 45654121}
   - component: {fileID: 45654120}
   m_Layer: 5
-  m_Name: Input_HeroBio
+  m_Name: Input_HeroQuip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1454,7 +1454,7 @@ MonoBehaviour:
   m_CharacterValidation: 0
   m_RegexValue: 
   m_GlobalPointSize: 14
-  m_CharacterLimit: 500
+  m_CharacterLimit: 80
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -6526,7 +6526,7 @@ PrefabInstance:
     - target: {fileID: 6147038031331585941, guid: a208f6f9cbd14fc4e96e876e4c8dd08d,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1428.9006
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6147038031331585941, guid: a208f6f9cbd14fc4e96e876e4c8dd08d,
         type: 3}
@@ -9060,7 +9060,7 @@ PrefabInstance:
     - target: {fileID: 5810560653051065432, guid: 237ba4a59f900564bbbf73f9e94eecd6,
         type: 3}
       propertyPath: m_Name
-      value: btn_HeroBioDone
+      value: btn_HeroQuipDone
       objectReference: {fileID: 0}
     - target: {fileID: 5810560653051065432, guid: 237ba4a59f900564bbbf73f9e94eecd6,
         type: 3}
@@ -28192,7 +28192,7 @@ PrefabInstance:
     - target: {fileID: 6483149842539077804, guid: 6b82993fc706e0c49a3144b8c63c21e0,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1428.9006
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6483149842539077804, guid: 6b82993fc706e0c49a3144b8c63c21e0,
         type: 3}
@@ -29811,7 +29811,7 @@ PrefabInstance:
     - target: {fileID: 5810560653051065432, guid: 237ba4a59f900564bbbf73f9e94eecd6,
         type: 3}
       propertyPath: m_Name
-      value: btn_HeroBioCancel
+      value: btn_HeroQuipCancel
       objectReference: {fileID: 0}
     - target: {fileID: 5810560653051065432, guid: 237ba4a59f900564bbbf73f9e94eecd6,
         type: 3}
@@ -33242,7 +33242,7 @@ PrefabInstance:
     - target: {fileID: 5570358752495758159, guid: 9dea562df51eddd4a85a14a3a0d9d0fc,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1428.9006
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5570358752495758159, guid: 9dea562df51eddd4a85a14a3a0d9d0fc,
         type: 3}
@@ -38060,7 +38060,7 @@ PrefabInstance:
     - target: {fileID: 3658182471932008458, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}
       propertyPath: m_text
-      value: EDIT BIO
+      value: EDIT QUIP
       objectReference: {fileID: 0}
     - target: {fileID: 3658182471932008458, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}
@@ -38105,6 +38105,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3658182471932008458, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 3658182471932008458, guid: 311599e7b3f822341b0dd692db8906f5,
+        type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -4958742473532628732, guid: 1ea075dbccef9674da6504d92f6320a5,
@@ -38118,6 +38123,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 3658182471932008458, guid: 311599e7b3f822341b0dd692db8906f5,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 3658182471932008458, guid: 311599e7b3f822341b0dd692db8906f5,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 3658182471932008458, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}
@@ -38137,6 +38152,11 @@ PrefabInstance:
     - target: {fileID: 3658182471932008458, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}
       propertyPath: m_textInfo.wordCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3658182471932008458, guid: 311599e7b3f822341b0dd692db8906f5,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3658182471932008458, guid: 311599e7b3f822341b0dd692db8906f5,
@@ -38343,7 +38363,7 @@ PrefabInstance:
     - target: {fileID: 3658182472099775581, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}
       propertyPath: m_Name
-      value: btn_EditBio
+      value: btn_EditQuip
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 311599e7b3f822341b0dd692db8906f5, type: 3}
@@ -39525,7 +39545,7 @@ PrefabInstance:
     - target: {fileID: 6483149842539077804, guid: 6b82993fc706e0c49a3144b8c63c21e0,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1428.9006
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6483149842539077804, guid: 6b82993fc706e0c49a3144b8c63c21e0,
         type: 3}
@@ -40116,7 +40136,7 @@ PrefabInstance:
     - target: {fileID: 6147038031331585941, guid: a208f6f9cbd14fc4e96e876e4c8dd08d,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1428.9006
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6147038031331585941, guid: a208f6f9cbd14fc4e96e876e4c8dd08d,
         type: 3}
@@ -48654,7 +48674,7 @@ GameObject:
   - component: {fileID: 1656402160}
   - component: {fileID: 1656402159}
   m_Layer: 5
-  m_Name: txt_HeroBio
+  m_Name: txt_HeroQuip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63249,7 +63269,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 50, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2085895998
@@ -64924,7 +64944,7 @@ GameObject:
   - component: {fileID: 390014314493102730}
   - component: {fileID: 390014314493102731}
   m_Layer: 5
-  m_Name: Menu_MyHero
+  m_Name: Menu_Hero
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -8,6 +8,9 @@ public class PopulationManager : MonoBehaviour
     [SerializeField]
     private GuildMember guildMemberPrefab;
 
+    [SerializeField]
+    private TextAsset quipsJson;
+
     public List<Sprite> maleAvatars;
     public List<Sprite> femaleAvatars;
     public Sprite defaultMaleAvatar;
@@ -35,6 +38,7 @@ public class PopulationManager : MonoBehaviour
     private NotificationManager notificationManager;
     private Guildhall guildhall;
     private NameGenerator nameGenerator;
+    private Quips quips;
 
     // Todo: DebugBoost testing tool can be removed later.
     public bool DebugBoostEnabled = false;
@@ -46,6 +50,7 @@ public class PopulationManager : MonoBehaviour
         notificationManager = FindObjectOfType<NotificationManager>();
         guildhall = FindObjectOfType<Guildhall>();
         nameGenerator = FindObjectOfType<NameGenerator>();
+        quips = JsonUtility.FromJson<Quips>(quipsJson.text);
         if (RecoveryStartTime == DateTime.MinValue)
             RecoveryStartTime = DateTime.Now;
     }
@@ -64,6 +69,7 @@ public class PopulationManager : MonoBehaviour
         {
             string firstName;
             string lastName = nameGenerator.LastName();
+            string quip = quips.quips[UnityEngine.Random.Range(0, quips.quips.Length)];
             Sprite avatar;
             int gender = UnityEngine.Random.Range(0, 2);
             if (gender == 0)
@@ -79,6 +85,7 @@ public class PopulationManager : MonoBehaviour
             Person newPerson = new Person(gender, firstName, lastName);
             GuildMember newMember = Instantiate(guildMemberPrefab, transform);
             newMember.Init(newPerson);
+            newMember.Quip = quip;
             newMember.Avatar = avatar;
             GuildMembers.Add(newMember);
             notificationManager.CreateNotification($"{newMember.person.name} has heard of your Renown and joined the Adventure Guild!", Notification.Spirit.Good);
@@ -89,6 +96,7 @@ public class PopulationManager : MonoBehaviour
     {
         GuildMember newMember = Instantiate(guildMemberPrefab, transform);
         newMember.person = guildMemberData.person;
+        newMember.Quip = guildMemberData.quip;
         if (guildMemberData.avatarSpriteName != null && guildMemberData.avatarSpriteName != "")
         {
             Sprite avatar = Resources.Load<Sprite>("Sprites/Avatars/" + guildMemberData.person.gender + "/" + guildMemberData.avatarSpriteName);

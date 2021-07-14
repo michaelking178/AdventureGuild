@@ -52,7 +52,7 @@ public class Menu_Hero : Menu
             heroVocation.text = $"Level {hero.Level} {hero.Vocation.Title()}";
             heroExperience.text = $"{hero.Experience} / {Levelling.GuildMemberLevel[hero.Level]}";
             heroHealth.text = $"{hero.Hitpoints}/{hero.MaxHitpoints}";
-            heroBioText.text = hero.Bio;
+            heroBioText.text = hero.Quip;
             UpdateExpSlider();
             UpdateHealthSlider();
         }
@@ -78,12 +78,13 @@ public class Menu_Hero : Menu
         heroBioInput.gameObject.SetActive(true);
         heroBioDone.gameObject.SetActive(true);
         heroBioCancel.gameObject.SetActive(true);
-        heroBioInput.text = hero.Bio;
+        heroBioInput.text = hero.Quip;
     }
 
     public void UpdateBio()
     {
-        hero.Bio = heroBioInput.text;
+        hero.Quip = heroBioInput.text;
+        //hero.Bio = heroBioInput.text;
         CloseBioEditor();
     }
 

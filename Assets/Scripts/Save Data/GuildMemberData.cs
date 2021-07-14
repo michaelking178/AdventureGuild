@@ -14,6 +14,7 @@ public class GuildMemberData
     public int level;
     public bool isAvailable;
     public string bio = "";
+    public string quip = "";
 
     public GuildMemberData(GuildMember guildMember)
     {
@@ -37,5 +38,6 @@ public class GuildMemberData
         level = guildMember.Level;
         isAvailable = guildMember.IsAvailable;
         bio = guildMember.Bio;
+        quip = guildMember.Quip;
     }
 }

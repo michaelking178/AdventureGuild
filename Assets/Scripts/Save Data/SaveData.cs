@@ -91,6 +91,7 @@ public class SaveData
         hero.Level = heroData.level;
         hero.IsAvailable = heroData.isAvailable;
         hero.Bio = heroData.bio;
+        hero.Quip = heroData.quip;
         GameObject.FindObjectOfType<PopulationManager>().GuildMembers.Add(hero);
     }
 
