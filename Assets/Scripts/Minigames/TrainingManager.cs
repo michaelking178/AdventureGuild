@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TrainingManager : MonoBehaviour
 {
@@ -14,7 +13,7 @@ public class TrainingManager : MonoBehaviour
 
     [Header("Results Panel")]
     [SerializeField]
-    protected Image resultsImage;
+    protected TrainingPopup resultsPopup;
 
     [SerializeField]
     protected TextMeshProUGUI resultsScore;
@@ -33,16 +32,13 @@ public class TrainingManager : MonoBehaviour
 
     [Header("Other UI")]
     [SerializeField]
-    protected Image instructionsImage;
+    protected TrainingPopup instructionsPopup;
 
     [SerializeField]
     protected TextMeshProUGUI countdownText;
 
     [SerializeField]
     protected GameObject clickBlockerPanel;
-
-    [SerializeField]
-    protected GameObject popupClickBlocker;
 
     protected Boost xPBoost;
 
@@ -87,9 +83,7 @@ public class TrainingManager : MonoBehaviour
     private IEnumerator OpenInstructionsCRTN()
     {
         yield return new WaitForSeconds(0.5f);
-        if (!instructionsImage.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Open"))
-            instructionsImage.GetComponent<Animator>().SetTrigger("Open");
-        popupClickBlocker.SetActive(false);
+        instructionsPopup.Open();
     }
 
     public virtual void BeginTraining()
@@ -105,12 +99,10 @@ public class TrainingManager : MonoBehaviour
     {
         GameOver = true;
         clickBlockerPanel.SetActive(true);
-        popupClickBlocker.SetActive(false);
         timeText.text = "";
         scoreText.text = "";
         resultsScore.text = $"{score}";
-        if (!resultsImage.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Open"))
-            resultsImage.GetComponent<Animator>().SetTrigger("Open");
+        resultsPopup.Open();
     }
 
     public void UpdateBoostText()
@@ -129,9 +121,7 @@ public class TrainingManager : MonoBehaviour
 
     public virtual void ApplyResults()
     {
-        popupClickBlocker.SetActive(true);
-        if (!resultsImage.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Close"))
-            resultsImage.GetComponent<Animator>().SetTrigger("Close");
+        resultsPopup.Close();
         if (boostManager.IsTrainingExpBoosted)
             guildMember.AddExp(TotalExp + boostExp);
         else
@@ -157,17 +147,10 @@ public class TrainingManager : MonoBehaviour
         }
     }
 
-    public void DisablePopupClickBlocker()
-    {
-        popupClickBlocker.SetActive(false);
-    }
-
     protected virtual IEnumerator StartCountdown()
     {
         ResetSession();
-        popupClickBlocker.SetActive(true);
-        if (!instructionsImage.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Close"))
-            instructionsImage.GetComponent<Animator>().SetTrigger("Close");
+        instructionsPopup.Close();
         yield return new WaitForSeconds(0.5f);
         countingDown = true;
     }

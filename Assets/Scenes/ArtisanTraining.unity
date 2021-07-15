@@ -1009,7 +1009,7 @@ PrefabInstance:
     - target: {fileID: 3658182472099775555, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: ClosePopup
+      value: Close
       objectReference: {fileID: 0}
     - target: {fileID: 3658182472099775555, guid: 311599e7b3f822341b0dd692db8906f5,
         type: 3}
@@ -2499,6 +2499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15fc203fd17c7ee428a2dfcbafb09217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  popupClickBlocker: {fileID: 0}
 --- !u!222 &679677219728595928
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3753,6 +3754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15fc203fd17c7ee428a2dfcbafb09217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  popupClickBlocker: {fileID: 0}
 --- !u!1 &679677220744752149
 GameObject:
   m_ObjectHideFlags: 0
@@ -5582,16 +5584,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeText: {fileID: 3452211623624602774}
   scoreText: {fileID: 3452211622483946944}
-  resultsImage: {fileID: 679677219667531878}
+  resultsPopup: {fileID: 0}
   resultsScore: {fileID: 905055366}
   resultsFinalScore: {fileID: 302599466}
   resultsExp: {fileID: 194058734}
   resultsTotalExp: {fileID: 1511126636}
   adText: {fileID: 8470588157546073394}
-  instructionsImage: {fileID: 679677220664314000}
+  instructionsPopup: {fileID: 0}
   countdownText: {fileID: 679677220763903601}
   clickBlockerPanel: {fileID: 1782768815647800544}
-  popupClickBlocker: {fileID: 5693136844188090183}
   GameOver: 0
   resultsTime: {fileID: 363675777}
   artisanLevels:
