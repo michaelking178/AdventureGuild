@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     private string[] compatibleVersions = {
-        "0.2.0.0"
+        "0.3.0.0",
+        "0.3.0.1"
     };
 
     private ClickBlocker clickBlocker;

@@ -11,10 +11,10 @@ public class BoostManager : MonoBehaviour
     private void Start()
     {
         questManager = FindObjectOfType<QuestManager>();
-        StartCoroutine(DelayedQuestSetBoosts());
+        Invoke("SetQuestBoost", 1.0f);
     }
 
-    public void SetQuestBoosts()
+    public void SetQuestBoost()
     {
         foreach(Quest quest in questManager.GetQuestPool())
         {
@@ -24,11 +24,5 @@ public class BoostManager : MonoBehaviour
                 quest.Reward.SetBoost();
             }
         }
-    }
-
-    private IEnumerator DelayedQuestSetBoosts()
-    {
-        yield return new WaitForSeconds(1);
-        SetQuestBoosts();
     }
 }

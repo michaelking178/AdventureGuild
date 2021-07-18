@@ -6,7 +6,7 @@ public class PlayerBlock : MonoBehaviour
     private float rigidBodySpeed = 350.0f;
 
     [SerializeField]
-    private float swipeLength = 30.0f;
+    private float minSwipeLength = 30.0f;
 
     private enum Direction { RIGHT, LEFT, UP, DOWN };
     private Vector2 startPos;
@@ -45,20 +45,20 @@ public class PlayerBlock : MonoBehaviour
             }
             else if (touch.phase == TouchPhase.Moved)
             {
-                if (touch.position.x >= startPos.x + swipeLength)
+                if (SwipedRight())
                 {
                     Move(Direction.RIGHT);
                 }
-                else if (touch.position.x <= startPos.x - swipeLength)
+                else if (SwipedLeft())
                 {
                     Move(Direction.LEFT);
                 }   
-                else if (touch.position.y >= startPos.y + swipeLength)
+                else if (SwipedUp())
                 {
                     Move(Direction.UP);
                 }
                     
-                else if (touch.position.y <= startPos.y - swipeLength)
+                else if (SwipedDown())
                 {
                     Move(Direction.DOWN);
                 }
@@ -106,5 +106,33 @@ public class PlayerBlock : MonoBehaviour
             pointAdded = true;
             trainingManager.AddPoints(1);
         }
+    }
+
+    private bool SwipedRight()
+    {
+        float xSwipeLength = touch.position.x - startPos.x;
+        float ySwipeLength = touch.position.y - startPos.y;
+        return (xSwipeLength >= minSwipeLength && xSwipeLength > ySwipeLength);
+    }
+
+    private bool SwipedLeft()
+    {
+        float xSwipeLength = touch.position.x - startPos.x;
+        float ySwipeLength = touch.position.y - startPos.y;
+        return (xSwipeLength <= 0 - minSwipeLength && xSwipeLength < 0 - ySwipeLength);
+    }
+
+    private bool SwipedUp()
+    {
+        float xSwipeLength = touch.position.x - startPos.x;
+        float ySwipeLength = touch.position.y - startPos.y;
+        return (ySwipeLength >= minSwipeLength && ySwipeLength > xSwipeLength);
+    }
+
+    private bool SwipedDown()
+    {
+        float xSwipeLength = touch.position.x - startPos.x;
+        float ySwipeLength = touch.position.y - startPos.y;
+        return (ySwipeLength <= 0 - minSwipeLength && ySwipeLength < 0 - xSwipeLength);
     }
 }

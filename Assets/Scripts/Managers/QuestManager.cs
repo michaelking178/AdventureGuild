@@ -98,6 +98,8 @@ public class QuestManager : MonoBehaviour
                         || questToClone.continuingQuest
                         || breakout < 50);
                 Quest quest = CloneQuest(questToClone);
+                quest.RewardBoosted = boostManager.IsQuestRewardBoosted;
+                quest.Reward.SetBoost();
                 questsToGet.Add(quest);
             }
             foreach (Quest quest in questsToGet)

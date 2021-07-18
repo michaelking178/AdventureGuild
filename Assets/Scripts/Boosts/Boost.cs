@@ -53,7 +53,7 @@ public class Boost : MonoBehaviour
         {
             BoostRemaining = MaxDuration;
         }
-        boostManager.SetQuestBoosts();
+        boostManager.SetQuestBoost();
     }
 
     private void EndBoost()
@@ -61,7 +61,7 @@ public class Boost : MonoBehaviour
         if(!boostEnded)
         {
             SetBoostBool(false);
-            boostManager.SetQuestBoosts();
+            boostManager.SetQuestBoost();
             boostEnded = true;
         }
     }
