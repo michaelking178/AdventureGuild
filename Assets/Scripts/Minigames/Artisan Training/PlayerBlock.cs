@@ -57,7 +57,6 @@ public class PlayerBlock : MonoBehaviour
                 {
                     Move(Direction.UP);
                 }
-                    
                 else if (SwipedDown())
                 {
                     Move(Direction.DOWN);
@@ -82,19 +81,19 @@ public class PlayerBlock : MonoBehaviour
             AddPoint();
             if (moveDir == Direction.RIGHT)
             {
-                rigidBody.AddForce(Vector2.right * rigidBodySpeed);
+                rigidBody.AddForce(Vector2.right * rigidBodySpeed, ForceMode2D.Impulse);
             }
             else if (moveDir == Direction.LEFT)
             {
-                rigidBody.AddForce(Vector2.left * rigidBodySpeed);
+                rigidBody.AddForce(Vector2.left * rigidBodySpeed, ForceMode2D.Impulse);
             }
             else if (moveDir == Direction.UP)
             {
-                rigidBody.AddForce(Vector2.up * rigidBodySpeed);
+                rigidBody.AddForce(Vector2.up * rigidBodySpeed, ForceMode2D.Impulse);
             }
             else if (moveDir == Direction.DOWN) 
             {
-                rigidBody.AddForce(Vector2.down * rigidBodySpeed);
+                rigidBody.AddForce(Vector2.down * rigidBodySpeed, ForceMode2D.Impulse);
             }
         }
     }

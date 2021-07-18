@@ -78,7 +78,7 @@ public class ArtisanTrainingManager : TrainingManager
 
         if (timer != 0)
         {
-            score = (currentLevel.GetComponent<ArtisanLevel>().MinMoves * 10000) / (Mathf.CeilToInt(timer) * score);
+            score = (currentLevel.GetComponent<ArtisanLevel>().MinMoves * 15000) / (Mathf.CeilToInt(timer) * score);
             exp = score / 10;
         }
         else

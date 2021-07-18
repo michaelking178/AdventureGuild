@@ -993,7 +993,7 @@ PrefabInstance:
     - target: {fileID: 8824030953667441496, guid: bfbd34e85e5ca534088ada4ea353d993,
         type: 3}
       propertyPath: isFadingIn
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8824030953667441496, guid: bfbd34e85e5ca534088ada4ea353d993,
         type: 3}

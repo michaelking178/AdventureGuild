@@ -96,8 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6774cd65947d9c4eb4747b44a0dbfea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidBodySpeed: 300
-  minSwipeLength: 30
+  rigidBodySpeed: 15
+  minSwipeLength: 15
 --- !u!50 &1064087895
 Rigidbody2D:
   serializedVersion: 4
