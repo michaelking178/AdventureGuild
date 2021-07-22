@@ -66,8 +66,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: TestItemName
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b36b245070871ed49979a8ff8669a116, type: 2}
-  m_sharedMaterial: {fileID: -4958742473532628732, guid: b36b245070871ed49979a8ff8669a116,
+  m_fontAsset: {fileID: 11400000, guid: d95bac146eacf5a479edcfd25737fbb2, type: 2}
+  m_sharedMaterial: {fileID: 1048182292231037550, guid: d95bac146eacf5a479edcfd25737fbb2,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -274,8 +274,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Description
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b36b245070871ed49979a8ff8669a116, type: 2}
-  m_sharedMaterial: {fileID: -4958742473532628732, guid: b36b245070871ed49979a8ff8669a116,
+  m_fontAsset: {fileID: 11400000, guid: 175c4037a6886d74ca2967322533b202, type: 2}
+  m_sharedMaterial: {fileID: 1048182292231037550, guid: 175c4037a6886d74ca2967322533b202,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -566,7 +566,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Boost: {fileID: 0}
-  BoostName: 
   boostImage: {fileID: 5243194596452395237}
   timerPanel: {fileID: 8054392395939641959}
   timerText: {fileID: 2102801322013230196}
@@ -692,8 +691,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Achieved on
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b36b245070871ed49979a8ff8669a116, type: 2}
-  m_sharedMaterial: {fileID: -4958742473532628732, guid: b36b245070871ed49979a8ff8669a116,
+  m_fontAsset: {fileID: 11400000, guid: 175c4037a6886d74ca2967322533b202, type: 2}
+  m_sharedMaterial: {fileID: 1048182292231037550, guid: 175c4037a6886d74ca2967322533b202,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -826,8 +825,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: _TIMER
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b36b245070871ed49979a8ff8669a116, type: 2}
-  m_sharedMaterial: {fileID: -4958742473532628732, guid: b36b245070871ed49979a8ff8669a116,
+  m_fontAsset: {fileID: 11400000, guid: 175c4037a6886d74ca2967322533b202, type: 2}
+  m_sharedMaterial: {fileID: 1048182292231037550, guid: 175c4037a6886d74ca2967322533b202,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

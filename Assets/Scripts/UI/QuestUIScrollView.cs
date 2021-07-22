@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class QuestUIScrollView : MonoBehaviour
@@ -19,8 +18,6 @@ public class QuestUIScrollView : MonoBehaviour
 
         foreach (Quest quest in questManager.GetQuestsByStatus(Quest.Status.New))
             LoadQuestUI(quest);
-
-        StartCoroutine(CloseAllExtensionPanels());
     }
 
     public void UpdateQuestJournalList() {
@@ -36,11 +33,6 @@ public class QuestUIScrollView : MonoBehaviour
         foreach (Quest quest in questManager.GetQuestArchive())
         {
             LoadQuestUI(quest);
-        }
-
-        foreach (QuestUI questUI in questUIs)
-        {
-            questUI.CloseExtensionPanel();
         }
     }
 
@@ -58,14 +50,5 @@ public class QuestUIScrollView : MonoBehaviour
             questUI.ClearQuest();
         }
         questUIs.Clear();
-    }
-
-    private IEnumerator CloseAllExtensionPanels()
-    {
-        yield return new WaitForSeconds(0.1f);
-        foreach (QuestUI questUI in questUIs)
-        {
-            questUI.CloseExtensionPanel();
-        }
     }
 }
