@@ -745,7 +745,7 @@
       "commencement": "rid the town of Belmere of this bandit threat... once and for all.",
       "completion": "The townspeople of Belmere fought bravely against the bandits. Once I arrived they were emboldened and followed me into the fray. The bandits were many, numbering near a hundred, but the townspeople were resolute in their intent to be rid of the miscreants. After several hours of skirmishes in the streets wielding pitchfork, shovel, spear and bow, the townspeople finally pressed the bandits into submission. The remaining foes were arrested and escorted immediately to the deepest, darkest cells in the land. The town of Belmere is saved. I have received my reward from the grateful townspeople, and now return to the Adventure Guild.",
       "level": 15,
-      "trophyDescription": "led the fight against the bandit onslaught.",
+      "trophyDescription": "was victorious against the bandit onslaught at the Battle of Belmere.",
       "continuingQuest": true,
       "questChain": false,
       "nextQuestID": ""
@@ -896,6 +896,21 @@
       "completion": "COMPLETE_QUEST",
       "level": 15,
       "trophyDescription": "TROPHY_DESCRIPTION",
+      "continuingQuest": false,
+      "questChain": false,
+      "nextQuestID": ""
+    },
+	{
+      "id": "020001",
+      "questName": "Fiery Flight",
+      "contractor": "The Child Prince",
+      "faction": "RoyalPalace",
+      "skill": "",
+      "description": "I am Aethelric II, Child Prince of the Kingdom of Calan. I admit it unusual for the Throne to reach out directly in this way, but I've not other option. The Adventure Guild has proven its strength time and again in service of the kingdom, and it is in that reputation that I now must trust. A dragon has breached the outskirts of our territory and makes flight toward this very city. Villages and farmsteads are left burned in its path. None can stop it. I beseech the greatest adventurers in our kingdom to stop the dragon!",
+      "commencement": "face the dragon that burns the kingdom and threatens the destruction of our capitol. The beast will be airborne, so I have equipped a grappling hook. This will be my greatest challenge of all.",
+      "completion": "Never in my life have I felt such terror! The air was hot and the wind full of ash, a herald of the approaching storm of fire and destruction. I scaled the cliffside and watched as the great dragon approached. Its wings were like the sails of a monstrous skyborne ship, filling fore and back with wind as the beast beat its great limbs upward and down. Like a river of flame the monster spewed forth its destruction upon the land, blasting back and forth an inferno that consumed farmlands, roadways, and any structures therein. As it approached I readied my grappling hook and hid from sight. It passed near the cliff and the wind from its wings was nearly unbearable, hot and wreaking of sulfur. In that moment I sprang forth and leapt from the cliff, swinging the grapple in a wide arc. I threw it and, as I began to fall toward the earth, felt the line grow taut; it had latched onto the dragon's back! I climbed the line, mounted the dragon and began striking it with my blade. It cried out in anger with a deafening screech rolling in the air in an attempt to throw me. The grapple still lodged in its back, I tied the rope tightly around my waist so as not to be removed, and continued my onslaught. I struck the wings and the beast began to drift to the left and right, unsteady in the air. I ventured to crawl forward toward the creature's head, and landed a blow to its left eye, rendering it useless forevermore. The beast wailed, rolled once more, and fell to the earth with a thunderous crash./n/nI removed myself from the grapple and leapt away just as the beast rolled over and over in an attempt to crush its assailant. I dodged and hid with all the stealth I could muster as the dragon once again spewed a torrent of conflagration, craning back and forth to find me. Finally it spotted me; its eyes were rubies of focused rage, its lips curled to reveal rows of dagger-like teeth. With the speed of a snake the dragon lunged forth, and I was not fast enough to evade. In an instant I felt great jaws close around me, a rough slithering tongue below, forcing me toward the abyss. With a final burst of strength I plunged my sword upward and felt it sink deep into the roof of the monster's mouth. It screamed and heat began to build in that darkness; I had mere moments to end this. I withdrew the blade and struck again, and again. A dozen times I withdrew and struck again, each time deepening the gouge in the roof of the beast's mouth. Finally, it opened its mouth for a final blast of flame and I leapt free, pulling my sword out with me. The dragon spewed forth its river of flame, but my plan had worked. Flame spilled forth not only from its mouth now, but from its nose and eyes. It screamed in agony as the cavities of its skull filled with its own conflagration and burned the monster from the inside. With a final cry the dragon fell, the earth shuddering with the impact. There it lay silent, and cold evermore./n/nI returned to the Child Prince with a trophy of the dragon. With the Kingdom of Calan indebted to us and the Prince Aethelric II an eternal ally, I now return to the Adventure Guild.",
+      "level": 20,
+      "trophyDescription": "aided the Child Prince in thwarting the fiery threat against the Kingdom of Calan.",
       "continuingQuest": false,
       "questChain": false,
       "nextQuestID": ""
