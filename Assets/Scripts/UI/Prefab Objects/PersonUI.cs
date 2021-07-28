@@ -121,7 +121,11 @@ public class PersonUI : MonoBehaviour
         {
             UpdateExpSlider();
 
-            if (GuildMember.Vocation is Peasant && GuildMember.Level == 10)
+            if (
+                (GuildMember.Vocation is Peasant && GuildMember.Level == 10) ||
+                (GuildMember.Vocation is Adventurer && GuildMember.Level == 20) ||
+                (GuildMember.Vocation is Artisan && GuildMember.Level == 20)
+                )
             {
                 exp.text = "MAX";
                 expSlider.value = expSlider.maxValue;

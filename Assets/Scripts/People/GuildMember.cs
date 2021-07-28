@@ -89,7 +89,7 @@ public class GuildMember : MonoBehaviour
         CheckLevel();
     }
 
-    public void AddExp(Quest.Skill skillType, int _exp)
+    public void AddSkillExp(Quest.Skill skillType, int _exp)
     {
         // Todo: DebugBoost testing tool can be removed later.
         PopulationManager populationManager = FindObjectOfType<PopulationManager>();
@@ -116,7 +116,11 @@ public class GuildMember : MonoBehaviour
     private void CheckLevel()
     {
         Guildhall guildhall = FindObjectOfType<Guildhall>();
-        if (Vocation is Peasant && Level == 10)
+        if (
+            (Vocation is Peasant && Level == 10)
+            || (Vocation is Adventurer && Level == 20)
+            || (Vocation is Artisan && Level == 20)
+            )
         {
             return;
         }
