@@ -70,7 +70,7 @@ public class SaveData
         LoadTrophyManager();
     }
 
-    private void LoadSettings()
+    public void LoadSettings()
     {
         GameObject.Find("MusicManager").GetComponent<AudioSource>().volume = settingsData.musicVolume;
         GameObject.Find("SoundManager").GetComponent<AudioSource>().volume = settingsData.soundVolume;

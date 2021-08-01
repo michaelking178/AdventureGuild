@@ -7,5 +7,11 @@ public class Daily_LevelUpAdventurers : DailyChallenge
         base.Init();
         ObjectiveQuantity = Random.Range(3, 6);
         Objective = $"Level up Adventurers {ObjectiveQuantity} times";
+        GuildMember.OnAdventurerLevelUp += AddProgress;
+    }
+
+    public override void EndChallenge()
+    {
+        GuildMember.OnAdventurerLevelUp -= AddProgress;
     }
 }

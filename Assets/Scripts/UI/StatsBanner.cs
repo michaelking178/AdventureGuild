@@ -17,6 +17,7 @@ public class StatsBanner : MonoBehaviour
 
     private Guildhall guildhall;
     private PopulationManager populationManager;
+    private SoundManager soundManager;
     private Animator anim;
     private AudioSource audioSource;
 
@@ -24,8 +25,10 @@ public class StatsBanner : MonoBehaviour
     {
         guildhall = FindObjectOfType<Guildhall>();
         populationManager = FindObjectOfType<PopulationManager>();
+        soundManager = FindObjectOfType<SoundManager>();
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        audioSource.volume = soundManager.GetComponent<AudioSource>().volume;
     }
 
     private void FixedUpdate()

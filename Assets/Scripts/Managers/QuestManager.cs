@@ -35,6 +35,9 @@ public class QuestManager : MonoBehaviour
     private string rewardMessage = "";
     private int questArchiveCap = 100;
 
+    public delegate void OnQuestManagerAction(int value);
+    public static event OnQuestManagerAction OnQuestCompleted;
+
     private void Start()
     {
         incidentManager = FindObjectOfType<IncidentManager>();
@@ -167,6 +170,9 @@ public class QuestManager : MonoBehaviour
         SortQuestPoolByStartTime();
         SortQuestArchiveByStartTime();
         QuestsCompleted++;
+
+        // Event for challenges
+        OnQuestCompleted?.Invoke(1);
     }
 
     public void FailQuest(Quest quest)

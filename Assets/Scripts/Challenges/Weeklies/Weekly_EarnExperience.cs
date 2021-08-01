@@ -9,5 +9,11 @@ public class Weekly_EarnExperience : WeeklyChallenge
         base.Init();
         ObjectiveQuantity = expAmounts[Random.Range(0, expAmounts.Length)];
         Objective = $"Earn {ObjectiveQuantity} Experience";
+        GuildMember.OnExperienceGained += AddProgress;
+    }
+
+    public override void EndChallenge()
+    {
+        GuildMember.OnExperienceGained -= AddProgress;
     }
 }

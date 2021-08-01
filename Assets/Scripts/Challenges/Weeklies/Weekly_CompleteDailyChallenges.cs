@@ -7,5 +7,11 @@ public class Weekly_CompleteDailyChallenges : WeeklyChallenge
         base.Init();
         ObjectiveQuantity = Random.Range(5, 11);
         Objective = $"Complete {ObjectiveQuantity} Daily Challenges";
+        DailyChallenge.OnDailyChallengeCompleted += AddProgress;
+    }
+
+    public override void EndChallenge()
+    {
+        DailyChallenge.OnDailyChallengeCompleted -= AddProgress;
     }
 }

@@ -7,6 +7,9 @@ public class ChallengeItemRow : MonoBehaviour
     private TextMeshProUGUI descriptionText;
 
     [SerializeField]
+    private TextMeshProUGUI rewardText;
+
+    [SerializeField]
     private TextMeshProUGUI progressText;
 
     private Challenge challenge;
@@ -24,6 +27,7 @@ public class ChallengeItemRow : MonoBehaviour
         if (menuManager.CurrentMenu == menu_Challenges && challenge != null)
         {
             descriptionText.text = challenge.Objective;
+            rewardText.text = $"Reward:\n{challenge.Reward.Gold} Gold, {challenge.Reward.Wood} Wood, {challenge.Reward.Iron} Iron, {challenge.Reward.Renown} Renown";
             progressText.text = $"Progress: {challenge.Progress}/{challenge.ObjectiveQuantity}";
         }
     }

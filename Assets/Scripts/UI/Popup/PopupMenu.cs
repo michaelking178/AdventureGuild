@@ -31,6 +31,7 @@ public class PopupMenu : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
+        GetComponent<AudioSource>().volume = FindObjectOfType<SoundManager>().GetComponent<AudioSource>().volume;
     }
 
     public virtual void Populate()

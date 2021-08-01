@@ -40,6 +40,9 @@ public class PopulationManager : MonoBehaviour
     private NameGenerator nameGenerator;
     private Quips quips;
 
+    public delegate void OnPopulationManagerAction(int value);
+    public static event OnPopulationManagerAction OnRecruit;
+
     // Todo: DebugBoost testing tool can be removed later.
     public bool DebugBoostEnabled = false;
     public int DebugBoost = 3;
@@ -89,6 +92,9 @@ public class PopulationManager : MonoBehaviour
             newMember.Avatar = avatar;
             GuildMembers.Add(newMember);
             notificationManager.CreateNotification($"{newMember.person.name} has heard of your Renown and joined the Adventure Guild!", Notification.Spirit.Good);
+
+            // Event for Challenges
+            OnRecruit?.Invoke(1);
         }
     }
 

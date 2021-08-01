@@ -29,17 +29,17 @@ public class ChallengeManager : MonoBehaviour
 
         if (CurrentDailies.Count == 0)
             ResetDailyChallenges();
+
         if (CurrentWeeklies.Count == 0)
+        {
+            SetChallengeWeekStart();
             ResetWeeklyChallenges();
+        }
 
         if (challengeDay == DateTime.MinValue)
-        {
             challengeDay = DateTime.Now.Date;
-        }
         if (challengeWeek == DateTime.MinValue)
-        {
             challengeWeek = challengeDay;
-        }
     }
 
     private void FixedUpdate()
@@ -61,6 +61,11 @@ public class ChallengeManager : MonoBehaviour
 
     private void ResetDailyChallenges()
     {
+        foreach (Challenge challenge in CurrentDailies)
+        {
+            challenge.EndChallenge();
+        }
+
         CurrentDailies.Clear();
         for (int i = 0; i < dailyTotal; i++)
         {
@@ -70,7 +75,12 @@ public class ChallengeManager : MonoBehaviour
 
     private void ResetWeeklyChallenges()
     {
+        foreach(Challenge challenge in CurrentWeeklies)
+        {
+            challenge.EndChallenge();
+        }
         CurrentWeeklies.Clear();
+
         for (int i = 0; i < weeklyTotal; i++)
         {
             AddWeeklyChallenge();
@@ -89,5 +99,23 @@ public class ChallengeManager : MonoBehaviour
         WeeklyChallenge challenge = weeklyChallenges[UnityEngine.Random.Range(0, weeklyChallenges.Length)];
         challenge.Init();
         CurrentWeeklies.Add(challenge);
+    }
+
+    private void SetChallengeWeekStart()
+    {
+        if (DateTime.Now.DayOfWeek == DayOfWeek.Monday)
+            challengeWeek = DateTime.Now.Date.AddDays(-1);
+        else if (DateTime.Now.DayOfWeek == DayOfWeek.Tuesday)
+            challengeWeek = DateTime.Now.Date.AddDays(-2);
+        else if (DateTime.Now.DayOfWeek == DayOfWeek.Wednesday)
+            challengeWeek = DateTime.Now.Date.AddDays(-3);
+        else if (DateTime.Now.DayOfWeek == DayOfWeek.Thursday)
+            challengeWeek = DateTime.Now.Date.AddDays(-4);
+        else if (DateTime.Now.DayOfWeek == DayOfWeek.Friday)
+            challengeWeek = DateTime.Now.Date.AddDays(-5);
+        else if (DateTime.Now.DayOfWeek == DayOfWeek.Saturday)
+            challengeWeek = DateTime.Now.Date.AddDays(-6);
+        else if (DateTime.Now.DayOfWeek == DayOfWeek.Sunday)
+            challengeWeek = DateTime.Now.Date;
     }
 }

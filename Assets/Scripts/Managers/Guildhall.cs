@@ -29,6 +29,12 @@ public class Guildhall : MonoBehaviour
     private PopulationManager populationManager;
     private QuestManager questManager;
 
+    public delegate void OnGuildhallChallengeAction(int value);
+    public static event OnGuildhallChallengeAction OnGoldReward;
+    public static event OnGuildhallChallengeAction OnWoodReward;
+    public static event OnGuildhallChallengeAction OnIronReward;
+    public static event OnGuildhallChallengeAction OnRenownReward;
+
     private void Start()
     {
         levelManager = FindObjectOfType<LevelManager>();
@@ -67,48 +73,50 @@ public class Guildhall : MonoBehaviour
     {
         Gold += change;
         if (Gold < 0)
-        {
             Gold = 0;
-        }
         else if (Gold > MaxGold)
-        {
             Gold = MaxGold;
-        }
+
+        // Challenge reward event
+        if (change > 0)
+            OnGoldReward?.Invoke(change);
     }
 
     public void AdjustIron(int change)
     {
         Iron += change;
         if (Iron < 0)
-        {
             Iron = 0;
-        }
         else if (Iron > MaxIron)
-        {
             Iron = MaxIron;
-        }
+
+        // Challenge reward event
+        if (change > 0)
+            OnIronReward?.Invoke(change);
     }
 
     public void AdjustWood(int change)
     {
         Wood += change;
         if (Wood < 0)
-        {
             Wood = 0;
-        }
         else if (Wood > MaxWood)
-        {
             Wood = MaxWood;
-        }
+
+        // Challenge reward event
+        if (change > 0)
+            OnWoodReward?.Invoke(change);
     }
 
     public void AdjustRenown(int change)
     {
         Renown += change;
         if (Renown < 0)
-        {
             Renown = 0;
-        }
+
+        // Challenge reward event
+        if (change > 0)
+            OnRenownReward?.Invoke(change);
     }
 
     public void AdjustIncome(Peasant.IncomeType incomeType, int _income)

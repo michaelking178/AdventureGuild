@@ -36,6 +36,12 @@ public class GuildMember : MonoBehaviour
     public string Quip { get; set; } = "";
 
     private NotificationManager notificationManager;
+    public delegate void OnGuildMemberChallengeAction(int value);
+    public static event OnGuildMemberChallengeAction OnAdventurerLevelUp;
+    public static event OnGuildMemberChallengeAction OnArtisanLevelUp;
+    public static event OnGuildMemberChallengeAction OnPeasantPromotion;
+    public static event OnGuildMemberChallengeAction OnExperienceGained;
+
 
     public void Init(Person _person)
     {
@@ -86,6 +92,10 @@ public class GuildMember : MonoBehaviour
         if (populationManager.DebugBoostEnabled) _exp *= populationManager.DebugBoost;
 
         Experience += _exp;
+
+        // Event for Challenges
+        OnExperienceGained?.Invoke(_exp);
+
         CheckLevel();
     }
 
@@ -128,6 +138,12 @@ public class GuildMember : MonoBehaviour
         {
             Level++;
             notificationManager.CreateNotification($"{person.name} reached Level {Level}!", Notification.Spirit.Good);
+
+            // Level up event for Challenges
+            if (Vocation is Adventurer)
+                OnAdventurerLevelUp?.Invoke(1);
+            else if (Vocation is Artisan)
+                OnArtisanLevelUp?.Invoke(1);
 
             if (Vocation is Peasant peasant)
             {
@@ -178,6 +194,9 @@ public class GuildMember : MonoBehaviour
         MaxHitpoints = 100;
         Hitpoints = MaxHitpoints;
         notificationManager.CreateNotification($"{person.name} has honed their skills and become an Adventurer!", Notification.Spirit.Good);
+
+        // Event for Challenges
+        OnPeasantPromotion?.Invoke(1);
     }
 
     public void PromoteToArtisan()
@@ -190,5 +209,8 @@ public class GuildMember : MonoBehaviour
         MaxHitpoints = 100;
         Hitpoints = MaxHitpoints;
         notificationManager.CreateNotification($"{person.name} has honed their skills and become an Artisan!", Notification.Spirit.Good);
+
+        // Event for Challenges
+        OnPeasantPromotion?.Invoke(1);
     }
 }

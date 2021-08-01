@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Menu_Settings : Menu
@@ -15,6 +16,7 @@ public class Menu_Settings : Menu
     private Toggle expBoostToggle;
 
     private AudioSource soundAudioSource;
+    private AudioSource[] soundAudioSources;
     private AudioSource musicAudioSource;
     private PopulationManager populationManager;
 
@@ -22,6 +24,7 @@ public class Menu_Settings : Menu
 
     private void Start()
     {
+        soundAudioSources = FindObjectsOfType<AudioSource>();
         soundAudioSource = GameObject.Find("SoundManager").GetComponent<AudioSource>();
         musicAudioSource = GameObject.Find("MusicManager").GetComponent<AudioSource>();
         populationManager = FindObjectOfType<PopulationManager>();
@@ -38,8 +41,12 @@ public class Menu_Settings : Menu
     {
         if (menuManager.CurrentMenu == this)
         {
+            foreach(AudioSource audioSource in soundAudioSources)
+            {
+                if (audioSource != musicAudioSource)
+                    audioSource.volume = soundVolume.value;
+            }
             musicAudioSource.volume = musicVolume.value;
-            soundAudioSource.volume = soundVolume.value;
 
             if (expBoostToggle.isOn) populationManager.DebugBoostEnabled = true;
             else populationManager.DebugBoostEnabled = false;

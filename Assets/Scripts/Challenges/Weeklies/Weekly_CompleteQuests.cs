@@ -9,5 +9,11 @@ public class Weekly_CompleteQuests : WeeklyChallenge
         base.Init();
         ObjectiveQuantity = questsAmount[Random.Range(0, questsAmount.Length)];
         Objective = $"Complete {ObjectiveQuantity} quests";
+        QuestManager.OnQuestCompleted += AddProgress;
+    }
+
+    public override void EndChallenge()
+    {
+        QuestManager.OnQuestCompleted -= AddProgress;
     }
 }

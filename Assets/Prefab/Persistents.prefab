@@ -2035,6 +2035,7 @@ GameObject:
   - component: {fileID: 1921002410190220340}
   - component: {fileID: 8286184934545732072}
   - component: {fileID: 7103020417596035077}
+  - component: {fileID: 5938144376385475252}
   m_Layer: 0
   m_Name: Weekly Challenges
   m_TagString: Untagged
@@ -2090,5 +2091,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05cc865e5fd429841a0546e4610f2f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5938144376385475252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7858243115886623769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3a59f15e939e284ab5dd2d349cfa0fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
