@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class GuildmemberGroup : MonoBehaviour
+public class ChallengeGroup : MonoBehaviour
 {
-    public enum GuildmemberType { Adventurer, Artisan, Peasant}
-    public GuildmemberType guildmemberType;
+    public enum ChallengeType { Daily, Weekly }
+    public ChallengeType challengeType;
 
     public GameObject ContentPanel;
 
@@ -55,15 +55,6 @@ public class GuildmemberGroup : MonoBehaviour
     {
         if (isExpanded)
         {
-            foreach (GameObject child in ContentPanel.GetChildren())
-            {
-                if (child.GetComponent<PersonUI>() != null)
-                {
-                    child.GetComponent<PersonUI>().HideExtensionPanel();
-                    Canvas.ForceUpdateCanvases();
-                    LayoutRebuilder.MarkLayoutForRebuild(GetComponent<RectTransform>());
-                }
-            }
             isExpanded = false;
             anim.SetTrigger("Collapse");
             ContentPanel.SetActive(false);

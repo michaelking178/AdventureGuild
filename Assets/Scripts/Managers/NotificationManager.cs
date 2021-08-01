@@ -21,14 +21,25 @@ public class NotificationManager : MonoBehaviour
 
     private Vector2 position;
     private float notchOffset = -200.0f;
+    private bool notificationDisplayStarted = false;
+    private LevelManager levelManager;
 
     private void Start()
     {
+        levelManager = FindObjectOfType<LevelManager>();
         notifications = new List<Notification>();
         notificationUIs = new List<GameObject>();
         position = new Vector2(-3400, notchOffset);
         StartCoroutine(MoveNotificationStack());
-        StartCoroutine(DisplayNotifications());
+    }
+
+    private void FixedUpdate()
+    {
+        if (!notificationDisplayStarted && levelManager.CurrentLevel() != "Title")
+        {
+            notificationDisplayStarted = true;
+            StartCoroutine(DisplayNotifications());
+        }
     }
 
     public void CreateNotification(string _notification, Notification.Spirit _spirit)
@@ -39,7 +50,7 @@ public class NotificationManager : MonoBehaviour
 
     private IEnumerator DisplayNotifications()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(0.5f);
         while(true)
         {
             if (notifications.Count > 0)

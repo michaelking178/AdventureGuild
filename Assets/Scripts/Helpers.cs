@@ -92,9 +92,15 @@ public static class Helpers
 
     public static string FormatTimer(int timeRemaining)
     {
+        int days = 0;
         int hours = 0;
         int minutes = 0;
 
+        if (timeRemaining > 86399)
+        {
+            days = Mathf.FloorToInt(timeRemaining / 86400);
+            timeRemaining %= 86400;
+        }
         if (timeRemaining > 3599)
         {
             hours = Mathf.FloorToInt(timeRemaining / 3600);
@@ -106,9 +112,18 @@ public static class Helpers
             timeRemaining %= 60;
         }
 
+        string daysStr;
         string hoursStr;
         string minStr;
         string secStr;
+        if (days < 10)
+        {
+            daysStr = $"0{days}";
+        }
+        else
+        {
+            daysStr = days.ToString();
+        }
         if (hours < 10)
         {
             hoursStr = $"0{hours}";
@@ -133,8 +148,15 @@ public static class Helpers
         {
             secStr = timeRemaining.ToString();
         }
-
-        return $"{hoursStr}:{minStr}:{secStr}";
+        
+        if (days > 0)
+        {
+            return $"{daysStr}:{hoursStr}:{minStr}:{secStr}";
+        }
+        else
+        {
+            return $"{hoursStr}:{minStr}:{secStr}";
+        }
     }
 
     /// <summary>

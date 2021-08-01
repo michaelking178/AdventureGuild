@@ -26,6 +26,15 @@ public class Reward
         SetBoost();
     }
 
+    public Reward(int _gold, int _iron, int _wood, int _exp, int _renown)
+    {
+        Gold = _gold;
+        Iron = _iron;
+        Wood = _wood;
+        Exp = _exp;
+        Renown = _renown;
+    }
+
     public void SetBoost()
     {
         BoostGold = Mathf.CeilToInt(Gold * GameObject.FindObjectOfType<QuestRewardBoost>().BoostValue);
