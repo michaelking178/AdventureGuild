@@ -724,6 +724,8 @@ MonoBehaviour:
   descriptionText: {fileID: 4336653033081393307}
   rewardText: {fileID: 6663217084186592371}
   progressText: {fileID: 290255299197978124}
+  checkmark: {fileID: 7347546788189273579}
+  tintPanel: {fileID: 851879305}
 --- !u!1 &6875959678652654368
 GameObject:
   m_ObjectHideFlags: 0

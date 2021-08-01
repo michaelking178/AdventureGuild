@@ -8,6 +8,13 @@ public class Challenge : MonoBehaviour
     public Reward Reward { get; protected set; }
     public bool IsCompleted { get; protected set; }
 
+    private Guildhall guildhall;
+
+    protected void Start()
+    {
+        guildhall = FindObjectOfType<Guildhall>();
+    }
+
     public virtual void EndChallenge()
     {
         Debug.LogWarning($"Challenge {name} has not implemented EndChallenge()!");
@@ -16,14 +23,18 @@ public class Challenge : MonoBehaviour
     protected void AddProgress(int value)
     {
         Progress += value;
-        if (Progress == ObjectiveQuantity)
+        if (Progress >= ObjectiveQuantity)
             Complete();
-        Debug.LogWarning($"Progess triggered: {value}");
     }
 
     protected virtual void Complete()
     {
         IsCompleted = true;
+        guildhall.AdjustGold(Reward.Gold);
+        guildhall.AdjustIron(Reward.Iron);
+        guildhall.AdjustWood(Reward.Wood);
+        guildhall.AdjustRenown(Reward.Renown);
+        EndChallenge();
         Debug.LogWarning($"Challenge Completed: {name}");
     }
 }

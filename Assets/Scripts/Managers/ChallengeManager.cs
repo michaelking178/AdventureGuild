@@ -10,6 +10,7 @@ public class ChallengeManager : MonoBehaviour
     [SerializeField]
     private int weeklyTotal = 3;
 
+    public bool ChallengesUnlocked { get; set; } = false;
     public List<DailyChallenge> CurrentDailies { get; private set; } = new List<DailyChallenge>();
     public List<WeeklyChallenge> CurrentWeeklies { get; private set; } = new List<WeeklyChallenge>();
 
@@ -19,43 +20,49 @@ public class ChallengeManager : MonoBehaviour
     public TimeSpan DailyRemaining { get; private set; }
     public  TimeSpan WeeklyRemaining { get; private set; }
 
-    DailyChallenge[] dailyChallenges;
-    WeeklyChallenge[] weeklyChallenges;
+    private DailyChallenge[] dailyChallenges;
+    private WeeklyChallenge[] weeklyChallenges;
 
     private void Start()
     {
         dailyChallenges = GetComponentsInChildren<DailyChallenge>();
         weeklyChallenges = GetComponentsInChildren<WeeklyChallenge>();
 
-        if (CurrentDailies.Count == 0)
-            ResetDailyChallenges();
-
-        if (CurrentWeeklies.Count == 0)
+        if (ChallengesUnlocked)
         {
-            SetChallengeWeekStart();
-            ResetWeeklyChallenges();
-        }
+            if (CurrentDailies.Count == 0)
+                ResetDailyChallenges();
 
-        if (challengeDay == DateTime.MinValue)
-            challengeDay = DateTime.Now.Date;
-        if (challengeWeek == DateTime.MinValue)
-            challengeWeek = challengeDay;
+            if (CurrentWeeklies.Count == 0)
+            {
+                SetChallengeWeekStart();
+                ResetWeeklyChallenges();
+            }
+
+            if (challengeDay == DateTime.MinValue)
+                challengeDay = DateTime.Now.Date;
+            if (challengeWeek == DateTime.MinValue)
+                challengeWeek = challengeDay;
+        }
     }
 
     private void FixedUpdate()
     {
-        DailyRemaining = challengeDay.AddDays(1) - DateTime.Now;
-        WeeklyRemaining = challengeWeek.AddDays(7) - DateTime.Now;
+        if (ChallengesUnlocked)
+        {
+            DailyRemaining = challengeDay.AddDays(1) - DateTime.Now;
+            WeeklyRemaining = challengeWeek.AddDays(7) - DateTime.Now;
 
-        if (challengeDay != DateTime.Now.Date)
-        {
-            challengeDay = DateTime.Now.Date;
-            ResetDailyChallenges();
-        }
-        if (DateTime.Now.Date >= challengeWeek.Date.AddDays(7))
-        {
-            challengeWeek = DateTime.Now.Date;
-            ResetWeeklyChallenges();
+            if (challengeDay != DateTime.Now.Date)
+            {
+                challengeDay = DateTime.Now.Date;
+                ResetDailyChallenges();
+            }
+            if (DateTime.Now.Date >= challengeWeek.Date.AddDays(7))
+            {
+                challengeWeek = DateTime.Now.Date;
+                ResetWeeklyChallenges();
+            }
         }
     }
 

@@ -6,7 +6,7 @@ public class StatsBanner : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI gold, iron, wood, population, adventurers, artisans, peasants, renown,
         artisanProficiency, maxGold, maxIron, maxWood, currentGoldIncome, currentIronIncome, currentWoodIncome,
-        maxGoldIncome, maxIronIncome, maxWoodIncome, timeToMaxGold, timeToMaxIron, timeToMaxWood;
+        maxGoldIncome, maxIronIncome, maxWoodIncome, timeToMaxGold, timeToMaxIron, timeToMaxWood, legendLevel, legendLevelVal;
 
     [Header("Audio")]
     [SerializeField]
@@ -62,6 +62,17 @@ public class StatsBanner : MonoBehaviour
 
         if (guildhall.WoodIncome == 0) timeToMaxWood.text = "Wood: N/A";
         else timeToMaxWood.text = "Wood: " + CalculateTimeToMax(guildhall.WoodIncome, guildhall.MaxWoodIncome).ToString() + " hours";
+
+        if (guildhall.LegendLevel == 0)
+        {
+            legendLevel.text = "";
+            legendLevelVal.text = "";
+        }
+        else
+        {
+            legendLevel.text = "Legend Level:";
+            legendLevelVal.text = guildhall.LegendLevel.ToString();
+        }
     }
 
     public void Extend()

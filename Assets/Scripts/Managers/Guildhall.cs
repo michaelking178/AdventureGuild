@@ -11,6 +11,7 @@ public class Guildhall : MonoBehaviour
     public int RenownLevel { get; set; } = 1;
     public int RenownThreshold { get { return Levelling.RenownLevel[RenownLevel]; } }
     public int ArtisanProficiency;
+    public int LegendLevel { get; private set; } = 0;
 
     public int MaxGold { get; set; } = 25000;
     public int MaxIron { get; set; } = 10000;

@@ -26,17 +26,22 @@ public class QuestUI : MonoBehaviour
 
     private Quest quest;
     private QuestUIPool questUIPool;
+
+    private Color questCompletedColor = new Color(0.4f, 0.4f, 0.4f);
+
     private Color emptySlotColor = new Color(0,0,0,0.25f);
     private Color combatColor = new Color(1,0,0,1);
     private Color espionageColor = new Color(1,1,0,1);
     private Color diplomacyColor = new Color(0,0,1,1);
     private Color factionColor = new Color(1,1,1,1);
+    private Image questUIPanel;
 
     #endregion
 
     private void Start()
     {
         questUIPool = FindObjectOfType<QuestUIPool>();
+        questUIPanel = GetComponentInChildren<Image>();
     }
 
     private void FixedUpdate()
@@ -84,13 +89,32 @@ public class QuestUI : MonoBehaviour
     private void SetQuestUIState()
     {
         if (quest.State == Quest.Status.Completed || quest.State == Quest.Status.Failed)
+        {
             questTime.text = quest.State.ToString();
+            questUIPanel.color = questCompletedColor;
+            foreach(TextMeshProUGUI text in GetComponentsInChildren<TextMeshProUGUI>())
+            {
+                text.color = questCompletedColor;
+            }
+        }
         else if (quest.State == Quest.Status.New)
+        {
             questTime.text = Helpers.FormatTimer(quest.time);
+            questUIPanel.color = Color.white;
+            foreach (TextMeshProUGUI text in GetComponentsInChildren<TextMeshProUGUI>())
+            {
+                text.color = Color.white;
+            }
+        }
         else if (quest.State == Quest.Status.Active)
         {
             float timeRemaining = quest.Timer.TimeLimit - quest.Timer.CurrentTime;
             questTime.text = Helpers.FormatTimer((int)timeRemaining);
+            questUIPanel.color = Color.white;
+            foreach (TextMeshProUGUI text in GetComponentsInChildren<TextMeshProUGUI>())
+            {
+                text.color = Color.white;
+            }
         }
     }
 

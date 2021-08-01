@@ -1,5 +1,17 @@
-﻿public class HerosMonument : Upgrade
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class HallOfTrials : Upgrade
 {
+    private ChallengeManager challengeManager;
+
+    protected new void Start()
+    {
+        base.Start();
+        challengeManager = FindObjectOfType<ChallengeManager>();
+    }
+
     private new void FixedUpdate()
     {
         if (levelManager.CurrentLevel() != "Main") return;
@@ -14,11 +26,10 @@
     public override void Apply()
     {
         base.Apply();
-        // Do something upgradey. Enable Legend Levelling?
     }
 
     protected override void CheckForUpgrade()
     {
-        // Check if the upgrade is applied ===> IsPurchased = ???;
+        IsPurchased = challengeManager.ChallengesUnlocked;
     }
 }
