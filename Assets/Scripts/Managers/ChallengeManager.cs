@@ -89,16 +89,44 @@ public class ChallengeManager : MonoBehaviour
 
     private void AddDailyChallenge()
     {
+        bool isUnique = true;
         DailyChallenge challenge = dailyChallenges[UnityEngine.Random.Range(0, dailyChallenges.Length)];
-        challenge.Init();
-        CurrentDailies.Add(challenge);
+        foreach(Challenge dailyChallenge in CurrentDailies)
+        {
+            if (challenge == dailyChallenge)
+            {
+                isUnique = false;
+            }
+        }
+
+        if (!isUnique)
+            AddDailyChallenge();
+        else
+        {
+            challenge.Init();
+            CurrentDailies.Add(challenge);
+        }
     }
 
     private void AddWeeklyChallenge()
     {
+        bool isUnique = true;
         WeeklyChallenge challenge = weeklyChallenges[UnityEngine.Random.Range(0, weeklyChallenges.Length)];
-        challenge.Init();
-        CurrentWeeklies.Add(challenge);
+        foreach (Challenge weeklyChallenge in CurrentWeeklies)
+        {
+            if (challenge == weeklyChallenge)
+            {
+                isUnique = false;
+            }
+        }
+
+        if (!isUnique)
+            AddWeeklyChallenge();
+        else
+        {
+            challenge.Init();
+            CurrentWeeklies.Add(challenge);
+        }
     }
 
     private void SetChallengeWeekStart()
