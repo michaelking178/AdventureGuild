@@ -134,7 +134,11 @@ public class PersonUI : MonoBehaviour
                 exp.text = $"{GuildMember.Experience} / {Levelling.GuildMemberLevel[GuildMember.Level]}";
 
             personVocation.text = $"{GuildMember.Vocation.Title()} - Level {GuildMember.Level}";
-            health.text = $"HP: {GuildMember.Hitpoints} / {GuildMember.MaxHitpoints}";
+
+            if (GuildMember.Vocation is Adventurer)
+                health.text = $"HP: {GuildMember.Hitpoints} / {GuildMember.MaxHitpoints}";
+            else
+                health.text = "";
 
             if (GuildMember.IsAvailable && !GuildMember.IsIncapacitated)
                 availability.text = "Idle";
