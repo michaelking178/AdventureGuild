@@ -4,37 +4,33 @@ using UnityEngine.UI;
 
 public class SplashManager : MonoBehaviour
 {
-    public float splashTime = 1.5f;
+    public float defaultsplashTime = 2.5f;
 
-    [SerializeField]
-    private Slider slider;
-
+    private float splashTime;
     private bool isTiming = true;
 
     private void Start()
     {
-        slider.maxValue = splashTime;
-        slider.value = 0f;
+        splashTime = defaultsplashTime;
     }
 
     private void FixedUpdate()
     {
         if (isTiming)
         {
-            if (slider.value + Time.fixedDeltaTime >= slider.maxValue)
+            if (splashTime - Time.fixedDeltaTime <= 0.0f)
             {
                 if (FindObjectOfType<AdvertisementInitializer>().IsReady())
                     StartCoroutine(FadeOut());
             }
-            else if (slider.value < slider.maxValue)
-                slider.value += Time.fixedDeltaTime;
+            else
+                splashTime -= Time.fixedDeltaTime;
         }
     }
 
     private IEnumerator FadeOut()
     {
         isTiming = false;
-        slider.value = slider.maxValue;
         yield return new WaitForSeconds(0.5f);
         Fade fader = FindObjectOfType<Fade>();
         fader.FadeOut();

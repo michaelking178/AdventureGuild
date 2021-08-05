@@ -35,7 +35,7 @@ PrefabInstance:
     - target: {fileID: 2821340433805380622, guid: 7e887791500d9884ab947bf0a335f9ef,
         type: 3}
       propertyPath: m_Name
-      value: ArtisanGroup
+      value: ArtisanGroup Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3096905224539030156, guid: 7e887791500d9884ab947bf0a335f9ef,
         type: 3}
@@ -146,6 +146,31 @@ PrefabInstance:
         type: 3}
       propertyPath: guildmemberType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430390934829254556, guid: 7e887791500d9884ab947bf0a335f9ef,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430390934829254556, guid: 7e887791500d9884ab947bf0a335f9ef,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430390934829254556, guid: 7e887791500d9884ab947bf0a335f9ef,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 3039.548
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430390934829254556, guid: 7e887791500d9884ab947bf0a335f9ef,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1519.774
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430390934829254556, guid: 7e887791500d9884ab947bf0a335f9ef,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -138.83145
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e887791500d9884ab947bf0a335f9ef, type: 3}

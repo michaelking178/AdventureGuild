@@ -1,19 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &242118905
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7808495441029557379}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 0
-  m_VerticalFit: 2
 --- !u!1001 &4709854898717383118
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 33756782364044960, guid: 7e887791500d9884ab947bf0a335f9ef,
+        type: 3}
+      propertyPath: m_ChildControlWidth
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1165105751451160618, guid: 7e887791500d9884ab947bf0a335f9ef,
         type: 3}
       propertyPath: m_Color.a
@@ -38,13 +29,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1446340024956827227, guid: 7e887791500d9884ab947bf0a335f9ef,
         type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 2598.292
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446340024956827227, guid: 7e887791500d9884ab947bf0a335f9ef,
+        type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1428.9006
+      value: 1299.146
       objectReference: {fileID: 0}
     - target: {fileID: 1446340024956827227, guid: 7e887791500d9884ab947bf0a335f9ef,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -277.6629
+      objectReference: {fileID: 0}
+    - target: {fileID: 1831312395208230359, guid: 7e887791500d9884ab947bf0a335f9ef,
+        type: 3}
+      propertyPath: m_text
+      value: Adventurers
       objectReference: {fileID: 0}
     - target: {fileID: 2821340433805380622, guid: 7e887791500d9884ab947bf0a335f9ef,
         type: 3}
@@ -180,7 +181,7 @@ PrefabInstance:
     - target: {fileID: 7430390934829254556, guid: 7e887791500d9884ab947bf0a335f9ef,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 2598.2932
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7430390934829254556, guid: 7e887791500d9884ab947bf0a335f9ef,
         type: 3}
@@ -194,9 +195,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e887791500d9884ab947bf0a335f9ef, type: 3}
---- !u!1 &7808495441029557379 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3243046002168182093, guid: 7e887791500d9884ab947bf0a335f9ef,
-    type: 3}
-  m_PrefabInstance: {fileID: 4709854898717383118}
-  m_PrefabAsset: {fileID: 0}
