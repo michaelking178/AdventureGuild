@@ -7,20 +7,12 @@ public class GuildMember : MonoBehaviour
     private Vocation vocation;
     public Vocation Vocation
     { 
-        get
-        {
-            return vocation;
-        }
-        set
-        {
+        get { return vocation; }
+        set {
             if (Vocation == null || Vocation.Title() == "Peasant")
-            {
                 vocation = value;
-            }
             else
-            {
                 Debug.Log($"{person.name} already has a vocation!");
-            }
         }
     }
     public int Id { get; set; }
@@ -61,6 +53,7 @@ public class GuildMember : MonoBehaviour
     private void Start()
     {
         notificationManager = FindObjectOfType<NotificationManager>();
+        CheckLevel();
         CheckSkillLevels();
     }
 
@@ -91,7 +84,8 @@ public class GuildMember : MonoBehaviour
         PopulationManager populationManager = FindObjectOfType<PopulationManager>();
         if (populationManager.DebugBoostEnabled) _exp *= populationManager.DebugBoost;
 
-        Experience += _exp;
+        if (!IsMaxLevel())
+            Experience += _exp;
 
         // Event for Challenges
         OnExperienceGained?.Invoke(_exp);
@@ -105,35 +99,29 @@ public class GuildMember : MonoBehaviour
         PopulationManager populationManager = FindObjectOfType<PopulationManager>();
         if (populationManager.DebugBoostEnabled) _exp *= populationManager.DebugBoost;
 
-        if (vocation.Title() != "Adventurer") return;
+        if (!(Vocation is Adventurer)) return;
 
         Adventurer adv = (Adventurer)vocation;
         if (skillType == Quest.Skill.Combat)
-        {
             adv.CombatExp += _exp;
-        }
         else if (skillType == Quest.Skill.Espionage)
-        {
             adv.EspionageExp += _exp;
-        }
         else if (skillType == Quest.Skill.Diplomacy)
-        {
             adv.DiplomacyExp += _exp;
-        }
+
         CheckSkillLevels();
     }
 
     private void CheckLevel()
     {
         Guildhall guildhall = FindObjectOfType<Guildhall>();
-        if (
-            (Vocation is Peasant && Level == 10)
-            || (Vocation is Adventurer && Level == 20)
-            || (Vocation is Artisan && Level == 20)
-            )
+        if (Level >= MaxLevel())
         {
+            Level = MaxLevel();
+            Experience = Levelling.GuildMemberLevel[Level];
             return;
         }
+
         while (Experience >= Levelling.GuildMemberLevel[Level])
         {
             Level++;
@@ -151,9 +139,7 @@ public class GuildMember : MonoBehaviour
                 peasant.Income = Mathf.CeilToInt(peasant.Income * 1.5f);
                 guildhall.AdjustIncome(peasant.IncomeResource, peasant.Income);
                 if (Level == 5)
-                {
                     notificationManager.CreateNotification($"{person.name} can now choose a Vocation!", Notification.Spirit.Good);
-                }
             }
             MaxHitpoints += 10;
             Hitpoints = MaxHitpoints;
@@ -212,5 +198,21 @@ public class GuildMember : MonoBehaviour
 
         // Event for Challenges
         OnPeasantPromotion?.Invoke(1);
+    }
+
+    private int MaxLevel()
+    {
+        if (Vocation is Peasant && Level == 10)
+            return 10;
+        else return 20;
+    }
+
+    private bool IsMaxLevel()
+    {
+        if ((Vocation is Peasant && Level == 10)
+            || (Vocation is Adventurer && Level == 20)
+            || (Vocation is Artisan && Level == 20))
+            return true;
+        else return false;
     }
 }

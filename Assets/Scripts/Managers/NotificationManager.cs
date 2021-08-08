@@ -5,22 +5,19 @@ using UnityEngine.UI;
 
 public class NotificationManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject notificationPrefab;
-
-    [SerializeField]
-    private Sprite positiveNotification;
-
-    [SerializeField]
-    private Sprite negativeNotification;
-
-    [HideInInspector]
-    public List<GameObject> notificationUIs;
-
+    [SerializeField] private GameObject notificationPrefab;
+    [SerializeField] private Sprite positiveNotification;
+    [SerializeField] private Sprite negativeNotification;
     public List<Notification> notifications;
 
+    [Header("Notification Positioning")]
+    [SerializeField] private float xPosition = -5500.0f;
+    [SerializeField] private float notchOffset = -180.0f;
+    [SerializeField] private float spacing = -375.0f;
+
+    [HideInInspector] public List<GameObject> notificationUIs;
+
     private Vector2 position;
-    private float notchOffset = -200.0f;
     private bool notificationDisplayStarted = false;
     private LevelManager levelManager;
 
@@ -29,7 +26,7 @@ public class NotificationManager : MonoBehaviour
         levelManager = FindObjectOfType<LevelManager>();
         notifications = new List<Notification>();
         notificationUIs = new List<GameObject>();
-        position = new Vector2(-3400, notchOffset);
+        position = new Vector2(xPosition, notchOffset);
         StartCoroutine(MoveNotificationStack());
     }
 
@@ -51,16 +48,24 @@ public class NotificationManager : MonoBehaviour
     private IEnumerator DisplayNotifications()
     {
         yield return new WaitForSeconds(0.5f);
-        while(true)
+        Transform notificationPanel = GameObject.Find("NotificationPanel").transform;
+        List<Notification> currentNotifications = new List<Notification>();
+        while (true)
         {
-            if (notifications.Count > 0)
+            // Need to separate the currently iterating notifications from the master notifications list
+            // to avoid alteration of the list (i.e. new notification events) during iteration.
+            if (currentNotifications.Count == 0)
+                currentNotifications = notifications;
+
+            for(int i = 0; i < currentNotifications.Count; i++)
             {
-                GameObject notificationUI = Instantiate(notificationPrefab, GameObject.Find("NotificationPanel").transform);
+                GameObject notificationUI = Instantiate(notificationPrefab, notificationPanel);
                 notificationUIs.Add(notificationUI);
                 notificationUI.GetComponent<RectTransform>().anchoredPosition = position;
-                notificationUI.GetComponent<NotificationUI>().CloseTimer -= notifications.Count;
-                notificationUI.GetComponent<NotificationUI>().Notification = notifications[0];
-                switch (notifications[0].NotificationSpirit)
+                notificationUI.GetComponent<NotificationUI>().CloseTimer += i;
+                notificationUI.GetComponent<NotificationUI>().Notification = currentNotifications[i];
+
+                switch (currentNotifications[i].NotificationSpirit)
                 {
                     case (Notification.Spirit.Good):
                         notificationUI.GetComponent<Image>().sprite = positiveNotification;
@@ -74,10 +79,12 @@ public class NotificationManager : MonoBehaviour
                     default:
                         break;
                 }
-                position.y -= 490;
+
+                position.y -= spacing;
                 notificationUI.GetComponent<Animator>().SetTrigger("Open");
-                notifications.RemoveAt(0);
+                yield return new WaitForSeconds(0.5f);
             }
+            currentNotifications.Clear();
             yield return new WaitForSeconds(0.25f);
         }
     }
@@ -95,7 +102,7 @@ public class NotificationManager : MonoBehaviour
                     int orderPos = notificationUIs.IndexOf(notification);
                     RectTransform notUI = notification.GetComponent<RectTransform>();
                     Vector2 startingPos = notUI.anchoredPosition;
-                    float yPos = Mathf.Lerp(startingPos.y, (orderPos * -490) + notchOffset, 0.1f);
+                    float yPos = Mathf.Lerp(startingPos.y, (orderPos * spacing) + notchOffset, 0.1f);
                     notUI.anchoredPosition = new Vector2(startingPos.x, yPos);
                 }
             }
