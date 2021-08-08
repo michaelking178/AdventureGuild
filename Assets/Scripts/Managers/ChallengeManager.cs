@@ -10,7 +10,7 @@ public class ChallengeManager : MonoBehaviour
     [SerializeField]
     private int weeklyTotal = 3;
 
-    public bool ChallengesUnlocked { get; set; } = false;
+    public bool ChallengesUnlocked { get; private set; } = false;
     public List<DailyChallenge> CurrentDailies { get; private set; } = new List<DailyChallenge>();
     public List<WeeklyChallenge> CurrentWeeklies { get; private set; } = new List<WeeklyChallenge>();
 
@@ -64,6 +64,11 @@ public class ChallengeManager : MonoBehaviour
                 ResetWeeklyChallenges();
             }
         }
+    }
+
+    public void UnlockChallenges()
+    {
+        ChallengesUnlocked = true;
     }
 
     private void ResetDailyChallenges()

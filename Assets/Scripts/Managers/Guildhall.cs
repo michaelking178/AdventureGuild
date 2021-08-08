@@ -50,24 +50,30 @@ public class Guildhall : MonoBehaviour
     private void FixedUpdate()
     {
         if (levelManager.CurrentLevel() == "Title") return;
-
-        CalculateArtisanProficiency();
-        if (Renown >= Levelling.RenownLevel[RenownLevel])
+        
+        if (populationManager != null)
         {
-            RenownLevel++;
-            populationManager.CreateGuildMember();
-            questManager.PopulateQuestPool(UnityEngine.Random.Range(3, 6));
+            CalculateArtisanProficiency();
+            if (Renown >= Levelling.RenownLevel[RenownLevel])
+            {
+                RenownLevel++;
+                populationManager.CreateGuildMember();
+                questManager.PopulateQuestPool(UnityEngine.Random.Range(3, 6));
+            }
         }
     }
 
     public void CalculateArtisanProficiency()
     {
-        int proficiency = 0;
-        foreach (GuildMember guildmember in populationManager.Artisans())
+        if (populationManager != null)
         {
-            proficiency += guildmember.Level;
+            int proficiency = 0;
+            for (int i = 0; i < populationManager.Artisans().Count; i++)
+            {
+                proficiency += populationManager.Artisans()[i].Level;
+            }
+            ArtisanProficiency = proficiency;
         }
-        ArtisanProficiency = proficiency;
     }
 
     public void AdjustGold(int change)

@@ -8,11 +8,11 @@ public class Person
     {
         if (_gender == 0)
         {
-            gender = "MALE";
+            gender = "male";
         }
         else
         {
-            gender = "FEMALE";
+            gender = "female";
         }
         name = firstName + " " + lastName;
     }

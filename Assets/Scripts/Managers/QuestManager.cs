@@ -48,7 +48,6 @@ public class QuestManager : MonoBehaviour
         quests = JsonUtility.FromJson<Quests>(questsJson.text);
         foreach(Quest quest in quests.quests)
         {
-            Debug.Log(quest.questName);
             FindObjectOfType<TrophyManager>().AddTrophy(quest);
         }
         if (questPool == null)

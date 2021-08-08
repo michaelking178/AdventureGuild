@@ -18,7 +18,8 @@ public class Menu_SelectArtisans : Menu
 
     private PersonUIScrollView scrollView;
     private ConstructionManager constructionManager;
-    private Upgrade upgrade;
+    private TierUpgrade upgrade;
+    private TierUpgradeObject upgradeTier;
 
     #endregion
 
@@ -32,10 +33,10 @@ public class Menu_SelectArtisans : Menu
     {
         if (menuManager.CurrentMenu == this)
         {
-            artisanProficiencyText.text = $"Artisan Proficiency: {constructionManager.SelectedArtisansProficiency()} / {upgrade.ArtisanCost}";
+            artisanProficiencyText.text = $"Artisan Proficiency: {constructionManager.SelectedArtisansProficiency()} / {upgradeTier.ArtisanCost}";
             SetTextColor();
 
-            if (constructionManager.UnderConstruction || !upgrade.CanAfford() || constructionManager.SelectedArtisansProficiency() < upgrade.ArtisanCost)
+            if (constructionManager.UnderConstruction || !upgrade.CanAfford() || constructionManager.SelectedArtisansProficiency() < upgradeTier.ArtisanCost)
                 beginConstruction.interactable = false;
             else
                 beginConstruction.interactable = true;
@@ -62,9 +63,10 @@ public class Menu_SelectArtisans : Menu
         StartCoroutine(ClearPersonUIs());
     }
 
-    public void SetUpgrade(Upgrade _upgrade)
+    public void SetUpgrade(TierUpgrade _upgrade)
     {
         upgrade = _upgrade;
+        upgradeTier = upgrade.UpgradeTiers[upgrade.CurrentTier + 1];
     }
 
     public void BeginConstruction()
@@ -76,7 +78,7 @@ public class Menu_SelectArtisans : Menu
 
     private void SetTextColor()
     {
-        if (constructionManager.SelectedArtisansProficiency() < upgrade.ArtisanCost)
+        if (constructionManager.SelectedArtisansProficiency() < upgradeTier.ArtisanCost)
             artisanProficiencyText.color = Color.red;
         else
             artisanProficiencyText.color = Color.green;

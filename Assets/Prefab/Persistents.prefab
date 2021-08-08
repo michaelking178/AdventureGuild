@@ -130,6 +130,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9dfa8339eb9fa54fb4f68d4b39096cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpgradeTiers:
+  - Name: Barracks I
+    Description: Increases the maximum population of the Adventure Guild to 25!
+    GoldCost: 15000
+    WoodCost: 5000
+    IronCost: 3000
+    ArtisanCost: 1
+    constructionTime: 3600
+    Experience: 300
+    EffectIncrement: 25
+  - Name: Barracks II
+    Description: Increases the maximum population of the Adventure Guild to 50!
+    GoldCost: 30000
+    WoodCost: 10000
+    IronCost: 5000
+    ArtisanCost: 10
+    constructionTime: 10800
+    Experience: 2400
+    EffectIncrement: 50
+  - Name: Barracks III
+    Description: Increases the maximum population of the Adventure Guild to 100!
+    GoldCost: 45000
+    WoodCost: 20000
+    IronCost: 10000
+    ArtisanCost: 20
+    constructionTime: 21600
+    Experience: 10000
+    EffectIncrement: 100
   Name: Barracks I
   Description: Increases the maximum population of the Adventure Guild to 25!
   GoldCost: 15000
@@ -202,6 +230,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec7c1a1a487dec46b70f69001362a94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpgradeTiers:
+  - Name: Armouror
+    Description: Unlocks the ability to promote Peasants to Adventurers!
+    GoldCost: 1000
+    WoodCost: 400
+    IronCost: 200
+    ArtisanCost: 0
+    constructionTime: 600
+    Experience: 0
+    EffectIncrement: 0
   Name: Armouror
   Description: Unlocks the ability to promote Peasants to Adventurers!
   GoldCost: 1000
@@ -310,6 +348,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf7a7ca6f3af64f499157a93183d7a95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpgradeTiers:
+  - Name: Lumber Camp I
+    Description: Increases the maximum passive Wood income to 250!
+    GoldCost: 18000
+    WoodCost: 6000
+    IronCost: 4000
+    ArtisanCost: 3
+    constructionTime: 3600
+    Experience: 400
+    EffectIncrement: 250
+  - Name: Lumber Camp II
+    Description: Increases the maximum passive Wood income to 500!
+    GoldCost: 36000
+    WoodCost: 12000
+    IronCost: 8000
+    ArtisanCost: 10
+    constructionTime: 7200
+    Experience: 800
+    EffectIncrement: 500
+  - Name: Lumber Camp III
+    Description: Increases the maximum passive Wood income to 1000!
+    GoldCost: 62000
+    WoodCost: 24000
+    IronCost: 16000
+    ArtisanCost: 20
+    constructionTime: 14400
+    Experience: 1600
+    EffectIncrement: 1000
+  - Name: Lumber Camp IV
+    Description: Increases the maximum passive Wood income to 2000!
+    GoldCost: 148000
+    WoodCost: 48000
+    IronCost: 32000
+    ArtisanCost: 30
+    constructionTime: 28800
+    Experience: 3200
+    EffectIncrement: 2000
+  - Name: Lumber Camp V
+    Description: Increases the maximum passive Wood income to 4000!
+    GoldCost: 286000
+    WoodCost: 96000
+    IronCost: 64000
+    ArtisanCost: 40
+    constructionTime: 57600
+    Experience: 6400
+    EffectIncrement: 4000
   Name: Lumber Camp I
   Description: Increases the maximum passive Wood income to 250!
   GoldCost: 18000
@@ -541,6 +625,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad5cb78856af22748aba6070d5c1a96b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpgradeTiers:
+  - Name: Treasury I
+    Description: Increases the Guildhall's maximum Gold storage to 100,000!
+    GoldCost: 15000
+    WoodCost: 5000
+    IronCost: 2500
+    ArtisanCost: 3
+    constructionTime: 1800
+    Experience: 200
+    EffectIncrement: 100000
+  - Name: Treasury II
+    Description: Increases the Guildhall's maximum Gold storage to 250,000!
+    GoldCost: 75000
+    WoodCost: 25000
+    IronCost: 10000
+    ArtisanCost: 10
+    constructionTime: 3600
+    Experience: 600
+    EffectIncrement: 250000
+  - Name: Treasury III
+    Description: Increases the Guildhall's maximum Gold storage to 500,000!
+    GoldCost: 150000
+    WoodCost: 60000
+    IronCost: 25000
+    ArtisanCost: 20
+    constructionTime: 7200
+    Experience: 1600
+    EffectIncrement: 500000
+  - Name: Treasury IV
+    Description: Increases the Guildhall's maximum Gold storage to 1,000,000!
+    GoldCost: 475000
+    WoodCost: 100000
+    IronCost: 50000
+    ArtisanCost: 30
+    constructionTime: 14400
+    Experience: 3000
+    EffectIncrement: 1000000
+  - Name: Treasury V
+    Description: Increases the Guildhall's maximum Gold storage to 5,000,000!
+    GoldCost: 600000
+    WoodCost: 125000
+    IronCost: 75000
+    ArtisanCost: 40
+    constructionTime: 28800
+    Experience: 6400
+    EffectIncrement: 5000000
   Name: Treasury I
   Description: Increases the Guildhall's maximum Gold storage to 100,000!
   GoldCost: 15000
@@ -972,6 +1102,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf628f4d9baa0354b860548e1f0c7047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpgradeTiers:
+  - Name: Storage Yard I
+    Description: Increases the Guildhall's maximum Wood storage to 50,000!
+    GoldCost: 15000
+    WoodCost: 5000
+    IronCost: 2500
+    ArtisanCost: 3
+    constructionTime: 1800
+    Experience: 200
+    EffectIncrement: 50000
+  - Name: Storage Yard II
+    Description: Increases the Guildhall's maximum Wood storage to 100,000!
+    GoldCost: 75000
+    WoodCost: 25000
+    IronCost: 10000
+    ArtisanCost: 10
+    constructionTime: 3600
+    Experience: 600
+    EffectIncrement: 100000
+  - Name: Storage Yard III
+    Description: Increases the Guildhall's maximum Wood storage to 250,000!
+    GoldCost: 150000
+    WoodCost: 50000
+    IronCost: 25000
+    ArtisanCost: 20
+    constructionTime: 7200
+    Experience: 1200
+    EffectIncrement: 250000
+  - Name: Storage Yard IV
+    Description: Increases the Guildhall's maximum Wood storage to 500,000!
+    GoldCost: 300000
+    WoodCost: 100000
+    IronCost: 50000
+    ArtisanCost: 30
+    constructionTime: 14400
+    Experience: 2400
+    EffectIncrement: 500000
+  - Name: Storage Yard V
+    Description: Increases the Guildhall's maximum Wood storage to 1,000,000!
+    GoldCost: 550000
+    WoodCost: 180000
+    IronCost: 100000
+    ArtisanCost: 40
+    constructionTime: 28800
+    Experience: 4800
+    EffectIncrement: 1000000
   Name: Storage Yard I
   Description: Increases the Guildhall's maximum Wood storage to 50,000!
   GoldCost: 15000
@@ -1119,6 +1295,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b15ac8e2b183c419de73c0ca3b14a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpgradeTiers:
+  - Name: Iron Mine I
+    Description: Increases the maximum passive Iron income to 250!
+    GoldCost: 18000
+    WoodCost: 6000
+    IronCost: 4000
+    ArtisanCost: 3
+    constructionTime: 3600
+    Experience: 400
+    EffectIncrement: 250
+  - Name: Iron Mine II
+    Description: Increases the maximum passive Iron income to 500!
+    GoldCost: 36000
+    WoodCost: 12000
+    IronCost: 8000
+    ArtisanCost: 10
+    constructionTime: 7200
+    Experience: 800
+    EffectIncrement: 500
+  - Name: Iron Mine III
+    Description: Increases the maximum passive Iron income to 1000!
+    GoldCost: 62000
+    WoodCost: 24000
+    IronCost: 16000
+    ArtisanCost: 20
+    constructionTime: 14400
+    Experience: 1600
+    EffectIncrement: 1000
+  - Name: Iron Mine IV
+    Description: Increases the maximum passive Iron income to 2000!
+    GoldCost: 148000
+    WoodCost: 48000
+    IronCost: 32000
+    ArtisanCost: 30
+    constructionTime: 28800
+    Experience: 3200
+    EffectIncrement: 2000
+  - Name: Iron Mine V
+    Description: Increases the maximum passive Iron income to 4000!
+    GoldCost: 286000
+    WoodCost: 96000
+    IronCost: 64000
+    ArtisanCost: 40
+    constructionTime: 57600
+    Experience: 6400
+    EffectIncrement: 4000
   Name: Iron Mine I
   Description: Increases the maximum passive Iron income to 250!
   GoldCost: 18000
@@ -1334,6 +1556,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98aa467c96d3c04cba9eaeb54ae3232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpgradeTiers:
+  - Name: Merchant I
+    Description: Increases the maximum passive Gold income to 500!
+    GoldCost: 18000
+    WoodCost: 6000
+    IronCost: 4000
+    ArtisanCost: 3
+    constructionTime: 3600
+    Experience: 400
+    EffectIncrement: 500
+  - Name: Merchant II
+    Description: Increases the maximum passive Gold income to 1000!
+    GoldCost: 36000
+    WoodCost: 12000
+    IronCost: 8000
+    ArtisanCost: 10
+    constructionTime: 7200
+    Experience: 800
+    EffectIncrement: 1000
+  - Name: Merchant III
+    Description: Increases the maximum passive Gold income to 2000!
+    GoldCost: 62000
+    WoodCost: 24000
+    IronCost: 16000
+    ArtisanCost: 20
+    constructionTime: 14400
+    Experience: 1600
+    EffectIncrement: 2000
+  - Name: Merchant IV
+    Description: Increases the maximum passive Gold income to 4000!
+    GoldCost: 148000
+    WoodCost: 48000
+    IronCost: 32000
+    ArtisanCost: 30
+    constructionTime: 28800
+    Experience: 3200
+    EffectIncrement: 4000
+  - Name: Merchant V
+    Description: Increases the maximum passive Gold income to 8000!
+    GoldCost: 286000
+    WoodCost: 96000
+    IronCost: 64000
+    ArtisanCost: 40
+    constructionTime: 57600
+    Experience: 6400
+    EffectIncrement: 8000
   Name: Merchant I
   Description: Increases the maximum passive Gold income to 500!
   GoldCost: 18000
@@ -1422,6 +1690,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d17f03d164cf3784db67070e26e1fb70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpgradeTiers:
+  - Name: Workshop
+    Description: Unlocks the ability to promote Peasants to Artisans!
+    GoldCost: 1250
+    WoodCost: 500
+    IronCost: 250
+    ArtisanCost: 0
+    constructionTime: 1200
+    Experience: 0
+    EffectIncrement: 0
   Name: Workshop
   Description: Unlocks the ability to promote Peasants to Artisans!
   GoldCost: 1250
@@ -1473,6 +1751,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5a2e344b479651438200e3bb90f8254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpgradeTiers:
+  - Name: Refinery I
+    Description: Increases the Guildhall's maximum Iron storage to 50,000!
+    GoldCost: 15000
+    WoodCost: 5000
+    IronCost: 2500
+    ArtisanCost: 3
+    constructionTime: 1800
+    Experience: 200
+    EffectIncrement: 50000
+  - Name: Refinery II
+    Description: Increases the Guildhall's maximum Iron storage to 100,000!
+    GoldCost: 75000
+    WoodCost: 25000
+    IronCost: 10000
+    ArtisanCost: 10
+    constructionTime: 3600
+    Experience: 600
+    EffectIncrement: 100000
+  - Name: Refinery III
+    Description: Increases the Guildhall's maximum Iron storage to 250,000!
+    GoldCost: 150000
+    WoodCost: 50000
+    IronCost: 25000
+    ArtisanCost: 20
+    constructionTime: 7200
+    Experience: 1200
+    EffectIncrement: 250000
+  - Name: Refinery IV
+    Description: Increases the Guildhall's maximum Iron storage to 500,000!
+    GoldCost: 300000
+    WoodCost: 100000
+    IronCost: 50000
+    ArtisanCost: 30
+    constructionTime: 14400
+    Experience: 2400
+    EffectIncrement: 500000
+  - Name: Refinery V
+    Description: Increases the Guildhall's maximum Iron storage to 1,000,000!
+    GoldCost: 520000
+    WoodCost: 200000
+    IronCost: 125000
+    ArtisanCost: 40
+    constructionTime: 14400
+    Experience: 4800
+    EffectIncrement: 1000000
   Name: Refinery I
   Description: Increases the Guildhall's maximum Iron storage to 50,000!
   GoldCost: 15000
@@ -1747,8 +2071,11 @@ MonoBehaviour:
     type: 3}
   negativeNotification: {fileID: 21300000, guid: 26ec1f090ff98cd40a51f4cc0c3bdfdf,
     type: 3}
-  notificationUIs: []
   notifications: []
+  xPosition: -5500
+  notchOffset: -180
+  spacing: -375
+  notificationUIs: []
 --- !u!1 &2581546677874320463
 GameObject:
   m_ObjectHideFlags: 0
@@ -2016,6 +2343,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a41a5caa649e2840811af303fbf87bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpgradeTiers:
+  - Name: Hero's Monument
+    Description: A monument to the greatness of the Adventure Guild!
+    GoldCost: 5000000
+    WoodCost: 1000000
+    IronCost: 1000000
+    ArtisanCost: 500
+    constructionTime: 604800
+    Experience: 24000
+    EffectIncrement: 0
   Name: Hero's Monument
   Description: A monument to the greatness of the Adventure Guild!
   GoldCost: 5000000
@@ -2067,6 +2404,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e669243eee704e45b4f07e531c6bba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpgradeTiers:
+  - Name: Hall of Trials
+    Description: Unlocks daily and weekly challenges!
+    GoldCost: 30000
+    WoodCost: 22500
+    IronCost: 15500
+    ArtisanCost: 6
+    constructionTime: 5400
+    Experience: 500
+    EffectIncrement: 0
   Name: Hall of Trials
   Description: Unlocks daily and weekly challenges!
   GoldCost: 30000

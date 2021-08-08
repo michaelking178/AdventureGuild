@@ -186,32 +186,44 @@ public class SaveData
     {
         ConstructionManager constructionManager = GameObject.FindObjectOfType<ConstructionManager>();
         if (constructionManagerData == null)
+        {
             Debug.Log("SAVEDATA.CS: No ConstructionManagerData found!");
+            return;
+        }
+
+        
+        foreach (TierUpgradeData upgradeData in constructionManagerData.TierUpgradeDatas)
+        {
+            foreach(TierUpgrade upgrade in GameObject.FindObjectsOfType<TierUpgrade>())
+            {
+                if (upgrade.gameObject.name == upgradeData.Name)
+                {
+                    upgrade.SetCurrentTier(upgradeData.CurrentTier);
+                }
+            }
+        }
+
+        if (!constructionManagerData.UnderConstruction)
+            constructionManager.ConstructionJob = null;
         else
         {
-            if (!constructionManagerData.UnderConstruction)
-                constructionManager.ConstructionJob = null;
-            else
+            foreach (TierUpgrade upgrade in GameObject.FindObjectsOfType<TierUpgrade>())
             {
-                Upgrade[] upgrades = GameObject.FindObjectsOfType<Upgrade>();
-                foreach (Upgrade upgrade in upgrades)
-                {
-                    if (upgrade.name == constructionManagerData.ConstructionJobName)
-                        constructionManager.ConstructionJob = upgrade;
-                }
-                foreach (int id in constructionManagerData.ArtisanIDs)
-                {
-                    GuildMember artisan = GameObject.FindObjectOfType<PopulationManager>().FindGuildMemberById(id);
-                    if (artisan == null)
-                        Debug.Log($"SAVEDATA.CS: Cannot find Artisan with ID #{id}");
-                    else
-                        constructionManager.Artisans.Add(artisan);
-                }
-                constructionManager.StartTime = constructionManagerData.StartTime;
+                if (upgrade.name == constructionManagerData.ConstructionJobName)
+                    constructionManager.ConstructionJob = upgrade;
             }
-            constructionManager.ConstructionName = constructionManagerData.ConstructionJobName;
-            constructionManager.UnderConstruction = constructionManagerData.UnderConstruction;
+            foreach (int id in constructionManagerData.ArtisanIDs)
+            {
+                GuildMember artisan = GameObject.FindObjectOfType<PopulationManager>().FindGuildMemberById(id);
+                if (artisan == null)
+                    Debug.Log($"SAVEDATA.CS: Cannot find Artisan with ID #{id}");
+                else
+                    constructionManager.Artisans.Add(artisan);
+            }
+            constructionManager.StartTime = constructionManagerData.StartTime;
         }
+        constructionManager.ConstructionName = constructionManagerData.ConstructionJobName;
+        constructionManager.UnderConstruction = constructionManagerData.UnderConstruction;
     }
 
     private void LoadBoostData()

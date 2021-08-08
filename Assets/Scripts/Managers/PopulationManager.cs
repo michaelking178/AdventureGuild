@@ -160,10 +160,10 @@ public class PopulationManager : MonoBehaviour
     public List<GuildMember> Artisans()
     {
         List<GuildMember> artisans = new List<GuildMember>();
-        foreach (GuildMember guildMember in GuildMembers)
+        foreach (GuildMember guildmember in GuildMembers)
         {
-            if (guildMember.Vocation is Artisan)
-                artisans.Add(guildMember);
+            if (guildmember != null && guildmember.Vocation is Artisan)
+                artisans.Add(guildmember);
         }
         return artisans;
     }

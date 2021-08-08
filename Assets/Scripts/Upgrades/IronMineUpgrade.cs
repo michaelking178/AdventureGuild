@@ -1,38 +1,8 @@
-﻿using System.Collections;
-using UnityEngine;
-
-public class IronMineUpgrade : MaxResourceUpgrade
+﻿public class IronMineUpgrade : TierUpgrade
 {
-    private new void Start()
-    {
-        base.Start();
-    }
-
-    private new void FixedUpdate()
-    {
-        if (levelManager.CurrentLevel() != "Main") return;
-
-        base.FixedUpdate();
-        if (menuManager.CurrentMenu == upgradeGuildhall)
-        {
-            CheckForUpgrade(guildhall.MaxIronIncome);
-        }
-    }
-
-    protected override IEnumerator DelayedCheckForUpgrade()
-    {
-        yield return new WaitForSeconds(1);
-        CheckForUpgrade(guildhall.MaxIronIncome);
-        yield return null;
-    }
-
     public override void Apply()
     {
+        guildhall.MaxIronIncome = UpgradeTiers[NextTier()].EffectIncrement;
         base.Apply();
-        guildhall.MaxIronIncome = maxUpgrade;
-        if (guildhall.MaxIronIncome < LevelFiveUpgrade)
-        {
-            IsPurchased = false;
-        }
     }
 }

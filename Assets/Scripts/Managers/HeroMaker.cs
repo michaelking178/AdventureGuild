@@ -22,8 +22,7 @@ public class HeroMaker : MonoBehaviour
             heroObj.AddComponent<GuildMember>();
         }
         hero = heroObj.GetComponent<GuildMember>();
-        hero.person = new Person(0, "", "");
-        hero.person.gender = "MALE";
+        hero.person = new Person(1, "Adventure", "Hero");
         hero.Id = Helpers.GenerateId();
         hero.MaxHitpoints = 100;
         hero.Hitpoints = hero.MaxHitpoints;

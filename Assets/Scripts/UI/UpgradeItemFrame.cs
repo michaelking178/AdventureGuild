@@ -8,7 +8,7 @@ public class UpgradeItemFrame : MonoBehaviour
     public string UpgradeName;
 
     [SerializeField]
-    private Upgrade upgrade;
+    private TierUpgrade upgrade;
 
     [SerializeField]
     private Image itemImage;
@@ -31,6 +31,7 @@ public class UpgradeItemFrame : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI descriptionText;
 
+    private TierUpgradeObject upgradeTier;
     private Color availableColor = new Color(1, 1, 1, 1);
     private Color unavailableColor = new Color(1, 1, 1, 0.25f);
     private MenuManager menuManager;
@@ -43,7 +44,6 @@ public class UpgradeItemFrame : MonoBehaviour
         menuManager = FindObjectOfType<MenuManager>();
         constructionManager = FindObjectOfType<ConstructionManager>();
         upgrade = constructionManager.GetUpgrade(UpgradeName);
-        itemNameText.text = upgrade.Name;
         panelBtn = GetComponent<Button>();
         StartCoroutine(DelayedCheckForPurchase());
     }
@@ -52,11 +52,12 @@ public class UpgradeItemFrame : MonoBehaviour
     {
         if (menuManager.CurrentMenu.name == "Menu_UpgradeGuildhall" && upgrade != null)
         {
+            SetUpgradeTier();
             CheckForPurchase();
-            itemNameText.text = upgrade.Name;
+            itemNameText.text = upgradeTier.Name;
 
             if (descriptionText != null)
-                descriptionText.text = upgrade.Description;
+                descriptionText.text = upgradeTier.Description;
 
             if (constructionManager.ConstructionJob != null && constructionManager.ConstructionJob.name == upgrade.name && constructionManager.UnderConstruction)
             {
@@ -72,17 +73,14 @@ public class UpgradeItemFrame : MonoBehaviour
 
     public void CheckForPurchase()
     {
-        if (upgrade != null && !upgrade.IsPurchased && upgrade.CanAfford())
+        if (upgrade != null)
         {
-            SetAvailable();
-        }
-        else if (upgrade != null && upgrade.IsPurchased)
-        {
-            SetPurchased();
-        }
-        else
-        {
-            SetUnavailable();
+            if (upgrade.IsPurchased)
+                SetPurchased();
+            else if (upgrade.CanAfford())
+                SetAvailable();
+            else
+                SetUnavailable();
         }
     }
 
@@ -95,12 +93,14 @@ public class UpgradeItemFrame : MonoBehaviour
     {
         isAvailable = true;
         itemImage.color = availableColor;
+        panelBtn.interactable = true;
     }
 
     public void SetUnavailable()
     {
         isAvailable = false;
         itemImage.color = unavailableColor;
+        panelBtn.interactable = true;
     }
 
     public void SetPurchased()
@@ -124,7 +124,7 @@ public class UpgradeItemFrame : MonoBehaviour
     public void DisplayTimer()
     {
         timerPanel.SetActive(true);
-        timerText.text = Helpers.FormatTimer((int)(upgrade.constructionTime - constructionManager.TimeElapsed));
+        timerText.text = Helpers.FormatTimer((int)(upgradeTier.constructionTime - constructionManager.TimeElapsed));
     }
 
     public void HideTimer()
@@ -138,5 +138,10 @@ public class UpgradeItemFrame : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         CheckForPurchase();
         yield return null;
+    }
+
+    private void SetUpgradeTier()
+    {
+        upgradeTier = upgrade.UpgradeTiers[upgrade.NextTier()];
     }
 }

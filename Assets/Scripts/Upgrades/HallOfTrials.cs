@@ -1,35 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class HallOfTrials : Upgrade
+﻿public class HallOfTrials : TierUpgrade
 {
-    private ChallengeManager challengeManager;
-
-    protected new void Start()
-    {
-        base.Start();
-        challengeManager = FindObjectOfType<ChallengeManager>();
-    }
-
-    private new void FixedUpdate()
-    {
-        if (levelManager.CurrentLevel() != "Main") return;
-
-        base.FixedUpdate();
-        if (menuManager.CurrentMenu == upgradeGuildhall)
-        {
-            CheckForUpgrade();
-        }
-    }
-
     public override void Apply()
     {
+        FindObjectOfType<ChallengeManager>().UnlockChallenges();
         base.Apply();
-    }
-
-    protected override void CheckForUpgrade()
-    {
-        IsPurchased = challengeManager.ChallengesUnlocked;
     }
 }

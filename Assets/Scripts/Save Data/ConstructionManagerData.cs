@@ -8,6 +8,7 @@ public class ConstructionManagerData
     public bool UnderConstruction;
     public DateTime StartTime;
     public List<int> ArtisanIDs = new List<int>();
+    public List<TierUpgradeData> TierUpgradeDatas = new List<TierUpgradeData>();
 
     public ConstructionManagerData(ConstructionManager constructionManager)
     {
@@ -21,6 +22,12 @@ public class ConstructionManagerData
         }
         UnderConstruction = constructionManager.UnderConstruction;
         StartTime = constructionManager.StartTime;
+
+        foreach(TierUpgrade upgrade in constructionManager.GetComponentsInChildren<TierUpgrade>())
+        {
+            TierUpgradeData upgradeData = new TierUpgradeData(upgrade.gameObject.name, upgrade.CurrentTier);
+            TierUpgradeDatas.Add(upgradeData);
+        }
 
         foreach (GuildMember artisan in constructionManager.Artisans)
         {

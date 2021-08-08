@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ConstructionManager : MonoBehaviour
 {
-    public Upgrade ConstructionJob;
+    public TierUpgrade ConstructionJob;
     public bool UnderConstruction = false;
     public float TimeElapsed;
     public List<GuildMember> Artisans = new List<GuildMember>();
@@ -13,6 +13,7 @@ public class ConstructionManager : MonoBehaviour
     public string ConstructionName = "";
 
     private LevelManager levelManager;
+    private TierUpgradeObject constructionTier;
 
     private void Start()
     {
@@ -27,7 +28,7 @@ public class ConstructionManager : MonoBehaviour
         {
             TimeElapsed = (float)(DateTime.Now - StartTime).TotalSeconds;
 
-            if (TimeElapsed >= ConstructionJob.constructionTime)
+            if (TimeElapsed >= constructionTier.constructionTime)
             {
                 UnderConstruction = false;
                 StartCoroutine(CompleteConstruction());
@@ -35,10 +36,11 @@ public class ConstructionManager : MonoBehaviour
         }
     }
 
-    public void SetConstructionJob(Upgrade upgrade)
+    public void SetConstructionJob(TierUpgrade upgrade)
     {
         ConstructionJob = upgrade;
-        ConstructionName = upgrade.name;
+        constructionTier = ConstructionJob.UpgradeTiers[ConstructionJob.NextTier()];
+        ConstructionName = constructionTier.Name;
     }
 
     public void AddArtisan(GuildMember artisan)
@@ -69,7 +71,7 @@ public class ConstructionManager : MonoBehaviour
 
         if (Artisans.Count > 0)
         {
-            int artisanExpShare = Mathf.RoundToInt(ConstructionJob.Experience / Artisans.Count);
+            int artisanExpShare = Mathf.RoundToInt(constructionTier.Experience / Artisans.Count);
             foreach (GuildMember artisan in Artisans)
             {
                 artisan.AddExp(artisanExpShare);
@@ -77,7 +79,7 @@ public class ConstructionManager : MonoBehaviour
             }
         }
 
-        FindObjectOfType<NotificationManager>().CreateNotification($"Artisans have completed the {ConstructionJob.Name} construction job!", Notification.Spirit.Good);
+        FindObjectOfType<NotificationManager>().CreateNotification($"Artisans have completed the {constructionTier.Name} construction job!", Notification.Spirit.Good);
         ClearConstruction();
     }
 
@@ -88,6 +90,7 @@ public class ConstructionManager : MonoBehaviour
             TimeElapsed = 0;
             ConstructionName = "";
             ConstructionJob = null;
+            constructionTier = null;
             Artisans.Clear();
         }
     }
@@ -102,13 +105,13 @@ public class ConstructionManager : MonoBehaviour
         return pro;
     }
 
-    public Upgrade GetUpgrade(string upgradeName)
+    public TierUpgrade GetUpgrade(string upgradeName)
     {
         foreach(GameObject upgradeObj in gameObject.GetChildren())
         {
-            if (upgradeObj.GetComponent<Upgrade>().name == upgradeName)
+            if (upgradeObj.GetComponent<TierUpgrade>().name == upgradeName)
             {
-                return upgradeObj.GetComponent<Upgrade>();
+                return upgradeObj.GetComponent<TierUpgrade>();
             }
         }
         Debug.Log($"CONSTRUCTIONMANAGER.CS: Cannot find Upgrade with name {upgradeName}");

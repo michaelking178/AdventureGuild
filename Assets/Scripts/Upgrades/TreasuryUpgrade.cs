@@ -1,38 +1,8 @@
-﻿using System.Collections;
-using UnityEngine;
-
-public class TreasuryUpgrade : MaxResourceUpgrade
+﻿public class TreasuryUpgrade : TierUpgrade
 {
-    private new void Start()
-    {
-        base.Start();
-    }
-
-    private new void FixedUpdate()
-    {
-        if (levelManager.CurrentLevel() != "Main") return;
-
-        base.FixedUpdate();
-        if (menuManager.CurrentMenu == upgradeGuildhall)
-        {
-            CheckForUpgrade(guildhall.MaxGold);
-        }
-    }
-
-    protected override IEnumerator DelayedCheckForUpgrade()
-    {
-        yield return new WaitForSeconds(1);
-        CheckForUpgrade(guildhall.MaxGold);
-        yield return null;
-    }
-
     public override void Apply()
     {
+        guildhall.MaxGold = UpgradeTiers[NextTier()].EffectIncrement;
         base.Apply();
-        guildhall.MaxGold = maxUpgrade;
-        if (guildhall.MaxGold < LevelFiveUpgrade)
-        {
-            IsPurchased = false;
-        }
     }
 }

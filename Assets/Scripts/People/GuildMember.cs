@@ -125,7 +125,8 @@ public class GuildMember : MonoBehaviour
         while (Experience >= Levelling.GuildMemberLevel[Level])
         {
             Level++;
-            notificationManager.CreateNotification($"{person.name} reached Level {Level}!", Notification.Spirit.Good);
+            if (Level > 1)
+                notificationManager.CreateNotification($"{person.name} reached Level {Level}!", Notification.Spirit.Good);
 
             // Level up event for Challenges
             if (Vocation is Adventurer)

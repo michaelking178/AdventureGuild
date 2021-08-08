@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class NameGenerator : MonoBehaviour
 {
@@ -25,8 +23,7 @@ public class NameGenerator : MonoBehaviour
     [SerializeField]
     private Names lastNames;
 
-
-    private void Start()
+    private void Awake()
     {
         maleNames = JsonUtility.FromJson<Names>(maleNamesJson.text);
         femaleNames = JsonUtility.FromJson<Names>(femaleNamesJson.text);

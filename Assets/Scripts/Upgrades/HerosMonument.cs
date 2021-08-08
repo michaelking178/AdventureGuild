@@ -1,24 +1,9 @@
-﻿public class HerosMonument : Upgrade
+﻿public class HerosMonument : TierUpgrade
 {
-    private new void FixedUpdate()
-    {
-        if (levelManager.CurrentLevel() != "Main") return;
-
-        base.FixedUpdate();
-        if (menuManager.CurrentMenu == upgradeGuildhall)
-        {
-            CheckForUpgrade();
-        }
-    }
-
     public override void Apply()
     {
         base.Apply();
+        UnityEngine.Debug.LogWarning("Hero's Monument does not have an upgrade effect!");
         // Do something upgradey. Enable Legend Levelling?
-    }
-
-    protected override void CheckForUpgrade()
-    {
-        // Check if the upgrade is applied ===> IsPurchased = ???;
     }
 }
