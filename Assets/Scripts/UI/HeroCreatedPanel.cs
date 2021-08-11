@@ -16,7 +16,7 @@ public class HeroCreatedPanel : MonoBehaviour
     {
         hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<GuildMember>();
         SetPrefix();
-        paragraph = string.Format("It is a pleasure to meet you, {0}{1}. I have a sense that our town's fortunes have turned with your arrival! Now, let me keep you no longer. To the guildhall!", prefix, hero.person.name);
+        paragraph = string.Format("It is a pleasure to meet you, \n{0}{1}. I have a sense that our town's fortunes have turned with your arrival! Now, let me keep you no longer. To the guildhall!", prefix, hero.person.name);
         welcomeTextbox.text = paragraph;
     }
 

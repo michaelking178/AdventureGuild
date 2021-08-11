@@ -190,7 +190,6 @@ public class SaveData
             Debug.Log("SAVEDATA.CS: No ConstructionManagerData found!");
             return;
         }
-
         
         foreach (TierUpgradeData upgradeData in constructionManagerData.TierUpgradeDatas)
         {
@@ -210,7 +209,7 @@ public class SaveData
             foreach (TierUpgrade upgrade in GameObject.FindObjectsOfType<TierUpgrade>())
             {
                 if (upgrade.name == constructionManagerData.ConstructionJobName)
-                    constructionManager.ConstructionJob = upgrade;
+                    constructionManager.SetConstructionJob(upgrade);
             }
             foreach (int id in constructionManagerData.ArtisanIDs)
             {

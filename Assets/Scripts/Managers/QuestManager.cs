@@ -205,7 +205,6 @@ public class QuestManager : MonoBehaviour
         guildhall.AdjustWood(quest.Reward.Wood);
         guildhall.AdjustRenown(quest.Reward.Renown);
         quest.GuildMember.AddExp(quest.Reward.Exp);
-        quest.GuildMember.AddSkillExp(quest.QuestSkill, quest.Reward.SkillExp);
         ApplyBoostReward(quest);
     }
 

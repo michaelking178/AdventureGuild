@@ -10,13 +10,11 @@ public class NotificationManager : MonoBehaviour
     [SerializeField] private Sprite negativeNotification;
     public List<Notification> notifications;
 
-    [Header("Notification Positioning")]
-    [SerializeField] private float xPosition = -5500.0f;
-    [SerializeField] private float notchOffset = -180.0f;
-    [SerializeField] private float spacing = -375.0f;
-
     [HideInInspector] public List<GameObject> notificationUIs;
 
+    private float xPosition = -1800.0f;
+    private float notchOffset = -66.5f;
+    private float spacing = -125.0f;
     private Vector2 position;
     private bool notificationDisplayStarted = false;
     private LevelManager levelManager;

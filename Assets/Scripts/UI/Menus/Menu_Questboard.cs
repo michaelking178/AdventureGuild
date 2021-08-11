@@ -10,7 +10,7 @@ public class Menu_Questboard : Menu
     public int numCols = 5;
     public int numRows = 5;
 
-    private float colWidth, rowHeight;
+    private float colWidth, rowHeight, xOffset = 450.0f, yOffset = 375.0f;
     private Vector2 randomPos;
     private QuestManager questManager;
 
@@ -40,8 +40,8 @@ public class Menu_Questboard : Menu
             questPost.GetComponent<QuestPost>().SetQuest(quest);
             GetRandomPos();
 
-            randomPos.x = randomPos.x * colWidth - 800.0f;
-            randomPos.y = randomPos.y * rowHeight - 800.0f;
+            randomPos.x = randomPos.x * colWidth - xOffset;
+            randomPos.y = randomPos.y * rowHeight - yOffset;
             questPost.transform.localPosition = randomPos;
 
             Quaternion rot = new Quaternion(0, 0, 0, 1) {

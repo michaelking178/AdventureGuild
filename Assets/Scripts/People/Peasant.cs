@@ -11,6 +11,7 @@ public class Peasant : Vocation
     public Peasant()
     {
         title = "Peasant";
+        MaxLevel = 10;
         IncomeResource = (IncomeType)UnityEngine.Random.Range(0, 3);
         SetIncome();
     }

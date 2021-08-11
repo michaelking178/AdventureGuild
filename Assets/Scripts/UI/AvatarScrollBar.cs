@@ -39,9 +39,11 @@ public class AvatarScrollBar : MonoBehaviour
         foreach (Sprite avatar in avatars)
         {
             GameObject newCharacter = Instantiate(avatarPrefab, transform);
-            Image[] images = newCharacter.GetComponentsInChildren<Image>();
-            images[1].sprite = avatar;
-            newCharacter.transform.GetChild(1).GetComponent<Image>().sprite = avatar;
+            foreach(GameObject child in newCharacter.GetChildren())
+            {
+                if (child.name == "CharacterImage")
+                    child.GetComponent<Image>().sprite = avatar;
+            }
         }
     }
 
