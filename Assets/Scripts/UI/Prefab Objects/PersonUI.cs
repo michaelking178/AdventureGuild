@@ -62,33 +62,6 @@ public class PersonUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI questsCompleted;
 
-    [SerializeField]
-    private TextMeshProUGUI combatLevel;
-
-    [SerializeField]
-    private TextMeshProUGUI espionageLevel;
-
-    [SerializeField]
-    private TextMeshProUGUI diplomacyLevel;
-
-    [SerializeField]
-    private Slider combatSlider;
-
-    [SerializeField]
-    private Slider espionageSlider;
-
-    [SerializeField]
-    private Slider diplomacySlider;
-
-    [SerializeField]
-    private TextMeshProUGUI combatExpText;
-
-    [SerializeField]
-    private TextMeshProUGUI espionageExpText;
-
-    [SerializeField]
-    private TextMeshProUGUI diplomacyExpText;
-
     [Header("Peasant Stats")]
     [SerializeField]
     private GameObject peasantStats;
@@ -260,28 +233,20 @@ public class PersonUI : MonoBehaviour
                 adventurerStats.SetActive(false);
                 artisanStats.SetActive(false);
                 peasantStats.SetActive(true);
-                //Vector2 rectSize = statsPanel.GetComponent<RectTransform>().rect.size;
-                //statsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(rectSize.x, 136.0f);
-                income.text = $"{peasant.IncomeResource}: {peasant.Income}";
+                income.text = $"{peasant.Income} {peasant.IncomeResource} per hour";
             }
             else if (GuildMember.Vocation is Artisan)
             {
                 adventurerStats.SetActive(false);
                 peasantStats.SetActive(false);
                 artisanStats.SetActive(true);
-                //Vector2 rectSize = statsPanel.GetComponent<RectTransform>().rect.size;
-                //statsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(rectSize.x, 136.0f);
             }
             else if (GuildMember.Vocation is Adventurer adventurer)
             {
                 adventurerStats.SetActive(true);
                 peasantStats.SetActive(false);
                 artisanStats.SetActive(false);
-                //Vector2 rectSize = statsPanel.GetComponent<RectTransform>().rect.size;
-                //statsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(rectSize.x, 215.0f);
                 questsCompleted.text = $"Quests completed: {adventurer.QuestsCompleted}";
-                
-                //SetAdventurerSkillTexts(adventurer);
             }
         }
     }
@@ -381,59 +346,5 @@ public class PersonUI : MonoBehaviour
         }
         SetColor();
         extensionPanel.SetActive(false);
-    }
-
-    private void SetAdventurerSkillTexts(Adventurer adventurer)
-    {
-        if (!questManager.CombatUnlocked)
-        {
-            combatExpText.gameObject.SetActive(false);
-            combatSlider.gameObject.SetActive(false);
-            combatLevel.text = "Combat: Locked";
-        }
-        else
-        {
-            combatExpText.gameObject.SetActive(true);
-            combatSlider.gameObject.SetActive(true);
-            combatLevel.text = $"Combat: {adventurer.CombatLevel}";
-            combatExpText.text = $"{adventurer.CombatExp} / {Levelling.SkillLevel[adventurer.CombatLevel]}";
-            combatSlider.minValue = Levelling.SkillLevel[adventurer.CombatLevel - 1];
-            combatSlider.maxValue = Levelling.SkillLevel[adventurer.CombatLevel];
-            combatSlider.value = adventurer.CombatExp;
-        }
-
-        if (!questManager.EspionageUnlocked)
-        {
-            espionageExpText.gameObject.SetActive(false);
-            espionageSlider.gameObject.SetActive(false);
-            espionageLevel.text = "Espionage: Locked";
-        }
-        else
-        {
-            espionageExpText.gameObject.SetActive(true);
-            espionageSlider.gameObject.SetActive(true);
-            espionageLevel.text = $"Espionage: {adventurer.EspionageLevel}";
-            espionageExpText.text = $"{adventurer.EspionageExp} / {Levelling.SkillLevel[adventurer.EspionageLevel]}";
-            espionageSlider.minValue = Levelling.SkillLevel[adventurer.EspionageLevel - 1];
-            espionageSlider.maxValue = Levelling.SkillLevel[adventurer.EspionageLevel];
-            espionageSlider.value = adventurer.EspionageExp;
-        }
-
-        if (!questManager.DiplomacyUnlocked)
-        {
-            diplomacyExpText.gameObject.SetActive(false);
-            diplomacySlider.gameObject.SetActive(false);
-            diplomacyLevel.text = "Diplomacy: Locked";
-        }
-        else
-        {
-            diplomacyExpText.gameObject.SetActive(true);
-            diplomacySlider.gameObject.SetActive(true);
-            diplomacyLevel.text = $"Diplomacy: {adventurer.DiplomacyLevel}";
-            diplomacyExpText.text = $"{adventurer.DiplomacyExp} / {Levelling.SkillLevel[adventurer.DiplomacyLevel]}";
-            diplomacySlider.minValue = Levelling.SkillLevel[adventurer.DiplomacyLevel - 1];
-            diplomacySlider.maxValue = Levelling.SkillLevel[adventurer.DiplomacyLevel];
-            diplomacySlider.value = adventurer.DiplomacyExp;
-        }
     }
 }
