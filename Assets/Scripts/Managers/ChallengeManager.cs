@@ -10,12 +10,12 @@ public class ChallengeManager : MonoBehaviour
     [SerializeField]
     private int weeklyTotal = 3;
 
-    public bool ChallengesUnlocked { get; private set; } = false;
-    public List<DailyChallenge> CurrentDailies { get; private set; } = new List<DailyChallenge>();
-    public List<WeeklyChallenge> CurrentWeeklies { get; private set; } = new List<WeeklyChallenge>();
+    public bool ChallengesUnlocked { get; set; } = false;
+    public List<DailyChallenge> CurrentDailies { get; set; } = new List<DailyChallenge>();
+    public List<WeeklyChallenge> CurrentWeeklies { get; set; } = new List<WeeklyChallenge>();
 
-    private DateTime challengeDay = DateTime.MinValue;
-    private DateTime challengeWeek = DateTime.MinValue;
+    public DateTime ChallengeDay { get; set; } = DateTime.MinValue;
+    public DateTime ChallengeWeek { get; set; } = DateTime.MinValue;
 
     public TimeSpan DailyRemaining { get; private set; }
     public  TimeSpan WeeklyRemaining { get; private set; }
@@ -34,15 +34,12 @@ public class ChallengeManager : MonoBehaviour
                 ResetDailyChallenges();
 
             if (CurrentWeeklies.Count == 0)
-            {
-                SetChallengeWeekStart();
                 ResetWeeklyChallenges();
-            }
 
-            if (challengeDay == DateTime.MinValue)
-                challengeDay = DateTime.Now.Date;
-            if (challengeWeek == DateTime.MinValue)
-                challengeWeek = challengeDay;
+            if (ChallengeDay == DateTime.MinValue)
+                ChallengeDay = DateTime.Now.Date;
+            if (ChallengeWeek == DateTime.MinValue)
+                SetChallengeWeekStart();
         }
     }
 
@@ -50,17 +47,17 @@ public class ChallengeManager : MonoBehaviour
     {
         if (ChallengesUnlocked)
         {
-            DailyRemaining = challengeDay.AddDays(1) - DateTime.Now;
-            WeeklyRemaining = challengeWeek.AddDays(7) - DateTime.Now;
+            DailyRemaining = ChallengeDay.AddDays(1) - DateTime.Now;
+            WeeklyRemaining = ChallengeWeek.AddDays(7) - DateTime.Now;
 
-            if (challengeDay != DateTime.Now.Date)
+            if (ChallengeDay != DateTime.Now.Date)
             {
-                challengeDay = DateTime.Now.Date;
+                ChallengeDay = DateTime.Now.Date;
                 ResetDailyChallenges();
             }
-            if (DateTime.Now.Date >= challengeWeek.Date.AddDays(7))
+            if (DateTime.Now.Date >= ChallengeWeek.Date.AddDays(7))
             {
-                challengeWeek = DateTime.Now.Date;
+                ChallengeWeek = DateTime.Now.Date;
                 ResetWeeklyChallenges();
             }
         }
@@ -87,7 +84,8 @@ public class ChallengeManager : MonoBehaviour
 
     private void ResetWeeklyChallenges()
     {
-        foreach(Challenge challenge in CurrentWeeklies)
+        SetChallengeWeekStart();
+        foreach (Challenge challenge in CurrentWeeklies)
         {
             challenge.EndChallenge();
         }
@@ -144,18 +142,18 @@ public class ChallengeManager : MonoBehaviour
     private void SetChallengeWeekStart()
     {
         if (DateTime.Now.DayOfWeek == DayOfWeek.Monday)
-            challengeWeek = DateTime.Now.Date.AddDays(-1);
+            ChallengeWeek = DateTime.Now.Date.AddDays(-1);
         else if (DateTime.Now.DayOfWeek == DayOfWeek.Tuesday)
-            challengeWeek = DateTime.Now.Date.AddDays(-2);
+            ChallengeWeek = DateTime.Now.Date.AddDays(-2);
         else if (DateTime.Now.DayOfWeek == DayOfWeek.Wednesday)
-            challengeWeek = DateTime.Now.Date.AddDays(-3);
+            ChallengeWeek = DateTime.Now.Date.AddDays(-3);
         else if (DateTime.Now.DayOfWeek == DayOfWeek.Thursday)
-            challengeWeek = DateTime.Now.Date.AddDays(-4);
+            ChallengeWeek = DateTime.Now.Date.AddDays(-4);
         else if (DateTime.Now.DayOfWeek == DayOfWeek.Friday)
-            challengeWeek = DateTime.Now.Date.AddDays(-5);
+            ChallengeWeek = DateTime.Now.Date.AddDays(-5);
         else if (DateTime.Now.DayOfWeek == DayOfWeek.Saturday)
-            challengeWeek = DateTime.Now.Date.AddDays(-6);
+            ChallengeWeek = DateTime.Now.Date.AddDays(-6);
         else if (DateTime.Now.DayOfWeek == DayOfWeek.Sunday)
-            challengeWeek = DateTime.Now.Date;
+            ChallengeWeek = DateTime.Now.Date;
     }
 }

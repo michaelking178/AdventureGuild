@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1903243723826136778}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4174529948681572419
 MonoBehaviour:
@@ -73,7 +73,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1903243723826136778}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8336343813342601017
 MonoBehaviour:
@@ -85,6 +85,49 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62b41cb4ea8dfe84fbd15a2b43fc7e7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1893642696538034990
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3075573293359776370}
+  - component: {fileID: 8288612341999833449}
+  m_Layer: 0
+  m_Name: Daily_CollectGold
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3075573293359776370
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893642696538034990}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4196161218491087379}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8288612341999833449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893642696538034990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a76b75389a0edd64f8d4093ae5772833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1903243723014296804
@@ -158,35 +201,6 @@ MonoBehaviour:
     constructionTime: 21600
     Experience: 10000
     EffectIncrement: 100
-  Name: Barracks I
-  Description: Increases the maximum population of the Adventure Guild to 25!
-  GoldCost: 15000
-  IronCost: 3000
-  WoodCost: 5000
-  ArtisanCost: 1
-  constructionTime: 3600
-  Experience: 300
-  levelOnePopulation: 25
-  levelTwoName: Barracks II
-  levelTwoDescription: Increases the maximum population of the Adventure Guild to
-    50!
-  levelTwoGoldCost: 30000
-  levelTwoIronCost: 5000
-  levelTwoWoodCost: 10000
-  levelTwoArtisanCost: 10
-  levelTwoConstructionTime: 10800
-  levelTwoExperience: 2400
-  levelTwoPopulation: 50
-  levelThreeName: Barracks III
-  levelThreeDescription: Increases the maximum population of the Adventure Guild
-    to 100!
-  levelThreeGoldCost: 45000
-  levelThreeIronCost: 10000
-  levelThreeWoodCost: 20000
-  levelThreeArtisanCost: 20
-  levelThreeConstructionTime: 21600
-  levelThreeExperience: 10000
-  levelThreePopulation: 100
 --- !u!1 &1903243723023610859
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,14 +254,6 @@ MonoBehaviour:
     constructionTime: 600
     Experience: 0
     EffectIncrement: 0
-  Name: Armouror
-  Description: Unlocks the ability to promote Peasants to Adventurers!
-  GoldCost: 1000
-  IronCost: 200
-  WoodCost: 400
-  ArtisanCost: 0
-  constructionTime: 600
-  Experience: 0
 --- !u!1 &1903243723098216107
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,51 +400,6 @@ MonoBehaviour:
     constructionTime: 57600
     Experience: 6400
     EffectIncrement: 4000
-  Name: Lumber Camp I
-  Description: Increases the maximum passive Wood income to 250!
-  GoldCost: 18000
-  IronCost: 4000
-  WoodCost: 6000
-  ArtisanCost: 3
-  constructionTime: 3600
-  Experience: 400
-  LevelOneUpgrade: 250
-  LevelTwoName: Lumber Camp II
-  LevelTwoDescription: Increases the maximum passive Wood income to 500!
-  LevelTwoGoldCost: 36000
-  LevelTwoIronCost: 8000
-  LevelTwoWoodCost: 12000
-  LevelTwoArtisanCost: 10
-  LevelTwoConstructionTime: 7200
-  LevelTwoExperience: 800
-  LevelTwoUpgrade: 500
-  LevelThreeName: Lumber Camp III
-  LevelThreeDescription: Increases the maximum passive Wood income to 1000!
-  LevelThreeGoldCost: 62000
-  LevelThreeIronCost: 16000
-  LevelThreeWoodCost: 24000
-  LevelThreeArtisanCost: 20
-  LevelThreeConstructionTime: 14400
-  LevelThreeExperience: 1600
-  LevelThreeUpgrade: 1000
-  LevelFourName: Lumber Camp IV
-  LevelFourDescription: Increases the maximum passive Wood income to 2000!
-  LevelFourGoldCost: 148000
-  LevelFourIronCost: 32000
-  LevelFourWoodCost: 48000
-  LevelFourArtisanCost: 30
-  LevelFourConstructionTime: 28800
-  LevelFourExperience: 3200
-  LevelFourUpgrade: 2000
-  LevelFiveName: Lumber Camp V
-  LevelFiveDescription: Increases the maximum passive Wood income to 4000!
-  LevelFiveGoldCost: 286000
-  LevelFiveIronCost: 64000
-  LevelFiveWoodCost: 96000
-  LevelFiveArtisanCost: 40
-  LevelFiveConstructionTime: 57600
-  LevelFiveExperience: 6400
-  LevelFiveUpgrade: 4000
 --- !u!1 &1903243723289955767
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,51 +632,6 @@ MonoBehaviour:
     constructionTime: 28800
     Experience: 6400
     EffectIncrement: 5000000
-  Name: Treasury I
-  Description: Increases the Guildhall's maximum Gold storage to 100,000!
-  GoldCost: 15000
-  IronCost: 2500
-  WoodCost: 5000
-  ArtisanCost: 3
-  constructionTime: 1800
-  Experience: 200
-  LevelOneUpgrade: 100000
-  LevelTwoName: Treasury II
-  LevelTwoDescription: Increases the Guildhall's maximum Gold storage to 250,000!
-  LevelTwoGoldCost: 75000
-  LevelTwoIronCost: 10000
-  LevelTwoWoodCost: 25000
-  LevelTwoArtisanCost: 10
-  LevelTwoConstructionTime: 3600
-  LevelTwoExperience: 600
-  LevelTwoUpgrade: 250000
-  LevelThreeName: Treasury III
-  LevelThreeDescription: Increases the Guildhall's maximum Gold storage to 500,000!
-  LevelThreeGoldCost: 150000
-  LevelThreeIronCost: 25000
-  LevelThreeWoodCost: 60000
-  LevelThreeArtisanCost: 20
-  LevelThreeConstructionTime: 7200
-  LevelThreeExperience: 1600
-  LevelThreeUpgrade: 500000
-  LevelFourName: Treasury IV
-  LevelFourDescription: Increases the Guildhall's maximum Gold storage to 1,000,000!
-  LevelFourGoldCost: 475000
-  LevelFourIronCost: 50000
-  LevelFourWoodCost: 100000
-  LevelFourArtisanCost: 30
-  LevelFourConstructionTime: 14400
-  LevelFourExperience: 3000
-  LevelFourUpgrade: 1000000
-  LevelFiveName: Treasury V
-  LevelFiveDescription: Increases the Guildhall's maximum Gold storage to 5,000,000!
-  LevelFiveGoldCost: 600000
-  LevelFiveIronCost: 75000
-  LevelFiveWoodCost: 125000
-  LevelFiveArtisanCost: 40
-  LevelFiveConstructionTime: 28800
-  LevelFiveExperience: 6400
-  LevelFiveUpgrade: 5000000
 --- !u!1 &1903243723437584409
 GameObject:
   m_ObjectHideFlags: 0
@@ -1148,51 +1064,6 @@ MonoBehaviour:
     constructionTime: 28800
     Experience: 4800
     EffectIncrement: 1000000
-  Name: Storage Yard I
-  Description: Increases the Guildhall's maximum Wood storage to 50,000!
-  GoldCost: 15000
-  IronCost: 2500
-  WoodCost: 5000
-  ArtisanCost: 3
-  constructionTime: 1800
-  Experience: 200
-  LevelOneUpgrade: 50000
-  LevelTwoName: Storage Yard II
-  LevelTwoDescription: Increases the Guildhall's maximum Wood storage to 100,000!
-  LevelTwoGoldCost: 75000
-  LevelTwoIronCost: 10000
-  LevelTwoWoodCost: 25000
-  LevelTwoArtisanCost: 10
-  LevelTwoConstructionTime: 3600
-  LevelTwoExperience: 600
-  LevelTwoUpgrade: 100000
-  LevelThreeName: Storage Yard III
-  LevelThreeDescription: Increases the Guildhall's maximum Wood storage to 250,000!
-  LevelThreeGoldCost: 150000
-  LevelThreeIronCost: 25000
-  LevelThreeWoodCost: 50000
-  LevelThreeArtisanCost: 20
-  LevelThreeConstructionTime: 7200
-  LevelThreeExperience: 1200
-  LevelThreeUpgrade: 250000
-  LevelFourName: Storage Yard IV
-  LevelFourDescription: Increases the Guildhall's maximum Wood storage to 500,000!
-  LevelFourGoldCost: 300000
-  LevelFourIronCost: 50000
-  LevelFourWoodCost: 100000
-  LevelFourArtisanCost: 30
-  LevelFourConstructionTime: 14400
-  LevelFourExperience: 2400
-  LevelFourUpgrade: 500000
-  LevelFiveName: Storage Yard V
-  LevelFiveDescription: Increases the Guildhall's maximum Wood storage to 1,000,000!
-  LevelFiveGoldCost: 550000
-  LevelFiveIronCost: 100000
-  LevelFiveWoodCost: 180000
-  LevelFiveArtisanCost: 40
-  LevelFiveConstructionTime: 28800
-  LevelFiveExperience: 4800
-  LevelFiveUpgrade: 1000000
 --- !u!1 &1903243723826136781
 GameObject:
   m_ObjectHideFlags: 0
@@ -1234,6 +1105,7 @@ Transform:
   - {fileID: 1903243724359244204}
   - {fileID: 1903243724498065748}
   - {fileID: 1903243723289955764}
+  - {fileID: 4091040507324132168}
   - {fileID: 8055703803231245873}
   - {fileID: 6606495758582124867}
   - {fileID: 1462808228168334846}
@@ -1341,51 +1213,6 @@ MonoBehaviour:
     constructionTime: 57600
     Experience: 6400
     EffectIncrement: 4000
-  Name: Iron Mine I
-  Description: Increases the maximum passive Iron income to 250!
-  GoldCost: 18000
-  IronCost: 4000
-  WoodCost: 6000
-  ArtisanCost: 3
-  constructionTime: 3600
-  Experience: 400
-  LevelOneUpgrade: 250
-  LevelTwoName: Iron Mine II
-  LevelTwoDescription: Increases the maximum passive Iron income to 500!
-  LevelTwoGoldCost: 36000
-  LevelTwoIronCost: 8000
-  LevelTwoWoodCost: 12000
-  LevelTwoArtisanCost: 10
-  LevelTwoConstructionTime: 7200
-  LevelTwoExperience: 800
-  LevelTwoUpgrade: 500
-  LevelThreeName: Iron Mine III
-  LevelThreeDescription: Increases the maximum passive Iron income to 1000!
-  LevelThreeGoldCost: 62000
-  LevelThreeIronCost: 16000
-  LevelThreeWoodCost: 24000
-  LevelThreeArtisanCost: 20
-  LevelThreeConstructionTime: 14400
-  LevelThreeExperience: 1600
-  LevelThreeUpgrade: 1000
-  LevelFourName: Iron Mine IV
-  LevelFourDescription: Increases the maximum passive Iron income to 2000!
-  LevelFourGoldCost: 148000
-  LevelFourIronCost: 32000
-  LevelFourWoodCost: 48000
-  LevelFourArtisanCost: 30
-  LevelFourConstructionTime: 28800
-  LevelFourExperience: 3200
-  LevelFourUpgrade: 2000
-  LevelFiveName: Iron Mine V
-  LevelFiveDescription: Increases the maximum passive Iron income to 4000!
-  LevelFiveGoldCost: 286000
-  LevelFiveIronCost: 64000
-  LevelFiveWoodCost: 96000
-  LevelFiveArtisanCost: 40
-  LevelFiveConstructionTime: 57600
-  LevelFiveExperience: 6400
-  LevelFiveUpgrade: 4000
 --- !u!1 &1903243723985803991
 GameObject:
   m_ObjectHideFlags: 0
@@ -1602,51 +1429,6 @@ MonoBehaviour:
     constructionTime: 57600
     Experience: 6400
     EffectIncrement: 8000
-  Name: Merchant I
-  Description: Increases the maximum passive Gold income to 500!
-  GoldCost: 18000
-  IronCost: 4000
-  WoodCost: 6000
-  ArtisanCost: 3
-  constructionTime: 3600
-  Experience: 400
-  LevelOneUpgrade: 500
-  LevelTwoName: Merchant II
-  LevelTwoDescription: Increases the maximum passive Gold income to 1000!
-  LevelTwoGoldCost: 36000
-  LevelTwoIronCost: 8000
-  LevelTwoWoodCost: 12000
-  LevelTwoArtisanCost: 10
-  LevelTwoConstructionTime: 7200
-  LevelTwoExperience: 800
-  LevelTwoUpgrade: 1000
-  LevelThreeName: Merchant III
-  LevelThreeDescription: Increases the maximum passive Gold income to 2000!
-  LevelThreeGoldCost: 62000
-  LevelThreeIronCost: 16000
-  LevelThreeWoodCost: 24000
-  LevelThreeArtisanCost: 20
-  LevelThreeConstructionTime: 14400
-  LevelThreeExperience: 1600
-  LevelThreeUpgrade: 2000
-  LevelFourName: Merchant IV
-  LevelFourDescription: Increases the maximum passive Gold income to 4000!
-  LevelFourGoldCost: 148000
-  LevelFourIronCost: 32000
-  LevelFourWoodCost: 48000
-  LevelFourArtisanCost: 30
-  LevelFourConstructionTime: 28800
-  LevelFourExperience: 3200
-  LevelFourUpgrade: 4000
-  LevelFiveName: Merchant V
-  LevelFiveDescription: Increases the maximum passive Gold income to 8000!
-  LevelFiveGoldCost: 286000
-  LevelFiveIronCost: 64000
-  LevelFiveWoodCost: 96000
-  LevelFiveArtisanCost: 40
-  LevelFiveConstructionTime: 57600
-  LevelFiveExperience: 6400
-  LevelFiveUpgrade: 8000
 --- !u!1 &1903243724165480014
 GameObject:
   m_ObjectHideFlags: 0
@@ -1700,14 +1482,6 @@ MonoBehaviour:
     constructionTime: 1200
     Experience: 0
     EffectIncrement: 0
-  Name: Workshop
-  Description: Unlocks the ability to promote Peasants to Artisans!
-  GoldCost: 1250
-  IronCost: 250
-  WoodCost: 500
-  ArtisanCost: 0
-  constructionTime: 1200
-  Experience: 0
 --- !u!1 &1903243724262455425
 GameObject:
   m_ObjectHideFlags: 0
@@ -1797,51 +1571,6 @@ MonoBehaviour:
     constructionTime: 14400
     Experience: 4800
     EffectIncrement: 1000000
-  Name: Refinery I
-  Description: Increases the Guildhall's maximum Iron storage to 50,000!
-  GoldCost: 15000
-  IronCost: 2500
-  WoodCost: 5000
-  ArtisanCost: 3
-  constructionTime: 1800
-  Experience: 200
-  LevelOneUpgrade: 50000
-  LevelTwoName: Refinery II
-  LevelTwoDescription: Increases the Guildhall's maximum Iron storage to 100,000!
-  LevelTwoGoldCost: 75000
-  LevelTwoIronCost: 10000
-  LevelTwoWoodCost: 25000
-  LevelTwoArtisanCost: 10
-  LevelTwoConstructionTime: 3600
-  LevelTwoExperience: 600
-  LevelTwoUpgrade: 100000
-  LevelThreeName: Refinery III
-  LevelThreeDescription: Increases the Guildhall's maximum Iron storage to 250,000!
-  LevelThreeGoldCost: 150000
-  LevelThreeIronCost: 25000
-  LevelThreeWoodCost: 50000
-  LevelThreeArtisanCost: 20
-  LevelThreeConstructionTime: 7200
-  LevelThreeExperience: 1200
-  LevelThreeUpgrade: 250000
-  LevelFourName: Refinery IV
-  LevelFourDescription: Increases the Guildhall's maximum Iron storage to 500,000!
-  LevelFourGoldCost: 300000
-  LevelFourIronCost: 50000
-  LevelFourWoodCost: 100000
-  LevelFourArtisanCost: 30
-  LevelFourConstructionTime: 14400
-  LevelFourExperience: 2400
-  LevelFourUpgrade: 500000
-  LevelFiveName: Refinery V
-  LevelFiveDescription: Increases the Guildhall's maximum Iron storage to 1,000,000!
-  LevelFiveGoldCost: 520000
-  LevelFiveIronCost: 125000
-  LevelFiveWoodCost: 200000
-  LevelFiveArtisanCost: 40
-  LevelFiveConstructionTime: 14400
-  LevelFiveExperience: 4800
-  LevelFiveUpgrade: 1000000
 --- !u!1 &1903243724359244207
 GameObject:
   m_ObjectHideFlags: 0
@@ -2072,10 +1801,50 @@ MonoBehaviour:
   negativeNotification: {fileID: 21300000, guid: 26ec1f090ff98cd40a51f4cc0c3bdfdf,
     type: 3}
   notifications: []
-  xPosition: -5500
-  notchOffset: -180
-  spacing: -375
   notificationUIs: []
+--- !u!1 &2297826867759883969
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2553136745997617515}
+  - component: {fileID: 5090716960374064777}
+  m_Layer: 0
+  m_Name: Weekly_CompleteDailyChallenges
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2553136745997617515
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2297826867759883969}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7815766611333927526}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5090716960374064777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2297826867759883969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 110c6e1c477c725488408753c592665a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2581546677874320463
 GameObject:
   m_ObjectHideFlags: 0
@@ -2132,14 +1901,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4196161218491087379}
-  - component: {fileID: 7126362958734214634}
-  - component: {fileID: 5771577098892772938}
-  - component: {fileID: 1768276951811644906}
-  - component: {fileID: 5739515112344879101}
-  - component: {fileID: 1691828154810780342}
-  - component: {fileID: 5011184505739567130}
-  - component: {fileID: 3715687194245721327}
-  - component: {fileID: 1333432471061951294}
   m_Layer: 0
   m_Name: Daily Challenges
   m_TagString: Untagged
@@ -2157,104 +1918,59 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 3075573293359776370}
+  - {fileID: 3671998460507500792}
+  - {fileID: 4758751725968523438}
+  - {fileID: 5380501331568944419}
+  - {fileID: 4816546557550207132}
+  - {fileID: 5270660313213283499}
+  - {fileID: 6907225537727473030}
+  - {fileID: 2197300059947383600}
   m_Father: {fileID: 6987864857020832733}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7126362958734214634
+--- !u!1 &3590393272276187676
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5270660313213283499}
+  - component: {fileID: 6234414426385009807}
+  m_Layer: 0
+  m_Name: Daily_LevelUpAdventurers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5270660313213283499
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3590393272276187676}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4196161218491087379}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6234414426385009807
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3152223151800700561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a76b75389a0edd64f8d4093ae5772833, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5771577098892772938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3152223151800700561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd83eac589d580f40a93a8738f7d2ea4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1768276951811644906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3152223151800700561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a3d7b9091b4c38478718ebec29a1f6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5739515112344879101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3152223151800700561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4da2bda3a1a462049ba9ec5ef4e6838c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1691828154810780342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3152223151800700561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f01669c7437dcb14d8c38a7fe57f95bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5011184505739567130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3152223151800700561}
+  m_GameObject: {fileID: 3590393272276187676}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32ae556215f7b654ca71eded6f6b9cb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3715687194245721327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3152223151800700561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90e1b3d33c2fef7429caa0d095c486e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1333432471061951294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3152223151800700561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5068bd56c328e184597bbc135091e14f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4692442515268396333
@@ -2286,7 +2002,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1903243723826136778}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8299525227823339790
 MonoBehaviour:
@@ -2298,6 +2014,189 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26c1b391b6faa61418834ddad93fbcbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &4900590176337478468
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5164710104367625188}
+  - component: {fileID: 7815867938581543516}
+  m_Layer: 0
+  m_Name: Weekly_CompleteQuests
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5164710104367625188
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4900590176337478468}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7815766611333927526}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7815867938581543516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4900590176337478468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 998035fe0e5e2ee4785a68907e98269c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &4996601541536973223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4091040507324132168}
+  - component: {fileID: 5300316762089951122}
+  - component: {fileID: 3476716057765146834}
+  m_Layer: 0
+  m_Name: MenuSoundPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4091040507324132168
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4996601541536973223}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1903243723826136778}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &5300316762089951122
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4996601541536973223}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e4ca541f3689c48458c60135da65bdef, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &3476716057765146834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4996601541536973223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0d5e68ae5076424c996b47f8dbbd5aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5324129997127229135
@@ -2353,14 +2252,92 @@ MonoBehaviour:
     constructionTime: 604800
     Experience: 24000
     EffectIncrement: 0
-  Name: Hero's Monument
-  Description: A monument to the greatness of the Adventure Guild!
-  GoldCost: 5000000
-  IronCost: 1000000
-  WoodCost: 1000000
-  ArtisanCost: 500
-  constructionTime: 604800
-  Experience: 24000
+--- !u!1 &5565073541079546531
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3260945087206046984}
+  - component: {fileID: 5611926833901073489}
+  m_Layer: 0
+  m_Name: Weekly_EarnExperience
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3260945087206046984
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5565073541079546531}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7815766611333927526}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5611926833901073489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5565073541079546531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05cc865e5fd429841a0546e4610f2f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &5834602905978719767
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6907225537727473030}
+  - component: {fileID: 4047269613764702722}
+  m_Layer: 0
+  m_Name: Daily_LevelUpArtisans
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6907225537727473030
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5834602905978719767}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4196161218491087379}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4047269613764702722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5834602905978719767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90e1b3d33c2fef7429caa0d095c486e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6033016367049682498
 GameObject:
   m_ObjectHideFlags: 0
@@ -2414,14 +2391,79 @@ MonoBehaviour:
     constructionTime: 5400
     Experience: 500
     EffectIncrement: 0
-  Name: Hall of Trials
-  Description: Unlocks daily and weekly challenges!
-  GoldCost: 30000
-  IronCost: 15500
-  WoodCost: 22500
-  ArtisanCost: 6
-  constructionTime: 5400
-  Experience: 500
+--- !u!1 &6708519718699724033
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4816546557550207132}
+  - component: {fileID: 9003623371424177272}
+  m_Layer: 0
+  m_Name: Daily_EarnRenown
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4816546557550207132
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6708519718699724033}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4196161218491087379}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9003623371424177272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6708519718699724033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01669c7437dcb14d8c38a7fe57f95bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &6902692073366824167
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2197300059947383600}
+  m_Layer: 0
+  m_Name: Daily_PromotePeasants
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2197300059947383600
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6902692073366824167}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4196161218491087379}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7858243115886623769
 GameObject:
   m_ObjectHideFlags: 0
@@ -2431,10 +2473,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7815766611333927526}
-  - component: {fileID: 1921002410190220340}
-  - component: {fileID: 8286184934545732072}
-  - component: {fileID: 7103020417596035077}
-  - component: {fileID: 5938144376385475252}
   m_Layer: 0
   m_Name: Weekly Challenges
   m_TagString: Untagged
@@ -2452,55 +2490,183 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2553136745997617515}
+  - {fileID: 5164710104367625188}
+  - {fileID: 3260945087206046984}
+  - {fileID: 5031593509083984217}
   m_Father: {fileID: 6987864857020832733}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1921002410190220340
+--- !u!1 &8272767379302954075
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3671998460507500792}
+  - component: {fileID: 2965130430213525387}
+  m_Layer: 0
+  m_Name: Daily_CollectIron
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3671998460507500792
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8272767379302954075}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4196161218491087379}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2965130430213525387
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7858243115886623769}
+  m_GameObject: {fileID: 8272767379302954075}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 110c6e1c477c725488408753c592665a, type: 3}
+  m_Script: {fileID: 11500000, guid: fd83eac589d580f40a93a8738f7d2ea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8286184934545732072
+--- !u!1 &8279670673961424531
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4758751725968523438}
+  - component: {fileID: 9115964880399461299}
+  m_Layer: 0
+  m_Name: Daily_CollectWood
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4758751725968523438
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8279670673961424531}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4196161218491087379}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9115964880399461299
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7858243115886623769}
+  m_GameObject: {fileID: 8279670673961424531}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 998035fe0e5e2ee4785a68907e98269c, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a3d7b9091b4c38478718ebec29a1f6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7103020417596035077
+--- !u!1 &8351637345365246505
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5031593509083984217}
+  - component: {fileID: 364642583538490246}
+  m_Layer: 0
+  m_Name: Weekly_RecruitGuildMembers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5031593509083984217
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8351637345365246505}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7815766611333927526}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &364642583538490246
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7858243115886623769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05cc865e5fd429841a0546e4610f2f24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5938144376385475252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7858243115886623769}
+  m_GameObject: {fileID: 8351637345365246505}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e3a59f15e939e284ab5dd2d349cfa0fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &8442059672689468419
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5380501331568944419}
+  - component: {fileID: 8292584344577545259}
+  m_Layer: 0
+  m_Name: Daily_CompleteQuests
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5380501331568944419
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8442059672689468419}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4196161218491087379}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8292584344577545259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8442059672689468419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4da2bda3a1a462049ba9ec5ef4e6838c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

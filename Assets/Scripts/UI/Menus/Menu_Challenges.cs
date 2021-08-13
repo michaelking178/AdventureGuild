@@ -67,7 +67,8 @@ public class Menu_Challenges : Menu
         scrollbar.value = 1;
         foreach (ChallengeGroup challengeGroup in GetComponentsInChildren<ChallengeGroup>())
         {
-            challengeGroup.Expand();
+            if (challengeGroup.gameObject.GetChildren().Count > 0)
+                challengeGroup.Expand();
         }
     }
 

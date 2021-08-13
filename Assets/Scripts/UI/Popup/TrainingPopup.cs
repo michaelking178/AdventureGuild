@@ -30,4 +30,9 @@ public class TrainingPopup : MonoBehaviour
             animator.SetTrigger("Open");
         popupClickBlocker.SetActive(false);
     }
+
+    public void PlaySound()
+    {
+        Debug.Log("TrainingPopup Sound!");
+    }
 }

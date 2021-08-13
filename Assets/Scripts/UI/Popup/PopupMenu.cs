@@ -25,13 +25,16 @@ public class PopupMenu : MonoBehaviour
     public float popupCloseDelay = 1.0f;
 
     protected Animator anim;
+    
+    private AudioSource audioSource;
 
     #endregion
 
     private void Start()
     {
         anim = GetComponent<Animator>();
-        GetComponent<AudioSource>().volume = FindObjectOfType<SoundManager>().GetComponent<AudioSource>().volume;
+        audioSource = FindObjectOfType<AudioSource>();
+        audioSource.volume = FindObjectOfType<SoundManager>().GetComponent<AudioSource>().volume;
     }
 
     public virtual void Populate()
@@ -40,7 +43,6 @@ public class PopupMenu : MonoBehaviour
         clickBlocker.SetActive(true);
         dimmerPanel.EnableDim();
         anim.SetTrigger("Open");
-        GetComponent<AudioSource>().Play();
     }    
 
     public void Confirm()
@@ -63,6 +65,11 @@ public class PopupMenu : MonoBehaviour
     public void SetIsOpenBool()
     {
         FindObjectOfType<PopupManager>().SetIsOpen(false);
+    }
+
+    public void PlaySound()
+    {
+        audioSource.Play();
     }
 
     private void ClearListeners()

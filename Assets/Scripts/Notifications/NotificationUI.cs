@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class NotificationUI : MonoBehaviour
 {
@@ -9,7 +8,13 @@ public class NotificationUI : MonoBehaviour
     private TextMeshProUGUI notificationText;
 
     [SerializeField]
-    private Button closeButton;
+    private AudioClip goodSound;
+
+    [SerializeField]
+    private AudioClip badSound;
+
+    [SerializeField]
+    private AudioClip wooshSound;
 
     public Notification Notification { get; set; }
     public float CloseTimer = 8.0f;
@@ -60,9 +65,20 @@ public class NotificationUI : MonoBehaviour
     {
         soundManager.PlaySound("Button");
     }
-    
+
     public void PlayWooshSound()
     {
-        GetComponent<AudioSource>().Play();
+        audioSource.clip = wooshSound;
+        audioSource.Play();
+    }
+    
+    public void PlayNotificationSound()
+    {
+        if (Notification.NotificationSpirit == Notification.Spirit.Bad)
+            audioSource.clip = badSound;
+        else
+            audioSource.clip = goodSound;
+
+        audioSource.Play();
     }
 }

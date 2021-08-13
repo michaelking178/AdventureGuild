@@ -150,7 +150,6 @@ public class TrainingManager : MonoBehaviour
     protected virtual IEnumerator StartCountdown()
     {
         ResetSession();
-        instructionsPopup.Close();
         yield return new WaitForSeconds(0.5f);
         countingDown = true;
     }

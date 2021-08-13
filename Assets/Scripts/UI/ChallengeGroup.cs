@@ -41,7 +41,7 @@ public class ChallengeGroup : MonoBehaviour
 
     public void Expand()
     {
-        if (!isExpanded)
+        if (gameObject.activeInHierarchy && !isExpanded)
         {
             isExpanded = true;
             anim.SetTrigger("Expand");
@@ -53,7 +53,7 @@ public class ChallengeGroup : MonoBehaviour
 
     public void Collapse()
     {
-        if (isExpanded)
+        if (gameObject.activeInHierarchy && isExpanded)
         {
             isExpanded = false;
             anim.SetTrigger("Collapse");

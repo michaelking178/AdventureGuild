@@ -66,6 +66,8 @@ public static class SaveSystem
 
         TrophyManagerData trophyManagerData = new TrophyManagerData(Object.FindObjectOfType<TrophyManager>());
 
+        ChallengeManagerData challengeManagerData = new ChallengeManagerData(Object.FindObjectOfType<ChallengeManager>());
+
         SaveData saveData = new SaveData(
             heroData, 
             guildhallData, 
@@ -78,7 +80,8 @@ public static class SaveSystem
             questManagerData,
             constructionManagerData,
             boostData,
-            trophyManagerData
+            trophyManagerData,
+            challengeManagerData
             );
 
         formatter.Serialize(stream, saveData);

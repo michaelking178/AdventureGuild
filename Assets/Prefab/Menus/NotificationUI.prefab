@@ -258,11 +258,11 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   m_fontSize: 50.4
-  m_fontSizeBase: 115.39
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 200
+  m_fontSizeMax: 60
   m_fontStyle: 32
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
@@ -412,7 +412,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   notificationText: {fileID: 9054479891117925281}
-  closeButton: {fileID: 1222374415540909461}
+  goodSound: {fileID: 8300000, guid: 133392c582468d14eac6ccc48fcb323b, type: 3}
+  badSound: {fileID: 8300000, guid: c37ea09531cf805478d6e31211906e37, type: 3}
+  wooshSound: {fileID: 8300000, guid: 8779d15eb68025a49b0febb7aca5864d, type: 3}
   CloseTimer: 6
 --- !u!114 &5417735706625446603
 MonoBehaviour:
@@ -512,7 +514,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5b238043b627858438903834748fbad6, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8779d15eb68025a49b0febb7aca5864d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

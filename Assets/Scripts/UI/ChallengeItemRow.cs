@@ -34,8 +34,13 @@ public class ChallengeItemRow : MonoBehaviour
         if (menuManager.CurrentMenu == menu_Challenges && challenge != null)
         {
             descriptionText.text = challenge.Objective;
+            Debug.Log(challenge.name);
+            Debug.Log(challenge.Reward.Gold);
             rewardText.text = $"Reward:\n{challenge.Reward.Gold} Gold, {challenge.Reward.Wood} Wood, {challenge.Reward.Iron} Iron, {challenge.Reward.Renown} Renown";
-            progressText.text = $"Progress: {challenge.Progress}/{challenge.ObjectiveQuantity}";
+            if (challenge.IsCompleted)
+                progressText.text = $"Complete!";
+            else
+                progressText.text = $"Progress: {challenge.Progress}/{challenge.ObjectiveQuantity}";
 
             if (challenge.IsCompleted)
             {

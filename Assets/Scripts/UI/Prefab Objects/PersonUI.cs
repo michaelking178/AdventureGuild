@@ -39,9 +39,6 @@ public class PersonUI : MonoBehaviour
     private GameObject extensionPanel;
 
     [SerializeField]
-    private GameObject statsPanel;
-
-    [SerializeField]
     private TextMeshProUGUI exp;
 
     [SerializeField]
@@ -75,9 +72,6 @@ public class PersonUI : MonoBehaviour
 
     private QuestManager questManager;
     private bool isSelected;
-    private Color defaultAdventurerColor = new Color(0.6f, 1, 0.7f);
-    private Color defaultArtisanColor = new Color(0.3f, 0.7f, 1f);
-    private Color selectedArtisanColor = new Color(0.25f, 0.4f, 0.73f);
 
     #endregion
 

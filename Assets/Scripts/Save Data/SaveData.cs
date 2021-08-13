@@ -19,6 +19,7 @@ public class SaveData
     private ConstructionManagerData constructionManagerData;
     private BoostData boostData;
     private TrophyManagerData trophyManagerData;
+    private ChallengeManagerData challengeManagerData;
 
     public SaveData(
         GuildMemberData _heroData, 
@@ -32,7 +33,8 @@ public class SaveData
         QuestManagerData _questManagerData,
         ConstructionManagerData _constructionManagerData,
         BoostData _boostData,
-        TrophyManagerData _trophyManagerData
+        TrophyManagerData _trophyManagerData,
+        ChallengeManagerData _challengeManagerData
         )
     {
         ApplicationVersion = Application.version;
@@ -49,6 +51,7 @@ public class SaveData
         constructionManagerData = _constructionManagerData;
         boostData = _boostData;
         trophyManagerData = _trophyManagerData;
+        challengeManagerData = _challengeManagerData;
     }
 
     public void Load()
@@ -57,6 +60,7 @@ public class SaveData
             LoadSettings();
 
         LoadHero();
+        LoadChallengeManager();
         LoadGuildhall();
         LoadPopulationManager();
         LoadQuestManager();
@@ -240,6 +244,35 @@ public class SaveData
     {
         if (trophyManagerData != null)
             GameObject.FindObjectOfType<TrophyManager>().Trophies = trophyManagerData.Trophies;
+    }
+
+    private void LoadChallengeManager()
+    {
+        ChallengeManager challengeManager = GameObject.FindObjectOfType<ChallengeManager>();
+        challengeManager.ChallengesUnlocked = challengeManagerData.ChallengesUnlocked;
+        foreach (ChallengeData challengeData in challengeManagerData.DailiesData)
+        {
+            DailyChallenge daily = GameObject.Find(challengeData.Name).GetComponent<DailyChallenge>();
+            daily.Init();
+            daily.Objective = challengeData.Objective;
+            daily.ObjectiveQuantity = challengeData.ObjectiveQuantity;
+            daily.IsCompleted = challengeData.IsCompleted;
+            daily.Progress = challengeData.Progress;
+            challengeManager.CurrentDailies.Add(daily);
+        }
+        foreach (ChallengeData challengeData in challengeManagerData.WeekliesData)
+        {
+            WeeklyChallenge weekly = GameObject.Find(challengeData.Name).GetComponent<WeeklyChallenge>();
+            weekly.Init();
+            weekly.Objective = challengeData.Objective;
+            weekly.ObjectiveQuantity = challengeData.ObjectiveQuantity;
+            weekly.IsCompleted = challengeData.IsCompleted;
+            weekly.Progress = challengeData.Progress;
+            challengeManager.CurrentWeeklies.Add(weekly);
+        }
+
+        challengeManager.ChallengeDay = challengeManagerData.ChallengeDay;
+        challengeManager.ChallengeWeek = challengeManagerData.ChallengeWeek;
     }
 
     private Quest LoadQuest(QuestData _questData)
