@@ -37,10 +37,8 @@ Anticipated Launch date: **Summer 2021**
 
 Feature Development Priorities (To-Do):
 
- - Add an Artisan minigame allowing Artisans to gain experience outside of construction jobs.
  - Implement Google Play achievements.
- - Add quests that require skills to be unlocked.
- - Implement "Quips," single-sentence phrases that add personality to procedurally generated guildmembers.
+ - Implement "Legend" level (New Game+).
 
 Ongoing Tasks:
 
