@@ -72,10 +72,12 @@ public class ConstructionManager : MonoBehaviour
         if (Artisans.Count > 0)
         {
             int artisanExpShare = Mathf.RoundToInt(constructionTier.Experience / Artisans.Count);
-            foreach (GuildMember artisan in Artisans)
+            foreach (GuildMember guildmember in Artisans)
             {
-                artisan.AddExp(artisanExpShare);
-                artisan.IsAvailable = true;
+                Artisan artisan = guildmember.Vocation as Artisan;
+                artisan.ProjectsCompleted++;
+                guildmember.AddExp(artisanExpShare);
+                guildmember.IsAvailable = true;
             }
         }
 

@@ -47,28 +47,13 @@ public class PersonUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI quip;
 
+    [SerializeField]
+    private TextMeshProUGUI vocationStat;
+
     public GameObject beginBtn;
     public GameObject releaseBtn;
     public GameObject promoteToAdventurerBtn;
     public GameObject promoteToArtisanBtn;
-
-    [Header("Adventurer Stats")]
-    [SerializeField]
-    private GameObject adventurerStats;
-
-    [SerializeField]
-    private TextMeshProUGUI questsCompleted;
-
-    [Header("Peasant Stats")]
-    [SerializeField]
-    private GameObject peasantStats;
-
-    [SerializeField]
-    private TextMeshProUGUI income;
-
-    [Header("Artisan Stats")]
-    [SerializeField]
-    private GameObject artisanStats;
 
     private QuestManager questManager;
     private bool isSelected;
@@ -199,11 +184,18 @@ public class PersonUI : MonoBehaviour
     {
         if (GuildMember.Vocation is Peasant && GuildMember.Level >= 5)
         {
+            promoteToAdventurerBtn.SetActive(true);
+            promoteToArtisanBtn.SetActive(true);
+            
             if (FindObjectOfType<PopulationManager>().AdventurersEnabled)
-                promoteToAdventurerBtn.SetActive(true);
+                promoteToAdventurerBtn.GetComponent<Button>().interactable = true;
+            else
+                promoteToAdventurerBtn.GetComponent<Button>().interactable = false;
 
             if (FindObjectOfType<PopulationManager>().ArtisansEnabled)
-                promoteToArtisanBtn.SetActive(true);
+                promoteToArtisanBtn.GetComponent<Button>().interactable = true;
+            else
+                promoteToArtisanBtn.GetComponent<Button>().interactable = false;
         }
         else
         {
@@ -223,25 +215,11 @@ public class PersonUI : MonoBehaviour
         {
             quip.text = GuildMember.Quip;
             if (GuildMember.Vocation is Peasant peasant)
-            {
-                adventurerStats.SetActive(false);
-                artisanStats.SetActive(false);
-                peasantStats.SetActive(true);
-                income.text = $"{peasant.Income} {peasant.IncomeResource} per hour";
-            }
-            else if (GuildMember.Vocation is Artisan)
-            {
-                adventurerStats.SetActive(false);
-                peasantStats.SetActive(false);
-                artisanStats.SetActive(true);
-            }
+                vocationStat.text = $"{peasant.Income} {peasant.IncomeResource} per hour";
+            else if (GuildMember.Vocation is Artisan artisan)
+                vocationStat.text = $"Projects completed: {artisan.ProjectsCompleted}";
             else if (GuildMember.Vocation is Adventurer adventurer)
-            {
-                adventurerStats.SetActive(true);
-                peasantStats.SetActive(false);
-                artisanStats.SetActive(false);
-                questsCompleted.text = $"Quests completed: {adventurer.QuestsCompleted}";
-            }
+                vocationStat.text = $"Quests completed: {adventurer.QuestsCompleted}";
         }
     }
 
@@ -330,13 +308,13 @@ public class PersonUI : MonoBehaviour
         {
             isSelected = true;
             FindObjectOfType<ConstructionManager>().AddArtisan(GuildMember);
-            beginBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Deselect Artisan";
+            beginBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Deselect";
         }
         else
         {
             isSelected = false;
             FindObjectOfType<ConstructionManager>().RemoveArtisan(GuildMember);
-            beginBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Select Artisan";
+            beginBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Select";
         }
         SetColor();
         extensionPanel.SetActive(false);

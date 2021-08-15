@@ -190,11 +190,9 @@ public class SaveData
     {
         ConstructionManager constructionManager = GameObject.FindObjectOfType<ConstructionManager>();
         if (constructionManagerData == null)
-        {
-            Debug.Log("SAVEDATA.CS: No ConstructionManagerData found!");
             return;
-        }
         
+        // Load all upgrades' current tiers
         foreach (TierUpgradeData upgradeData in constructionManagerData.TierUpgradeDatas)
         {
             foreach(TierUpgrade upgrade in GameObject.FindObjectsOfType<TierUpgrade>())
@@ -206,6 +204,7 @@ public class SaveData
             }
         }
 
+        // Load current construction job, if there is one
         if (!constructionManagerData.UnderConstruction)
             constructionManager.ConstructionJob = null;
         else
@@ -213,7 +212,7 @@ public class SaveData
             foreach (TierUpgrade upgrade in GameObject.FindObjectsOfType<TierUpgrade>())
             {
                 if (upgrade.name == constructionManagerData.ConstructionJobName)
-                    constructionManager.SetConstructionJob(upgrade);
+                    constructionManager.SetConstructionJob(upgrade);                    
             }
             foreach (int id in constructionManagerData.ArtisanIDs)
             {
@@ -225,7 +224,6 @@ public class SaveData
             }
             constructionManager.StartTime = constructionManagerData.StartTime;
         }
-        constructionManager.ConstructionName = constructionManagerData.ConstructionJobName;
         constructionManager.UnderConstruction = constructionManagerData.UnderConstruction;
     }
 

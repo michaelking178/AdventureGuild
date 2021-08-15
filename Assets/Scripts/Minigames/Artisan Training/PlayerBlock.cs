@@ -3,24 +3,21 @@
 public class PlayerBlock : MonoBehaviour
 {
     [SerializeField]
-    private float rigidBodySpeed = 350.0f;
+    private float rigidBodySpeed;
 
     [SerializeField]
-    private float minSwipeLength = 30.0f;
+    private float minSwipeLength;
 
     private enum Direction { RIGHT, LEFT, UP, DOWN };
     private Vector2 startPos;
-    private bool isTouching = false;
     private bool isMoving = false;
     private bool pointAdded = false;
     private Rigidbody2D rigidBody;
-    private Touch touch;
     private TrainingManager trainingManager;
 
     private void Start()
     {
         trainingManager = FindObjectOfType<TrainingManager>();
-        touch = new Touch();
         rigidBody = GetComponent<Rigidbody2D>();
     }
 
@@ -29,48 +26,52 @@ public class PlayerBlock : MonoBehaviour
         TouchControl();
     }
 
+    private void FixedUpdate()
+    {
+        if (rigidBody.velocity.normalized.magnitude == 0)
+        {
+            isMoving = false;
+        }
+    }
+
     private void TouchControl()
     {
         if (Input.touchCount > 0)
         {
-            touch = Input.GetTouch(0);
-            isTouching = true;
-        }
+            Touch touch = Input.GetTouch(0);
 
-        if (isTouching && !isMoving)
-        {
-            if (touch.phase == TouchPhase.Began)
+            if (!isMoving)
             {
-                startPos = Input.GetTouch(0).position;
+                if (touch.phase == TouchPhase.Began)
+                {
+                    startPos = Input.GetTouch(0).position;
+                }
+                else if (touch.phase == TouchPhase.Moved)
+                {
+                    if (SwipedRight(touch))
+                    {
+                        Move(Direction.RIGHT);
+                    }
+                    else if (SwipedLeft(touch))
+                    {
+                        Move(Direction.LEFT);
+                    }
+                    else if (SwipedUp(touch))
+                    {
+                        Move(Direction.UP);
+                    }
+                    else if (SwipedDown(touch))
+                    {
+                        Move(Direction.DOWN);
+                    }
+                }
             }
-            else if (touch.phase == TouchPhase.Moved)
+            if (touch.phase == TouchPhase.Ended)
             {
-                if (SwipedRight())
-                {
-                    Move(Direction.RIGHT);
-                }
-                else if (SwipedLeft())
-                {
-                    Move(Direction.LEFT);
-                }   
-                else if (SwipedUp())
-                {
-                    Move(Direction.UP);
-                }
-                else if (SwipedDown())
-                {
-                    Move(Direction.DOWN);
-                }
-            }
-            else if (touch.phase == TouchPhase.Ended)
-            {
-                // Touch ended
-                startPos = Vector2.zero;
+                Debug.Log("TOUCH ENDED");
                 pointAdded = false;
             }
         }
-        if (rigidBody.velocity.magnitude == 0)
-            isMoving = false;
     }
 
     private void Move(Direction moveDir)
@@ -107,31 +108,39 @@ public class PlayerBlock : MonoBehaviour
         }
     }
 
-    private bool SwipedRight()
+    private bool SwipedRight(Touch touch)
     {
         float xSwipeLength = touch.position.x - startPos.x;
         float ySwipeLength = touch.position.y - startPos.y;
+        if (xSwipeLength >= minSwipeLength)
+            Debug.Log($"Swipe length: {xSwipeLength}");
         return (xSwipeLength >= minSwipeLength && xSwipeLength > ySwipeLength);
     }
 
-    private bool SwipedLeft()
+    private bool SwipedLeft(Touch touch)
     {
         float xSwipeLength = touch.position.x - startPos.x;
         float ySwipeLength = touch.position.y - startPos.y;
+        if (xSwipeLength <= 0-minSwipeLength)
+            Debug.Log($"Swipe length: {xSwipeLength}");
         return (xSwipeLength <= 0 - minSwipeLength && xSwipeLength < 0 - ySwipeLength);
     }
 
-    private bool SwipedUp()
+    private bool SwipedUp(Touch touch)
     {
         float xSwipeLength = touch.position.x - startPos.x;
         float ySwipeLength = touch.position.y - startPos.y;
+        if (ySwipeLength >= minSwipeLength)
+            Debug.Log($"Swipe length: {ySwipeLength}");
         return (ySwipeLength >= minSwipeLength && ySwipeLength > xSwipeLength);
     }
 
-    private bool SwipedDown()
+    private bool SwipedDown(Touch touch)
     {
         float xSwipeLength = touch.position.x - startPos.x;
         float ySwipeLength = touch.position.y - startPos.y;
+        if (ySwipeLength <= 0 - minSwipeLength)
+            Debug.Log($"Swipe length: {ySwipeLength}");
         return (ySwipeLength <= 0 - minSwipeLength && ySwipeLength < 0 - xSwipeLength);
     }
 }

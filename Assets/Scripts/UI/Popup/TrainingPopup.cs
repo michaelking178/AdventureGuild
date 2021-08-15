@@ -33,6 +33,6 @@ public class TrainingPopup : MonoBehaviour
 
     public void PlaySound()
     {
-        Debug.Log("TrainingPopup Sound!");
+        // Nothing, just here to keep the animator happy
     }
 }

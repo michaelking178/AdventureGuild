@@ -3,7 +3,7 @@
 public class TierUpgrade : MonoBehaviour
 {
     public TierUpgradeObject[] UpgradeTiers;
-    public int CurrentTier { get; protected set; } = -1;
+    public int CurrentTier { get; set; } = -1;
     public bool IsPurchased { get; private set; } = false;
 
     protected LevelManager levelManager;
