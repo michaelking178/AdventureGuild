@@ -6,11 +6,11 @@
 Adventure Guild places the player in the role of managing a guild of adventurers. Create your Hero and send them on adventures for fame and riches. Peasants will join your Guild and can be trained so that more quests can be undertaken. Each quest is timed, the more challenging ones requiring higher level adventurers, more time, and even special skills. Collect resources on the quests to upgrade the Guildhall and unlock even more amazing quests.
 
 **Genre**: UI based / Management / Single player<br>
-**Target Audience**: Rated E (or T, depending on quests)<br>
+**Target Audience**: Rated E<br>
 **Controls**: Touch screen<br>
 **Thematic Setting**: Medieval Fantasy / Knights & Monsters / Magic<br>
 **Tech Stack**: Unity 2019.4, Asset Store for UI assets, Assets for SFX and music<br>
-**Platform(s)**: Google Play Store, iOS Store(?)<br>
+**Platform(s)**: Google Play Store<br>
 **MVP Game Moment**: Sending your hero on a quest and reading the incidental updates until they return and claim their reward! (1 minute)
 
 **Core Player Experience**: Menu based management sim<br>
@@ -18,16 +18,26 @@ Adventure Guild places the player in the role of managing a guild of adventurers
 **Design Pillar**: Play at work, little time commitment.<br>
 **Remarkability**: Engaging quests and addictive loop.
 
-Anticipated Launch date: **Summer 2021**
+Launch date: **August 30, 2021**
 
-## Key Features
+## Gameplay Features
 
-- 60+ handcrafted quests and many handcrafted incidents that may occur during the adventurer's journey, all written by Michael King.
-- Rewarded advertising with Unity Ads.
-- Procedurally generated guildmembers who join the Guild as the player progresses.
-- Custom transitional animations between UI elements.
+- 40+ handcrafted quests and many handcrafted incidents that may occur during the adventurer's journey, all written by Michael King.
+- New guild members join the Guild as the player progresses.
+- New guild members can be trained and promoted to adventurer or artisan.
+- Upgrades can be built by artisans to improve the guildhall.
 - Local trophies for completing quests for the first time.
+- Daily and weekly challenges.
 - Bright, colorful UI with an attractive parallax background.
+
+
+## Technical Features
+- Rewarded advertising with Unity Ads.
+- Google Play integration with Achievements and Leaderboards.
+- Procedurally generated guild members, quips and incidents.
+- C# events for daily and weekly challenge progress tracking.
+- Responsive UI scaling for any portrait resolution between 4:3 and 18:9 (tested).
+- Custom transitional animations between UI elements.
 
 ## Screenshots
 
@@ -39,8 +49,3 @@ Feature Development Priorities (To-Do):
 
  - Implement Google Play achievements.
  - Implement "Legend" level (New Game+).
-
-Ongoing Tasks:
-
- - Create more quests and incidents
- - Create more adventurer names
