@@ -16,8 +16,8 @@ public class GuildMember : MonoBehaviour
         }
     }
     public int Id { get; set; }
-    public int Hitpoints { get; set; }
-    public int MaxHitpoints { get; set; }
+    public int MaxHitpoints { get; set; } // Max HP after levelling and upgrades applied
+    public int Hitpoints { get; set; } // Current HP
     public Sprite Avatar { get; set; }
     public int Experience { get; set; }
     public int Level { get; set; }
@@ -27,7 +27,9 @@ public class GuildMember : MonoBehaviour
     public bool Created { get; set; } = false;
     public string Quip { get; set; } = "";
 
+    private int defaultMaxHP = 50;
     private NotificationManager notificationManager;
+
     public delegate void OnGuildMemberChallengeEvent(int value);
     public static event OnGuildMemberChallengeEvent OnAdventurerLevelUp;
     public static event OnGuildMemberChallengeEvent OnArtisanLevelUp;
@@ -38,7 +40,7 @@ public class GuildMember : MonoBehaviour
     {
         person = _person;
         Id = Helpers.GenerateId();
-        MaxHitpoints = 50;
+        CalculateMaxHP();
         Hitpoints = MaxHitpoints;
         Experience = 0;
         Level = 1;
@@ -115,7 +117,7 @@ public class GuildMember : MonoBehaviour
                 if (Level == 5)
                     notificationManager.CreateNotification($"{person.name} can now choose a Vocation!", Notification.Spirit.Good);
             }
-            MaxHitpoints += 10;
+            CalculateMaxHP();
             Hitpoints = MaxHitpoints;
             guildhall.CalculateArtisanProficiency();
         }
@@ -129,7 +131,8 @@ public class GuildMember : MonoBehaviour
         Experience = 0;
         Level = 1;
         Adventurer adventurer = (Adventurer)Vocation;
-        MaxHitpoints = 100;
+        defaultMaxHP = 100;
+        CalculateMaxHP();
         Hitpoints = MaxHitpoints;
         notificationManager.CreateNotification($"{person.name} has honed their skills and become an Adventurer!", Notification.Spirit.Good);
 
@@ -144,11 +147,31 @@ public class GuildMember : MonoBehaviour
         Vocation = new Artisan();
         Experience = 0;
         Level = 1;
-        MaxHitpoints = 100;
+        defaultMaxHP = 100;
+        CalculateMaxHP();
         Hitpoints = MaxHitpoints;
         notificationManager.CreateNotification($"{person.name} has honed their skills and become an Artisan!", Notification.Spirit.Good);
 
         // Event for Challenges
         OnPeasantPromotion?.Invoke(1);
+    }
+
+    public void CalculateMaxHP()
+    {
+        if (Vocation is Peasant)
+        {
+            defaultMaxHP = 50;
+            MaxHitpoints = defaultMaxHP + (10 * (Level - 1));
+        }
+        else if (Vocation is Artisan)
+        {
+            defaultMaxHP = 100;
+            MaxHitpoints = defaultMaxHP + (10 * (Level - 1));
+        }
+        else
+        {
+            defaultMaxHP = 100;
+            MaxHitpoints = Mathf.FloorToInt(defaultMaxHP + (10 * (Level - 1)) + FindObjectOfType<PopulationManager>().AdventurerHPUpgradeLevel * (defaultMaxHP * 0.02f));
+        }
     }
 }

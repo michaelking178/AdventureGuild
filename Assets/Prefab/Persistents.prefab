@@ -340,7 +340,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1903243723437584406}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1903243723181841137
 MonoBehaviour:
@@ -572,7 +572,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1903243723437584406}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1903243723411386436
 MonoBehaviour:
@@ -663,13 +663,14 @@ Transform:
   - {fileID: 1903243723023610856}
   - {fileID: 1903243724165480015}
   - {fileID: 1903243723014296805}
-  - {fileID: 4969796039207919665}
   - {fileID: 1903243723411386439}
   - {fileID: 1903243723706222683}
   - {fileID: 1903243724262455550}
   - {fileID: 1903243724083500086}
   - {fileID: 1903243723181841136}
   - {fileID: 1903243723863787637}
+  - {fileID: 4969796039207919665}
+  - {fileID: 4329309832269733013}
   - {fileID: 5324129997127229136}
   m_Father: {fileID: 1903243723826136778}
   m_RootOrder: 2
@@ -1004,7 +1005,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1903243723437584406}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1903243723706222680
 MonoBehaviour:
@@ -1153,7 +1154,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1903243723437584406}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1903243723863787634
 MonoBehaviour:
@@ -1369,7 +1370,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1903243723437584406}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1903243724083500087
 MonoBehaviour:
@@ -1511,7 +1512,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1903243723437584406}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1903243724262455551
 MonoBehaviour:
@@ -1973,6 +1974,140 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32ae556215f7b654ca71eded6f6b9cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4561167223304047958
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4329309832269733013}
+  - component: {fileID: 728230093038065489}
+  m_Layer: 0
+  m_Name: MessHall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4329309832269733013
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4561167223304047958}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1903243723437584406}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &728230093038065489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4561167223304047958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 664d3cedb8623e744b0523d80e2ac4b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UpgradeTiers:
+  - Name: Mess Hall I
+    Description: Increase Adventurers' base max HP by 2%!
+    GoldCost: 10000
+    WoodCost: 5000
+    IronCost: 3000
+    ArtisanCost: 1
+    constructionTime: 900
+    Experience: 300
+    EffectIncrement: 1
+  - Name: Mess Hall II
+    Description: Increase Adventurers' base max HP by 4%!
+    GoldCost: 12000
+    WoodCost: 6000
+    IronCost: 3500
+    ArtisanCost: 2
+    constructionTime: 1800
+    Experience: 600
+    EffectIncrement: 2
+  - Name: Mess Hall III
+    Description: Increase Adventurers' base max HP by 6%!
+    GoldCost: 14000
+    WoodCost: 7000
+    IronCost: 4000
+    ArtisanCost: 3
+    constructionTime: 2700
+    Experience: 900
+    EffectIncrement: 3
+  - Name: Mess Hall IV
+    Description: Increase Adventurers' base max HP by 8%!
+    GoldCost: 16000
+    WoodCost: 8000
+    IronCost: 4500
+    ArtisanCost: 4
+    constructionTime: 3600
+    Experience: 1200
+    EffectIncrement: 4
+  - Name: Mess Hall V
+    Description: Increase Adventurers' base max HP by 10%!
+    GoldCost: 18000
+    WoodCost: 9000
+    IronCost: 5000
+    ArtisanCost: 5
+    constructionTime: 4500
+    Experience: 1500
+    EffectIncrement: 5
+  - Name: Mess Hall VI
+    Description: Increase Adventurers' base max HP by 12%!
+    GoldCost: 20000
+    WoodCost: 10000
+    IronCost: 5500
+    ArtisanCost: 6
+    constructionTime: 5400
+    Experience: 1800
+    EffectIncrement: 6
+  - Name: Mess Hall VII
+    Description: Increase Adventurers' base max HP by 14%!
+    GoldCost: 22000
+    WoodCost: 11000
+    IronCost: 6000
+    ArtisanCost: 7
+    constructionTime: 6300
+    Experience: 2100
+    EffectIncrement: 7
+  - Name: Mess Hall VIII
+    Description: Increase Adventurers' base max HP by 16%!
+    GoldCost: 24000
+    WoodCost: 12000
+    IronCost: 6500
+    ArtisanCost: 8
+    constructionTime: 7200
+    Experience: 2400
+    EffectIncrement: 8
+  - Name: Mess Hall IX
+    Description: Increase Adventurers' base max HP by 18%!
+    GoldCost: 26000
+    WoodCost: 13000
+    IronCost: 7000
+    ArtisanCost: 9
+    constructionTime: 8100
+    Experience: 2700
+    EffectIncrement: 9
+  - Name: Mess Hall X
+    Description: Increase Adventurers' base max HP by 20%!
+    GoldCost: 28000
+    WoodCost: 14000
+    IronCost: 7500
+    ArtisanCost: 10
+    constructionTime: 9000
+    Experience: 3000
+    EffectIncrement: 10
 --- !u!1 &4692442515268396333
 GameObject:
   m_ObjectHideFlags: 0
@@ -2228,7 +2363,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1903243723437584406}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5324129997127229137
 MonoBehaviour:
@@ -2367,7 +2502,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1903243723437584406}
-  m_RootOrder: 3
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7257462382871963098
 MonoBehaviour:

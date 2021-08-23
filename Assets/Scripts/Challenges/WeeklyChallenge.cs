@@ -9,4 +9,10 @@
     {
         Reward = new Reward(GoldReward, IronReward, WoodReward, 0, RenownReward);
     }
+
+    protected override void Complete()
+    {
+        base.Complete();
+        FindObjectOfType<NotificationManager>().CreateNotification($"Weekly Challenge completed! \nReward: {GoldReward} Gold, {WoodReward} Wood, {IronReward} Iron, {RenownReward} Renwon", Notification.Spirit.Good);
+    }
 }

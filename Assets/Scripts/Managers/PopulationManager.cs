@@ -24,6 +24,7 @@ public class PopulationManager : MonoBehaviour
 
     public bool AdventurersEnabled = false;
     public bool ArtisansEnabled = false;
+    public int AdventurerHPUpgradeLevel {get; set; } = 0;
 
     private int hitpointRecovery = 5;
     private float recoveryTimer = 60.0f;
@@ -216,6 +217,15 @@ public class PopulationManager : MonoBehaviour
     public void EnableArtisans()
     {
         ArtisansEnabled = true;
+    }
+
+    public void ApplyAdventurerHPUpgrade(int effect)
+    {
+        AdventurerHPUpgradeLevel = effect;
+        foreach (GuildMember guildmember in Adventurers())
+        {
+            guildmember.CalculateMaxHP();
+        }
     }
 
     private void RecoverHitpoints()

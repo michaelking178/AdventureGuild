@@ -84,7 +84,7 @@ public class QuestManager : MonoBehaviour
         // Protect against infinite loop caused by trying to add more quests than exist in the JSON file.
         if (numOfQuests > 5)
             numOfQuests = 5;
-        if (questPool.Count + numOfQuests < 15)
+        if (questPool.Count + numOfQuests < 10)
         {
             List<Quest> questsToGet = new List<Quest>();
             for (int i = 0; i < numOfQuests; i++)

@@ -42,25 +42,16 @@ public class Quest
                 time = 60;
                 break;
             case (5):
-                time = 300;
+                time = 600;
                 break;
             case (10):
-                time = 900;
-                break;
-            case (15):
                 time = 1800;
                 break;
-            case (20):
+            case (15):
                 time = 3600;
                 break;
-            case (25):
+            case (20):
                 time = 7200;
-                break;
-            case (30):
-                time = 21600;
-                break;
-            case (35):
-                time = 43200;
                 break;
             default:
                 time = 60;

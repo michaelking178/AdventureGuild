@@ -16,6 +16,7 @@
     protected override void Complete()
     {
         base.Complete();
+        FindObjectOfType<NotificationManager>().CreateNotification($"Daily Challenge completed! \nReward: {GoldReward} Gold, {WoodReward} Wood, {IronReward} Iron, {RenownReward} Renwon", Notification.Spirit.Good);
         OnDailyChallengeCompleted?.Invoke(1);
     }
 }

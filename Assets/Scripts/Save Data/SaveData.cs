@@ -126,6 +126,7 @@ public class SaveData
     {
         PopulationManager populationManager = GameObject.FindObjectOfType<PopulationManager>();
         populationManager.PopulationCap = populationManagerData.populationCap;
+        populationManager.AdventurerHPUpgradeLevel = populationManagerData.adventurerHPUpgradeLevel;
         populationManager.AdventurersEnabled = populationManagerData.adventurersEnabled;
         populationManager.ArtisansEnabled = populationManagerData.artisansEnabled;
     }

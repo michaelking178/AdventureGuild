@@ -22,16 +22,18 @@ public class Challenge : MonoBehaviour
 
     protected void AddProgress(int val)
     {
-        Progress += val;
-        CheckProgress();
+        if (!IsCompleted)
+        {
+            Progress += val;
+            CheckProgress();
+        }
     }
 
     public void CheckProgress()
     {
-        if (Progress >= ObjectiveQuantity)
+        if (!IsCompleted && Progress >= ObjectiveQuantity)
             Complete();
     }
-
 
     protected virtual void Complete()
     {
