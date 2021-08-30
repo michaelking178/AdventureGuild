@@ -170,6 +170,7 @@ public class QuestManager : MonoBehaviour
         SortQuestPoolByStartTime();
         SortQuestArchiveByStartTime();
         QuestsCompleted++;
+        ApplyQuestAchievementProgress();
 
         // Event for challenges
         OnQuestCompleted?.Invoke(1);
@@ -191,15 +192,6 @@ public class QuestManager : MonoBehaviour
 
     public void ApplyQuestReward(Quest quest)
     {
-        // Todo: ExpBoost debug can be removed later.
-        if (FindObjectOfType<PopulationManager>().DebugBoostEnabled)
-        {
-            quest.Reward.Gold *= FindObjectOfType<PopulationManager>().DebugBoost;
-            quest.Reward.Iron *= FindObjectOfType<PopulationManager>().DebugBoost;
-            quest.Reward.Wood *= FindObjectOfType<PopulationManager>().DebugBoost;
-            quest.Reward.Renown *= FindObjectOfType<PopulationManager>().DebugBoost;
-        }
-
         guildhall.AdjustGold(quest.Reward.Gold);
         guildhall.AdjustIron(quest.Reward.Iron);
         guildhall.AdjustWood(quest.Reward.Wood);
@@ -260,45 +252,10 @@ public class QuestManager : MonoBehaviour
         questPool = sorted;
     }
 
-        public void SortQuestArchiveByStartTime()
+    public void SortQuestArchiveByStartTime()
     {
         List<Quest> sorted = questArchive.OrderByDescending(quest => quest.startTime).ToList();
         questArchive = sorted;
-    }
-
-    public void UnlockSkill(string _skill)
-    {
-        switch (_skill)
-        {
-            case "Combat":
-                CombatUnlocked = true;
-                break;
-            case "Espionage":
-                EspionageUnlocked = true;
-                break;
-            case "Diplomacy":
-                DiplomacyUnlocked = true;
-                break;
-            default:
-                Debug.Log("Cannot unlock skill: " + _skill);
-                break;
-        }
-    }
-
-    public bool IsSkillUnlocked(string _skill)
-    {
-        switch (_skill)
-        {
-            case "Combat":
-                return CombatUnlocked;
-            case "Espionage":
-                return EspionageUnlocked;
-            case "Diplomacy":
-                return DiplomacyUnlocked;
-            default:
-                Debug.Log("Cannot find skill: " + _skill);
-                return false;
-        }
     }
 
     private Quest CloneQuest(Quest questToClone)
@@ -306,8 +263,6 @@ public class QuestManager : MonoBehaviour
         Quest quest = new Quest
         {
             questName = questToClone.questName,
-            skill = questToClone.skill,
-            faction = questToClone.faction,
             description = questToClone.description,
             commencement = questToClone.commencement,
             completion = questToClone.completion,
@@ -355,6 +310,8 @@ public class QuestManager : MonoBehaviour
     private void AddNextQuestInChainToPool(Quest previousQuest)
     {
         Quest quest = CloneQuest(quests.GetQuestById(previousQuest.nextQuestID));
+        quest.RewardBoosted = boostManager.IsQuestRewardBoosted;
+        quest.Reward.SetBoost();
         questPool.Add(quest);
         SortQuestPoolByStartTime();
     }
@@ -368,5 +325,19 @@ public class QuestManager : MonoBehaviour
             guildhall.AdjustWood(quest.Reward.BoostWood);
             guildhall.AdjustIron(quest.Reward.BoostIron);
         }
+    }
+
+    private void ApplyQuestAchievementProgress()
+    {
+        var googlePlay = FindObjectOfType<GPGSAuthentication>();
+
+        if (QuestsCompleted == 1)
+            googlePlay.UnlockAchievement(GPGSIds.achievement_adventure_awaits, 100.0f);
+
+        googlePlay.IncrementAchievement(GPGSIds.achievement_youre_finally_awake, 1);
+        googlePlay.IncrementAchievement(GPGSIds.achievement_unstoppable, 1);
+        googlePlay.IncrementAchievement(GPGSIds.achievement_the_chosen_one, 1);
+        googlePlay.IncrementAchievement(GPGSIds.achievement_legendary, 1);
+        
     }
 }

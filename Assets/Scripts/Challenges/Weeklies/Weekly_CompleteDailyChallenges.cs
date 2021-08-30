@@ -13,5 +13,6 @@ public class Weekly_CompleteDailyChallenges : WeeklyChallenge
     public override void EndChallenge()
     {
         DailyChallenge.OnDailyChallengeCompleted -= AddProgress;
+        base.EndChallenge();
     }
 }

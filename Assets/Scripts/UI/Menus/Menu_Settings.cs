@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Menu_Settings : Menu
@@ -12,13 +11,9 @@ public class Menu_Settings : Menu
     [SerializeField]
     private Slider soundVolume;
 
-    [SerializeField]
-    private Toggle expBoostToggle;
-
     private AudioSource soundAudioSource;
     private AudioSource[] soundAudioSources;
     private AudioSource musicAudioSource;
-    private PopulationManager populationManager;
 
     #endregion
 
@@ -27,7 +22,6 @@ public class Menu_Settings : Menu
         soundAudioSources = FindObjectsOfType<AudioSource>();
         soundAudioSource = GameObject.Find("SoundManager").GetComponent<AudioSource>();
         musicAudioSource = GameObject.Find("MusicManager").GetComponent<AudioSource>();
-        populationManager = FindObjectOfType<PopulationManager>();
         LoadSettingsValues();
     }
 
@@ -47,9 +41,6 @@ public class Menu_Settings : Menu
                     audioSource.volume = soundVolume.value;
             }
             musicAudioSource.volume = musicVolume.value;
-
-            if (expBoostToggle.isOn) populationManager.DebugBoostEnabled = true;
-            else populationManager.DebugBoostEnabled = false;
         }
     }
 
@@ -57,7 +48,5 @@ public class Menu_Settings : Menu
     {
         musicVolume.value = musicAudioSource.volume;
         soundVolume.value = soundAudioSource.volume;
-        if (populationManager.DebugBoostEnabled == true) expBoostToggle.isOn = true;
-        else expBoostToggle.isOn = false;
     }
 }

@@ -15,5 +15,6 @@ public class Daily_EarnRenown : DailyChallenge
     public override void EndChallenge()
     {
         Guildhall.OnRenownReward -= AddProgress;
+        base.EndChallenge();
     }
 }

@@ -54,7 +54,7 @@ public static class SaveSystem
 
         var soundMan = GameObject.Find("SoundManager").GetComponent<AudioSource>();
         var musicMan = GameObject.Find("MusicManager").GetComponent<AudioSource>();
-        SettingsData settingsData = new SettingsData(soundMan.volume, musicMan.volume, GameObject.Find("Population Manager").GetComponent<PopulationManager>().DebugBoostEnabled);
+        SettingsData settingsData = new SettingsData(soundMan.volume, musicMan.volume);
 
         PopulationManagerData populationManagerData = new PopulationManagerData(Object.FindObjectOfType<PopulationManager>());
 

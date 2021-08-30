@@ -13,5 +13,6 @@ public class Daily_LevelUpAdventurers : DailyChallenge
     public override void EndChallenge()
     {
         GuildMember.OnAdventurerLevelUp -= AddProgress;
+        base.EndChallenge();
     }
 }

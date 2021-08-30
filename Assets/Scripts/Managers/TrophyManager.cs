@@ -11,7 +11,7 @@ public class TrophyManager : MonoBehaviour
     [SerializeField]
     private Sprite trophySprite;
 
-    private int renownMultiplier = 5;
+    private int[] renownReward = { 5, 10, 15, 20, 25 };
 
     #endregion
 
@@ -32,7 +32,7 @@ public class TrophyManager : MonoBehaviour
             if (trophy.Id == quest.id && !trophy.IsUnlocked)
             {
                 trophy.Unlock();
-                trophy.Renown = quest.level * renownMultiplier;
+                trophy.Renown = renownReward[Mathf.FloorToInt(quest.level / 5)];
                 FindObjectOfType<Guildhall>().AdjustRenown(trophy.Renown);
                 trophy.Unlocker = quest.GuildMember.person.name;
                 string unlockString = $"{trophy.Unlocker} {trophy.Description}\n\nYou earned +{trophy.Renown} Renown!";

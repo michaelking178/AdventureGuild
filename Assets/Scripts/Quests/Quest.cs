@@ -5,10 +5,7 @@ using System.Collections.Generic;
 public class Quest
 {
     public enum Status { New, Active, Completed, Failed }
-    public enum Skill { None, Combat, Espionage, Diplomacy }
-    public enum Faction { None, MagesGuild, MerchantsGuild, RoyalPalace }
-
-    public string questName, contractor, skill, faction, description, commencement, completion, trophyDescription;
+    public string questName, contractor, description, commencement, completion, trophyDescription;
     public int id, level, time, nextQuestID;
     public bool continuingQuest, questChain;
     public int questInstanceId;
@@ -18,8 +15,6 @@ public class Quest
     public DateTime startTime;
     public QuestTimer Timer;
     public Status State;
-    public Skill QuestSkill;
-    public Faction QuestFaction;
 
     public bool RewardBoosted { get; set; } = false;
 
@@ -29,9 +24,7 @@ public class Quest
         questInstanceId = Helpers.GenerateId();
         State = Status.New;
         SetTime();
-        SetSkill();
-        SetFaction();
-        Reward = new Reward(level, QuestSkill);
+        Reward = new Reward(level);
     }
 
     private void SetTime()
@@ -56,64 +49,6 @@ public class Quest
             default:
                 time = 60;
                 break;
-        }
-    }
-
-    private void SetSkill()
-    {
-        switch (skill)
-        {
-            case "Combat":
-                QuestSkill = Skill.Combat;
-                break;
-            case "Espionage":
-                QuestSkill = Skill.Espionage;
-                break;
-            case "Diplomacy":
-                QuestSkill = Skill.Diplomacy;
-                break;
-            default:
-                QuestSkill = Skill.None;
-                break;
-        }
-    }
-
-    public string GetSkillString()
-    {
-        return skill;
-    }
-
-    private void SetFaction()
-    {
-        switch (faction)
-        {
-            case "MagesGuild":
-                QuestFaction = Faction.MagesGuild;
-                break;
-            case "MerchantsGuild":
-                QuestFaction = Faction.MerchantsGuild;
-                break;
-            case "RoyalPalace":
-                QuestFaction = Faction.RoyalPalace;
-                break;
-            default:
-                QuestFaction = Faction.None;
-                break;
-        }
-    }
-
-    public string GetFactionString()
-    {
-        switch (QuestFaction)
-        {
-            case Faction.MagesGuild:
-                return "Mages' Guild";
-            case Faction.MerchantsGuild:
-                return "Merchants' Guild";
-            case Faction.RoyalPalace:
-                return "Royal Palace";
-            default:
-                return null;
         }
     }
 }

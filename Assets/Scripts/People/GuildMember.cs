@@ -74,10 +74,6 @@ public class GuildMember : MonoBehaviour
 
     public void AddExp(int _exp)
     {
-        // Todo: DebugBoost testing tool can be removed later.
-        PopulationManager populationManager = FindObjectOfType<PopulationManager>();
-        if (populationManager.DebugBoostEnabled) _exp *= populationManager.DebugBoost;
-
         if (Level < Vocation.MaxLevel)
             Experience += _exp;
 
@@ -112,7 +108,7 @@ public class GuildMember : MonoBehaviour
             if (Vocation is Peasant peasant)
             {
                 guildhall.AdjustIncome(peasant.IncomeResource, -peasant.Income);
-                peasant.Income = Mathf.CeilToInt(peasant.Income * 1.5f);
+                CalculatePeasantIncome(peasant);
                 guildhall.AdjustIncome(peasant.IncomeResource, peasant.Income);
                 if (Level == 5)
                     notificationManager.CreateNotification($"{person.name} can now choose a Vocation!", Notification.Spirit.Good);
@@ -171,7 +167,12 @@ public class GuildMember : MonoBehaviour
         else
         {
             defaultMaxHP = 100;
-            MaxHitpoints = Mathf.FloorToInt(defaultMaxHP + (10 * (Level - 1)) + FindObjectOfType<PopulationManager>().AdventurerHPUpgradeLevel * (defaultMaxHP * 0.02f));
+            MaxHitpoints = Mathf.RoundToInt(defaultMaxHP + (10 * (Level - 1)) + FindObjectOfType<PopulationManager>().AdventurerHPUpgradeLevel * (defaultMaxHP * 0.02f));
         }
+    }
+
+    public void CalculatePeasantIncome(Peasant peasant)
+    {
+        peasant.Income = Mathf.RoundToInt(peasant.BaseIncome * Mathf.Pow(1.5f, Level) * (1 + (FindObjectOfType<PopulationManager>().PeasantIncomeUpgradeLevel * 0.025f)));
     }
 }

@@ -78,7 +78,6 @@ public class SaveData
     {
         GameObject.Find("MusicManager").GetComponent<AudioSource>().volume = settingsData.musicVolume;
         GameObject.Find("SoundManager").GetComponent<AudioSource>().volume = settingsData.soundVolume;
-        GameObject.Find("Population Manager").GetComponent<PopulationManager>().DebugBoostEnabled = settingsData.debugBoostEnabled;
     }
 
     private void LoadHero()
@@ -279,8 +278,6 @@ public class SaveData
         Quest questToLoad = new Quest();
         questToLoad.questName = _questData.questName;
         questToLoad.contractor = _questData.contractor;
-        questToLoad.skill = _questData.skill;
-        questToLoad.faction = _questData.faction;
         questToLoad.description = _questData.description;
         questToLoad.commencement = _questData.commencement;
         questToLoad.completion = _questData.completion;
@@ -299,8 +296,6 @@ public class SaveData
         questToLoad.State = _questData.State;
         questToLoad.Incidents = _questData.Incidents;
         questToLoad.startTime = _questData.startTime;
-        questToLoad.QuestSkill = _questData.questSkill;
-        questToLoad.QuestFaction = _questData.questFaction;
         questToLoad.RewardBoosted = _questData.rewardBoosted;
         return questToLoad;
     }

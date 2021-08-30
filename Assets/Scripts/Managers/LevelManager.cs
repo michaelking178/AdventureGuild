@@ -5,12 +5,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     private string[] compatibleVersions = {
-        "0.4.0.0",
-        "0.4.0.1",
-        "0.4.0.2",
-        "0.4.0.3",
-        "0.4.0.4",
-        "0.4.1.0"
+        "1.0.0.0"
     };
 
     private ClickBlocker clickBlocker;
@@ -72,12 +67,20 @@ public class LevelManager : MonoBehaviour
             bool isCompatible = false;
             if (compatibleVersions.Length != 0)
             {
-                foreach (string version in compatibleVersions)
-                {
-                    if (SaveSystem.GetSaveVersion() == version) isCompatible = true;
-                }
+                if (SaveSystem.GetSaveVersion() == Application.version || CompatibleLegacyVersion())
+                    isCompatible = true;
             }
             if (!isCompatible) SaveSystem.DeleteGame();
         }
+    }
+
+    private bool CompatibleLegacyVersion()
+    {
+        foreach (string version in compatibleVersions)
+        {
+            if (SaveSystem.GetSaveVersion() == version || SaveSystem.GetSaveVersion() == Application.version)
+                return true;
+        }
+        return false;
     }
 }

@@ -15,5 +15,6 @@ public class Daily_CollectIron : DailyChallenge
     public override void EndChallenge()
     {
         Guildhall.OnIronReward -= AddProgress;
+        base.EndChallenge();
     }
 }

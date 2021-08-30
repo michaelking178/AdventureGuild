@@ -15,5 +15,6 @@ public class Daily_CollectGold : DailyChallenge
     public override void EndChallenge()
     {
         Guildhall.OnGoldReward -= AddProgress;
+        base.EndChallenge();
     }
 }

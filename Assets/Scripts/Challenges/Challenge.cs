@@ -17,7 +17,8 @@ public class Challenge : MonoBehaviour
 
     public virtual void EndChallenge()
     {
-        Debug.LogWarning($"Challenge {name} has not implemented EndChallenge()!");
+        Progress = 0;
+        IsCompleted = false;
     }
 
     protected void AddProgress(int val)

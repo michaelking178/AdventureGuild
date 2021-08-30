@@ -120,14 +120,6 @@ public class QuestTimer : MonoBehaviour
     {
         if (incident.reward != null)
         {
-            //Todo: ExpBoost debug can be removed later.
-            if (FindObjectOfType<PopulationManager>().DebugBoostEnabled)
-            {
-                incident.reward.Gold *= FindObjectOfType<PopulationManager>().DebugBoost;
-                incident.reward.Iron *= FindObjectOfType<PopulationManager>().DebugBoost;
-                incident.reward.Wood *= FindObjectOfType<PopulationManager>().DebugBoost;
-            }
-
             guildhall.AdjustGold(incident.reward.Gold);
             guildhall.AdjustIron(incident.reward.Iron);
             guildhall.AdjustWood(incident.reward.Wood);

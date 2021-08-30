@@ -13,5 +13,6 @@ public class Daily_PromotePeasants : DailyChallenge
     public override void EndChallenge()
     {
         GuildMember.OnPeasantPromotion -= AddProgress;
+        base.EndChallenge();
     }
 }

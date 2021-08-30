@@ -13,5 +13,6 @@ public class Daily_LevelUpArtisans : DailyChallenge
     public override void EndChallenge()
     {
         GuildMember.OnArtisanLevelUp -= AddProgress;
+        base.EndChallenge();
     }
 }

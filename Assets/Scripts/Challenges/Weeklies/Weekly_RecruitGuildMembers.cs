@@ -15,5 +15,6 @@ public class Weekly_RecruitGuildMembers : WeeklyChallenge
     public override void EndChallenge()
     {
         PopulationManager.OnRecruit -= AddProgress;
+        base.EndChallenge();
     }
 }

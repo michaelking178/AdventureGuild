@@ -15,5 +15,6 @@ public class Weekly_CompleteQuests : WeeklyChallenge
     public override void EndChallenge()
     {
         QuestManager.OnQuestCompleted -= AddProgress;
+        base.EndChallenge();
     }
 }

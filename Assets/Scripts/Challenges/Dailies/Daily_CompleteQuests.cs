@@ -13,5 +13,6 @@ public class Daily_CompleteQuests : DailyChallenge
     public override void EndChallenge()
     {
         QuestManager.OnQuestCompleted -= AddProgress;
+        base.EndChallenge();
     }
 }

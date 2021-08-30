@@ -21,9 +21,6 @@ public class CombatTrainingManager : TrainingManager
 
     protected override void Start()
     {
-        // Todo: ExpBoost debug stuff can be removed later.
-        if (FindObjectOfType<PopulationManager>().DebugBoostEnabled == true) TimeLimit = 10f;
-
         base.Start();
         countdown = defaultCountdown;
         sword = FindObjectOfType<TrainingSword>();

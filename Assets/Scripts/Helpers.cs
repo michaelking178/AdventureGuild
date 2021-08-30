@@ -54,8 +54,6 @@ public static class Helpers
 
         if (quest.Reward.Renown != 0)
             reward += quest.Reward.Renown.ToString() + " Renown\n";
-        if (quest.Reward.SkillExp != 0)
-            reward += quest.Reward.SkillExp.ToString() + " " + quest.QuestSkill.ToString() + " XP\n";
         return reward;
     }
 
@@ -66,25 +64,15 @@ public static class Helpers
             if (incident.reward != null)
             {
                 if (incident.reward.Experience != 0)
-                {
                     reward += incident.reward.Experience.ToString() + " XP\n";
-                }
                 if (incident.reward.Gold != 0)
-                {
                     reward += incident.reward.Gold.ToString() + " Gold\n";
-                }
                 if (incident.reward.Wood != 0)
-                {
                     reward += incident.reward.Wood.ToString() + " Wood\n";
-                }
                 if (incident.reward.Iron != 0)
-                {
                     reward += incident.reward.Iron.ToString() + " Iron\n";
-                }
                 if (incident.reward.Hitpoints != 0)
-                {
                     reward += incident.reward.Hitpoints.ToString() + " Hitpoints\n";
-                }
             }
         }
         return reward;
@@ -98,17 +86,17 @@ public static class Helpers
 
         if (timeRemaining > 86399)
         {
-            days = Mathf.FloorToInt(timeRemaining / 86400);
+            days = Mathf.RoundToInt(timeRemaining / 86400);
             timeRemaining %= 86400;
         }
         if (timeRemaining > 3599)
         {
-            hours = Mathf.FloorToInt(timeRemaining / 3600);
+            hours = Mathf.RoundToInt(timeRemaining / 3600);
             timeRemaining %= 3600;
         }
         if (timeRemaining > 59)
         {
-            minutes = Mathf.FloorToInt(timeRemaining / 60);
+            minutes = Mathf.RoundToInt(timeRemaining / 60);
             timeRemaining %= 60;
         }
 
@@ -116,47 +104,28 @@ public static class Helpers
         string hoursStr;
         string minStr;
         string secStr;
+
         if (days < 10)
-        {
             daysStr = $"0{days}";
-        }
         else
-        {
             daysStr = days.ToString();
-        }
         if (hours < 10)
-        {
             hoursStr = $"0{hours}";
-        }
         else
-        {
             hoursStr = hours.ToString();
-        }
         if (minutes < 10)
-        {
             minStr = $"0{minutes}";
-        }
         else
-        {
             minStr = minutes.ToString();
-        }
         if (timeRemaining < 10)
-        {
             secStr = $"0{timeRemaining}";
-        }
         else
-        {
             secStr = timeRemaining.ToString();
-        }
         
         if (days > 0)
-        {
             return $"{daysStr}:{hoursStr}:{minStr}:{secStr}";
-        }
         else
-        {
             return $"{hoursStr}:{minStr}:{secStr}";
-        }
     }
 
     /// <summary>
@@ -171,14 +140,11 @@ public static class Helpers
         foreach (T item in list)
         {
             if (toCompare.Equals(item))
-            {
                 return false;
-            }
         }
         return true;
     }
 
-    // Todo: Keep an eye on GenerateId(). Make sure it works.
     public static int GenerateId()
     {
         bool isNew = true;
@@ -192,9 +158,7 @@ public static class Helpers
             foreach (int id in ids)
             {
                 if (id == newId)
-                {
                     isNew = false;
-                }
             }
         }
         else isNew = true;

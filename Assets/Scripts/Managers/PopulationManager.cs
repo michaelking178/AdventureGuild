@@ -25,6 +25,7 @@ public class PopulationManager : MonoBehaviour
     public bool AdventurersEnabled = false;
     public bool ArtisansEnabled = false;
     public int AdventurerHPUpgradeLevel {get; set; } = 0;
+    public int PeasantIncomeUpgradeLevel { get; set; } = 0;
 
     private int hitpointRecovery = 5;
     private float recoveryTimer = 60.0f;
@@ -43,10 +44,6 @@ public class PopulationManager : MonoBehaviour
 
     public delegate void OnPopulationManagerAction(int value);
     public static event OnPopulationManagerAction OnRecruit;
-
-    // Todo: DebugBoost testing tool can be removed later.
-    public bool DebugBoostEnabled = false;
-    public int DebugBoost = 3;
 
     private void Start()
     {
@@ -93,6 +90,7 @@ public class PopulationManager : MonoBehaviour
             newMember.Avatar = avatar;
             GuildMembers.Add(newMember);
             notificationManager.CreateNotification($"{newMember.person.name} has heard of your Renown and joined the Adventure Guild!", Notification.Spirit.Good);
+            ApplyRecruitmentAchievementProgress();
 
             // Event for Challenges
             OnRecruit?.Invoke(1);
@@ -228,6 +226,16 @@ public class PopulationManager : MonoBehaviour
         }
     }
 
+    public void ApplyPeasantIncomeUpgrade(int effect)
+    {
+        PeasantIncomeUpgradeLevel = effect;
+        foreach (GuildMember guildmember in Peasants())
+        {
+            if (guildmember.Vocation is Peasant peasant)
+                guildmember.CalculatePeasantIncome(peasant);
+        }
+    }
+
     private void RecoverHitpoints()
     {
         if (RecoveryStartTime == DateTime.MinValue) return;
@@ -277,5 +285,21 @@ public class PopulationManager : MonoBehaviour
         float roll = UnityEngine.Random.Range(0.01f, 1.0f);
         if (roll <= odds)
             CreateGuildMember();
+    }
+
+    private void ApplyRecruitmentAchievementProgress()
+    {
+        var googlePlay = FindObjectOfType<GPGSAuthentication>();
+
+        if (GuildMembers.Count == 2)
+            googlePlay.UnlockAchievement(GPGSIds.achievement_wolf_pack_of_2, 100.0f);
+        else if (GuildMembers.Count == 5)
+            googlePlay.UnlockAchievement(GPGSIds.achievement_humble_beginnings, 100.0f);
+        else if (GuildMembers.Count == 25)
+            googlePlay.UnlockAchievement(GPGSIds.achievement_adventure_inc, 100.0f);
+        else if (GuildMembers.Count == 50)
+            googlePlay.UnlockAchievement(GPGSIds.achievement_adventure_town, 100.0f);
+        else if (GuildMembers.Count == 100)
+            googlePlay.UnlockAchievement(GPGSIds.achievement_full_house, 100.0f);
     }
 }

@@ -50,14 +50,12 @@ public class ChallengeManager : MonoBehaviour
             DailyRemaining = ChallengeDay.AddDays(1) - DateTime.Now;
             WeeklyRemaining = ChallengeWeek.AddDays(7) - DateTime.Now;
 
-            if (ChallengeDay != DateTime.Now.Date)
+            if (DailyRemaining <= TimeSpan.Zero)
             {
-                ChallengeDay = DateTime.Now.Date;
                 ResetDailyChallenges();
             }
-            if (DateTime.Now.Date >= ChallengeWeek.Date.AddDays(7))
+            if (WeeklyRemaining <= TimeSpan.Zero)
             {
-                ChallengeWeek = DateTime.Now.Date;
                 ResetWeeklyChallenges();
             }
         }
@@ -70,6 +68,7 @@ public class ChallengeManager : MonoBehaviour
 
     private void ResetDailyChallenges()
     {
+        ChallengeDay = DateTime.Now.Date;
         foreach (Challenge challenge in CurrentDailies)
         {
             challenge.EndChallenge();

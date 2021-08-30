@@ -75,11 +75,12 @@ public class ArtisanTrainingManager : TrainingManager
     {
         base.StopGame();
         resultsTime.text = Helpers.FormatTimer((int)timer);
+        int minMoves = currentLevel.GetComponent<ArtisanLevel>().MinMoves;
 
         if (timer != 0)
         {
-            score = (currentLevel.GetComponent<ArtisanLevel>().MinMoves * 15000) / (Mathf.CeilToInt(timer) * score);
-            exp = score / 10;
+            score = Mathf.RoundToInt(Mathf.Clamp((minMoves * 1200) / ((float)(score * timer) / minMoves * 0.5f), 1500.0f, 5000.0f));
+            exp = Mathf.CeilToInt(score * 0.1f);
         }
         else
         {
@@ -94,6 +95,12 @@ public class ArtisanTrainingManager : TrainingManager
 
         resultsTotalExp.text = TotalExp.ToString();
         UpdateBoostText();
+    }
+
+    public void AbortGame()
+    {
+        timer = 0;
+        StopGame();
     }
 
     protected override void ResetSession()

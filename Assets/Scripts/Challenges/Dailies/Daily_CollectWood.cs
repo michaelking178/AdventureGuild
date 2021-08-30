@@ -15,5 +15,6 @@ public class Daily_CollectWood : DailyChallenge
     public override void EndChallenge()
     {
         Guildhall.OnWoodReward -= AddProgress;
+        base.EndChallenge();
     }
 }

@@ -27,4 +27,14 @@ public class ButtonFunctions : MonoBehaviour
         if (FindObjectOfType<SoundManager>() != null)
             FindObjectOfType<SoundManager>().PlaySound("Button");
     }
+
+    public void CallGooglePlayAchievements()
+    {
+        FindObjectOfType<GPGSAuthentication>().ShowAchievements();
+    }
+
+    public void CallGooglePlayLeaderboard()
+    {
+        FindObjectOfType<GPGSAuthentication>().ShowLeaderboard();
+    }
 }

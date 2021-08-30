@@ -24,7 +24,17 @@
 
 public static class GPGSIds
 {
+        public const string achievement_unstoppable = "CgkIjfOOqs8CEAIQBA"; // <GPGSID>
+        public const string achievement_youre_finally_awake = "CgkIjfOOqs8CEAIQAw"; // <GPGSID>
+        public const string achievement_the_chosen_one = "CgkIjfOOqs8CEAIQBQ"; // <GPGSID>
+        public const string achievement_full_house = "CgkIjfOOqs8CEAIQCw"; // <GPGSID>
+        public const string achievement_adventure_inc = "CgkIjfOOqs8CEAIQCQ"; // <GPGSID>
         public const string leaderboard_renown_high_score = "CgkIjfOOqs8CEAIQAQ"; // <GPGSID>
+        public const string achievement_adventure_town = "CgkIjfOOqs8CEAIQCg"; // <GPGSID>
+        public const string achievement_humble_beginnings = "CgkIjfOOqs8CEAIQCA"; // <GPGSID>
+        public const string achievement_adventure_awaits = "CgkIjfOOqs8CEAIQAg"; // <GPGSID>
+        public const string achievement_legendary = "CgkIjfOOqs8CEAIQBg"; // <GPGSID>
+        public const string achievement_wolf_pack_of_2 = "CgkIjfOOqs8CEAIQBw"; // <GPGSID>
 
 }
 

@@ -44,16 +44,12 @@ public class Menu_Challenges : Menu
             if (!challengeManager.ChallengesUnlocked)
             {
                 challengesLockedText.gameObject.SetActive(true);
-                dailyChallengeGroup.gameObject.SetActive(false);
-                weeklyChallengeGroup.gameObject.SetActive(false);
                 dailyTimer.text = "Locked";
                 weeklyTimer.text = "Locked";
             }
             else
             {
                 challengesLockedText.gameObject.SetActive(false);
-                dailyChallengeGroup.gameObject.SetActive(true);
-                weeklyChallengeGroup.gameObject.SetActive(true);
                 dailyTimer.text = Helpers.FormatTimer((int)challengeManager.DailyRemaining.TotalSeconds);
                 weeklyTimer.text = Helpers.FormatTimer((int)challengeManager.WeeklyRemaining.TotalSeconds);
             }

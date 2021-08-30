@@ -121,6 +121,8 @@ public class Guildhall : MonoBehaviour
         if (Renown < 0)
             Renown = 0;
 
+        FindObjectOfType<GPGSAuthentication>().AddScoreToLeaderboard(GPGSIds.leaderboard_renown_high_score, Renown);
+
         // Challenge reward event
         if (change > 0)
             OnRenownReward?.Invoke(change);

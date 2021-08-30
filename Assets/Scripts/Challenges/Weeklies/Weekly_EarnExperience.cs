@@ -15,5 +15,6 @@ public class Weekly_EarnExperience : WeeklyChallenge
     public override void EndChallenge()
     {
         GuildMember.OnExperienceGained -= AddProgress;
+        base.EndChallenge();
     }
 }
