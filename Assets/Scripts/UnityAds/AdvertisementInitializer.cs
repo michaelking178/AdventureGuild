@@ -9,7 +9,7 @@ public class AdvertisementInitializer : MonoBehaviour
     private readonly string gameId = "4049019";
 #endif
 
-    bool testMode = true;
+    bool testMode = false;
 
     void Start()
     {

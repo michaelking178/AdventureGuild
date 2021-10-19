@@ -3,35 +3,11 @@
     "m_SelectedPackage": {
         "deviceId": "LMG710AWM6cf92015",
         "name": "com.HalfPintGames.AdventureGuild",
-        "processId": 4776,
+        "processId": 23298,
         "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
-        {
-            "deviceId": "LMG710AWM6cf92015",
-            "name": "com.lge.launcher3",
-            "processId": 2863,
-            "exited": true
-        },
-        {
-            "deviceId": "LMG710AWM6cf92015",
-            "name": "com.HalfPintGames.AdventureGuild",
-            "processId": 2775,
-            "exited": true
-        },
-        {
-            "deviceId": "LMG710AWM6cf92015",
-            "name": "com.android.vending",
-            "processId": 1010,
-            "exited": true
-        },
-        {
-            "deviceId": "LMG710AWM6cf92015",
-            "name": "com.HalfPintGames.AdventureGuild",
-            "processId": 6315,
-            "exited": true
-        },
         {
             "deviceId": "LMG710AWM6cf92015",
             "name": "com.HalfPintGames.AdventureGuild",
@@ -42,6 +18,30 @@
             "deviceId": "LMG710AWM6cf92015",
             "name": "com.HalfPintGames.AdventureGuild",
             "processId": 4776,
+            "exited": true
+        },
+        {
+            "deviceId": "LMG710AWM6cf92015",
+            "name": "com.lge.lgdmsclient",
+            "processId": 17051,
+            "exited": true
+        },
+        {
+            "deviceId": "LMG710AWM6cf92015",
+            "name": "com.HalfPintGames.AdventureGuild",
+            "processId": 17162,
+            "exited": true
+        },
+        {
+            "deviceId": "LMG710AWM6cf92015",
+            "name": "com.HalfPintGames.AdventureGuild",
+            "processId": 20549,
+            "exited": true
+        },
+        {
+            "deviceId": "LMG710AWM6cf92015",
+            "name": "com.HalfPintGames.AdventureGuild",
+            "processId": 23298,
             "exited": false
         }
     ],

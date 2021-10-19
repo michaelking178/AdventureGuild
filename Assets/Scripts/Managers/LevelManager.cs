@@ -4,15 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    private string[] compatibleVersions = {
-        "1.0.0.0"
-    };
-
     private ClickBlocker clickBlocker;
 
     private void Awake()
     {
-        ClearOldSave();
         Application.targetFrameRate = 60;
     }
 
@@ -58,29 +53,5 @@ public class LevelManager : MonoBehaviour
         {
             SaveSystem.SaveGame();
         }
-    }
-
-    private void ClearOldSave()
-    {
-        if (SaveSystem.SaveFileExists())
-        {
-            bool isCompatible = false;
-            if (compatibleVersions.Length != 0)
-            {
-                if (SaveSystem.GetSaveVersion() == Application.version || CompatibleLegacyVersion())
-                    isCompatible = true;
-            }
-            if (!isCompatible) SaveSystem.DeleteGame();
-        }
-    }
-
-    private bool CompatibleLegacyVersion()
-    {
-        foreach (string version in compatibleVersions)
-        {
-            if (SaveSystem.GetSaveVersion() == version || SaveSystem.GetSaveVersion() == Application.version)
-                return true;
-        }
-        return false;
     }
 }

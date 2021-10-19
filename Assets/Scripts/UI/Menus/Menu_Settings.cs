@@ -20,8 +20,8 @@ public class Menu_Settings : Menu
     private void Start()
     {
         soundAudioSources = FindObjectsOfType<AudioSource>();
-        soundAudioSource = GameObject.Find("SoundManager").GetComponent<AudioSource>();
-        musicAudioSource = GameObject.Find("MusicManager").GetComponent<AudioSource>();
+        soundAudioSource = FindObjectOfType<SoundManager>().GetComponent<AudioSource>();
+        musicAudioSource = FindObjectOfType<MusicManager>().GetComponent<AudioSource>();
         LoadSettingsValues();
     }
 

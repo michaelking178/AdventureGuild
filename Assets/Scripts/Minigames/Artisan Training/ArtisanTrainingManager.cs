@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class ArtisanTrainingManager : TrainingManager
 {
     [Header("Artisan Training")]
+    [SerializeField]
+    private Button quitLevelBtn;
+
     [SerializeField]
     private TextMeshProUGUI resultsTime;
 
@@ -69,11 +73,13 @@ public class ArtisanTrainingManager : TrainingManager
             currentLevel.transform.rotation = Quaternion.Euler(180, currentLevel.transform.rotation.y, 0);
 
         previousLevelIndex = nextLevelIndex;
+        quitLevelBtn.gameObject.SetActive(true);
     }
 
     public override void StopGame()
     {
         base.StopGame();
+        quitLevelBtn.gameObject.SetActive(false);
         resultsTime.text = Helpers.FormatTimer((int)timer);
         int minMoves = currentLevel.GetComponent<ArtisanLevel>().MinMoves;
 

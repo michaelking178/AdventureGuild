@@ -133,6 +133,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: btn_Quit
       objectReference: {fileID: 0}
+    - target: {fileID: 5810560653051065432, guid: 237ba4a59f900564bbbf73f9e94eecd6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5810560653051065434, guid: 237ba4a59f900564bbbf73f9e94eecd6,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -278,6 +283,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 81208881}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &81208883 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5810560653051065434, guid: 237ba4a59f900564bbbf73f9e94eecd6,
+    type: 3}
+  m_PrefabInstance: {fileID: 81208881}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &152375750
 GameObject:
   m_ObjectHideFlags: 0
@@ -6224,6 +6241,7 @@ MonoBehaviour:
   countdownText: {fileID: 679677220763903601}
   clickBlockerPanel: {fileID: 1782768815647800544}
   GameOver: 0
+  quitLevelBtn: {fileID: 81208883}
   resultsTime: {fileID: 363675777}
   artisanLevels:
   - {fileID: 2114050481261742232, guid: 60a0a267763c9934ab13f627292fe9c8, type: 3}
