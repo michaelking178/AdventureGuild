@@ -18,6 +18,12 @@ public class Challenge : MonoBehaviour
     public virtual void EndChallenge()
     {
         Progress = 0;
+        IsCompleted = true;
+    }
+
+    public virtual void ResetChallenge()
+    {
+        EndChallenge();
         IsCompleted = false;
     }
 
@@ -38,12 +44,10 @@ public class Challenge : MonoBehaviour
 
     protected virtual void Complete()
     {
-        IsCompleted = true;
         EndChallenge();
         guildhall.AdjustGold(Reward.Gold);
         guildhall.AdjustIron(Reward.Iron);
         guildhall.AdjustWood(Reward.Wood);
         guildhall.AdjustRenown(Reward.Renown);
-        Debug.LogWarning($"Challenge Completed: {name}");
     }
 }

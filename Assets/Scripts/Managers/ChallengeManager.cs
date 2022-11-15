@@ -71,7 +71,7 @@ public class ChallengeManager : MonoBehaviour
         ChallengeDay = DateTime.Now.Date;
         foreach (Challenge challenge in CurrentDailies)
         {
-            challenge.EndChallenge();
+            challenge.ResetChallenge();
         }
 
         CurrentDailies.Clear();
@@ -86,7 +86,7 @@ public class ChallengeManager : MonoBehaviour
         SetChallengeWeekStart();
         foreach (Challenge challenge in CurrentWeeklies)
         {
-            challenge.EndChallenge();
+            challenge.ResetChallenge();
         }
         CurrentWeeklies.Clear();
 

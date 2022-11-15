@@ -19,8 +19,7 @@ public class SplashManager : MonoBehaviour
         {
             if (splashTime - Time.fixedDeltaTime <= 0.0f)
             {
-                if (FindObjectOfType<AdvertisementInitializer>().IsReady())
-                    StartCoroutine(FadeOut());
+                StartCoroutine(FadeOut());
             }
             else
                 splashTime -= Time.fixedDeltaTime;

@@ -68,7 +68,6 @@ public class PlayerBlock : MonoBehaviour
             }
             if (touch.phase == TouchPhase.Ended)
             {
-                Debug.Log("TOUCH ENDED");
                 pointAdded = false;
             }
         }
@@ -112,8 +111,6 @@ public class PlayerBlock : MonoBehaviour
     {
         float xSwipeLength = touch.position.x - startPos.x;
         float ySwipeLength = touch.position.y - startPos.y;
-        if (xSwipeLength >= minSwipeLength)
-            Debug.Log($"Swipe length: {xSwipeLength}");
         return (xSwipeLength >= minSwipeLength && xSwipeLength > ySwipeLength);
     }
 
@@ -121,8 +118,6 @@ public class PlayerBlock : MonoBehaviour
     {
         float xSwipeLength = touch.position.x - startPos.x;
         float ySwipeLength = touch.position.y - startPos.y;
-        if (xSwipeLength <= 0-minSwipeLength)
-            Debug.Log($"Swipe length: {xSwipeLength}");
         return (xSwipeLength <= 0 - minSwipeLength && xSwipeLength < 0 - ySwipeLength);
     }
 
@@ -130,8 +125,6 @@ public class PlayerBlock : MonoBehaviour
     {
         float xSwipeLength = touch.position.x - startPos.x;
         float ySwipeLength = touch.position.y - startPos.y;
-        if (ySwipeLength >= minSwipeLength)
-            Debug.Log($"Swipe length: {ySwipeLength}");
         return (ySwipeLength >= minSwipeLength && ySwipeLength > xSwipeLength);
     }
 
@@ -139,8 +132,6 @@ public class PlayerBlock : MonoBehaviour
     {
         float xSwipeLength = touch.position.x - startPos.x;
         float ySwipeLength = touch.position.y - startPos.y;
-        if (ySwipeLength <= 0 - minSwipeLength)
-            Debug.Log($"Swipe length: {ySwipeLength}");
         return (ySwipeLength <= 0 - minSwipeLength && ySwipeLength < 0 - xSwipeLength);
     }
 }

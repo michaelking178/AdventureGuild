@@ -246,7 +246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UpgradeTiers:
   - Name: Armouror
-    Description: Unlocks the ability to promote Peasants to Adventurers!
+    Description: Unlocks the ability to promote Level 5+ Peasants to Adventurers!
     GoldCost: 1000
     WoodCost: 400
     IronCost: 200
@@ -1476,7 +1476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UpgradeTiers:
   - Name: Workshop
-    Description: Unlocks the ability to promote Peasants to Artisans!
+    Description: Unlocks the ability to promote Level 5+ Peasants to Artisans!
     GoldCost: 1250
     WoodCost: 500
     IronCost: 250

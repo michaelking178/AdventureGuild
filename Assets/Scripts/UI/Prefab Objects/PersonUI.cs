@@ -240,8 +240,16 @@ public class PersonUI : MonoBehaviour
 
     private void UpdateExpSlider()
     {
+        if (GuildMember.Level == GuildMember.Vocation.MaxLevel)
+        {
+            expSlider.minValue = 0;
+            expSlider.maxValue = Levelling.GuildMemberLevel[GuildMember.Level - 1];
+        }
+        else
+        {
         expSlider.minValue = Levelling.GuildMemberLevel[GuildMember.Level - 1];
         expSlider.maxValue = Levelling.GuildMemberLevel[GuildMember.Level];
+        }
         expSlider.value = GuildMember.Experience;
     }
 
