@@ -86,19 +86,21 @@ public class GuildMember : MonoBehaviour
     private void CheckLevel()
     {
         Guildhall guildhall = FindObjectOfType<Guildhall>();
-        if (Vocation != null && Experience >= Levelling.GuildMemberLevel[Vocation.MaxLevel-1])
-        {
-            Level = Vocation.MaxLevel;
-            Experience = Levelling.GuildMemberLevel[Level-1];
-            return;
-        }
 
         while (Experience >= Levelling.GuildMemberLevel[Level])
         {
+            if (Vocation != null && Level == Vocation.MaxLevel)
+            {
+                Experience = Levelling.GuildMemberLevel[Level - 1];
+                return;
+            }
+
             Level++;
-            if (Level == Vocation.MaxLevel) return;
+            
             if (Level > 1)
                 notificationManager.CreateNotification($"{person.name} reached Level {Level}!", Notification.Spirit.Good);
+            if (Level == Vocation.MaxLevel)
+                notificationManager.CreateNotification($"{person.name} has mastered their Vocation!", Notification.Spirit.Good);
 
             // Level up event for Challenges
             if (Vocation is Adventurer)
